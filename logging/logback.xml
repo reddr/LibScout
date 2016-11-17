@@ -1,0 +1,41 @@
+<configuration>
+	<!-- WALA dex frontend -->
+	<logger name="com.ibm.wala.dalvik" level="off"/>
+
+	<!-- LibScout log config -->
+	<logger name="de.infsec.tpl.LibraryHandler" level="info"/> 
+	<logger name="de.infsec.tpl.LibraryIdentifier" level="info"/> 
+	<logger name="de.infsec.tpl.profile.ProfileMatch" level="info"/> 
+	<logger name="de.infsec.tpl.hash.HashTree" level="debug"/> 
+	<logger name="de.infsec.tpl.utils.WalaUtils" level="info"/>
+
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss} %-5level %-25logger{0} : %msg%n</pattern>
+			<!--<pattern>%d{HH:mm:ss} %-5level %-25logger{0} : %msg%n</pattern>-->
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.classic.sift.SiftingAppender">
+		<discriminator>
+			<key>appPath</key>
+			<defaultValue>./defaultApp</defaultValue>
+		</discriminator>
+		<sift>
+			<appender name="${appPath}" class="ch.qos.logback.core.FileAppender">
+				<file>${appPath}.log</file>
+				<append>false</append>
+				<layout class="ch.qos.logback.classic.PatternLayout">
+					<pattern>%d{HH:mm:ss} %-5level %-25logger{0} : %msg%n</pattern>
+				</layout>
+			</appender>
+		</sift>
+	</appender>
+
+
+	<root level="info">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>

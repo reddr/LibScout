@@ -1,0 +1,95 @@
+<project name="LibScout" default="build" basedir=".">
+	<property name="app.name"      value="LibScout"/>
+	<property name="app.developer" value="Erik Derr"/>
+	<property name="main.class"    value="de.infsec.tpl.TplCLI"/>
+	<property name="build.dir"     location="build"/>
+	<property name="bin.dir"       location="bin"/>
+	<property name="src.dir"       location="src"/>
+	<property name="lib.dir"       location="lib"/>
+
+
+	<!-- dependencies -->
+	<path id="myclasspath">
+		<fileset dir="lib">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+
+
+	<!-- compile target -->
+	<target name="compile" depends="clean" description="compile the source">
+		<mkdir dir="${bin.dir}"/>
+		<echo message="Using Java version ${ant.java.version}."/>
+		<javac srcdir="${src.dir}" destdir="${bin.dir}" optimize="true" debug="false" deprecation="off" includeantruntime="false">
+			<classpath refid="myclasspath"/>
+		</javac>
+	</target>
+
+	<!-- build tpl.jar file -->
+	<target name="build" depends="compile" description="build the jar file">
+		<mkdir dir="${build.dir}"/>
+
+		<!-- necessary for android xml parsing -->
+		<unjar src="${lib.dir}/android-23.jar" dest="${bin.dir}">
+			<patternset>
+				<include name="android/content/res/*.class" />
+				<include name="org/xmlpull/v1/*.class" />
+				<include name="android/util/AttributeSet.class" />
+			</patternset>
+		</unjar>
+		
+		<unjar src="${lib.dir}/joana.api.jar" dest="${bin.dir}">
+			<patternset>
+				<exclude name="com/ibm/wala/cast/" />
+				<exclude name="edu/kit/joana/api/" />
+				<exclude name="edu/kit/joana/ui/" />
+				<exclude name="junit/" />
+				<exclude name="ch/" />  <!-- logback -->
+				<exclude name="net/"/>  <!-- cscott -->
+				<exclude name="gnu/"/>  <!-- trove -->
+				<exclude name="stubs/"/>  <!-- stubs -->
+				<exclude name="tests/"/>  <!-- tests -->
+				<exclude name="org/junit/" />
+				<exclude name="org/slf4j/" />
+				<exclude name="org/apache/commons/io/" />
+			</patternset>
+		</unjar>
+
+		<unjar src="${lib.dir}/wala-dalvik.jar" dest="${bin.dir}">
+			<patternset>
+				<include name="com/ibm/" />
+				<include name="com/google/common/base/*.class" />
+				<include name="org/" />
+			</patternset>
+		</unjar>
+
+		<unjar dest="${bin.dir}">
+			<fileset dir="${lib.dir}">
+				<include name="**/commons-cli-1.2.jar" />
+				<include name="**/commons-io-2.4.jar" />
+				<include name="**/sqlite-jdbc-3.7.15-SNAPSHOT.jar" />
+			</fileset>
+			<fileset dir="${lib.dir}/logging">
+				<include name="**/*.jar" />
+			</fileset>
+		</unjar>
+
+
+		<!-- Put the jar file into build dir -->
+		<jar jarfile="${build.dir}/LibScout.jar" basedir="${bin.dir}" compress="true">
+			<manifest>
+				<attribute name="Built-By" value="${app.developer}" />
+				<attribute name="Application" value="${app.name}" />
+				<attribute name="Main-Class" value="${main.class}" />
+			</manifest>
+		</jar>
+	</target>
+
+
+
+	<!-- clean target -->
+	<target name="clean" description="clean up">
+		<delete dir="${bin.dir}"/>
+		<delete dir="${build.dir}"/>
+	</target>
+</project>

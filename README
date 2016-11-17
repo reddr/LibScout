@@ -1,0 +1,80 @@
+=========================
+       LibScout
+=========================
+
+LibScout is a light-weight and effective static analysis tool to detect third-party libraries in
+Android apps.  The detection is resilient against common bytecode obfuscation techniques such as
+identifier renaming or code-based obfuscations such as reflection-based API hiding or control-flow
+randomization.  LibScout requires the original library SDKs (compiled .jar/.aar files) to extract
+library profiles that can be used for detection on Android apps.
+
+Unique features:
+ * Library detection resilient against many kinds of bytecode obfuscation
+ * Capability of pinpointing the exact library version (in some cases to a set of 2-3 candidate versions)
+ * Capability of handling dead-code elimination, by computing a similarity score against baseline SDKs
+
+For technical details and large-scale evaluation results, please refer to our publication:
+Reliable Third-Party Library Detection in Android and its Security Applications
+https://www.infsec.cs.uni-saarland.de/~derr/publications/pdfs/derr_ccs16.pdf
+
+For comments, feedback, etc. contact: Erik Derr [lastname@cs.uni-saarland.de]
+
+
+=============================
+   LibScout Repo Structure
+=============================
+|_ build.xml (ant build file to generate runnable .jar)
+|_ data
+|    |_ library-data.sqlite (library meta data)
+|    |_ library-profiles.zip (all library profiles)
+|    |_ app-version-codes.csv (app packages with valid version codes)
+|_ lib
+|    pre-compiled WALA libs, Apache commons*, log4j, Android SDK 
+|_ logging
+|    |_ logback.xml (log4j configuration file)
+|_ scripts
+|    |_ mvn-central
+|         |_ mvn-central-crawler.py (script to retrieve complete library histories from mvn-central)
+|_ src
+    source directory of LibScout (de/infsec/tpl). Includes some open-source,
+    third-party code to parse AXML resources / app manifests etc.
+
+
+=========================
+   Getting Started
+=========================
+0. LibScout requires Java 1.7 or higher.
+   If you're using OpenJDK you need to use either 1.7 *or* 1.9
+   (1.8 seems to have some strange bytecode verification bug)
+   A runnable jar can be generated with the build.xml
+
+1. LibScout has three modes of operation:
+   a) Generate library profiles from original library SDKs
+      java -jar LibScout.jar -x <$lib-dir/library.xml> -a <lib/android-X.jar> <$lib-dir/lib.jar>
+
+   b) Detect libraries in apps using pre-generated profiles:
+      java -jar LibScout.jar -a lib/android-X.jar -p <$path-to-lib-profiles> -d <$log-dir> someapp.apk
+
+   c) Generate a SQLite database from library profiles and serialized app stats:
+      java -jar LibScout.jar -a <lib/android-X.jar> -p <$path-to-lib-profiles> -db <$path-to-app-stats> someapp.apk
+
+2. Some classes to start with:
+   - de.infsec.tpl.TplCLI:  Starting class including CLI parsing and logging init
+   - de.infsec.tpl.LibraryHandler:  Starting class to extract library profiles
+   - de.infsec.tpl.LibraryIdentifier:  Code to match lib profiles and application bytecode
+   - de.infsec.tpl.hash.HashTree:  main data structures used for profiles
+
+3. How to aggregate per-app results during large-scale evaluation?
+   While the tool consumes one app at a time, it can serialize the app results to disk. Using
+   operation mode c), LibScout loads all app results to generate one convenient SQLite file
+   (the DB structure can be found in class de.infsec.tpl.stats.SQLStats)
+
+
+=========================
+   Library Profiles
+=========================
+While we can not make the original library SDks publicly available for legal reasons, we provide the following:
+ - all library profiles (ready-to-use for detection in apps) [data/library-profiles.zip]
+ - an accompanying SQLite DB with parsed library data (name, version, release date, ..)  [data/library-data.sqlite]
+ - a python script to automatically download complete version histories from maven-central
+   incl. config script [scripts/mvn-central/mvn-central-crawler.py]
