@@ -46,15 +46,15 @@ For comments, feedback, etc. contact:  Erik Derr  [lastname@cs.uni-saarland.de]
     <ol type="a">
         <li>
             Generate library profiles from original library SDKs:<br>
-            <pre>java -jar LibScout.jar -o profile -a &lt;lib/android-X.jar&gt; -x &lt;$lib-dir/library.xml&gt; &lt;$lib-dir/lib.jar&gt; </pre>
+            <pre>java -jar LibScout.jar -o profile -a lib/android-X.jar -x ${lib-dir/library.xml} ${lib-dir/lib.jar} </pre>
         </li>
         <li>
             Detect libraries in apps using pre-generated profiles (log to directory + serialize results):<br>
-            <pre>java -jar LibScout.jar -o match -a lib/android-X.jar -p &lt;$path-to-lib-profiles&gt; -s -d &lt;$log-dir&gt; $someapp.apk  </pre>
+            <pre>java -jar LibScout.jar -o match -a lib/android-X.jar -p &lt;path-to-lib-profiles&gt; -s -d &lt;log-dir&gt; $someapp.apk  </pre>
         </li>
         <li>
             Generate a SQLite database from library profiles and serialized app stats:<br>
-            <pre>java -jar LibScout.jar -o db -p &lt;$path-to-lib-profiles&gt; -s &lt;$path-to-app-stats&gt; </pre>
+            <pre>java -jar LibScout.jar -o db -p &lt;path-to-lib-profiles&gt; -s &lt;path-to-app-stats&gt; </pre>
         </li>
     </ol>
 </li>
