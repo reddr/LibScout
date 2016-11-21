@@ -96,13 +96,24 @@ public class LibraryIdentifier {
 		
 		logger.info("Process app: " + stats.appFile.getName());
 		
+		// parse AndroidManifest.xml 
+		stats.manifest = parseManifest(stats.appFile);
+		
+		// if stat file already exists for this app, return
+		File statsFile = new File(stats.appFile.getName().replaceAll("\\.jar", "").replaceAll("\\.apk", "").replaceAll("\\.aar", "") + "_" + stats.manifest.getVersionCode());
+		File dataFile = new File(CliOptions.statsDir + File.separator + statsFile + ".data");
+
+		if (CliOptions.generateStats && dataFile.exists()) {
+			logger.info(Utils.INDENT + "Stat file " + dataFile + " already exists - ABORT!");
+			return;
+		}
+		
 		stats.profiles = profiles;
 		uniqueLibraries = LibProfile.getUniqueLibraries(profiles);
 		logger.info(Utils.INDENT + "Loaded " + uniqueLibraries.size() + " unique libraries with " + profiles.size() + " library profiles (in " + Utils.millisecondsToFormattedTime(TplCLI.libProfileLoadingTime) + ")");
 		logger.info("");
 		
-		// parse AndroidManifest.xml and create CHA
-		stats.manifest = parseManifest(stats.appFile);
+		// create CHA
 		createClassHierarchy();
 		
 		// generate app package tree and hash trees
@@ -166,10 +177,10 @@ public class LibraryIdentifier {
 		stats.processingTime = System.currentTimeMillis() - starttime;
 
 		// serialize appstats to disk
-		logger.info("Serialize app stats to disk (dir: " + CliOptions.statsDir + ")");
-		File statsFile = new File(stats.appFile.getName().replaceAll("\\.jar", "").replaceAll("\\.apk", "").replaceAll("\\.aar", "") + "_" + stats.manifest.getVersionCode()); 
-		Utils.serializeObjectToDisk(statsFile, CliOptions.statsDir, new SerializableAppStats(stats));
-
+		if (CliOptions.generateStats) {
+			logger.info("Serialize app stats to disk (dir: " + CliOptions.statsDir + ")");
+			Utils.serializeObjectToDisk(statsFile, CliOptions.statsDir, new SerializableAppStats(stats));
+		}
 		
 		logger.info("App processing time: " + Utils.millisecondsToFormattedTime(stats.processingTime));
 		

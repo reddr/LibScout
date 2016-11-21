@@ -419,7 +419,7 @@ public class Utils {
 		             files.add(iterator.next());
 		         }   
 		     } catch (Exception e) {
-		         e.printStackTrace();
+		         //e.printStackTrace();
 		     }   
 		}
 

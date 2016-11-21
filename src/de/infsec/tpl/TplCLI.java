@@ -17,6 +17,7 @@ package de.infsec.tpl;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,15 +44,24 @@ public class TplCLI {
 	private static final Logger logger = LoggerFactory.getLogger(de.infsec.tpl.TplCLI.class);
 	private static Options options;
 	
+    /*
+     *  mode of operation
+     *    - PROFILE:  generate library profiles from original lib SDKs and descriptions
+     *    -   MATCH:  match lib profiles in provided apps
+     *    -      DB:  build sqlite database from app stat files 
+     */
+	public static  enum OpMode {PROFILE, MATCH, DB};
+	
 	public static class CliOptions {
 		public static File pathToAndroidJar;		
 		public static Utils.LOGTYPE logType = Utils.LOGTYPE.CONSOLE;
 		public static File logDir = new File("./logs");
 		public static File statsDir = new File("./stats");
 		public static File profilesDir = new File("./profiles");
-		public static boolean createDB = false;
-		public static boolean isMatchingMode = true;
+		public static OpMode opmode = null;
+		
 		public static boolean noPartialMatching = false;
+		public static boolean generateStats = false;
 	}
 	
 	public static class LibProfiles {
@@ -59,7 +69,10 @@ public class TplCLI {
 	}
 	
 	private static final String TOOLNAME = "LibScout";
-	private static final String USAGE = TOOLNAME + " <options> <path to lib.jar>";
+	private static final String USAGE = TOOLNAME + " --opmode [profile|match|db] <options>";
+	private static final String USAGE_PROFILE = TOOLNAME + " --opmode profile -a <path-to-android.jar> -x <path-to-lib-desc> <options> $lib.jar";
+	private static final String USAGE_MATCH = TOOLNAME + " --opmode match -a <path-to-android.jar> <options> $path-to-app(-dir)";
+	private static final String USAGE_DB = TOOLNAME + " --opmode db -p <path-to-profiles> -s <path-to-stats>";
 	private static ArrayList<File> targetFiles;
 	private static File libraryDescription = null;
 	protected static long libProfileLoadingTime = 0l;
@@ -72,23 +85,24 @@ public class TplCLI {
 		// initialize logback
 		initLogging();
 
-		// generate SQLite DB from app stats only
-		if (CliOptions.createDB) {
-			SQLStats.stats2DB();
-			System.exit(0);
-		} 
-		
 		List<LibProfile> profiles = null;
-		if (CliOptions.isMatchingMode) {
+		if (!CliOptions.opmode.equals(OpMode.PROFILE)) {
 			try {
 				profiles = loadLibraryProfiles();
-				//SQLStats.updateLibProfiles(profiles);  // write LibProfiles to DB once
-			} catch (Exception e) {
-				logger.error(Utils.stacktrace2Str(e));
+			} catch (Exception e) {}
+			
+			if (profiles == null || profiles.isEmpty()) {
+				System.err.println("No profiles found in " + CliOptions.profilesDir + ". Check your settings!");
 				System.exit(1);
 			}
 		}
-		
+
+		// generate SQLite DB from app stats only
+		if (CliOptions.opmode.equals(OpMode.DB)) {
+			SQLStats.stats2DB(profiles);
+			System.exit(0);
+		} 
+				
 		for (File targetFile: targetFiles) {
 			LibraryHandler handler = new LibraryHandler(targetFile, libraryDescription, profiles);
 			handler.run();
@@ -98,7 +112,6 @@ public class TplCLI {
 	
 	public static List<LibProfile> loadLibraryProfiles() throws ClassNotFoundException, IOException {
 		// de-serialize library profiles
-//		logger.info("= Load library profiles =");
 		long s = System.currentTimeMillis();
 		List<LibProfile> profiles = new ArrayList<LibProfile>();
 		for (File f: Utils.collectFiles(CliOptions.profilesDir, new String[]{"data"})) {
@@ -107,9 +120,6 @@ public class TplCLI {
 		}
 		
 		Collections.sort(profiles, LibProfile.comp);
-//		Set<String> uniqueLibraries = LibProfile.getUniqueLibraries(profiles);
-//		logger.info(LogConfig.INDENT + "Loaded " + uniqueLibraries.size() + " unique libraries with "+ profiles.size() + " library profiles (in " + Utils.millisecondsToFormattedTime(System.currentTimeMillis() - s) + ")");
-//		logger.info("");
 		libProfileLoadingTime = System.currentTimeMillis() - s;
 		
 		return profiles;
@@ -121,13 +131,26 @@ public class TplCLI {
 		try {
 			CommandLineParser parser = new BasicParser();
 			CommandLine cmd = parser.parse(setupOptions(), args);
-			
-			// process options
-			if (cmd.hasOption("a"))
-                CliOptions.pathToAndroidJar = new File(cmd.getOptionValue("a"));
-			
-			// Logdir option, if provided without argument output is logged to default dir, otherwise to the provided dir
-			if (cmd.hasOption("d")) {
+		
+			// parse mode of operation
+			if (cmd.hasOption("o")) {
+				try {
+					CliOptions.opmode = OpMode.valueOf(cmd.getOptionValue("o").toUpperCase());
+				} catch (IllegalArgumentException e) {
+					throw new ParseException(Utils.stacktrace2Str(e));
+				}
+			} else
+				usage();
+
+			/*
+			 * Logging options (apply to all modes, default settings: console logging, logdir="./logs")
+			 *  -m, disable logging (takes precedence over -d)
+			 *  -d [logdir], if provided without argument output is logged to default dir, otherwise to the provided dir
+			 */
+			if (cmd.hasOption("m")) {
+				CliOptions.logType = Utils.LOGTYPE.NONE;
+			} 
+			else if (cmd.hasOption("d")) {
 				CliOptions.logType = Utils.LOGTYPE.FILE;
 
 				if (cmd.getOptionValue("d") != null) {   // we have a log dir
@@ -138,9 +161,15 @@ public class TplCLI {
 					CliOptions.logDir = logDir;
 				}
 			}
+
+			// path to Android SDK jar
+			if (checkRequiredUse(cmd, "a", OpMode.PROFILE, OpMode.MATCH)) {
+				CliOptions.pathToAndroidJar = new File(cmd.getOptionValue("a"));
+			}
+			
 			
 			// profiles dir option, if provided without argument output is written to default dir
-			if (cmd.hasOption("p")) {
+			if (checkOptionalUse(cmd, "p", OpMode.PROFILE, OpMode.MATCH, OpMode.DB)) {
 				File profilesDir = new File(cmd.getOptionValue("p"));
 				if (profilesDir.exists() && !profilesDir.isDirectory())
 					throw new ParseException("Profiles directory " + profilesDir + " already exists and is not a directory");
@@ -150,53 +179,66 @@ public class TplCLI {
 			
 			
 			// disable partial matching (full lib matching only)
-			if (cmd.hasOption("n")) {
+			if (checkOptionalUse(cmd, "n", OpMode.MATCH)) {
 				CliOptions.noPartialMatching = true;
 			}
 			
-			// if a library description is provided we are in extraction mode
-			if (cmd.hasOption("x")) {
+			
+			// provide library description file
+			if (checkRequiredUse(cmd, "x", OpMode.PROFILE)) {
 				File libraryDescriptionFile = new File(cmd.getOptionValue("x"));
 				if (libraryDescriptionFile.exists() && libraryDescriptionFile.isDirectory())
 					throw new ParseException("Library description (" + libraryDescriptionFile + ") must not be a directory");
 					
 				libraryDescription = libraryDescriptionFile;
-				CliOptions.isMatchingMode = false;
 			}
 
 			
-			if (cmd.hasOption("db")) {
-				CliOptions.createDB = true;
+			// enable/disable generation of stats with optional stats directory
+			if (checkOptionalUse(cmd, "s", OpMode.MATCH, OpMode.DB)) {
+				CliOptions.generateStats = true;
 
-				if (cmd.getOptionValue("db") != null) {   // we have a stats dir
-					File statsDir = new File(cmd.getOptionValue("db"));
-					if (!statsDir.exists() || (statsDir.exists() && !statsDir.isDirectory()))
-						throw new ParseException("Stats directory " + statsDir + " does not exist or is not a directory");
+				if (cmd.getOptionValue("s") != null) {   // stats dir provided?
+					File statsDir = new File(cmd.getOptionValue("s"));
+					if (statsDir.exists() && !statsDir.isDirectory())
+						throw new ParseException("Stats directory " + statsDir + " already exists and is not a directory");
 					
 					CliOptions.statsDir = statsDir;
 				}
 			}
 			
-			// process lib|app arguments, either list of individual files or directory with files
-			targetFiles = new ArrayList<File>();
-			String fileExt = CliOptions.isMatchingMode? "apk" : "jar"; 
-
-			for (String apkFileName: cmd.getArgs()) {
-				File arg = new File(apkFileName);
-				if (arg.isDirectory()) {
-					targetFiles.addAll(Utils.collectFiles(arg, new String[]{fileExt}));
-				} else if (arg.isFile()) {
-					if (arg.getName().endsWith("." + fileExt))
-						targetFiles.add(arg);
-					else
-						throw new ParseException("File " + arg.getName() + " is no valid ." + fileExt + " file");
-				} else {
-					throw new ParseException("Argument is no valid file or directory!");
-				}
-			}
 			
-			if (targetFiles.isEmpty())
-				throw new ParseException("You have to provide at least one library to be processed");
+			/*
+			 * process lib|app arguments
+			 *  - in profile mode pass *one* library (since it is linked to lib description file)
+			 *  - in match mode pass one application file or one directory file (including apks)
+			 */
+			if (!CliOptions.opmode.equals(OpMode.DB)) {
+				targetFiles = new ArrayList<File>();
+				String fileExt = CliOptions.opmode.equals(OpMode.MATCH)? "apk" : "jar"; 
+
+				for (String apkFileName: cmd.getArgs()) {
+					File arg = new File(apkFileName);
+					if (arg.isDirectory()) {
+						targetFiles.addAll(Utils.collectFiles(arg, new String[]{fileExt}));
+					} else if (arg.isFile()) {
+						if (arg.getName().endsWith("." + fileExt))
+							targetFiles.add(arg);
+						else
+							throw new ParseException("File " + arg.getName() + " is no valid ." + fileExt + " file");
+					} else {
+						throw new ParseException("Argument is no valid file or directory!");
+					}
+				}
+				
+				if (targetFiles.isEmpty()) {
+					if (CliOptions.opmode.equals(OpMode.PROFILE))
+						throw new ParseException("You have to provide one library.jar to be processed");
+					else
+						throw new ParseException("You have to provide a path to a single application file or a directory");
+				} else if (targetFiles.size() > 1 && CliOptions.opmode.equals(OpMode.PROFILE))
+					throw new ParseException("You have to provide a path to a single library file or a directory incl. a single lib file");
+			}
 			
 		} catch (ParseException e) {
 			System.err.println("Command line parsing failed:\n" + e.getMessage());
@@ -207,13 +249,44 @@ public class TplCLI {
 	}
 	
 	
+
+	private static boolean checkRequiredUse(CommandLine cmd, String option, OpMode... modes) throws ParseException {
+		if (!Arrays.asList(modes).contains(CliOptions.opmode))
+			return false;
+		
+		if (!cmd.hasOption(option))
+			throw new ParseException("Required CLI Option " + option + " is missing in mode " + CliOptions.opmode);
+		
+		return true;
+	}
+	
+	
+	private static boolean checkOptionalUse(CommandLine cmd, String option, OpMode... modes) throws ParseException {
+		if (!Arrays.asList(modes).contains(CliOptions.opmode))
+			return false;
+		
+		if (!cmd.hasOption(option))
+			return false;
+		
+		return true;
+	}
+
+	
+	
 	@SuppressWarnings("static-access")
 	private static Options setupOptions() {
 		options = new Options();
+
+		options.addOption(OptionBuilder.withArgName("value")
+			.hasArgs(1)
+            .isRequired(true)
+            .withLongOpt("opmode")
+            .withDescription("mode of operation, one of [profile|match|db]")
+            .create("o"));
 		
 		options.addOption(OptionBuilder.withArgName("file")
 			.hasArgs(1)
-            .isRequired(true)
+            .isRequired(false)
             .withLongOpt("android-library")
             .withDescription("path to SDK android.jar")
             .create("a"));
@@ -226,18 +299,24 @@ public class TplCLI {
 	        .create("d"));
 
 		options.addOption(OptionBuilder.withArgName("directory")
+			.hasOptionalArgs(1)
+	        .isRequired(false)
+	        .withLongOpt("stats-dir")
+	        .withDescription("path to app stat(s), defaults to \"./stats\"")
+	        .create("s"));
+		
+		options.addOption(OptionBuilder.withArgName("value")
+	        .isRequired(false)
+	        .withLongOpt("mute")
+	        .withDescription("disable file and console logging, takes precedence over -d")
+	        .create("m"));
+		
+		options.addOption(OptionBuilder.withArgName("directory")
 			.hasArgs(1)
 	        .isRequired(false)
 	        .withLongOpt("profiles-dir")
-	        .withDescription("path to store the generated library profiles, defaults to \"./profiles\"")
+	        .withDescription("path to library profiles, defaults to \"./profiles\"")
 	        .create("p"));
-
-		options.addOption(OptionBuilder.withArgName("directory")
-			.hasOptionalArgs(1)
-	        .isRequired(false)
-	        .withLongOpt("create-stats-db")
-	        .withDescription("generate a stats.db from the generated app stats files")
-	        .create("db"));
 
 		options.addOption(OptionBuilder.withArgName("value")
 	        .isRequired(false)
@@ -259,7 +338,15 @@ public class TplCLI {
 	private static void usage() {
 		// automatically generate the help statement
 		HelpFormatter formatter = new HelpFormatter();
-		formatter.printHelp(USAGE, options);
+		String helpMsg = USAGE;
+		if (OpMode.PROFILE.equals(CliOptions.opmode))
+			helpMsg = USAGE_PROFILE;
+		else if (OpMode.MATCH.equals(CliOptions.opmode))
+			helpMsg = USAGE_MATCH;
+		else if (OpMode.DB.equals(CliOptions.opmode))
+			helpMsg = USAGE_DB;
+
+		formatter.printHelp(helpMsg, options);
 		System.exit(1);
 	}
 	

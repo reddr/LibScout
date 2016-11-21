@@ -88,10 +88,9 @@ public class SQLStats {
 
 	
 	
-	public static void stats2DB() {
+	public static void stats2DB(List<LibProfile> profiles) {
 		try {
 			logger.info("Generate DB from stats mode!");
-			List<LibProfile> profiles = TplCLI.loadLibraryProfiles();
 			logger.info(Utils.INDENT + "Loaded " + profiles.size() + " profiles from disk");
 			List<SerializableAppStats> appStats = loadAppStats(CliOptions.statsDir);
 			generateDB(profiles, appStats);
@@ -132,7 +131,7 @@ public class SQLStats {
 	    	File dbFile = DB_FILE; // TODO: make configurable
 	    	
 	    	if (dbFile.exists())
-	    		logger.warn("DB file exists! -- No updates will be performed - Abort!");
+	    		logger.warn("DB file " + DB_FILE + " exists! -- No updates will be performed - Abort!");
 	    	else {
 		    	// create a database connection
 				connection = DriverManager.getConnection("jdbc:sqlite:" + dbFile.getName());

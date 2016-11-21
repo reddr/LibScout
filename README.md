@@ -44,17 +44,17 @@ For comments, feedback, etc. contact:  Erik Derr  [lastname@cs.uni-saarland.de]
    A runnable jar can be generated with the build.xml</li>
 <li>LibScout has three modes of operation:<br>
     <ol type="a">
-        <li>    
+        <li>
             Generate library profiles from original library SDKs:<br>
-            <pre>java -jar LibScout.jar -x &lt;$lib-dir/library.xml&gt; -a &lt;lib/android-X.jar&gt; &lt;$lib-dir/lib.jar&gt; </pre>
+            <pre>java -jar LibScout.jar -o profile -a &lt;lib/android-X.jar&gt; -x &lt;$lib-dir/library.xml&gt; &lt;$lib-dir/lib.jar&gt; </pre>
         </li>
         <li>
-            Detect libraries in apps using pre-generated profiles:<br>
-            <pre>java -jar LibScout.jar -a lib/android-X.jar -p &lt;$path-to-lib-profiles&gt; -d &lt;$log-dir&gt; someapp.apk  </pre>
+            Detect libraries in apps using pre-generated profiles (log to directory + serialize results):<br>
+            <pre>java -jar LibScout.jar -o match -a lib/android-X.jar -p &lt;$path-to-lib-profiles&gt; -s -d &lt;$log-dir&gt; $someapp.apk  </pre>
         </li>
         <li>
             Generate a SQLite database from library profiles and serialized app stats:<br>
-            <pre>java -jar LibScout.jar -a &lt;lib/android-X.jar&gt; -p &lt;$path-to-lib-profiles&gt; -db &lt;$path-to-app-stats&gt; someapp.apk </pre>
+            <pre>java -jar LibScout.jar -o db -p &lt;$path-to-lib-profiles&gt; -s &lt;$path-to-app-stats&gt; </pre>
         </li>
     </ol>
 </li>

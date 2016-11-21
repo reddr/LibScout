@@ -39,6 +39,7 @@ import com.ibm.wala.types.ClassLoaderReference;
 
 import de.infsec.tpl.utils.AndroidClassType;
 import de.infsec.tpl.TplCLI.CliOptions;
+import de.infsec.tpl.TplCLI.OpMode;
 import de.infsec.tpl.hash.HashTree;
 import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.profile.LibProfile;
@@ -73,11 +74,11 @@ public class LibraryHandler implements Runnable {
 	@Override
 	public void run() {
 		try {
-			init(!CliOptions.isMatchingMode);
-			
-			if (CliOptions.isMatchingMode) {
+			if (CliOptions.opmode.equals(OpMode.MATCH)) {
+				init(false);
 				new LibraryIdentifier(targetFile).identifyLibraries(libProfiles);
-			} else {
+			} else if (CliOptions.opmode.equals(OpMode.PROFILE)) {
+				init(true);
 				extractFingerPrints();
 			}
 		} catch (Throwable t) {
