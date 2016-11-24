@@ -106,7 +106,7 @@ public class SQLStats {
 		long s = System.currentTimeMillis();
 		List<SerializableAppStats> appStats = new ArrayList<SerializableAppStats>();
 		for (File f: Utils.collectFiles(dir, new String[]{"data"})) {
-			SerializableAppStats ap = (SerializableAppStats) Utils.deSerializeObjectFromDisk(f);
+			SerializableAppStats ap = (SerializableAppStats) Utils.disk2Object(f);
 			appStats.add(ap);
 		}
 		

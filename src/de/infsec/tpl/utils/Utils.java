@@ -444,41 +444,48 @@ public class Utils {
 	}
 
 	
-	public static final String STATS_FILE_EXT = ".data";
-	public static File serializeObjectToDisk(final File targetFile, final File dir, final Object obj) throws IOException {
-		File path = new File(dir == null? targetFile.getPath() : dir.getAbsolutePath());
-		if (!path.exists()) path.mkdirs();
-		
-		String fileName = targetFile.getName();
-		File target;
-		if (fileName.endsWith(".apk"))
-			target = new File(path.getAbsolutePath() + File.separator + fileName.replace(".apk", STATS_FILE_EXT));
-		else if (fileName.endsWith(".jar"))
-			target = new File(path.getAbsolutePath() + File.separator + fileName.replace(".jar", STATS_FILE_EXT));
-		else 
-			target = new File(path.getAbsolutePath() + File.separator + fileName + STATS_FILE_EXT);
-			
-		FileOutputStream fos = new FileOutputStream(target);
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(obj);
-		oos.close();
-		fos.close();
-		return target;
-		
-	}
 	
-	public static File serializeObjectToDisk(final File targetFile, final Object obj) throws IOException {
-		return serializeObjectToDisk(targetFile, null, obj);
+	/**
+	 * Serialize an Java Object to disk
+	 * @param targetFile the {@link File} to store the object
+	 * @param obj  a serializable {@link Object}
+	 * @return true if no exception was thrown, false otherwise
+	 * @throws IOException
+	 */
+	public static boolean object2Disk(final File targetFile, final Object obj) {
+		File basePath = new File(targetFile.getPath().substring(0, targetFile.getPath().lastIndexOf(File.separator)));
+		if (!basePath.exists()) basePath.mkdirs();
+		
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(targetFile))) {
+			oos.writeObject(obj);
+		} catch (IOException e) {
+			//logger.warn(Utils.stacktrace2Str(e));
+			return false;
+		}
+
+		return true;
 	}
-	
-	public static Object deSerializeObjectFromDisk(File file) throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream(file);
-        ObjectInputStream in = new ObjectInputStream(fis);
-        Object obj = in.readObject();
-        in.close();
-        fis.close();
+
+
+	/**
+	 * Deserialize a Java Object from disk
+	 * @param file the {@link File} to read the object from
+	 * @return the deserialized {@link Object} 
+	 * @throws ClassNotFoundException 
+	 */
+	public static Object disk2Object(File file) throws ClassNotFoundException {
+		Object obj = null;
+		
+		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+			obj = in.readObject();
+		} catch (IOException e) {
+			// logger.warn(Utils.stacktrace2Str(e));
+		}
+		
 		return obj;
 	}
+
+	
 	
 	
 	public static String stacktrace2Str(Throwable t) {

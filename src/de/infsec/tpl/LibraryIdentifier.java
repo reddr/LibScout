@@ -99,12 +99,23 @@ public class LibraryIdentifier {
 		// parse AndroidManifest.xml 
 		stats.manifest = parseManifest(stats.appFile);
 		
-		// if stat file already exists for this app, return
-		File statsFile = new File(stats.appFile.getName().replaceAll("\\.jar", "").replaceAll("\\.apk", "").replaceAll("\\.aar", "") + "_" + stats.manifest.getVersionCode());
-		File dataFile = new File(CliOptions.statsDir + File.separator + statsFile + ".data");
+		// check stat file <stats-dir>/package-level1/package-level2/appName_appVersionCode.data
+		String statsFileName = stats.appFile.getName().replaceAll("\\.jar", "").replaceAll("\\.apk", "").replaceAll("\\.aar", "") + "_" + stats.manifest.getVersionCode() + ".data";
+		
+		List<String> ptoken = PackageUtils.parsePackage(stats.manifest.getPackageName());
+		File statsSubDir = null;
+		if (ptoken.size() > 0) {
+			if (ptoken.size() > 1)
+				statsSubDir = new File(ptoken.get(0) + File.separator + ptoken.get(1));
+			else
+				statsSubDir = new File(ptoken.get(0));
+		}
 
-		if (CliOptions.generateStats && dataFile.exists()) {
-			logger.info(Utils.INDENT + "Stat file " + dataFile + " already exists - ABORT!");
+		File statsFile = new File(CliOptions.statsDir + File.separator + (statsSubDir != null? statsSubDir + File.separator : "") + statsFileName);
+
+		// if stat file already exists for this app, return
+		if (CliOptions.generateStats && statsFile.exists()) {
+			logger.info(Utils.INDENT + "Stat file " + statsFile + " already exists - ABORT!");
 			return;
 		}
 		
@@ -179,7 +190,7 @@ public class LibraryIdentifier {
 		// serialize appstats to disk
 		if (CliOptions.generateStats) {
 			logger.info("Serialize app stats to disk (dir: " + CliOptions.statsDir + ")");
-			Utils.serializeObjectToDisk(statsFile, CliOptions.statsDir, new SerializableAppStats(stats));
+			Utils.object2Disk(statsFile, new SerializableAppStats(stats));
 		}
 		
 		logger.info("App processing time: " + Utils.millisecondsToFormattedTime(stats.processingTime));

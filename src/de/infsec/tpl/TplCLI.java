@@ -114,8 +114,8 @@ public class TplCLI {
 		// de-serialize library profiles
 		long s = System.currentTimeMillis();
 		List<LibProfile> profiles = new ArrayList<LibProfile>();
-		for (File f: Utils.collectFiles(CliOptions.profilesDir, new String[]{"data"})) {
-			LibProfile fp = (LibProfile) Utils.deSerializeObjectFromDisk(f);
+		for (File f: Utils.collectFiles(CliOptions.profilesDir, new String[]{"lib"})) {
+			LibProfile fp = (LibProfile) Utils.disk2Object(f);
 			profiles.add(fp);
 		}
 		
