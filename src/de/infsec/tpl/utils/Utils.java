@@ -31,6 +31,12 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import de.infsec.tpl.stats.AppStats;
+import de.infsec.tpl.stats.SerializableAppStats;
+
 
 /**
  * Some random utility functions
@@ -344,29 +350,6 @@ public class Utils {
 	
 	
 	
-	public static float computePercentage(int first, int second) {
-		if (second == 0)
-			return Float.NaN;
-		else
-			return (float) Math.round((Float.intBitsToFloat(first) / Float.intBitsToFloat(second)) * 100 * 100) / 100;
-	}
-
-	public static double computePercentage(long first, long second) {
-		if (second == 0)
-			return Double.NaN;
-		else
-			return (double) Math.round((Double.longBitsToDouble(first) / Double.longBitsToDouble(second)) * 100 * 100) / 100;
-	}
-
-	public static float round(float number, int digits) {
-		return Math.round(number * ((float) Math.pow(10, digits))) / ((float)Math.pow(10, digits));
-	}
-	public static double round(double number, int digits) {
-		return Math.round(number * Math.pow(10, digits)) / Math.pow(10, digits);
-	}
-	
-
-	
 	/**
 	 * List join function, which creates a single string of the items of the 
 	 * array separated by _sep. If "spaceFirst" is set to true the first two elements
@@ -479,13 +462,34 @@ public class Utils {
 		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
 			obj = in.readObject();
 		} catch (IOException e) {
-			// logger.warn(Utils.stacktrace2Str(e));
+			//logger.warn(Utils.stacktrace2Str(e));
 		}
 		
 		return obj;
 	}
 
-	
+
+	/**
+	 * Export app statistics to a JSON file
+	 * @param jsonFile  the Json {@link FILE} to store the results
+	 * @param stats  the {@link AppStats} object
+	 * @throws IOException
+	 */
+    public static void obj2JsonFile(File jsonFile, AppStats stats) throws IOException {
+		File basePath = new File(jsonFile.getPath().substring(0, jsonFile.getPath().lastIndexOf(File.separator)));
+		if (!basePath.exists()) basePath.mkdirs();
+		
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson = builder.create();
+		String jsonOut = gson.toJson(new SerializableAppStats(stats));
+		
+		try (FileOutputStream fos = new FileOutputStream(jsonFile)) {
+			fos.write(jsonOut.getBytes());
+		} catch (IOException e) {
+			//logger.warn(Utils.stacktrace2Str(e));
+		}
+    }
+    
 	
 	
 	public static String stacktrace2Str(Throwable t) {

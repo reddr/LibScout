@@ -67,6 +67,7 @@
 			<fileset dir="${lib.dir}">
 				<include name="**/commons-cli-1.2.jar" />
 				<include name="**/commons-io-2.4.jar" />
+				<include name="**/gson-2.8.0.jar" />
 				<include name="**/sqlite-jdbc-3.7.15-SNAPSHOT.jar" />
 			</fileset>
 			<fileset dir="${lib.dir}/logging">

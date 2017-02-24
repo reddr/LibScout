@@ -51,17 +51,52 @@ public class TplCLI {
      *    -      DB:  build sqlite database from app stat files 
      */
 	public static  enum OpMode {PROFILE, MATCH, DB};
+
+	public static class CliArgs {
+		public static final String ARG_OPMODE = "o";
+		public static final String ARGL_OPMODE = "opmode";
+
+		public static final String ARG_ANDROID_LIB = "a";
+		public static final String ARGL_ANDROID_LIB = "android-library";
+
+		public static final String ARG_LOG_DIR = "d";
+		public static final String ARGL_LOG_DIR = "log-dir";
+
+		public static final String ARG_STATS_DIR = "s";
+		public static final String ARGL_STATS_DIR = "stats-dir";
+
+		public static final String ARG_JSON_DIR = "j";
+		public static final String ARGL_JSON_DIR = "json-dir";
+		
+		public static final String ARG_PROFILES_DIR = "p";
+		public static final String ARGL_PROFILES_DIR = "profiles-dir";
+		
+		public static final String ARG_MUTE = "m";
+		public static final String ARGL_MUTE = "mute";
+
+		public static final String ARG_NO_PARTIAL_MATCHING = "n";
+		public static final String ARGL_NO_PARTIAL_MATCHING = "no-partial-matching";
+
+		public static final String ARG_LIB_USAGE_ANALYSIS = "u";
+		public static final String ARGL_LIB_USAGE_ANALYSIS = "lib-usage-analysis";
+
+		public static final String ARG_LIB_DESCRIPTION = "x";
+		public static final String ARGL_LIB_DESCRIPTION = "library-description";
+	}
 	
 	public static class CliOptions {
 		public static File pathToAndroidJar;		
 		public static Utils.LOGTYPE logType = Utils.LOGTYPE.CONSOLE;
 		public static File logDir = new File("./logs");
 		public static File statsDir = new File("./stats");
+		public static File jsonDir = new File("./json");
 		public static File profilesDir = new File("./profiles");
 		public static OpMode opmode = null;
 		
 		public static boolean noPartialMatching = false;
+		public static boolean runLibUsageAnalysis = false;
 		public static boolean generateStats = false;
+		public static boolean generateJSON = false;
 	}
 	
 	public static class LibProfiles {
@@ -133,9 +168,9 @@ public class TplCLI {
 			CommandLine cmd = parser.parse(setupOptions(), args);
 		
 			// parse mode of operation
-			if (cmd.hasOption("o")) {
+			if (cmd.hasOption(CliArgs.ARG_OPMODE)) {
 				try {
-					CliOptions.opmode = OpMode.valueOf(cmd.getOptionValue("o").toUpperCase());
+					CliOptions.opmode = OpMode.valueOf(cmd.getOptionValue(CliArgs.ARG_OPMODE).toUpperCase());
 				} catch (IllegalArgumentException e) {
 					throw new ParseException(Utils.stacktrace2Str(e));
 				}
@@ -147,14 +182,14 @@ public class TplCLI {
 			 *  -m, disable logging (takes precedence over -d)
 			 *  -d [logdir], if provided without argument output is logged to default dir, otherwise to the provided dir
 			 */
-			if (cmd.hasOption("m")) {
+			if (cmd.hasOption(CliArgs.ARG_MUTE)) {
 				CliOptions.logType = Utils.LOGTYPE.NONE;
 			} 
-			else if (cmd.hasOption("d")) {
+			else if (cmd.hasOption(CliArgs.ARG_LOG_DIR)) {
 				CliOptions.logType = Utils.LOGTYPE.FILE;
 
-				if (cmd.getOptionValue("d") != null) {   // we have a log dir
-					File logDir = new File(cmd.getOptionValue("d"));
+				if (cmd.getOptionValue(CliArgs.ARG_LOG_DIR) != null) {   // we have a log dir
+					File logDir = new File(cmd.getOptionValue(CliArgs.ARG_LOG_DIR));
 					if (logDir.exists() && !logDir.isDirectory())
 						throw new ParseException("Log directory " + logDir + " already exists and is not a directory");
 					
@@ -163,14 +198,14 @@ public class TplCLI {
 			}
 
 			// path to Android SDK jar
-			if (checkRequiredUse(cmd, "a", OpMode.PROFILE, OpMode.MATCH)) {
-				CliOptions.pathToAndroidJar = new File(cmd.getOptionValue("a"));
+			if (checkRequiredUse(cmd, CliArgs.ARG_ANDROID_LIB, OpMode.PROFILE, OpMode.MATCH)) {
+				CliOptions.pathToAndroidJar = new File(cmd.getOptionValue(CliArgs.ARG_ANDROID_LIB));
 			}
 			
 			
 			// profiles dir option, if provided without argument output is written to default dir
-			if (checkOptionalUse(cmd, "p", OpMode.PROFILE, OpMode.MATCH, OpMode.DB)) {
-				File profilesDir = new File(cmd.getOptionValue("p"));
+			if (checkOptionalUse(cmd, CliArgs.ARG_PROFILES_DIR, OpMode.PROFILE, OpMode.MATCH, OpMode.DB)) {
+				File profilesDir = new File(cmd.getOptionValue(CliArgs.ARG_PROFILES_DIR));
 				if (profilesDir.exists() && !profilesDir.isDirectory())
 					throw new ParseException("Profiles directory " + profilesDir + " already exists and is not a directory");
 					
@@ -179,14 +214,18 @@ public class TplCLI {
 			
 			
 			// disable partial matching (full lib matching only)
-			if (checkOptionalUse(cmd, "n", OpMode.MATCH)) {
+			if (checkOptionalUse(cmd, CliArgs.ARG_NO_PARTIAL_MATCHING, OpMode.MATCH)) {
 				CliOptions.noPartialMatching = true;
 			}
 			
+			// run library usage analysis (for full matches only)
+			if (checkOptionalUse(cmd, CliArgs.ARG_LIB_USAGE_ANALYSIS, OpMode.MATCH)) {
+				CliOptions.runLibUsageAnalysis = true;
+			}
 			
 			// provide library description file
-			if (checkRequiredUse(cmd, "x", OpMode.PROFILE)) {
-				File libraryDescriptionFile = new File(cmd.getOptionValue("x"));
+			if (checkRequiredUse(cmd, CliArgs.ARG_LIB_DESCRIPTION, OpMode.PROFILE)) {
+				File libraryDescriptionFile = new File(cmd.getOptionValue(CliArgs.ARG_LIB_DESCRIPTION));
 				if (libraryDescriptionFile.exists() && libraryDescriptionFile.isDirectory())
 					throw new ParseException("Library description (" + libraryDescriptionFile + ") must not be a directory");
 					
@@ -195,15 +234,28 @@ public class TplCLI {
 
 			
 			// enable/disable generation of stats with optional stats directory
-			if (checkOptionalUse(cmd, "s", OpMode.MATCH, OpMode.DB)) {
+			if (checkOptionalUse(cmd, CliArgs.ARG_STATS_DIR, OpMode.MATCH, OpMode.DB)) {
 				CliOptions.generateStats = true;
 
-				if (cmd.getOptionValue("s") != null) {   // stats dir provided?
-					File statsDir = new File(cmd.getOptionValue("s"));
+				if (cmd.getOptionValue(CliArgs.ARG_STATS_DIR) != null) {   // stats dir provided?
+					File statsDir = new File(cmd.getOptionValue(CliArgs.ARG_STATS_DIR));
 					if (statsDir.exists() && !statsDir.isDirectory())
 						throw new ParseException("Stats directory " + statsDir + " already exists and is not a directory");
 					
 					CliOptions.statsDir = statsDir;
+				}
+			}
+			
+			// enable/disable generation of json output
+			if (checkOptionalUse(cmd, CliArgs.ARG_JSON_DIR, OpMode.MATCH)) {
+				CliOptions.generateJSON = true;
+
+				if (cmd.getOptionValue(CliArgs.ARG_JSON_DIR) != null) {   // json dir provided?
+					File jsonDir = new File(cmd.getOptionValue(CliArgs.ARG_JSON_DIR));
+					if (jsonDir.exists() && !jsonDir.isDirectory())
+						throw new ParseException("JSON directory " + jsonDir + " already exists and is not a directory");
+					
+					CliOptions.jsonDir = jsonDir;
 				}
 			}
 			
@@ -280,56 +332,69 @@ public class TplCLI {
 		options.addOption(OptionBuilder.withArgName("value")
 			.hasArgs(1)
             .isRequired(true)
-            .withLongOpt("opmode")
+            .withLongOpt(CliArgs.ARGL_OPMODE)
             .withDescription("mode of operation, one of [profile|match|db]")
-            .create("o"));
+            .create(CliArgs.ARG_OPMODE));
 		
 		options.addOption(OptionBuilder.withArgName("file")
 			.hasArgs(1)
             .isRequired(false)
-            .withLongOpt("android-library")
+            .withLongOpt(CliArgs.ARGL_ANDROID_LIB)
             .withDescription("path to SDK android.jar")
-            .create("a"));
+            .create(CliArgs.ARG_ANDROID_LIB));
 
 		options.addOption(OptionBuilder.withArgName("directory")
 			.hasOptionalArgs(1)
 	        .isRequired(false)
-	        .withLongOpt("log-dir")
+	        .withLongOpt(CliArgs.ARGL_LOG_DIR)
 	        .withDescription("path to store the logfile(s), defaults to \"./logs\"")
-	        .create("d"));
+	        .create(CliArgs.ARG_LOG_DIR));
 
 		options.addOption(OptionBuilder.withArgName("directory")
 			.hasOptionalArgs(1)
 	        .isRequired(false)
-	        .withLongOpt("stats-dir")
+	        .withLongOpt(CliArgs.ARGL_STATS_DIR)
 	        .withDescription("path to app stat(s), defaults to \"./stats\"")
-	        .create("s"));
+	        .create(CliArgs.ARG_STATS_DIR));
+
+		options.addOption(OptionBuilder.withArgName("directory")
+			.hasOptionalArgs(1)
+	        .isRequired(false)
+	        .withLongOpt(CliArgs.ARGL_JSON_DIR)
+	        .withDescription("path to json output directory, defaults to \"./json\"")
+	        .create(CliArgs.ARG_JSON_DIR));
 		
 		options.addOption(OptionBuilder.withArgName("value")
 	        .isRequired(false)
-	        .withLongOpt("mute")
+	        .withLongOpt(CliArgs.ARGL_MUTE)
 	        .withDescription("disable file and console logging, takes precedence over -d")
-	        .create("m"));
+	        .create(CliArgs.ARG_MUTE));
 		
 		options.addOption(OptionBuilder.withArgName("directory")
 			.hasArgs(1)
 	        .isRequired(false)
-	        .withLongOpt("profiles-dir")
+	        .withLongOpt(CliArgs.ARGL_PROFILES_DIR)
 	        .withDescription("path to library profiles, defaults to \"./profiles\"")
-	        .create("p"));
+	        .create(CliArgs.ARG_PROFILES_DIR));
 
 		options.addOption(OptionBuilder.withArgName("value")
 	        .isRequired(false)
-	        .withLongOpt("no-partial-matching")
+	        .withLongOpt(CliArgs.ARGL_NO_PARTIAL_MATCHING)
 	        .withDescription("disables partial matching (full matching only)")
-	        .create("n"));
+	        .create(CliArgs.ARG_NO_PARTIAL_MATCHING));
+
+		options.addOption(OptionBuilder.withArgName("value")
+	        .isRequired(false)
+	        .withLongOpt(CliArgs.ARGL_LIB_USAGE_ANALYSIS)
+	        .withDescription("Enables library usage analysis (for full matches only)")
+	        .create(CliArgs.ARG_LIB_USAGE_ANALYSIS));
 		
 		options.addOption(OptionBuilder.withArgName("file")
 			.hasArgs(1)
 	        .isRequired(false)
-	        .withLongOpt("library-description")
+	        .withLongOpt(CliArgs.ARGL_LIB_DESCRIPTION)
 	        .withDescription("xml file to describe the library")
-	        .create("x"));
+	        .create(CliArgs.ARG_LIB_DESCRIPTION));
 		
 		return options;
 	}

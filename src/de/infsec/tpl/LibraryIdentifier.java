@@ -15,7 +15,10 @@
 package de.infsec.tpl;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,6 +35,9 @@ import java.util.TreeSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonWriter;
 import com.ibm.wala.dalvik.util.AndroidAnalysisScope;
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.ipa.cha.ClassHierarchy;
@@ -54,9 +60,11 @@ import de.infsec.tpl.profile.ProfileMatch.HTreeMatch;
 import de.infsec.tpl.profile.ProfileMatch.MatchLevel;
 import de.infsec.tpl.stats.AppStats;
 import de.infsec.tpl.stats.SerializableAppStats;
+import de.infsec.tpl.utils.AndroidClassType;
 import de.infsec.tpl.utils.ApkUtils;
 import de.infsec.tpl.utils.Pair;
 import de.infsec.tpl.utils.Utils;
+import de.infsec.tpl.utils.WalaUtils;
 
 
 public class LibraryIdentifier {
@@ -66,6 +74,17 @@ public class LibraryIdentifier {
 	private Map<String,String> uniqueLibraries;   // unique library name -> highest version 
 	
 	private AppStats stats;
+	private static final String FILE_SUFFIX_SERIALIZED = ".data";
+	private static final String FILE_SUFFIX_JSON = ".json";
+
+	public static Set<String> ambiguousRootPackages = new TreeSet<String>() {
+		private static final long serialVersionUID = 7951760067476257884L;
+	{
+		add("com.google");              add("com.google.android");
+		add("com.google.android.gms");  add("android.support");
+	}};
+	
+	
 	
 	public LibraryIdentifier(File appFile) {
 		this.stats = new AppStats(appFile);
@@ -100,7 +119,7 @@ public class LibraryIdentifier {
 		stats.manifest = parseManifest(stats.appFile);
 		
 		// check stat file <stats-dir>/package-level1/package-level2/appName_appVersionCode.data
-		String statsFileName = stats.appFile.getName().replaceAll("\\.jar", "").replaceAll("\\.apk", "").replaceAll("\\.aar", "") + "_" + stats.manifest.getVersionCode() + ".data";
+		String statsFileName = stats.appFile.getName().replaceAll("\\.jar", "").replaceAll("\\.apk", "").replaceAll("\\.aar", "") + "_" + stats.manifest.getVersionCode();  // without file suffix
 		
 		List<String> ptoken = PackageUtils.parsePackage(stats.manifest.getPackageName());
 		File statsSubDir = null;
@@ -111,7 +130,7 @@ public class LibraryIdentifier {
 				statsSubDir = new File(ptoken.get(0));
 		}
 
-		File statsFile = new File(CliOptions.statsDir + File.separator + (statsSubDir != null? statsSubDir + File.separator : "") + statsFileName);
+		File statsFile = new File(CliOptions.statsDir + File.separator + (statsSubDir != null? statsSubDir + File.separator : "") + statsFileName  + FILE_SUFFIX_SERIALIZED);
 
 		// if stat file already exists for this app, return
 		if (CliOptions.generateStats && statsFile.exists()) {
@@ -142,7 +161,7 @@ public class LibraryIdentifier {
 			
 			// In some edge case the automatic root package extraction gives us a generic package that could match multiple different libraries.
 			// In these cases it is better to ignore them instead of getting a lot of false matches
-			if (rootPackage == null || rootPackage.equals("com.google") || rootPackage.equals("android.support")) continue;
+			if (rootPackage == null || ambiguousRootPackages.contains(rootPackage)) continue;
 			
 			boolean match = appProfile.packageTree.containsPackage(rootPackage);
 			if (match && stats.packageMatches.add(profile.description.name))
@@ -183,10 +202,21 @@ public class LibraryIdentifier {
 		
 		stats.pMatches = results;
 		printResults(results);
+
+//		// run library API usage analysis for full matches only
+//		if (CliOptions.runLibUsageAnalysis)
+//			LibCodeUsage.checkUsage(cha, results);
 		
 		logger.info("");
 		stats.processingTime = System.currentTimeMillis() - starttime;
 
+		// write app results to json
+		if (CliOptions.generateJSON) {
+			File jsonFile = new File(CliOptions.jsonDir + File.separator + (statsSubDir != null? statsSubDir + File.separator : "") + statsFileName  + FILE_SUFFIX_JSON);
+			Utils.obj2JsonFile(jsonFile, stats);
+			logger.info("Write app stats to JSON (dir: " + CliOptions.jsonDir + ")");
+		}
+		
 		// serialize appstats to disk
 		if (CliOptions.generateStats) {
 			logger.info("Serialize app stats to disk (dir: " + CliOptions.statsDir + ")");
@@ -197,6 +227,7 @@ public class LibraryIdentifier {
 		
 	}
 
+	
 
 	/**
 	 * Compute similarity scores for all provided {@link HashTree}. 
@@ -646,7 +677,7 @@ public class LibraryIdentifier {
 		return (float) matchedNodes.size() / (float) libNode.numberOfChilds();
 	}
 	
-	
+
 	
 	/**
 	 * Verbose human-readable log file report using pre-computed results
@@ -698,45 +729,49 @@ public class LibraryIdentifier {
 		// unify all libraries for which we have at least one matching config
 		exactMatches.addAll(almostExactMatches);
 			
-
 		logger.info("");
 		logger.info("- Partial library matches:");
-		final int MAX_PRINT_CONFIGS = 3;
 		
-		for (String lib: uniqueLibraries.keySet()) {
-			if (!exactMatches.contains(lib)) {
-				
-				// print only highest match for a given library (can be multiple libs)
-				List<ProfileMatch> pMatches = new ArrayList<ProfileMatch>();
-				float highScore = ProfileMatch.MATCH_HTREE_NONE;
-
-				for (ProfileMatch pm: results) { 	
-					if (pm.lib.description.name.equals(lib)) {
-						if (pm.getHighestSimScore().simScore >= highScore && pm.getHighestSimScore().simScore > ProfileMatch.MATCH_HTREE_NONE) {
-							pMatches = new ArrayList<ProfileMatch>();
-							pMatches.add(pm);	
-							highScore = pm.getHighestSimScore().simScore;
+		if (CliOptions.noPartialMatching) {
+			logger.info(Utils.INDENT + "## Partial matching disabled ##");
+			logger.info("");
+		} else {
+			final int MAX_PRINT_CONFIGS = 3;
+			
+			for (String lib: uniqueLibraries.keySet()) {
+				if (!exactMatches.contains(lib)) {
+					
+					// print only highest match for a given library (can be multiple libs)
+					List<ProfileMatch> pMatches = new ArrayList<ProfileMatch>();
+					float highScore = ProfileMatch.MATCH_HTREE_NONE;
+	
+					for (ProfileMatch pm: results) { 	
+						if (pm.lib.description.name.equals(lib)) {
+							if (pm.getHighestSimScore().simScore >= highScore && pm.getHighestSimScore().simScore > ProfileMatch.MATCH_HTREE_NONE) {
+								pMatches = new ArrayList<ProfileMatch>();
+								pMatches.add(pm);	
+								highScore = pm.getHighestSimScore().simScore;
+							}
 						}
 					}
-				}
-
-				for (ProfileMatch pm: pMatches) {
-			 		for (String str: pm.lib.description.getDescription()) {
-						if (str.contains("comment:")) continue;
-						if (str.contains("version") && pm.lib.isDeprecatedLib())
-							str += "  [OLD VERSION]";    // TODO store in db?
-						
-						logger.info(Utils.INDENT + str);
+	
+					for (ProfileMatch pm: pMatches) {
+				 		for (String str: pm.lib.description.getDescription()) {
+							if (str.contains("comment:")) continue;
+							if (str.contains("version") && pm.lib.isDeprecatedLib())
+								str += "  [OLD VERSION]";    // TODO store in db?
+							
+							logger.info(Utils.INDENT + str);
+						}
+	
+				 		logger.info(Utils.INDENT2	 + "Partial matching results:");
+						for (HTreeMatch htm: pm.getBestResults(MAX_PRINT_CONFIGS))
+							logger.info(Utils.indent(3) + " - config: " + htm.config  + "   score: " + (htm != null? htm.simScore : " unknown"));
+						logger.info("");
 					}
-
-			 		logger.info(Utils.INDENT2	 + "Partial matching results:");
-					for (HTreeMatch htm: pm.getBestResults(MAX_PRINT_CONFIGS))
-						logger.info(Utils.indent(3) + " - config: " + htm.config  + "   score: " + (htm != null? htm.simScore : " unknown"));
-					logger.info("");
 				}
 			}
 		}
-
 		
 		if (logger.isTraceEnabled()) {
 			// Print package tree without matched libraries

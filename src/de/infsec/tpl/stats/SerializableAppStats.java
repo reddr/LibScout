@@ -16,6 +16,7 @@ package de.infsec.tpl.stats;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -49,9 +50,43 @@ public class SerializableAppStats implements Serializable {
 		Set<String> libsMatched = new HashSet<String>();
 		
 		pMatches = new ArrayList<SerializableProfileMatch>();
+		
+		// LibName -> List of ProfileMatches with highest sim scores
+		HashMap<String, List<ProfileMatch>> exportedPMatches = new HashMap<String, List<ProfileMatch>>();
+
+		/*
+		 * - only save profiles that at least match partially
+		 * - if multiple profiles of the same library match (at least partially), only export the one(s) with the highest score		
+		 */
 		for (ProfileMatch pm: stats.pMatches) {
-			// only save profiles that at least match partially
 			if (pm.getHighestSimScore() != null && pm.getHighestSimScore().simScore > ProfileMatch.MATCH_HTREE_NONE) {
+				String libName = pm.lib.description.name;
+
+				if (!exportedPMatches.containsKey(libName)) {
+					// initialize list and add pm
+					exportedPMatches.put(libName, new ArrayList<ProfileMatch>());
+					exportedPMatches.get(libName).add(pm);
+				} else {
+					// check if we have to add this pm to existing list
+					ProfileMatch firstPM = exportedPMatches.get(libName).get(0);
+
+					if (firstPM.getHighestSimScore() != null && firstPM.getHighestSimScore().simScore.floatValue() < pm.getHighestSimScore().simScore.floatValue()) {
+						// replace list
+						exportedPMatches.get(libName).clear();
+						exportedPMatches.get(libName).add(pm);
+					} else if (firstPM.getHighestSimScore() != null && firstPM.getHighestSimScore().simScore.floatValue() == pm.getHighestSimScore().simScore.floatValue()) {
+						// add to existing list
+						exportedPMatches.get(libName).add(pm);
+					}						
+				}
+				
+				libsMatched.add(libName);
+			}
+		}
+
+		// save the PM's that are to be exported
+		for (String libName: exportedPMatches.keySet()) {
+			for (ProfileMatch pm: exportedPMatches.get(libName)) {
 				pMatches.add(new SerializableProfileMatch(pm));
 				libsMatched.add(pm.lib.description.name);
 			}
