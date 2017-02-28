@@ -33,6 +33,7 @@ import de.infsec.tpl.utils.Utils;
 
 /**
  * Check how different library versions differ in their public API
+ * NOTE: This class is to be replaced soon by some more fine-grained analysis
  * @author ederr
  *
  */
@@ -102,7 +103,7 @@ public class LibraryAPIEval {
 		logger.info("## ---------------------------------------------------------------------------------- ##");
 		logger.info("= Number of libs without dups: " + dupFreeLibs);
 		logger.info("= Resulting percentage of code-only changes (" + (includeBetas? "incl." : "excl.") + " betas): "
-				+ dups + "/" + total + " ("	+ Utils.computePercentage(dups, total) + "%) ==");
+				+ dups + "/" + total + " ("	+ LibraryAPIEval.computePercentage(dups, total) + "%) ==");
 		
 		int numberOfDups = 0;
 		int x = 0;
@@ -273,11 +274,37 @@ public class LibraryAPIEval {
 				logger.info(String.format("%s, %7s, %12s, %5d, %5d, %-5b, %-5b", lp1.description.name, lp1.description.version, lp1.description.getFormattedDate(), pubAPI1.size(), apiDiff, apiCompatible, hashEqual));
 			}
 		}
-		logger.info("  ==>  average API diff: " + (avgDiff / (float) list.size()) + "  api compatible: " + apiCompatibleCount + "/" + list.size() + " (" + Utils.computePercentage(apiCompatibleCount, list.size())  + "%)  Hash equals: " + hashEqualCount + "/" + list.size() + " (" + Utils.computePercentage(hashEqualCount, list.size()) + "%)");
+		logger.info("  ==>  average API diff: " + (avgDiff / (float) list.size()) + "  api compatible: " + apiCompatibleCount + "/" + list.size() + " (" + LibraryAPIEval.computePercentage(apiCompatibleCount, list.size())  + "%)  Hash equals: " + hashEqualCount + "/" + list.size() + " (" + LibraryAPIEval.computePercentage(hashEqualCount, list.size()) + "%)");
 		logger.info("");
 		
 		report.get(cat).add(Utils.INDENT + "# " + list.get(0).description.name + " (" + list.get(0).description.category + ")");
-		report.get(cat).add(Utils.INDENT2 + "- average API diff: " + (avgDiff / (float) list.size()) + "  api compatible: " + apiCompatibleCount + "/" + list.size() + " (" + Utils.computePercentage(apiCompatibleCount, list.size())  + "%)  Hash equals: " + hashEqualCount + "/" + list.size() + " (" + Utils.computePercentage(hashEqualCount, list.size()) + "%)");
+		report.get(cat).add(Utils.INDENT2 + "- average API diff: " + (avgDiff / (float) list.size()) + "  api compatible: " + apiCompatibleCount + "/" + list.size() + " (" + LibraryAPIEval.computePercentage(apiCompatibleCount, list.size())  + "%)  Hash equals: " + hashEqualCount + "/" + list.size() + " (" + LibraryAPIEval.computePercentage(hashEqualCount, list.size()) + "%)");
 	}
 	
+
+	public static float computePercentage(int first, int second) {
+		if (second == 0)
+			return Float.NaN;
+		else
+			return (float) Math.round((Float.intBitsToFloat(first) / Float.intBitsToFloat(second)) * 100 * 100) / 100;
+	}
+
+	public static double computePercentage(long first, long second) {
+		if (second == 0)
+			return Double.NaN;
+		else
+			return (double) Math.round((Double.longBitsToDouble(first) / Double.longBitsToDouble(second)) * 100 * 100) / 100;
+	}
+
+	public static float round(float number, int digits) {
+		return Math.round(number * ((float) Math.pow(10, digits))) / ((float)Math.pow(10, digits));
+	}
+	public static double round(double number, int digits) {
+		return Math.round(number * Math.pow(10, digits)) / Math.pow(10, digits);
+	}
+	
+
 }
+
+
+
