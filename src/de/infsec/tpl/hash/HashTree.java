@@ -28,6 +28,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,6 @@ import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.types.ClassLoaderReference;
 import com.ibm.wala.types.Descriptor;
 
-import de.infsec.tpl.IFilter;
 import de.infsec.tpl.hash.Hash.ByteArrayComparator;
 import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.pkg.PackageUtils;
@@ -75,11 +75,9 @@ public class HashTree implements Serializable {
 		// if true, filters duplicate method hashes, i.e. methods that have the same fuzzy descriptor
 		// this introduces some kind of fuzziness as we abstract from the concrete number of certain descriptor
 		public boolean filterDups = false;   
-		
-		// if true, only public methods are considered during hashing
-		// this introduces some fuzziness however better abstracts from internal changes as it better matches the public
-		// interfaces used by the developer (e.g. different library versions with the same interface)
-		public boolean publicOnly = false;
+
+		// exclude methods while hashing whose access specifier (see {@link AccessFlags}) matches the filter value 
+		public int accessFlagsFilter = AccessFlags.NO_FLAG.getValue();
 		
 		// if true, inner classes are not considered during hashing
 		public boolean filterInnerClasses = false;
@@ -92,17 +90,17 @@ public class HashTree implements Serializable {
 		
 		public Config() {}
 
-		public Config(boolean filterDups, boolean publicOnly, boolean filterInnerClasses) {
+		public Config(boolean filterDups, boolean filterInnerClasses) {
 			this.filterDups = filterDups;
-			this.publicOnly = publicOnly;
 			this.filterInnerClasses = filterInnerClasses;
 		}
 
 		
-		public Config(boolean filterDups, boolean publicOnly, boolean filterInnerClasses, HashAlgorithm hashAlgorithm) {
-			this(filterDups, publicOnly, filterInnerClasses);
+		public Config(boolean filterDups, boolean filterInnerClasses, HashAlgorithm hashAlgorithm) {
+			this(filterDups, filterInnerClasses);
 			this.hashAlgorithm = hashAlgorithm;
 		}
+
 		
 		@Override
 		public boolean equals(Object obj) {
@@ -111,23 +109,25 @@ public class HashTree implements Serializable {
 			Config c = (Config) obj;
 			
 			return c.filterDups == this.filterDups &&
-				   c.publicOnly == this.publicOnly &&
+				   c.accessFlagsFilter == this.accessFlagsFilter &&
 				   c.filterInnerClasses == this.filterInnerClasses &&
 				   c.hashAlgorithm.equals(this.hashAlgorithm);
 		}
 		
 		@Override
 		public int hashCode() {
-			return 10000 * (this.filterDups? 1 : 0) + 1000 * (this.publicOnly? 1 : 0) + 100 * (this.filterInnerClasses? 1 : 0) + hashAlgorithm.value.hashCode(); 
+			return 10000 * (this.filterDups? 1 : 0) + 1000 * this.accessFlagsFilter + 100 * (this.filterInnerClasses? 1 : 0) + hashAlgorithm.value.hashCode(); 
 		}
+		
 		
 		@Override
 		public String toString() {
 			StringBuilder sb = new StringBuilder("[Config]");
 			sb.append("filterDups? " + this.filterDups);
-			sb.append(" | publicOnly? " + this.publicOnly);
+			sb.append(" | accessFlagsFilter? [" + this.accessFlagsFilter + "] "  + AccessFlags.flags2Str(this.accessFlagsFilter));
 			sb.append(" | filterInnerClasses: " + this.filterInnerClasses);
 			sb.append(" | hash-algo: "+ this.hashAlgorithm);
+			sb.append(" | verboseness: "+ this.buildVerboseness);
 			return sb.toString();
 		}
 	}
@@ -341,33 +341,44 @@ public class HashTree implements Serializable {
 			return this.value;
 		}
 	};
-	
-	public static IFilter<IMethod> publicOnlyFilter = new IFilter<IMethod>() {
-		@Override
-		public Collection<IMethod> filter(Collection<IMethod> input) {
-			List<IMethod> result = new ArrayList<IMethod>();
-			for (IMethod m: input)
-				if (m.isPublic())
-					result.add(m);
-			
-			return result;
-		}
-		
-	};
 
 	
-	public HashTree() {}
+	public HashTree() {
+		this.config = new Config();
+	}
+		
+	public HashTree(boolean filterDups, boolean filterInnerClasses, HashAlgorithm algorithm) throws NoSuchAlgorithmException {
+		this.config = new Config(filterDups, filterInnerClasses, algorithm);
+	}
+
 	
 
 	/*
 	 * Setter methods
 	 */
-	public void setFilterDups(final boolean filterDups) {
-		config.filterDups = filterDups;
+	/**
+	 * Sets the method access flag filter
+	 * @param flags  an array of {@link AccessFlags} (only private, package-protected, protected, and public). Unset the filter by providing a null argument.
+	 */
+	public void setAccessFlagFilter(AccessFlags... flags) {
+		config.accessFlagsFilter = AccessFlags.getAccessFlagFilter(flags);
+	}
+
+	
+	/**
+	 * Filter any method but public methods for hashing
+	 */
+	public void setPublicOnlyFilter() {
+		setAccessFlagFilter(AccessFlags.PRIVATE, AccessFlags.PACKAGE_PROTECTED, AccessFlags.PROTECTED);
 	}
 	
-	public void setPublicOnly(final boolean publicOnly) {
-		config.publicOnly = publicOnly;
+	public void setPrivateMethodsFilter() {
+		setAccessFlagFilter(AccessFlags.PRIVATE);
+	}
+
+
+	public void setFilterDups(final boolean filterDups) {
+		config.filterDups = filterDups;
 	}
 	
 	public void setFilterInnerClasses(final boolean filterInnerClasses) {
@@ -383,7 +394,7 @@ public class HashTree implements Serializable {
 	}
 	
 	public boolean hasDefaultConfig() {
-		return !this.config.filterDups && !this.config.filterInnerClasses && !this.config.publicOnly;
+		return !this.config.filterDups && !this.config.filterInnerClasses && this.config.accessFlagsFilter == 0x0;
 	}
 	
 	
@@ -482,13 +493,6 @@ public class HashTree implements Serializable {
 	}
 
 	
-	public void generate(boolean filterDups, boolean publicOnly, boolean filterInnerClasses, HashAlgorithm algorithm, IClassHierarchy cha) throws NoSuchAlgorithmException {
-		this.config = new Config(filterDups, publicOnly, filterInnerClasses, algorithm);
-		generate(cha);
-	}
-	
-
-		
 	/**
 	 * Generates a HashTree for every class loaded via application classLoader
 	 * @throws NoSuchAlgorithmException
@@ -500,7 +504,6 @@ public class HashTree implements Serializable {
 		
 		IHash hashFunc = new HashImpl(config.hashAlgorithm.toString());
 		NodeComparator comp = new NodeComparator();
-		IFilter<IMethod> methodFilter = config.publicOnly? publicOnlyFilter : null;
 		
 		int classHashCount = 0;
 		int methodHashCount = 0;
@@ -510,20 +513,25 @@ public class HashTree implements Serializable {
 		
 		for (Iterator<IClass> it = cha.iterator(); it.hasNext(); ) {
 			IClass clazz = it.next();
-			if (config.publicOnly && !clazz.isPublic())
-				continue;			
 
 			if (WalaUtils.isAppClass(clazz)){
+				// inner class filter
 				if (config.filterInnerClasses && WalaUtils.isInnerClass(clazz)) {
 					continue;
 				}
 				
+				// duplicate method filter
 				Collection<MethodNode> methodNodes = config.filterDups? new TreeSet<MethodNode>(comp) : new ArrayList<MethodNode>();
 				
 				Collection<IMethod> methods = clazz.getDeclaredMethods();
-				if (methodFilter != null)
-					methods = methodFilter.filter(methods);
 				
+				// filter methods by access flag
+				if (config.accessFlagsFilter != AccessFlags.NO_FLAG.getValue()) {
+					methods = methods.stream()
+									 .filter(m -> { int code = AccessFlags.getMethodAccessCode(m);  return code > 0 && (code & config.accessFlagsFilter) == 0x0; })  // if predicate is true, keep in list
+					                 .collect(Collectors.toCollection(ArrayList::new));
+				}
+
 				for (IMethod m: methods) {
 					// normalize java|dex bytecode by skipping compiler-generated methods
 					if (m.isBridge() || m.isMethodSynthetic()) {
@@ -720,10 +728,10 @@ public class HashTree implements Serializable {
 		return null;
 	}
 
-	public static HashTree getTreeByConfig(Collection<HashTree> treeList, boolean filterDups, boolean publicOnly, boolean filterInnerClasses) {
+	public static HashTree getTreeByConfig(Collection<HashTree> treeList, boolean filterDups, int accessFlagFilter, boolean filterInnerClasses) {
 		for (HashTree lht: treeList) {
 			Config cfg = lht.getConfig();
-			if (cfg.filterDups == filterDups && cfg.publicOnly == publicOnly && cfg.filterInnerClasses == filterInnerClasses)
+			if (cfg.filterDups == filterDups && cfg.accessFlagsFilter == accessFlagFilter && cfg.filterInnerClasses == filterInnerClasses)
 				return lht;
 		}
 		return null;
