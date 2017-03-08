@@ -15,10 +15,7 @@
 package de.infsec.tpl;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,9 +32,6 @@ import java.util.TreeSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.stream.JsonWriter;
 import com.ibm.wala.dalvik.util.AndroidAnalysisScope;
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.ipa.cha.ClassHierarchy;
@@ -60,11 +54,9 @@ import de.infsec.tpl.profile.ProfileMatch.HTreeMatch;
 import de.infsec.tpl.profile.ProfileMatch.MatchLevel;
 import de.infsec.tpl.stats.AppStats;
 import de.infsec.tpl.stats.SerializableAppStats;
-import de.infsec.tpl.utils.AndroidClassType;
 import de.infsec.tpl.utils.ApkUtils;
 import de.infsec.tpl.utils.Pair;
 import de.infsec.tpl.utils.Utils;
-import de.infsec.tpl.utils.WalaUtils;
 
 
 public class LibraryIdentifier {
@@ -203,6 +195,7 @@ public class LibraryIdentifier {
 		stats.pMatches = results;
 		printResults(results);
 
+// TODO coming soon		
 //		// run library API usage analysis for full matches only
 //		if (CliOptions.runLibUsageAnalysis)
 //			LibCodeUsage.checkUsage(cha, results);
@@ -219,8 +212,10 @@ public class LibraryIdentifier {
 		
 		// serialize appstats to disk
 		if (CliOptions.generateStats) {
-			logger.info("Serialize app stats to disk (dir: " + CliOptions.statsDir + ")");
-			Utils.object2Disk(statsFile, new SerializableAppStats(stats));
+			if (!stats.pMatches.isEmpty()) {			
+				logger.info("Serialize app stats to disk (dir: " + CliOptions.statsDir + ")");
+				Utils.object2Disk(statsFile, new SerializableAppStats(stats));
+			}
 		}
 		
 		logger.info("App processing time: " + Utils.millisecondsToFormattedTime(stats.processingTime));
