@@ -16,6 +16,8 @@ package de.infsec.tpl.profile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.io.Serializable;
 
 import de.infsec.tpl.hash.HashTree.Config;
@@ -40,6 +42,10 @@ public class SerializableProfileMatch implements Serializable {
 	public float simScore = 0f;  // 1f if exact match
 	public List<SerializableConfig> matchedConfigs;  // only if some configs match
 	
+	// if lib code usage analysis is enabled, store normalized (i.e. if matched root packages differs from original root package) lib method signatures used
+	public Set<String> usedLibMethods = new TreeSet<String>();
+	
+	
 	public SerializableProfileMatch(ProfileMatch pm) {
 		this.libName = pm.lib.description.name;
 		this.libVersion = pm.lib.description.version;
@@ -61,6 +67,9 @@ public class SerializableProfileMatch implements Serializable {
 		} else {
 			this.matchLevel = MATCH_NONE;
 		}
+		
+		if (!pm.usedLibMethods.isEmpty())
+			this.usedLibMethods = pm.usedLibMethods;
 	}
  
 	public Pair<String,String> getLibIdentifier() {
@@ -81,16 +90,16 @@ public class SerializableProfileMatch implements Serializable {
 	}
 	
 	public class SerializableConfig implements Serializable {
-		private static final long serialVersionUID = 598811301653651626L;
+		private static final long serialVersionUID = -3706418622137317023L;
 		
 		public final boolean filterDups;   
-		public final boolean publicOnly;
+		public final int accessFlagFilter;
 		public final boolean filterInnerClasses;
 		public final HashAlgorithm hashAlgorithm;
 
 		public SerializableConfig(Config cfg) {
 			this.filterDups = cfg.filterDups;
-			this.publicOnly = cfg.publicOnly;
+			this.accessFlagFilter = cfg.accessFlagsFilter;
 			this.filterInnerClasses = cfg.filterInnerClasses;
 			this.hashAlgorithm = cfg.hashAlgorithm;
 		}

@@ -68,25 +68,20 @@ public abstract class Profile implements Serializable {
 	 * @param cha  the {@link IClassHierarchy} instance
 	 * @return  a List of {@link HashTree} for every configuration
 	 */
+	
+// TODO: option to set different modes (normal, trace+pubonly, normal+pubonly)	
 	public static List<HashTree> generateHashTrees(final IClassHierarchy cha) {
 		final HashAlgorithm algorithm = HashAlgorithm.MD5;
 		
 		List<HashTree> hTrees = new ArrayList<HashTree>();
 		try {
 			boolean filterDups = false;
-			boolean publicOnly = false;
 			boolean filterInnerClasses = false;
 			
-			// generate library hash trees with different configs
-			//for (boolean filterDups: new boolean[]{true,false}) {
-			//	for (boolean publicOnly: new boolean[]{true,false}) {
-			//		for (boolean filterInnerClasses: new boolean[]{true,false}) {
-						HashTree hashTree = new HashTree();
-						hashTree.generate(filterDups, publicOnly, filterInnerClasses, algorithm, cha);
-						hTrees.add(hashTree);
-			//		}
-			//	}	
-			//}
+			HashTree hashTree = new HashTree(filterDups, filterInnerClasses, algorithm);
+//			hashTree.setPublicOnlyFilter();  // TODO
+			hashTree.generate(cha);
+			hTrees.add(hashTree);
 		} catch (NoSuchAlgorithmException e) {
 			logger.error(Utils.stacktrace2Str(e));
 		}	

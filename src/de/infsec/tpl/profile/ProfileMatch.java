@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +49,9 @@ public class ProfileMatch implements Serializable {
 	public static enum MatchLevel {PACKAGE, CLASS, METHOD};
 
 	public LibProfile lib;
+
+	// if lib code usage analysis is enabled, store normalized (i.e. if matched root packages differs from original root package) lib method signatures used
+	public Set<String> usedLibMethods = new TreeSet<String>();
 	
 	private PackageTree matchedPackageTree;
 	public boolean libRootPackagePresent;
@@ -164,13 +169,22 @@ public class ProfileMatch implements Serializable {
 			}
 		}
 		
+		if (logger.isDebugEnabled() && !usedLibMethods.isEmpty()) {
+			logger.debug("");
+			logger.debug(Utils.INDENT + "- used library methods in app -");
+			for (String sig: usedLibMethods) {
+				logger.debug(Utils.INDENT2 + "- method: " + sig);
+			}
+			logger.debug("");
+		}
+		
 		if (logger.isTraceEnabled())
 			getMatchedPackageTree().print(false);
 		logger.info("");
 	}
 
 	
-	public boolean doAllConfigsMatch() {
+	public boolean doAllConfigsMatch() {   // TODO to be deprecated
 		for (HTreeMatch htm: results) {
 			if (!htm.isFullMatch()) 
 				return false;
@@ -250,29 +264,19 @@ public class ProfileMatch implements Serializable {
 	 * Does a certain HashTree config match (this requires a full match!)
 	 * @param filterDups
 	 * @param filterInnerClasses
-	 * @param publicOnly
+	 * @param accessFlagFilter
 	 * @return
 	 */
-	public boolean matchesConfig(final boolean filterDups, final boolean filterInnerClasses, final boolean publicOnly) {
+	public boolean matchesConfig(final boolean filterDups, final boolean filterInnerClasses, final int accessFlagFilter) {
 		for (HTreeMatch htm: results) {
 			if (htm.isFullMatch()) {
-				if (htm.config.filterDups == filterDups && htm.config.filterInnerClasses == filterInnerClasses && htm.config.publicOnly == publicOnly)
+				if (htm.config.filterDups == filterDups && htm.config.filterInnerClasses == filterInnerClasses && htm.config.accessFlagsFilter == accessFlagFilter)
 					return true;
 			}
 		}
 		
 		return false;
 	}
-	
-
-	public boolean matchesMinConfig() {
-		return matchesConfig(true, true, true);
-	}
-	
-	public boolean matchesNormalConfig() {
-		return matchesConfig(false, false, false);
-	}
-		
 	
 	
 	/**
