@@ -44,7 +44,7 @@ public class LibProfile extends Profile implements Serializable {
 		super(packageTree, hashTrees);
 		this.description = desc;
 	}
-
+	
 	@Override
 	public String toString() {
 		return this.description.name + " (" + this.description.version + ")";
@@ -58,6 +58,7 @@ public class LibProfile extends Profile implements Serializable {
 		this.isDeprecated = isDeprecated;
 	}
 	
+	// TODO: if same lib compare releasedates if available, otherwise version
 	public static class LibProfileComparator implements Comparator<LibProfile> {
 		@Override
 		public int compare(LibProfile p0, LibProfile p1) {
@@ -70,6 +71,7 @@ public class LibProfile extends Profile implements Serializable {
 	}
 	
 	
+	// TODO: use SemVer instead of custom versionComp
 	public static Map<String,String> getUniqueLibraries(Collection<LibProfile> profiles) {
 		HashMap<String,String> result = new HashMap<String,String>();
 		for (LibProfile p: profiles) {

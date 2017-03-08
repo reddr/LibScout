@@ -225,11 +225,16 @@ public class WalaUtils {
      * @param clazz IClass
      * @return
      */
-    public static boolean isAnonymousInnerClass(final IClass clazz) {
-        final Pattern anonymusInnerClassPattern = Pattern.compile("^.*(\\$[0-9]+)+>");
-        final Matcher matcher = anonymusInnerClassPattern.matcher(simpleName(clazz));
+    public static boolean isAnonymousInnerClass(final String clazzName) {
+        final Pattern anonymusInnerClassPattern = Pattern.compile("^.+\\$[0-9]+\\..+$");
+        final Matcher matcher = anonymusInnerClassPattern.matcher(clazzName);
 
         return matcher.matches();
+    }
+
+	
+	public static boolean isAnonymousInnerClass(final IClass clazz) {
+        return isAnonymousInnerClass(simpleName(clazz));
     }
 	
 	/**

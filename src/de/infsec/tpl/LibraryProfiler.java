@@ -20,6 +20,8 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.jar.JarFile;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -37,79 +39,45 @@ import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.types.ClassLoaderReference;
 
-import de.infsec.tpl.utils.AndroidClassType;
 import de.infsec.tpl.TplCLI.CliOptions;
-import de.infsec.tpl.TplCLI.OpMode;
 import de.infsec.tpl.hash.HashTree;
 import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.profile.LibProfile;
 import de.infsec.tpl.profile.LibraryDescription;
 import de.infsec.tpl.profile.Profile;
+import de.infsec.tpl.utils.AndroidClassType;
 import de.infsec.tpl.utils.Utils;
 import de.infsec.tpl.utils.WalaUtils;
 import de.infsec.tpl.xml.XMLParser;
 
 
-
-/**
- * @author Erik Derr
- */
-
-
-public class LibraryHandler implements Runnable {
-	private static final Logger logger = LoggerFactory.getLogger(de.infsec.tpl.LibraryHandler.class);
+public class LibraryProfiler {
+	private static final Logger logger = LoggerFactory.getLogger(de.infsec.tpl.LibraryProfiler.class);
 	
-	private File targetFile;          // target file either library.jar or app.apk, depending on the mode
-	private File libDescriptionFile;  // xml file with basic facts about the library (only in non-matching mode)
-	private LibraryDescription libDesc;
-	private IClassHierarchy cha;
-	private List<LibProfile> libProfiles;
+	public static String FILE_EXT_LIB_PROFILE = "lib";
 	
-	public LibraryHandler(File targetFile, File libDescriptionFile, List<LibProfile> profiles) {
-		this.targetFile = targetFile;
-		this.libDescriptionFile = libDescriptionFile;
-		this.libProfiles = profiles;
-	}
-	
-	@Override
-	public void run() {
-		try {
-			if (CliOptions.opmode.equals(OpMode.MATCH)) {
-				init(false);
-				new LibraryIdentifier(targetFile).identifyLibraries(libProfiles);
-			} else if (CliOptions.opmode.equals(OpMode.PROFILE)) {
-				init(true);
-				extractFingerPrints();
-			}
-		} catch (Throwable t) {
-			logger.error("[FATAL " + (t instanceof Exception? "EXCEPTION" : "ERROR") + "] analysis aborted: " + t.getMessage());
-			logger.error(Utils.stacktrace2Str(t));
-		}
-	}
+	private File libraryFile;             // library.jar  (TODO soon also aar)
+	private LibraryDescription libDesc;   // library description parsed from an XML file
 
 	
-	public void init(boolean readLibXML) throws ParserConfigurationException, SAXException, IOException, ParseException {
+	public LibraryProfiler(File libraryFile, File libDescriptionFile) throws ParserConfigurationException, SAXException, IOException, ParseException {
+		this.libraryFile = libraryFile;
+		
 		// read library description
-		if (readLibXML)
-			libDesc = XMLParser.readLibraryXML(libDescriptionFile);
+		libDesc = XMLParser.readLibraryXML(libDescriptionFile);
 		
-		
+		// set identifier for logging
 		String logIdentifier = CliOptions.logDir.getAbsolutePath() + File.separator;
-		if (readLibXML) {
-			logIdentifier += libDesc.name.replaceAll(" ", "-") + "_" + libDesc.version;
-		} else {
-			logIdentifier +=  targetFile.getName().replaceAll("\\.jar", "").replaceAll("\\.apk", "").replaceAll("\\.aar", "");
-		}
+		logIdentifier += libDesc.name.replaceAll(" ", "-") + "_" + libDesc.version;
 		
-		// set identifier for log
 		MDC.put("appPath", logIdentifier);
 	}
-	
-	
+
+		
 	public void extractFingerPrints() throws IOException, ClassHierarchyException {
 		long starttime = System.currentTimeMillis();
 		
-		logger.info("Process library: " + targetFile.getName());
+		logger.info("Process library: " + libraryFile.getName());
 		logger.info("Library description:");
 		for (String desc: libDesc.getDescription())
 			logger.info(desc);
@@ -117,12 +85,12 @@ public class LibraryHandler implements Runnable {
 		// create analysis scope and generate class hierarchy
 		final AnalysisScope scope = AnalysisScope.createJavaAnalysisScope();
 		
-		scope.addToScope(ClassLoaderReference.Application, new JarFile(targetFile));
+		scope.addToScope(ClassLoaderReference.Application, new JarFile(libraryFile));
 		scope.addToScope(ClassLoaderReference.Primordial, new JarFile(CliOptions.pathToAndroidJar));
 
-		cha = ClassHierarchy.make(scope);
-		
+		IClassHierarchy cha = ClassHierarchy.make(scope);
 		getChaStats(cha);
+		
 		PackageTree pTree = Profile.generatePackageTree(cha);
 		if (pTree.getRootPackage() == null) {
 			logger.warn(Utils.INDENT + "Library contains multiple root packages");
@@ -140,20 +108,23 @@ public class LibraryHandler implements Runnable {
 		logger.info("");
 		File targetDir = new File(CliOptions.profilesDir + File.separator + libDesc.category.toString());
 		logger.info("Serialize library fingerprint to disk (dir: " + targetDir + ")");
-		String proFileName = libDesc.name.replaceAll(" ", "-") + "_" + libDesc.version + ".lib";
-		Utils.object2Disk(new File(targetDir + File.separator + proFileName), new LibProfile(libDesc, pTree, hTrees));
+		String proFileName = libDesc.name.replaceAll(" ", "-") + "_" + libDesc.version + "." + FILE_EXT_LIB_PROFILE;
+		LibProfile lp = new LibProfile(libDesc, pTree, hTrees);
+		
+		Utils.object2Disk(new File(targetDir + File.separator + proFileName), lp);
 		
 		logger.info("");
 		logger.info("Processing time: " + Utils.millisecondsToFormattedTime(System.currentTimeMillis() - starttime));
 	}
 
 	
-	public static void getChaStats(IClassHierarchy cha) {
+	public static Set<String> getChaStats(IClassHierarchy cha) {
+		TreeSet<String> publicMethods = new TreeSet<String>();
 		int clCount = 0;
 		int innerClCount = 0;
-		int publicMethodCount = 0;
+		int publicClCount = 0;
 		int miscMethodCount = 0;
-
+		
 		HashMap<de.infsec.tpl.utils.AndroidClassType, Integer> clazzTypes = new HashMap<AndroidClassType, Integer>();
 		for (AndroidClassType t: AndroidClassType.values())
 			clazzTypes.put(t, 0);
@@ -169,12 +140,13 @@ public class LibraryHandler implements Runnable {
 
 				clCount++;
 				if (WalaUtils.isInnerClass(clazz)) innerClCount++;
+				if (clazz.isPublic()) publicClCount++;
 				
 				for (IMethod im: clazz.getDeclaredMethods()) {
 					if (im.isBridge() || im.isMethodSynthetic()) continue;
 					
 					if (im.isPublic()) {
-						publicMethodCount++;
+						publicMethods.add(im.getSignature());
 					} else {
 						miscMethodCount++;
 					}
@@ -186,14 +158,16 @@ public class LibraryHandler implements Runnable {
 		logger.info("= ClassHierarchy Stats =");
 		logger.info(Utils.INDENT + "# of classes: " + clCount);
 		logger.info(Utils.INDENT + "# thereof inner classes: " + innerClCount);
+		logger.info(Utils.INDENT + "# thereof public classes: " + publicClCount);
 		for (AndroidClassType t: AndroidClassType.values())
 			logger.info(Utils.INDENT2 + t + " : " + clazzTypes.get(t));
-		logger.info(Utils.INDENT + "# methods: " + (publicMethodCount + miscMethodCount));
-		logger.info(Utils.INDENT2 + "# of public methods: " + publicMethodCount);
-		logger.info(Utils.INDENT2 + "# of non-public methods: " + miscMethodCount);
+		logger.info(Utils.INDENT + "# methods: " + (publicMethods.size() + miscMethodCount));
+		logger.info(Utils.INDENT2 + "# of publicly accessible methods: " + publicMethods.size());
+		logger.info(Utils.INDENT2 + "# of non-accessible methods: " + miscMethodCount);
 		logger.info("");
+		
+		return publicMethods;
 	}
 	
 
-	
 }

@@ -31,6 +31,7 @@ import java.util.TreeSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 import com.ibm.wala.dalvik.util.AndroidAnalysisScope;
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
@@ -66,8 +67,8 @@ public class LibraryIdentifier {
 	private Map<String,String> uniqueLibraries;   // unique library name -> highest version 
 	
 	private AppStats stats;
-	private static final String FILE_SUFFIX_SERIALIZED = ".data";
-	private static final String FILE_SUFFIX_JSON = ".json";
+	private static final String FILE_EXT_SERIALIZED = ".data";
+	private static final String FILE_EXT_JSON = ".json";
 
 	public static Set<String> ambiguousRootPackages = new TreeSet<String>() {
 		private static final long serialVersionUID = 7951760067476257884L;
@@ -80,6 +81,12 @@ public class LibraryIdentifier {
 	
 	public LibraryIdentifier(File appFile) {
 		this.stats = new AppStats(appFile);
+		
+		// set identifier for logging
+		String logIdentifier = CliOptions.logDir.getAbsolutePath() + File.separator;
+		logIdentifier +=  appFile.getName().replaceAll("\\.jar", "").replaceAll("\\.apk", "").replaceAll("\\.aar", "");
+		
+		MDC.put("appPath", logIdentifier);
 	}
 
 	
@@ -98,7 +105,7 @@ public class LibraryIdentifier {
 
 		cha = ClassHierarchy.make(scope);
 		logger.info("generated class hierarchy (in " + Utils.millisecondsToFormattedTime(System.currentTimeMillis() - s) + ")");
-		LibraryHandler.getChaStats(cha);
+		LibraryProfiler.getChaStats(cha);
 	}
 	
 
@@ -122,7 +129,7 @@ public class LibraryIdentifier {
 				statsSubDir = new File(ptoken.get(0));
 		}
 
-		File statsFile = new File(CliOptions.statsDir + File.separator + (statsSubDir != null? statsSubDir + File.separator : "") + statsFileName  + FILE_SUFFIX_SERIALIZED);
+		File statsFile = new File(CliOptions.statsDir + File.separator + (statsSubDir != null? statsSubDir + File.separator : "") + statsFileName  + FILE_EXT_SERIALIZED);
 
 		// if stat file already exists for this app, return
 		if (CliOptions.generateStats && statsFile.exists()) {
@@ -205,7 +212,7 @@ public class LibraryIdentifier {
 
 		// write app results to json
 		if (CliOptions.generateJSON) {
-			File jsonFile = new File(CliOptions.jsonDir + File.separator + (statsSubDir != null? statsSubDir + File.separator : "") + statsFileName  + FILE_SUFFIX_JSON);
+			File jsonFile = new File(CliOptions.jsonDir + File.separator + (statsSubDir != null? statsSubDir + File.separator : "") + statsFileName  + FILE_EXT_JSON);
 			Utils.obj2JsonFile(jsonFile, stats);
 			logger.info("Write app stats to JSON (dir: " + CliOptions.jsonDir + ")");
 		}

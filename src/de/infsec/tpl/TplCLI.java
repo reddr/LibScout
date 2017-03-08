@@ -120,6 +120,7 @@ public class TplCLI {
 		// initialize logback
 		initLogging();
 
+		// load profiles
 		List<LibProfile> profiles = null;
 		if (!CliOptions.opmode.equals(OpMode.PROFILE)) {
 			try {
@@ -132,24 +133,42 @@ public class TplCLI {
 			}
 		}
 
+//new LibraryUpdateabilityEval().run();
+//////////
+//new LibraryApiAnalysis().run(profiles);
+//System.exit(0); 
+		
 		// generate SQLite DB from app stats only
 		if (CliOptions.opmode.equals(OpMode.DB)) {
+			//ApiUsageSQLStats.stats2DB(profiles);
 			SQLStats.stats2DB(profiles);
 			System.exit(0);
 		} 
 				
+		// process input files, either library files or apps
 		for (File targetFile: targetFiles) {
-			LibraryHandler handler = new LibraryHandler(targetFile, libraryDescription, profiles);
-			handler.run();
+			try {
+				if (CliOptions.opmode.equals(OpMode.MATCH)) {
+					new LibraryIdentifier(targetFile).identifyLibraries(profiles);
+		
+				} else if (CliOptions.opmode.equals(OpMode.PROFILE)) {
+					new LibraryProfiler(targetFile, libraryDescription).extractFingerPrints();   
+				}
+			} catch (Throwable t) {
+				logger.error("[FATAL " + (t instanceof Exception? "EXCEPTION" : "ERROR") + "] analysis aborted: " + t.getMessage());
+				logger.error(Utils.stacktrace2Str(t));
+			}
 		}
 	}
 
 	
+	
 	public static List<LibProfile> loadLibraryProfiles() throws ClassNotFoundException, IOException {
-		// de-serialize library profiles
 		long s = System.currentTimeMillis();
+		
+		// de-serialize library profiles
 		List<LibProfile> profiles = new ArrayList<LibProfile>();
-		for (File f: Utils.collectFiles(CliOptions.profilesDir, new String[]{"lib"})) {
+		for (File f: Utils.collectFiles(CliOptions.profilesDir, new String[]{LibraryProfiler.FILE_EXT_LIB_PROFILE})) {
 			LibProfile fp = (LibProfile) Utils.disk2Object(f);
 			profiles.add(fp);
 		}

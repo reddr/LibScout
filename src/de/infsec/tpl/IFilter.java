@@ -16,7 +16,7 @@ package de.infsec.tpl;
 
 import java.util.Collection;
 
-
+// NECESSARY?
 public interface IFilter<T> {
 	public Collection<T> filter(Collection<T> input);
 }
