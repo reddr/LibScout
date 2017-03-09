@@ -45,6 +45,7 @@ import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.profile.LibProfile;
 import de.infsec.tpl.profile.LibraryDescription;
 import de.infsec.tpl.profile.Profile;
+import de.infsec.tpl.utils.AarFile;
 import de.infsec.tpl.utils.AndroidClassType;
 import de.infsec.tpl.utils.Utils;
 import de.infsec.tpl.utils.WalaUtils;
@@ -56,7 +57,7 @@ public class LibraryProfiler {
 	
 	public static String FILE_EXT_LIB_PROFILE = "lib";
 	
-	private File libraryFile;             // library.jar  (TODO soon also aar)
+	private File libraryFile;             // library.jar || library.aar
 	private LibraryDescription libDesc;   // library description parsed from an XML file
 
 	
@@ -74,7 +75,7 @@ public class LibraryProfiler {
 	}
 
 		
-	public void extractFingerPrints() throws IOException, ClassHierarchyException {
+	public void extractFingerPrints() throws IOException, ClassHierarchyException, ClassNotFoundException {
 		long starttime = System.currentTimeMillis();
 		
 		logger.info("Process library: " + libraryFile.getName());
@@ -85,11 +86,19 @@ public class LibraryProfiler {
 		// create analysis scope and generate class hierarchy
 		final AnalysisScope scope = AnalysisScope.createJavaAnalysisScope();
 		
-		scope.addToScope(ClassLoaderReference.Application, new JarFile(libraryFile));
+		JarFile jf = libraryFile.getName().endsWith(".aar")? new AarFile(libraryFile).getJarFile() : new JarFile(libraryFile); 
+		scope.addToScope(ClassLoaderReference.Application, jf);
 		scope.addToScope(ClassLoaderReference.Primordial, new JarFile(CliOptions.pathToAndroidJar));
 
 		IClassHierarchy cha = ClassHierarchy.make(scope);
 		getChaStats(cha);
+		
+		// cleanup tmp files if library input was an .aar file
+		if (libraryFile.getName().endsWith(".aar")) {
+			File tmpJar = new File(jf.getName());
+			tmpJar.delete();
+			logger.debug(Utils.indent() + "tmp jar-file deleted at " + tmpJar.getName());
+		}
 		
 		PackageTree pTree = Profile.generatePackageTree(cha);
 		if (pTree.getRootPackage() == null) {

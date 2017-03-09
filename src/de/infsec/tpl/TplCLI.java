@@ -286,17 +286,20 @@ public class TplCLI {
 			 */
 			if (!CliOptions.opmode.equals(OpMode.DB)) {
 				targetFiles = new ArrayList<File>();
-				String fileExt = CliOptions.opmode.equals(OpMode.MATCH)? "apk" : "jar"; 
+				String[] fileExts = CliOptions.opmode.equals(OpMode.MATCH)? new String[]{"apk"} : new String[]{"jar", "aar"};
 
 				for (String apkFileName: cmd.getArgs()) {
 					File arg = new File(apkFileName);
+
 					if (arg.isDirectory()) {
-						targetFiles.addAll(Utils.collectFiles(arg, new String[]{fileExt}));
+						targetFiles.addAll(Utils.collectFiles(arg, fileExts));
 					} else if (arg.isFile()) {
-						if (arg.getName().endsWith("." + fileExt))
+						if (arg.getName().endsWith("." + fileExts[0]))
+							targetFiles.add(arg);
+						else if (fileExts.length > 1 && arg.getName().endsWith("." + fileExts[1]))
 							targetFiles.add(arg);
 						else
-							throw new ParseException("File " + arg.getName() + " is no valid ." + fileExt + " file");
+							throw new ParseException("File " + arg.getName() + " is no valid ." + Utils.join(Arrays.asList(fileExts), "/")  + " file");
 					} else {
 						throw new ParseException("Argument is no valid file or directory!");
 					}
