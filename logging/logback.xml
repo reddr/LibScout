@@ -9,6 +9,8 @@
 	<logger name="de.infsec.tpl.hash.HashTree" level="debug"/> 
 	<logger name="de.infsec.tpl.utils.WalaUtils" level="info"/>
 
+	<logger name="de.infsec.tpl.LibCodeUsage" level="debug"/> 
+	<logger name="de.infsec.tpl.eval.LibraryApiAnalysis" level="info"/>
 
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
