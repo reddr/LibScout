@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -51,11 +51,8 @@ public class LibraryUpdatability {
 	// profile.id -> api usage stats
 	private Map<Integer, AppApiUsage> profile2ApiUsage = new TreeMap<Integer, AppApiUsage>();
 
-	// String(libname,libversion) -> stats
+	// libName -> stats
 	private Map<String, LibApiRobustnessStats> lib2ApiStats;
-	
-	// LibName to set of ordered versions
-	private Map<String, List<String>> lib2versions;
 
 	private final int FLAG_NO_UPDATE = 0;                // no update possible without code changes
 	private final int FLAG_UPDATE_TO_MAX = -1;           // indicates that lib can be updated to newest version
@@ -84,13 +81,12 @@ public class LibraryUpdatability {
 
 	
 	
-	
 	public void run(File libraryApiDataFile, File apiUsageDbFile) {
 		logger.info("= Library API eval =");
 
 		// Load library API evoluation data and library API usage database from disk
-		loadLibApiDataFromDisk(libraryApiDataFile); //new File("./libApiEval-libsecNEW.lstats"));//libApiEval_14.12.new.lstats")); //libApiEval_prof-14.12.lstats"));
-		loadApiUsageFromDB(apiUsageDbFile); //new File("./appStats_libsec_usage.sqlite"));///databases/appStats-libusage-pm_06.01.2017.sqlite"));//appStats-libusage_20.12.2016.sqlite")); //./TEST.sqlite")); //./databases/appStats-libusage-pm_06.01.2017.sqlite"));//		
+		loadLibApiDataFromDisk(libraryApiDataFile);
+		loadApiUsageFromDB(apiUsageDbFile);		
 
 		// check how libraries in apps can be updated based on their API usage
 		checkLibUpdatability();
@@ -101,45 +97,20 @@ public class LibraryUpdatability {
 		topUsedLibraryAPI();
 	}
 	
-	
-	
 
 	@SuppressWarnings("unchecked")
 	private void loadLibApiDataFromDisk(File statsFile) {
 		logger.info("= Load library API robustness stats from file: " + statsFile);
-		final int MIN_NR_LIBS = 10;
-		lib2ApiStats = new HashMap<String, LibApiRobustnessStats>();
-		
+
 		// de-serialize lib api stats
 		try {
 			ArrayList<LibApiRobustnessStats> stats = (ArrayList<LibApiRobustnessStats>) Utils.disk2Object(statsFile);
 
-			// mapping libraries to versions
-			this.lib2versions = new TreeMap<String, List<String>>();
+			// mapping libname -> stats
 			for (LibApiRobustnessStats s: stats) {
-				if (!lib2versions.containsKey(s.lib))
-					lib2versions.put(s.lib, new ArrayList<String>());
-				
-				lib2versions.get(s.lib).add(s.version);
+				lib2ApiStats.put(s.libName, s);
+				logger.debug(" # lib: " + s.libName + "   # versions: " + s.versions2pubApiCount.keySet().size());
 			}
-
-			
-			Set<String> excludedLibs = new HashSet<String>();  // exclude libs with less than MIN_NR_LIBS versions
-
-			for (String lib: lib2versions.keySet()) {
-				if (lib2versions.get(lib).size() < MIN_NR_LIBS) {
-					excludedLibs.add(lib);
-					logger.debug(" - exluded lib: " + lib + "  < " + MIN_NR_LIBS + " versions: " + lib2versions.get(lib));
-				} else
-					logger.trace(" # lib: " + lib + "   versions: " + lib2versions.get(lib));
-			}
-			
-			for (LibApiRobustnessStats s: stats) {
-				if (!excludedLibs.contains(s.lib)) {
-					lib2ApiStats.put(s.lib + s.version, s);
-				}
-			}
-					
 		} catch (ClassNotFoundException e) {
 			logger.error(Utils.stacktrace2Str(e));
 		}
@@ -248,26 +219,27 @@ public class LibraryUpdatability {
 			AppApiUsage usage = profile2ApiUsage.get(profileId);
 			logger.debug("pid: " + usage.profileId + "  lib: " + usage.libName + " / " + usage.libVersion);
 			
-			if (lib2ApiStats.containsKey(usage.libName+usage.libVersion)) {
-				LibApiRobustnessStats libstat = lib2ApiStats.get(usage.libName+usage.libVersion);
+			if (lib2ApiStats.containsKey(usage.libName)) {
+				LibApiRobustnessStats libstat = lib2ApiStats.get(usage.libName);
 				usage.stableVersions = FLAG_UPDATE_TO_MAX;
 
 				for (String api: usage.apiUsed) {
-					
-					if (!libstat.api2StableVersions.keySet().contains(api)) {
+					if (!libstat.isApiIncludedIn(api, usage.libVersion)) {
 						logger.debug("      > Couldn't lookup used api: " + api + "    [protected?]");
 						continue;
 					}
 					
-					if (libstat.isApiStable(api))
+					if (libstat.isApiStable(api, usage.libVersion))
 						logger.debug(Utils.INDENT + "- api used: " + api + "  [stable]");
 					else {
-						logger.debug(Utils.INDENT + "- api used: " + api + "  stable for " + libstat.api2StableVersions.get(api) + "  newerVersions: " + libstat.newerVersions);
+						int numberOfStableVersions = libstat.getNumberOfStableVersions(api, usage.libVersion);
+						
+						logger.debug(Utils.INDENT + "- api used: " + api + "  stable for " + numberOfStableVersions + "  newerVersions: " + libstat.getNumberOfNewerVersions(usage.libVersion));
 						if (libstat.api2CandidateApis.containsKey(api))
 							logger.debug(Utils.INDENT + "- candidate: " + libstat.api2CandidateApis.get(api));
 						
-						if (usage.stableVersions == FLAG_UPDATE_TO_MAX || libstat.api2StableVersions.get(api) < usage.stableVersions) 
-							usage.stableVersions = libstat.api2StableVersions.get(api);
+						if (usage.stableVersions == FLAG_UPDATE_TO_MAX || numberOfStableVersions < usage.stableVersions) 
+							usage.stableVersions = numberOfStableVersions;
 					}
 					
 				}
@@ -337,18 +309,20 @@ public class LibraryUpdatability {
 		logger.info("");
 		logger.info("Security Vulnerability fixing");
 
-		HashMap<String, TreeSet<Version>> orderedLibs2Version = new HashMap<String, TreeSet<Version>>();
-		for (String k: lib2versions.keySet()) {
+		HashMap<String, Set<Version>> orderedLibs2Version = new HashMap<String, Set<Version>>();
+		for (String libName: lib2ApiStats.keySet()) {
 			
-			TreeSet<Version> ordered = new TreeSet<Version>();
-			for (String v: lib2versions.get(k))
+			Set<Version> ordered = new LinkedHashSet<Version>();
+			for (String v: lib2ApiStats.get(libName).versions2pubApiCount.keySet())
 				ordered.add(VersionWrapper.valueOf(v));
 			
-			orderedLibs2Version.put(k, ordered);
+			orderedLibs2Version.put(libName, ordered);
 		}
 
 		/*
 		 * specification of vulnerable library versions
+		 * if a range of versions is effected, specify start and end version,
+		 * if a single version is effected use this version for both start and end version
 		 */
 		final List<String> LIB_NAMES = new ArrayList<String>();
 		final List<Version> LIB_START_VER = new ArrayList<Version>();
@@ -473,7 +447,7 @@ public class LibraryUpdatability {
 		int allLibApiUsage = 0;
 		
 		for (LibApiHotspots h: hotspots.values()) {
-			String noOfVersions = lib2versions.containsKey(h.libName) ? "(# " + lib2versions.get(h.libName).size() + " versions)": "(N/A)";
+			String noOfVersions = lib2ApiStats.containsKey(h.libName) ? "(# " + lib2ApiStats.get(h.libName).versions2pubApiCount.size() + " versions)": "(N/A)";
 						
 			int countAll = 0;
 			for (int c: h.usageCounts) countAll += c;
@@ -511,37 +485,24 @@ public class LibraryUpdatability {
 	
 	
 	private String apiStability(String libName, String api) {
-		int stable = 0;
-		int notStable = 0;
-		int notExisting = 0;
-		boolean found = false;
-				
-		for (LibApiRobustnessStats stats: lib2ApiStats.values()) {
-			if (stats.lib.equals(libName)) {
-				found = true;
-				int status = stats.isApiStableOrExisting(api);
-				
-				if (status == -1) {
-					notExisting++;
-				} else if (status == 0) {
-					notStable++;
-				} else
-					stable++;
+		
+		if (lib2ApiStats.containsKey(libName)) {
+			LibApiRobustnessStats stats = lib2ApiStats.get(libName);
+			
+			if (stats.api2Versions.containsKey(api)) {
+				if (stats.isApiStable(api, stats.versions2pubApiCount.keySet().iterator().next()))
+					return "stable across all versions";
+				else {
+					int stable = stats.api2Versions.get(api).size();
+					return "stable in " + stable + "/" + stats.versions2pubApiCount.size() + " versions (" + stats.api2Versions.get(api).get(0) + " - " + stats.api2Versions.get(api).get(stats.api2Versions.size()-1) + ")"; 
+				}
 			}
+				 
+			
 		}
 		
-		if (!found || notExisting == lib2versions.get(libName).size())  // protected?
-			return "";
-		
-		StringBuilder sb = new StringBuilder();
-		if (notExisting > 0)
-			sb.append("not existing: " + notExisting);
-		if (stable > 0)
-			sb.append("  stable in: " + stable);
-		if (notStable > 0)
-			sb.append(" not stable: " + notStable);
-		
-		return sb.toString();
+		// does not exist, maybe protected
+		return "";
 	}
 
 	

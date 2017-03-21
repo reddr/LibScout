@@ -31,12 +31,16 @@ import org.apache.commons.cli.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.github.zafarkhaja.semver.Version;
+
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.core.joran.spi.JoranException;
 import ch.qos.logback.core.util.StatusPrinter;
 import de.infsec.tpl.stats.SQLStats;
 import de.infsec.tpl.utils.Utils;
+import de.infsec.tpl.utils.VersionWrapper;
+import de.infsec.tpl.eval.LibraryApiAnalysis;
 import de.infsec.tpl.profile.LibProfile;
 
 
@@ -105,10 +109,10 @@ public class TplCLI {
 	
 	private static final String TOOLNAME = "LibScout";
 	private static final String USAGE = TOOLNAME + " --opmode [profile|match|db] <options>";
-	private static final String USAGE_PROFILE = TOOLNAME + " --opmode profile -a <path-to-android.jar> -x <path-to-lib-desc> <options> $lib.jar";
+	private static final String USAGE_PROFILE = TOOLNAME + " --opmode profile -a <path-to-android.jar> -x <path-to-lib-desc> <options> $lib.[jar|aar]";
 	private static final String USAGE_MATCH = TOOLNAME + " --opmode match -a <path-to-android.jar> <options> $path-to-app(-dir)";
 	private static final String USAGE_DB = TOOLNAME + " --opmode db -p <path-to-profiles> -s <path-to-stats>";
-	private static ArrayList<File> targetFiles;
+	private static ArrayList<File> inputFiles;
 	private static File libraryDescription = null;
 	protected static long libProfileLoadingTime = 0l;
 
@@ -120,12 +124,19 @@ public class TplCLI {
 		// initialize logback
 		initLogging();
 
+// TODO with new modes use switch over opmode to make individual steps per mode explicit		
+
+		
+		
+		
 		// load profiles
 		List<LibProfile> profiles = null;
 		if (!CliOptions.opmode.equals(OpMode.PROFILE)) {
 			try {
 				profiles = loadLibraryProfiles();
-			} catch (Exception e) {}
+			} catch (Exception e) {
+				logger.error(Utils.stacktrace2Str(e));
+			}
 			
 			if (profiles == null || profiles.isEmpty()) {
 				System.err.println("No profiles found in " + CliOptions.profilesDir + ". Check your settings!");
@@ -133,26 +144,25 @@ public class TplCLI {
 			}
 		}
 
-//new LibraryUpdateabilityEval().run();
+//new LibraryUpdateabilityEval().run(new File("./libApiEval-libsecNEW.lstats"), new File("./appStats_libsec_usage.sqlite"));
 //////////
 //new LibraryApiAnalysis().run(profiles);
 //System.exit(0); 
 		
 		// generate SQLite DB from app stats only
 		if (CliOptions.opmode.equals(OpMode.DB)) {
-			//ApiUsageSQLStats.stats2DB(profiles);
 			SQLStats.stats2DB(profiles);
 			System.exit(0);
 		} 
 				
 		// process input files, either library files or apps
-		for (File targetFile: targetFiles) {
+		for (File inputFile: inputFiles) {
 			try {
 				if (CliOptions.opmode.equals(OpMode.MATCH)) {
-					new LibraryIdentifier(targetFile).identifyLibraries(profiles);
+					new LibraryIdentifier(inputFile).identifyLibraries(profiles);
 		
 				} else if (CliOptions.opmode.equals(OpMode.PROFILE)) {
-					new LibraryProfiler(targetFile, libraryDescription).extractFingerPrints();   
+					new LibraryProfiler(inputFile, libraryDescription).extractFingerPrints();   
 				}
 			} catch (Throwable t) {
 				logger.error("[FATAL " + (t instanceof Exception? "EXCEPTION" : "ERROR") + "] analysis aborted: " + t.getMessage());
@@ -169,8 +179,8 @@ public class TplCLI {
 		// de-serialize library profiles
 		List<LibProfile> profiles = new ArrayList<LibProfile>();
 		for (File f: Utils.collectFiles(CliOptions.profilesDir, new String[]{LibraryProfiler.FILE_EXT_LIB_PROFILE})) {
-			LibProfile fp = (LibProfile) Utils.disk2Object(f);
-			profiles.add(fp);
+			LibProfile lp = (LibProfile) Utils.disk2Object(f);
+			profiles.add(lp);
 		}
 		
 		Collections.sort(profiles, LibProfile.comp);
@@ -179,7 +189,6 @@ public class TplCLI {
 		return profiles;
 	}
 
-	
 	
 	private static void parseCL(String[] args) {
 		try {
@@ -285,19 +294,19 @@ public class TplCLI {
 			 *  - in match mode pass one application file or one directory file (including apks)
 			 */
 			if (!CliOptions.opmode.equals(OpMode.DB)) {
-				targetFiles = new ArrayList<File>();
+				inputFiles = new ArrayList<File>();
 				String[] fileExts = CliOptions.opmode.equals(OpMode.MATCH)? new String[]{"apk"} : new String[]{"jar", "aar"};
 
 				for (String apkFileName: cmd.getArgs()) {
 					File arg = new File(apkFileName);
 
 					if (arg.isDirectory()) {
-						targetFiles.addAll(Utils.collectFiles(arg, fileExts));
+						inputFiles.addAll(Utils.collectFiles(arg, fileExts));
 					} else if (arg.isFile()) {
 						if (arg.getName().endsWith("." + fileExts[0]))
-							targetFiles.add(arg);
+							inputFiles.add(arg);
 						else if (fileExts.length > 1 && arg.getName().endsWith("." + fileExts[1]))
-							targetFiles.add(arg);
+							inputFiles.add(arg);
 						else
 							throw new ParseException("File " + arg.getName() + " is no valid ." + Utils.join(Arrays.asList(fileExts), "/")  + " file");
 					} else {
@@ -305,12 +314,12 @@ public class TplCLI {
 					}
 				}
 				
-				if (targetFiles.isEmpty()) {
+				if (inputFiles.isEmpty()) {
 					if (CliOptions.opmode.equals(OpMode.PROFILE))
 						throw new ParseException("You have to provide one library.jar to be processed");
 					else
 						throw new ParseException("You have to provide a path to a single application file or a directory");
-				} else if (targetFiles.size() > 1 && CliOptions.opmode.equals(OpMode.PROFILE))
+				} else if (inputFiles.size() > 1 && CliOptions.opmode.equals(OpMode.PROFILE))
 					throw new ParseException("You have to provide a path to a single library file or a directory incl. a single lib file");
 			}
 			
@@ -426,6 +435,7 @@ public class TplCLI {
 		// automatically generate the help statement
 		HelpFormatter formatter = new HelpFormatter();
 		String helpMsg = USAGE;
+		
 		if (OpMode.PROFILE.equals(CliOptions.opmode))
 			helpMsg = USAGE_PROFILE;
 		else if (OpMode.MATCH.equals(CliOptions.opmode))

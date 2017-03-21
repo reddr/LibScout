@@ -17,7 +17,6 @@ package de.infsec.tpl.eval;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,18 +26,12 @@ import java.util.TreeSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.zafarkhaja.semver.Version;
-
 import de.infsec.tpl.hash.AccessFlags;
-import de.infsec.tpl.hash.Hash;
 import de.infsec.tpl.hash.HashTree;
 import de.infsec.tpl.profile.LibProfile;
-import de.infsec.tpl.profile.LibProfile.LibProfileComparator;
-import de.infsec.tpl.utils.MapUtils;
 import de.infsec.tpl.utils.MathUtils;
 import de.infsec.tpl.utils.Utils;
 import de.infsec.tpl.utils.VersionWrapper;
-import de.infsec.tpl.utils.WalaUtils;
 
 
 /**
@@ -54,8 +47,6 @@ public class LibraryApiAnalysis {
 	// Library name to percentage of correct semver values, e.g. Admob -> 35.1%
 	private static Map<String, Float> libSemverValues = new HashMap<String, Float>();
 	
-	private static int numberOfAnalyzedLibs;
-
 
 	// expected|real count per lib how often patch|minor|major version occur
 	HashMap<String,Integer> semverExpChangeCountGlobal = new HashMap<String,Integer>() {{
@@ -67,7 +58,6 @@ public class LibraryApiAnalysis {
 
 	private HashMap<String, Integer> semVerInconsistenciesGlobal = new HashMap<String, Integer>();
 	
-	private Map<String, List<String>> sortedVersionsCache = new HashMap<String, List<String>>();
 	private ArrayList<LibApiRobustnessStats> libStats = new ArrayList<LibApiRobustnessStats>();
 	
 	
@@ -78,101 +68,142 @@ public class LibraryApiAnalysis {
 	 */
 	public void run(List<LibProfile> libProfiles) {
 		profiles = libProfiles;
+		
+		if (profiles == null || profiles.isEmpty()) {
+			logger.info("Empty profile list - Abort");
+		    return;
+		}
+	
 		TreeSet<String> uniqueLibraries = new TreeSet<String>(LibProfile.getUniqueLibraries(profiles).keySet());
 
 		logger.info("= Evaluate libraries =");
 		logger.info(Utils.INDENT + "Loaded " + profiles.size() + " library profiles for " + uniqueLibraries.size() + " distinct libraries");
 
 		logger.info("- Evaluate public library API -");
-		numberOfAnalyzedLibs = 0;
 
 		final String[] semVerKeys = new String[]{"patch->major", "minor->major", "patch->minor", "minor->patch", "major->patch", "major->minor" };  // sorted by severity desc
 		for (String k: semVerKeys)
 			semVerInconsistenciesGlobal.put(k, 0);
 
 		report = new HashMap<String, List<String>>();
-		for (String lib: uniqueLibraries) {
-			checkPublicAPI(lib, true);
+
+		for (String libName: uniqueLibraries) {
+			logger.info("= Check lib: " + libName + " =");
+			List<LibProfile> list = getSortedLibProfiles(libName, null, true, false, 10);
+			
+			if (list.isEmpty()) {
+				continue;
+			}
+
+			logger.info(Utils.INDENT + "# versions: " + list.size());
+			checkPublicAPI(list);
+
+			LibApiRobustnessStats stats = checkPerApiRobustness(libName, list);
+			if (stats != null)
+				libStats.add(stats);
 		}
-		
+
 		// print results
 		printResults(uniqueLibraries, semVerKeys);
 
 		// serialize to disk
-		Utils.object2Disk(new File("./libApiEval.lstats"), libStats);
+		Utils.object2Disk(new File("./libApiData.lstats"), libStats);
 	}
 
+	
+	
 	
 	
 	/**
 	 * Checks for each <library, version> the stableness of each declared public API, i.e.
 	 * for each public API determine the highest library version for which this exact API is available 
 	 * @param libName   
-	 * @param startVersion
 	 * @param skipBeta
-	 * @return  a {@link LibApiRobustnessStats} 
+	 * @return  a {@link LibApiRobustnessStats} or null if there are too few lib versions 
 	 */
-	private LibApiRobustnessStats checkPerApiRobustness(String libName, String startVersion, boolean skipBeta) {
-		LibApiRobustnessStats aStats = new LibApiRobustnessStats(libName, startVersion);   // TODO: one stats obj per lib
+	private LibApiRobustnessStats checkPerApiRobustness(String libName, List<LibProfile> list) {
+		LibApiRobustnessStats aStats = new LibApiRobustnessStats(libName);
 		
-		List<LibProfile> list = getSortedLibProfiles(libName, startVersion, skipBeta, false, 10);
-		logger.info("= Check lib: " + libName + "  # versions: " + list.size() + "  target version: " + startVersion + "  =");		
-	
-	    // how many newer API versions exist?
-		aStats.newerVersions = list.size() -1;
+		for (LibProfile lp: list) {
+			// version -> # of pub APIs
+			aStats.versions2pubApiCount.put(lp.description.version, lp.hashTrees.iterator().next().getAllMethodSignatures().size());
+			
+			// for each public API
+			for (String sig: lp.hashTrees.iterator().next().getAllMethodSignatures()) {
+				aStats.updateApi(sig, lp.description.version);
+			}
+		}
+
+		// for each api determine last version, check if last version = overall last version, if not search for candidates in last version +1
+		String lastLibVersion = list.get(list.size()-1).description.version;
 		
-		// for each public API in this version check the maximum library version for which this API is stable
-		// if it is not stable beginning at some version, try to get alternatives (API methods that were introduced with the newer version)
-		for (String sig: list.get(0).hashTrees.iterator().next().getAllMethodSignatures()) {
-			aStats.api2StableVersions.put(sig, aStats.newerVersions);
+		for (String api: aStats.api2Versions.keySet()) {
+			String lastVersion = aStats.api2Versions.get(api).get(aStats.api2Versions.get(api).size()-1);
 			
-			for (int k = 1; k < list.size(); k++) {
-				LibProfile lp = list.get(k);
-			
-				boolean isIncluded = lp.hashTrees.iterator().next().getAllMethodSignatures().contains(sig);
+			// check if last library version that includes this api is last lib version in database
+			if (!lastVersion.equals(lastLibVersion)) {
+				LibProfile lastLibProfile = getTargetLibProfile(list, lastLibVersion, 0);
+				LibProfile sucLibProfile = getTargetLibProfile(list, lastVersion, 1);
 
-				if (!isIncluded) {
-					aStats.api2StableVersions.put(sig, k-1);
-// TODO: collect stats about replacements, classify replacements
-// TODO: do advanced check whether and how changed api could still be stable (classhierarchy check for arg|ret types (super types?)
-// TODO: check candidates also by fixed selector but different name?
-					// is there a new candidate API as replacement?
-					List<String> apiList = lp.hashTrees.iterator().next().getAllMethodSignatures();
-					String methodName = sig.substring(0, sig.indexOf("("));
+				// check for alternative candidates,
+				// currently it is checked whether there are APIs with the same class/method name but different arg/return types
+//TODO: collect stats about replacements, classify replacements
+//TODO: do advanced check whether and how changed api could still be stable (classhierarchy check for arg|ret types (super types?)
+//TODO: check candidates also by fixed selector but different name?
 
-					for (String new_api_sig: apiList) {
-						if (new_api_sig.startsWith(methodName) &&
-							!list.get(0).hashTrees.iterator().next().getAllMethodSignatures().contains(new_api_sig)) {  // print only if it's an API that was not in the former lib version
+				List<String> apiList = sucLibProfile.hashTrees.iterator().next().getAllMethodSignatures();
+				String methodName = api.substring(0, api.indexOf("("));
 
-							if (!aStats.api2CandidateApis.containsKey(aStats))
-								aStats.api2CandidateApis.put(sig, new TreeSet<String>());
-							
-							aStats.api2CandidateApis.get(sig).add(new_api_sig);
-						}
+				for (String alternativeApi: apiList) {
+					if (alternativeApi.startsWith(methodName) &&
+						!lastLibProfile.hashTrees.iterator().next().getAllMethodSignatures().contains(alternativeApi)) {  // print only if it's an API that was not in the former lib version
+
+						aStats.updateCandidateApi(api, alternativeApi);
 					}
-				
-					break;
 				}
 			}
 		}
 		
 		return aStats;
 	}
+
+	
+	/**
+	 * For a given library version and a number of subsequent versions, retrieve the target version
+	 * @param lib
+	 * @param startVersion
+	 * @param numberOfSubsequentVersions
+	 * @return
+	 */
+	private LibProfile getTargetLibProfile(List<LibProfile> profiles, String startVersion, int numberOfSubsequentVersions) {
+		for (int i = 0; i < profiles.size(); i++) {
+			LibProfile profile = profiles.get(i);
+			if (profile.description.version.equals(startVersion)) {
+				if ((i + numberOfSubsequentVersions) < profiles.size()) {
+					return profiles.get(i + numberOfSubsequentVersions);
+				} else {
+					logger.debug(Utils.INDENT + "Access out of bounds: index: " + i + " numberOfSubsequentVersions: " + numberOfSubsequentVersions + "  # profiles: " + profiles.size());
+				    return null;
+				}
+			}
+		}
+		
+		if (!profiles.isEmpty())
+			logger.debug(Utils.INDENT + "Version " + startVersion + " was not found for library " + profiles.get(0).description.name);
+
+		return null;
+	}
+	
 		
 	
 	
 	/**
-	 * General unspecific API robustness check (checks whether *all* public API methods are included in next version)	
+	 * General unspecific API robustness check (checks whether *all* public API methods are included in next version).
+	 * Moreover determines expected and actual SemVer based on API diffs	
 	 * @param lib
 	 * @param skipBeta
 	 */
-	private void checkPublicAPI(String lib, boolean skipBeta) {
-		List<LibProfile> list = getSortedLibProfiles(lib, skipBeta);
-		
-		if (list.isEmpty())
-			return;
-		else
-			numberOfAnalyzedLibs++;
+	private void checkPublicAPI(List<LibProfile> list) {
 				
 		String cat = list.get(0).description.category.toString();
 		if (!report.containsKey(cat))
@@ -323,13 +354,14 @@ public class LibraryApiAnalysis {
 		
 		logger.info("");
 		
-		
+		int numberOfAnalyzedLibs = libStats.size();
 		long semver80plusCount = libSemverValues.values().stream().filter(f -> f.floatValue() > 80f).count();
 		logger.info("SemVer correct > 80%: " + semver80plusCount + " / " + numberOfAnalyzedLibs + "  (" + MathUtils.computePercentage(semver80plusCount, numberOfAnalyzedLibs) + "%)");
 		
 		long semver20MinusCount = libSemverValues.values().stream().filter(f -> f.floatValue() < 20f).count();
 		logger.info("SemVer correct < 20%: " + semver20MinusCount + " / " + numberOfAnalyzedLibs + "  (" + MathUtils.computePercentage(semver20MinusCount, numberOfAnalyzedLibs) + "%)");
 		
+		logger.info("Libraries with top/flop SemVer adherence:");
 		libSemverValues.entrySet().stream()
 			.filter(e -> e.getValue().floatValue() < 20f || e.getValue().floatValue() > 80f)
 			.sorted(Map.Entry.<String, Float> comparingByValue().reversed())
@@ -355,21 +387,13 @@ public class LibraryApiAnalysis {
 		logger.info("   [    real change count] patch: " + semverRealChangeCountGlobal.get("patch") + "   minor:  " + semverRealChangeCountGlobal.get("minor") + "   major: " + semverRealChangeCountGlobal.get("major"));
 
 		
-
-		logger.info("----------------------------------------------");
-		logger.info("- per-lib-api robustness analysis -");
-		final boolean skipBeta = true;
-		
-		for (String ulib: uniqueLibraries) {
-			List<LibProfile> list = getSortedLibProfiles(ulib, skipBeta);
+		if (logger.isDebugEnabled()) {
+			logger.debug(""); logger.debug("");
+			logger.debug("# Per-Lib-API robustness analysis #");
 			
-			for (LibProfile lp: list) {
-				LibApiRobustnessStats stats = checkPerApiRobustness(lp.description.name, lp.description.version, skipBeta);
-				if (stats != null) {
-					libStats.add(stats);
-					printApiStats(stats);
-					logger.info("");
-				}
+			for (LibApiRobustnessStats stats: libStats) {
+				printApiStats(stats);
+				logger.debug("");
 			}
 		}
 	}
@@ -445,11 +469,12 @@ public class LibraryApiAnalysis {
 		if (!found || list.size() == 1 || list.size() < minNumberOfLibs) {
 			if (!found)
 				logger.warn("Target library version " + startVersion + " is not in the list - ABORT!");
-			else if (found && list.size() == 1)
-				logger.info(Utils.indent() + "- Target library version " + startVersion + " is the last entry - nothing to check - ABORT!");
+//			else if (found && list.size() == 1)
+//				logger.info(Utils.indent() + "- Target library version " + startVersion + " is the last entry - nothing to check - ABORT!");
 			else if (list.size() < minNumberOfLibs)	
 				logger.info(Utils.indent() + "- # of lib versions (" + list.size() + ") is smaller than configured threshold (" + minNumberOfLibs + ") - ABORT!");
-			
+	
+			logger.info("");
 			return new ArrayList<LibProfile>();
 		}
 		
@@ -458,93 +483,43 @@ public class LibraryApiAnalysis {
 		Collections.sort(list, LibProfile.comp);   
 		return list;
 	}
-	
+
 	
 	private void printApiStats(LibApiRobustnessStats stats) {
-		logger.info("- Stats: " + stats.lib + " |  version " +  stats.version + "  |  # newer versions: " + stats.newerVersions +  "  |  api-compatible with next version: "+ stats.apiCompatibleWithNextVersion());
+		logger.debug("- Stats: " + stats.libName + " |  # versions " +  stats.versions2pubApiCount.size());
 		
-		int publicAPIs = stats.getNumberOfPublicApis();
-		int stablePublicAPIs = stats.getNumberOfStablePublicApis();
-		logger.info(Utils.INDENT + "# of stable public APIs:  " + stablePublicAPIs + " / " + publicAPIs + " (" + MathUtils.computePercentage(stablePublicAPIs, publicAPIs) + "%)");
-
-		if (publicAPIs != stablePublicAPIs) {
-			logger.info(Utils.INDENT + "# of unstable public APIs: " + (publicAPIs - stablePublicAPIs) + "   min: " + stats.minApiCompatibleWithNextVersion());
+		for (String version: stats.versions2pubApiCount.keySet()) {
+			logger.debug(Utils.INDENT + "- version: " + version + "   # newer versions: " + stats.getNumberOfNewerVersions(version) + "  # API-compatible suc Versions: " + stats.getNumberOfApiCompatibleVersions(version));
+			logger.debug(Utils.INDENT2 + "# pub APIs: " + stats.versions2pubApiCount.get(version));
 			
-		// print entries sorted by # compatible versions	
-		stats.api2StableVersions.entrySet()
-		    .stream()
-		    .filter(e -> e.getValue() < stats.newerVersions)
-		    .sorted(Map.Entry.comparingByValue(/*Collections.reverseOrder()*/))
-		    .forEach(e -> printUnstableAPI(stats, e.getKey(), e.getValue()));
-		}			
-	}
-	
+			int publicAPIs = stats.getNumberOfPublicApis(version);
+			int stablePublicAPIs = stats.getNumberOfStablePublicApis(version);
+			logger.debug(Utils.indent(3) + "# of stable public APIs:  " + stablePublicAPIs + " / " + publicAPIs + " (" + MathUtils.computePercentage(stablePublicAPIs, publicAPIs) + "%)");
 
-	private void printUnstableAPI(LibApiRobustnessStats stats, String api, Integer maxVersions) {
-		String maxVersionStr = getTargetVersion(stats.lib, stats.version, maxVersions);
-		String maxVersionPlusOneStr = getTargetVersion(stats.lib, stats.version, maxVersions+1);
+			if (publicAPIs != stablePublicAPIs) 
+				logger.debug(Utils.indent(3) + "# of unstable public APIs: " + (publicAPIs - stablePublicAPIs));
+
+			if (logger.isTraceEnabled()) {
+				stats.api2Versions.entrySet().stream()
+					.filter(e -> !stats.isApiStable(e.getKey(), version))
+					.forEach(e -> printUnstableApi(stats, version, e.getKey()));
+			}
+		}
+	}
+
+	
+	private void printUnstableApi(LibApiRobustnessStats stats, String version, String api) {
+		int numberVersionsApi = stats.getNumberOfStableVersions(api, version);
+		String maxVersionApi = stats.getLatestVersionWithApi(api, version);
+		String maxVersionApiSuc = stats.getLatestVersionWithApi(api, version, true);
 		
-		logger.debug(Utils.INDENT2 + "- stable for " + maxVersions + "/" + stats.newerVersions 
-				 + " versions (" + (maxVersionStr.equals(stats.version)? " --- " : "until " + maxVersionStr + " (next: " + maxVersionPlusOneStr + ")") + "): " + api);
+		logger.trace(Utils.INDENT2 + "- stable for " + numberVersionsApi + "/" + stats.getNumberOfNewerVersions(version) 
+				 + " versions (last version: " + maxVersionApi + "   next version: " + maxVersionApiSuc + "):  " + api); 
 		
 		if (stats.api2CandidateApis.containsKey(api)) {  // api changed?
 			for (String candidate: stats.api2CandidateApis.get(api))
-				logger.debug(Utils.indent(3) + "- API changed?: " + candidate);
+				logger.trace(Utils.indent(3) + "- API changed?: " + candidate);
 		}
 	}
 
-	
-	/**
-	 * For a given library version and a number of subsequent versions, retrieve the target version
-	 * @param lib
-	 * @param startVersion
-	 * @param numberOfSubsequentVersions
-	 * @return
-	 */
-	private String getTargetVersion(String lib, String startVersion, int numberOfSubsequentVersions) {
-		List<String> sortedVersions;
-		
-		if (!sortedVersionsCache.containsKey(lib)) {
-			sortedVersions = new ArrayList<String>();
-			for (LibProfile lp: getSortedLibProfiles(lib, true)) {
-				sortedVersions.add(lp.description.version);
-			}
-			sortedVersionsCache.put(lib, sortedVersions);
-		}
-	
-		sortedVersions = sortedVersionsCache.get(lib);
-		int idx = sortedVersions.indexOf(startVersion);
-		
-		if (idx > -1 && (idx+numberOfSubsequentVersions) < sortedVersions.size())
-			return sortedVersions.get(idx+numberOfSubsequentVersions);
-		else
-			return null;
-	}
 }
-
-
-//private List<LibProfile> getSortedLibProfiles(String libName, boolean skipBeta, boolean skipNoReleaseDate, int minNumberOfLibs) {
-//	List<LibProfile> list = new ArrayList<LibProfile>();
-//
-//	// filter versions (non-final versions, versions without release data)
-//	for (LibProfile lp: profiles) {
-//		if (lp.description.name.equals(libName)) {
-//			// if there is at least one version without release-date skip this library
-//			if (lp.description.date == null && skipNoReleaseDate) {
-//				logger.info(Utils.INDENT + "[getSortedLibProfiles] skip lib " + libName + " due to missing release dates!");
-//				return new ArrayList<LibProfile>();
-//			} else {
-//				if (!lp.description.version.matches(".*[a-zA-Z]+.*") || !skipBeta)  // skip alpha/beta/rc ..
-//					list.add(lp);
-//			}
-//		}
-//	}
-//	
-//	// evaluate only if we have at least ten different versions of one lib
-//	if (list.size() < minNumberOfLibs)
-//		return new ArrayList<LibProfile>();
-//
-//	Collections.sort(list, LibProfile.comp);   // sort based on libname and libversion
-//	return list;
-//}
-

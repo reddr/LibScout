@@ -202,10 +202,9 @@ public class LibraryIdentifier {
 		stats.pMatches = results;
 		printResults(results);
 
-// TODO coming soon		
-//		// run library API usage analysis for full matches only
-//		if (CliOptions.runLibUsageAnalysis)
-//			LibCodeUsage.checkUsage(cha, results);
+		// run library API usage analysis for full matches only
+		if (CliOptions.runLibUsageAnalysis)
+			LibCodeUsage.checkUsage(cha, results);
 		
 		logger.info("");
 		stats.processingTime = System.currentTimeMillis() - starttime;

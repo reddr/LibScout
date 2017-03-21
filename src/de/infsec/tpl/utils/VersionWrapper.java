@@ -24,7 +24,7 @@ public class VersionWrapper {
 	 */
 	public static Version valueOf(String versionStr) {
 		if (versionStr.isEmpty()) {
-			logger.warn("Invalid version string: " + versionStr);
+			logger.warn("Empty version string!");
 			return null;
 		}
 		
@@ -37,6 +37,18 @@ public class VersionWrapper {
 		
 		if (version.length == 2)  { // like 7.2  is transformed into 7.2.0
 			logger.debug("Invalid semVer (patch level missing): " + versionStr);
+			
+			// 11.1-rc1 is transformed into 11.1.0-rc1
+			if (version[1].indexOf('-') != -1) {
+				String[] frag = version[1].split("-");
+				
+				String ext = "";
+				for (int i = 1; i < frag.length; i++)
+					ext += "-" + frag[i];
+					
+				return Version.valueOf(version[0] + "." + frag[0] + ".0" + ext);
+			}
+						
 			return Version.forIntegers(Integer.parseInt(version[0]),Integer.parseInt(version[1]));
 		}
 		

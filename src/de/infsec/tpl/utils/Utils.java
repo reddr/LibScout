@@ -30,6 +30,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -43,6 +45,7 @@ import de.infsec.tpl.stats.SerializableAppStats;
  * @author Erik Derr
  */
 public class Utils {
+//	private static final Logger logger = LoggerFactory.getLogger(de.infsec.tpl.TplCLI.class);
 	
 	// indent for various kinds of messages
 	public static final String INDENT = "    ";
@@ -396,9 +399,9 @@ public class Utils {
 		         // This method will returns matched file as java.io.File
 		         boolean recursive = true;
 
-		         Collection<File> foundApks = FileUtils.listFiles(dir, extensions, recursive);
+		         Collection<File> foundFiles = FileUtils.listFiles(dir, extensions, recursive);
 
-		         for (Iterator<File> iterator = foundApks.iterator(); iterator.hasNext();) {
+		         for (Iterator<File> iterator = foundFiles.iterator(); iterator.hasNext();) {
 		             files.add(iterator.next());
 		         }   
 		     } catch (Exception e) {

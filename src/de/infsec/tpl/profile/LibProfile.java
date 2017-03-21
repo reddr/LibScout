@@ -21,14 +21,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.github.zafarkhaja.semver.Version;
+
 import de.infsec.tpl.hash.HashTree;
 import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.utils.Pair;
+import de.infsec.tpl.utils.VersionWrapper;
 
 /**
  * A LibProfile instance includes any information about a particular version of a library.
  * This includes parsed meta data as well as generated package/hash-trees.
- * @author ederr
  */
 
 public class LibProfile extends Profile implements Serializable {
@@ -58,12 +60,24 @@ public class LibProfile extends Profile implements Serializable {
 		this.isDeprecated = isDeprecated;
 	}
 	
-	// TODO: if same lib compare releasedates if available, otherwise version
+
+	// compares library names first then library versions
 	public static class LibProfileComparator implements Comparator<LibProfile> {
 		@Override
 		public int compare(LibProfile p0, LibProfile p1) {
 			if (p0.description.name.equals(p1.description.name)) {
-				return p0.description.version.compareTo(p1.description.version);
+				try {
+					// Compare by version string according to SemVer rules
+					Version v0 = VersionWrapper.valueOf(p0.description.version);
+					Version v1 = VersionWrapper.valueOf(p1.description.version);
+	
+					return v0.compareWithBuildsTo(v1);
+				} catch (Exception e) {
+					// if versions do not adhere to semver rules and cannot be
+					// easily transformed into compliant version string,
+					// do string compare as fallback
+					return 	p0.description.version.compareTo(p1.description.version);
+				}
 			}
 
 			return p0.description.name.compareTo(p1.description.name);
@@ -71,63 +85,28 @@ public class LibProfile extends Profile implements Serializable {
 	}
 	
 	
-	// TODO: use SemVer instead of custom versionComp
+	/**
+	 * Given a number of profiles, return distinct libraries with their highest version
+	 * @param profiles
+	 * @return a {@link Map} containing unique library names -> highest version
+	 */
 	public static Map<String,String> getUniqueLibraries(Collection<LibProfile> profiles) {
 		HashMap<String,String> result = new HashMap<String,String>();
 		for (LibProfile p: profiles) {
 			if (!result.containsKey(p.description.name))
 				result.put(p.description.name, p.description.version);
 			else {
-				int comp = versionCompare(result.get(p.description.name), p.description.version);
-				if (comp < 0)
-					result.put(p.description.name, p.description.version);
+				try {
+					Version v1 = VersionWrapper.valueOf(result.get(p.description.name));
+					Version v2 = VersionWrapper.valueOf(p.description.version);
+	
+					if (v2.greaterThan(v1))
+						result.put(p.description.name, p.description.version);
+				} catch (Exception e) { /* if at least one version is not semver compliant */ }
 			}
 		}
 		return result;
 	}
-
-	
-	/**
-	 * Compares two version strings. 
-	 * 
-	 * Use this instead of String.compareTo() for a non-lexicographical 
-	 * comparison that works for version strings. e.g. "1.10".compareTo("1.6").
-	 * 
-	 * @note It does not work if "1.10" is supposed to be equal to "1.10.0".
-	 * 
-	 * @param str1 a string of ordinal numbers separated by decimal points. 
-	 * @param str2 a string of ordinal numbers separated by decimal points.
-	 * @return The result is a negative integer if str1 is _numerically_ less than str2. 
-	 *         The result is a positive integer if str1 is _numerically_ greater than str2. 
-	 *         The result is zero if the strings are _numerically_ equal.
-	 */
-	public static int versionCompare(String v1, String v2) {
-		try {
-		    String[] vals1 = v1.split("\\.");
-		    String[] vals2 = v2.split("\\.");
-	
-		    // set index to first non-equal ordinal or length of shortest version string
-		    int i = 0;
-		    while (i < vals1.length && i < vals2.length && vals1[i].equals(vals2[i])) {
-		    	i++;
-		    }
-		    
-		    // compare first non-equal ordinal number
-		    if (i < vals1.length && i < vals2.length) {
-		        int diff = Integer.valueOf(vals1[i]).compareTo(Integer.valueOf(vals2[i]));
-		        return Integer.signum(diff);
-		    }
-		    
-		    // the strings are equal or one string is a substring of the other
-		    // e.g. "1.2.3" = "1.2.3" or "1.2.3" < "1.2.3.4"
-		    else {
-		        return Integer.signum(vals1.length - vals2.length);
-		    }
-		} catch (NumberFormatException e) {
-			return 0;
-		}
-	}
-	
 	
 	
 	public Pair<String,String> getLibIdentifier() {
