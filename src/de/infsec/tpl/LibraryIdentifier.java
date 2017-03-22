@@ -765,6 +765,7 @@ public class LibraryIdentifier {
 							
 							logger.info(Utils.INDENT + str);
 						}
+						logger.info(Utils.INDENT + "lib root package: \"" + pm.lib.packageTree.getRootPackage() + "\"" + (pm.isLibObfuscated()? "  (in app: \"" + pm.getMatchedPackageTree().getRootPackage() + "\")" : ""));
 	
 				 		logger.info(Utils.INDENT2	 + "Partial matching results:");
 						for (HTreeMatch htm: pm.getBestResults(MAX_PRINT_CONFIGS))

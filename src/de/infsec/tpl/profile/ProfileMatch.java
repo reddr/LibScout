@@ -149,25 +149,7 @@ public class ProfileMatch implements Serializable {
 			logger.info(Utils.INDENT + str);
 		}
 		
-		logger.info(Utils.INDENT + " (re-)obfuscated: "  + isLibObfuscated());
-		if (isLibObfuscated())
-			logger.info(Utils.indent(3) + "# root packages:: \"" + lib.packageTree.getRootPackage() + "\" (lib)  -  \"" + getMatchedPackageTree().getRootPackage() + "\" (app)");
-		
-		if (doAllConfigsMatch())
-			logger.info(Utils.INDENT2 + ">> All configs match!");
-		else if (isMatch()) {
-			logger.info(Utils.INDENT2 + "Configs matched (" + getMatchedConfigs().size() + "):");
-			for (Config cfg: getMatchedConfigs())
-				logger.info(Utils.indent(3) + " - config: " + cfg);
-
-			if (!getPartiallyMatchedConfigs().isEmpty()) {
-				logger.info(Utils.INDENT2 + "Configs partially matched (" + getPartiallyMatchedConfigs().size() + "):");
-				for (Config cfg: getPartiallyMatchedConfigs()) {
-					HTreeMatch htm = getResultByConfig(cfg);
-					logger.info(Utils.indent(3) + " - config: " + cfg  + "   score: " + (htm != null? htm.simScore : " unknown"));
-				}
-			}
-		}
+		logger.info(Utils.INDENT + "lib root package: \"" + lib.packageTree.getRootPackage() + "\"" + (isLibObfuscated()? "  (in app: \"" + getMatchedPackageTree().getRootPackage() + "\")" : ""));
 		
 		if (logger.isDebugEnabled() && !usedLibMethods.isEmpty()) {
 			logger.debug("");
