@@ -37,31 +37,6 @@
 				<include name="android/util/AttributeSet.class" />
 			</patternset>
 		</unjar>
-		
-		<unjar src="${lib.dir}/joana.api.jar" dest="${bin.dir}">
-			<patternset>
-				<exclude name="com/ibm/wala/cast/" />
-				<exclude name="edu/kit/joana/api/" />
-				<exclude name="edu/kit/joana/ui/" />
-				<exclude name="junit/" />
-				<exclude name="ch/" />  <!-- logback -->
-				<exclude name="net/"/>  <!-- cscott -->
-				<exclude name="gnu/"/>  <!-- trove -->
-				<exclude name="stubs/"/>  <!-- stubs -->
-				<exclude name="tests/"/>  <!-- tests -->
-				<exclude name="org/junit/" />
-				<exclude name="org/slf4j/" />
-				<exclude name="org/apache/commons/io/" />
-			</patternset>
-		</unjar>
-
-		<unjar src="${lib.dir}/wala-dalvik.jar" dest="${bin.dir}">
-			<patternset>
-				<include name="com/ibm/" />
-				<include name="com/google/common/base/*.class" />
-				<include name="org/" />
-			</patternset>
-		</unjar>
 
 		<unjar dest="${bin.dir}">
 			<fileset dir="${lib.dir}">
@@ -69,6 +44,7 @@
 				<include name="**/commons-io-2.4.jar" />
 				<include name="**/gson-2.8.0.jar" />
 				<include name="**/sqlite-jdbc-3.7.15-SNAPSHOT.jar" />
+				<include name="**/wala.jar" />  <!-- pre-compiled wala library including dex frontend -->
 			</fileset>
 			<fileset dir="${lib.dir}/logging">
 				<include name="**/*.jar" />
