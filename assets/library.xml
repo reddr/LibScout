@@ -1,0 +1,23 @@
+<!--
+  Library description template
+  To use in profile mode (-o profile).
+  Put a copy of this file in each directory with an original library SDK (.jar|.aar).
+-->
+
+<?xml version="1.0"?>
+<library>
+	<!-- library name, e.g. "Google Admob" -->
+	<name></name>
+
+	<!-- category, any of "Advertising", "Analytics", "Android", "Cloud", "SocialMedia", "Utilities" -->
+	<category></category>
+
+	<!-- optional: version string, e.g. "4.0.4" -->
+	<version></version>
+
+	<!-- optional: date (format: DD/MM/YYYY) -->
+	<releasedate></releasedate>
+
+	<!-- optional: comment -->
+	<comment></comment>
+</library>
