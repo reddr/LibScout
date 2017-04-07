@@ -519,7 +519,7 @@ public class HashTree implements Serializable {
 				if (config.filterInnerClasses && WalaUtils.isInnerClass(clazz)) {
 					continue;
 				}
-				
+
 				// duplicate method filter
 				Collection<MethodNode> methodNodes = config.filterDups? new TreeSet<MethodNode>(comp) : new ArrayList<MethodNode>();
 				
@@ -537,8 +537,9 @@ public class HashTree implements Serializable {
 					if (m.isBridge() || m.isMethodSynthetic()) {
 						continue;
 					}
-					
-					byte[] hash = hashFunc.hash(getFuzzyDescriptor(m));
+
+					String normalizedDesc = normalizeAnonymousInnerClassConstructor(m);
+					byte[] hash = hashFunc.hash(normalizedDesc != null? normalizedDesc : getFuzzyDescriptor(m));
 					methodNodes.add(new MethodNode(hash, m.getSignature()));
 				}
 
@@ -654,7 +655,7 @@ public class HashTree implements Serializable {
 	
 	/**
 	 * Generic hash function that takes a list of hashes, concatenates and hashes them
-	 * @param hashes  a collection of input hashes
+	 * @param nodes  a collection of input {@link Node}
 	 * @param hashFunc  a hash function 
 	 * @return a hash
 	 */
@@ -672,10 +673,105 @@ public class HashTree implements Serializable {
 		return hashFunc.hash(arr);
 	}
 
-	
-	
-	
-	
+
+	/**
+	 * This normalization of constructors of anonymous inner classes is due to the fact that
+	 * (in some cases) the dx compiler adds the superclass of the enclosing class as second parameter,
+	 * while the javac does not. This results in different hashes for this classes which implies that
+	 * this library can't be matched exactly although it is the same version. Therefore, this
+	 * normalization will skip this second argument during generation of the fuzzy descriptor.
+	 *
+	 * See example code: method createAdapter() in
+	 * https://github.com/facebook/facebook-android-sdk/blob/f6c4e4c1062bcc74e5a25b3243f6bee2e32d949e/facebook/src/com/facebook/widget/PlacePickerFragment.java
+	 *
+	 * In the disassembled dex the constructor can look like this:
+	 * <source>
+	 * method constructor <init>(Lcom/facebook/widget/PlacePickerFragment;Lcom/facebook/widget/PickerFragment;Landroid/content/Context;)V
+	 *     .locals 0
+     *     .param p3, "$anonymous0"    # Landroid/content/Context;
+	 *
+     *     iput-object p1, p0, Lcom/facebook/widget/PlacePickerFragment$1;->this$0:Lcom/facebook/widget/PlacePickerFragment;
+	 *     invoke-direct {p0, p2, p3}, Lcom/facebook/widget/PickerFragment$PickerFragmentAdapter;-><init>(Lcom/facebook/widget/PickerFragment;Landroid/content/Context;)V
+	 *     return-void
+	 * .end method
+     * </source>
+	 *
+	 * while the decompiled class file looks as follows:
+	 * <source>
+	 * PlacePickerFragment$1(PlacePickerFragment paramPlacePickerFragment, Context x0) {
+	 *     super(paramPlacePickerFragment, x0);
+	 * }
+	 * </source>
+	 *
+	 * @param m   the {@link IMethod} to normalize
+	 * @return  null if this normalization does not apply, otherwise the normalized fuzzy descriptor {@see getFuzzyDescriptor}
+	 */
+	private static String normalizeAnonymousInnerClassConstructor(IMethod m) {
+		if (WalaUtils.isAnonymousInnerInnerClass(m.getDeclaringClass()) && m.isInit() && m.getNumberOfParameters() > 1) {
+			// this can be anything -> normalize constructor to (X)V
+			logger.trace("[normalizeAnonymousInnerClassConstructor] found aonymous inner inner class constructor: "+ m.getSignature());
+			return "(X)V";
+		}
+
+		// check if we have an anonymous inner class constructor with a sufficient number of arguments
+		if (WalaUtils.isAnonymousInnerClass(m.getDeclaringClass()) && m.isInit() && m.getNumberOfParameters() > 2) {
+			logger.trace("[normalizeAnonymousInnerClassConstructor] method: " + m.getSignature());
+			logger.trace(Utils.INDENT + "descriptor: " + m.getDescriptor() + "  # params: " + m.getNumberOfParameters());
+
+			String enclosingClazzName = WalaUtils.simpleName(m.getDeclaringClass());
+			enclosingClazzName = enclosingClazzName.substring(0, enclosingClazzName.lastIndexOf('$'));
+
+			// check if both argument types are custom types
+			for (int i : new Integer[]{1, 2}) {
+				if (m.getParameterType(i).getClassLoader().equals(ClassLoaderReference.Application)) {
+					IClass ct = m.getClassHierarchy().lookupClass(m.getParameterType(1));
+					boolean isAppClazz = ct == null || WalaUtils.isAppClass(ct);
+					if (!isAppClazz)
+						return null;
+				} else
+					return null;
+			}
+
+			IClass superClazz = null;
+			try {
+				IClass ic = WalaUtils.lookupClass(m.getClassHierarchy(), enclosingClazzName);
+				superClazz = ic.getSuperclass();
+			} catch (ClassNotFoundException e) {
+				logger.warn("Could not lookup " + enclosingClazzName + "  in bytecode normalization");
+				return null;
+			}
+
+			String argType1 = Utils.convertToFullClassName(m.getParameterType(1).getName().toString());
+			String argType2 = Utils.convertToFullClassName(m.getParameterType(2).getName().toString());
+
+			// now check whether this normalization needs to be applied
+			if (argType1.equals(enclosingClazzName) &&
+				argType2.equals(WalaUtils.simpleName(superClazz))) {
+
+				StringBuilder sb = new StringBuilder("(");
+
+				// param0 is the object (for non-static calls), param1 the first arg to be skipped (doesn't matter
+				// if whether we skip param1 or param2 since both are replaced by placeholder value)
+				for (int i = 2; i < m.getNumberOfParameters(); i++) {
+
+					if (m.getParameterType(i).getClassLoader().equals(ClassLoaderReference.Application)) {
+						IClass ct = m.getClassHierarchy().lookupClass(m.getParameterType(i));
+						boolean isAppClazz = ct == null || WalaUtils.isAppClass(ct);
+						sb.append(isAppClazz ? customTypeReplacement : m.getParameterType(i).getName().toString());
+					} else
+						sb.append(m.getParameterType(i).getName().toString());
+				}
+				sb.append(")V");
+
+				logger.trace(Utils.INDENT + "> bytecode normalization applied to " + m.getSignature() + "  fuzzy desc: " + sb.toString());
+				return sb.toString();
+			}
+		}
+		return null;
+	}
+
+
+	private static final String customTypeReplacement = "X";
 	
 	/**
 	 * A {@link Descriptor} only describes input arg types + return type, e.g.
@@ -684,12 +780,10 @@ public class HashTree implements Serializable {
 	 * replacement, e.g. we receive a descriptor like (XII)Z
 	 * Note: library dependencies, i.e. lib A depends on lib B are not a problem. If we analyze lib A without loading lib B,
 	 * any type of lib B will be loaded with the Application classloader but will _not_ be in the classhierarchy.
-	 * @param desc  {@link Descriptor} retrieved from a {@link IMethod}
+	 * @param m  {@link IMethod}
 	 * @return a fuzzy descriptor
 	 */
-	public static String getFuzzyDescriptor(IMethod m) {
-		final String customTypeReplacement = "X";
-
+	private static String getFuzzyDescriptor(IMethod m) {
 		logger.trace("[getFuzzyDescriptor]");
 		logger.trace("-  signature: " + m.getSignature());
 		logger.trace("- descriptor: " + m.getDescriptor().toString());

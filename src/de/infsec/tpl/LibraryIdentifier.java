@@ -269,7 +269,7 @@ public class LibraryIdentifier {
 	 * 
 	 * @param cha  the {@IClassHierarchy}
 	 * @param pMatch   a {@ProfileMatch} in which the result is stored as side-effect
-	 * @param appHashTrees  the generated {@link HashTree}s
+	 * @param appHashTree  the generated {@link HashTree}
 	 * @param appTree  the application {@link PackageTree}
 	 * @param lib  the {@link LibProfile} to match against
 	 * @param lvl  the level of matching to be applied (currently either Package or Class level)
@@ -286,7 +286,7 @@ public class LibraryIdentifier {
 			return;
 		}
 
-		
+
 		/*
 		 *  step 0. shortcut - check if library fully matches by comparing the package hashes
 		 */
@@ -531,7 +531,7 @@ public class LibraryIdentifier {
 	 * Given a candidate list of app packages for every lib package, compute the optimal solution
 	 * while preserving the package relationship.
 	 * @param cList ordered candidate list
-	 * @param libRelationships  pre-computed relationship between two consecutive library packages
+	 * @param libPackageRel  pre-computed relationship between two consecutive library packages
 	 * @return  the optimal solution as similarity score and corresponding list of packages
 	 */
 	public static Pair<Float, List<Pair<Node, Float>>> getBestMatch(final ArrayList<List<Pair<Node, Float>>> cList, final List<RELATIONSHIP> libPackageRel) {

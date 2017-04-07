@@ -60,9 +60,8 @@ import de.infsec.tpl.utils.Utils.IPredicate;
 
 /**
  * Utility functions that facilitate the work with the WALA framework
- * @author Erik Derr
- *
  */
+
 public class WalaUtils {
 	private static final Logger logger = LoggerFactory.getLogger(de.infsec.tpl.utils.WalaUtils.class);
 
@@ -115,10 +114,7 @@ public class WalaUtils {
 	public static boolean declaresMethodByName(IClass clazz, String methodName) {
 		return getMethodByName(clazz, methodName) == null? false : true; 
 	}
-	
-	
-	
-	
+
 
 	/**
 	 * Hierarchy lookup of a method selector. If the method is not declared in the class
@@ -202,6 +198,7 @@ public class WalaUtils {
 	
 	
 	public static boolean isAppClass(IClass clazz) {
+		// Normalization:
 		// filter empty dummy classes
 		// possibly related too: http://bugs.java.com/bugdatabase/view_bug.do?bug_id=4295934
 		boolean isEmptyInnerClass = WalaUtils.isInnerClass(clazz)
@@ -212,8 +209,7 @@ public class WalaUtils {
 									&& clazz.getDeclaredStaticFields().isEmpty()
 									&& clazz.getDirectInterfaces().isEmpty());
 
-		
-		return clazz.getClassHierarchy().getScope().isApplicationLoader(clazz.getClassLoader()) && !isAndroidResourceClass(clazz) && !isEmptyInnerClass;
+		return clazz.getClassHierarchy().getScope().isApplicationLoader(clazz.getClassLoader()) && !isAndroidResourceClass(clazz) && !isEmptyInnerClass && !clazz.isSynthetic();
 	}
 	
 	public static boolean isExtensionClass(IClass clazz) {
@@ -222,21 +218,35 @@ public class WalaUtils {
 	
 	
     /**
-     * @param clazz IClass
-     * @return
+     * @param clazzName IClass
+     * @return  true if it is an anonymous inner class, false otherwise
      */
     public static boolean isAnonymousInnerClass(final String clazzName) {
-        final Pattern anonymusInnerClassPattern = Pattern.compile("^.+\\$[0-9]+\\..+$");
-        final Matcher matcher = anonymusInnerClassPattern.matcher(clazzName);
+        final Pattern anonymousInnerClassPattern = Pattern.compile("^.+\\$[0-9]+$");
+        final Matcher matcher = anonymousInnerClassPattern.matcher(clazzName);
 
         return matcher.matches();
     }
 
-	
-	public static boolean isAnonymousInnerClass(final IClass clazz) {
+
+	public static boolean isAnonymousInnerClass(final IClass clazz)	{
         return isAnonymousInnerClass(simpleName(clazz));
     }
-	
+
+
+
+	public static boolean isAnonymousInnerInnerClass(final String clazzName) {
+		final Pattern anonymousInnerClassPattern = Pattern.compile("^.+\\$[0-9]+\\$[0-9]+$");
+		final Matcher matcher = anonymousInnerClassPattern.matcher(clazzName);
+
+		return matcher.matches();
+	}
+
+	public static boolean isAnonymousInnerInnerClass(final IClass clazz)	{
+		return isAnonymousInnerInnerClass(simpleName(clazz));
+	}
+
+
 	/**
 	 * Retrieves all superclasses for a given class including itself
 	 * @param clazz  the input IClass object
@@ -390,14 +400,13 @@ public class WalaUtils {
 
 	}
 	
-	
-	
+
 	// Strangely there is no such function in IClass
 	public static boolean isFinal(IClass clazz) {
 		return (clazz.getModifiers() & 0x0010) != 0;
 	}
 
-	
+
 	public static String op2str(ConditionalBranchInstruction.IOperator op) {
         if (op instanceof ConditionalBranchInstruction.Operator) {
             switch ((ConditionalBranchInstruction.Operator) op) {
