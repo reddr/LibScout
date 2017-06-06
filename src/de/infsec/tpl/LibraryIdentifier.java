@@ -218,7 +218,7 @@ public class LibraryIdentifier {
 		
 		// serialize appstats to disk
 		if (CliOptions.generateStats) {
-			if (!stats.pMatches.isEmpty()) {			
+			if (!stats.pMatches.isEmpty()) {
 				logger.info("Serialize app stats to disk (dir: " + CliOptions.statsDir + ")");
 				Utils.object2Disk(statsFile, new SerializableAppStats(stats));
 			}
@@ -799,6 +799,7 @@ public class LibraryIdentifier {
 		logger.info("= Manifest Parser =");
 		logger.info(Utils.INDENT + "Package name: " + pm.getPackageName());
 		logger.info(Utils.INDENT + "Version code: " + pm.getVersionCode());
+		logger.info(Utils.INDENT + "minSdkVersion: " + pm.getMinSdkVersion());
 		logger.info(Utils.INDENT + "SharedUserId: " + (pm.getSharedUserId().isEmpty()? " - none -" : pm.getSharedUserId()));
 
 		// library dependencies, e.g.
