@@ -65,7 +65,8 @@ Contact us for comments, feedback, how to contribute:  Erik Derr  [lastname@cs.u
         <li>
             Library Profiling (-o profile)<br>
             Generate library profiles from original library SDKs (.jar and .aar files supported). Besides the library file, this mode requires a library.xml that
-            contains some meta-data about the library (e.g. name, version, etc.). A library.xml template can be found in the assets directory:<br>
+            contains some meta-data about the library (e.g. name, version, etc.). A library.xml template can be found in the assets directory. Use the -v switch to generate trace profiles,
+            i.e. profiles with class and method signatures, where methods are limited to public methods (Trace profiles are required as input for the library api analysis):<br>
             <pre>java -jar LibScout.jar -o profile -a lib/android-X.jar -x ${lib-dir/library.xml} ${lib-dir/lib.[jar|aar]} </pre>
         </li>
         <li>
@@ -77,6 +78,13 @@ Contact us for comments, feedback, how to contribute:  Erik Derr  [lastname@cs.u
             Database creation (-o db)<br>
             Generate a SQLite database from library profiles and serialized app stats:<br>
             <pre>java -jar LibScout.jar -o db -p &lt;path-to-lib-profiles&gt; -s &lt;path-to-app-stats&gt; </pre>
+        </li>
+        <li>
+            Library API robustness analysis (-o lib_api_analysis)<br>
+            Analyzes changes in the set of library APIs across versions (additions/removals/modifcations). Checks for <a href="http://semver.org">SemVer</a> compliance, i.e. whether the change in the version string matches
+            the changes in the public API set. SemVer compliance statistics are logged, while API robustness data is written out in JSON format (use -j switch to configure).
+            If you use this mode you have to provide trace profiles (generated via -o profile -v).<br>    
+            <pre>java -jar LibScout.jar -o lib_api_analysis -p &lt;path-to-lib-profiles&gt; -j &lt;json-output-path&gt; </pre>
         </li>
     </ol>
 </li>
@@ -106,4 +114,5 @@ Contact us for comments, feedback, how to contribute:  Erik Derr  [lastname@cs.u
 </li>
 
 </ol>
+
 
