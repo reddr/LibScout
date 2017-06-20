@@ -232,10 +232,9 @@ public class LibraryIdentifier {
 
 	/**
 	 * Compute similarity scores for all provided {@link HashTree}. 
-	 * @param cha
-	 * @param appHashTrees  the generated {@link HashTree}s
-	 * @param appTree  the application {@link PackageTree}
-	 * @param lib  the {@link LibProfile} to match against
+	 * @param cha the {@link IClassHierarchy}
+	 * @param appProfile  the {@link AppProfile}
+	 * @param libProfile  the {@link LibProfile}
 	 * @param lvl  the level of matching to be applied (currently either Package or Class level)
 	 * @return  a {@link ProfileMatch} for the provided library profile
 	 * @throws NoSuchAlgorithmException

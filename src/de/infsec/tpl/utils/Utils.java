@@ -474,7 +474,7 @@ public class Utils {
 
 	/**
 	 * Export app statistics to a JSON file
-	 * @param jsonFile  the Json {@link FILE} to store the results
+	 * @param jsonFile  the Json {@link File} to store the results
 	 * @param stats  the {@link AppStats} object
 	 * @throws IOException
 	 */
@@ -492,9 +492,26 @@ public class Utils {
 			//logger.warn(Utils.stacktrace2Str(e));
 		}
     }
-    
-	
-	
+
+
+	public static void obj2JsonFile(File jsonFile, Object obj) throws IOException {
+		File basePath = new File(jsonFile.getPath().substring(0, jsonFile.getPath().lastIndexOf(File.separator)));
+		if (!basePath.exists()) basePath.mkdirs();
+
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson = builder.create();
+		String jsonOut = gson.toJson(obj);
+
+		try (FileOutputStream fos = new FileOutputStream(jsonFile)) {
+			fos.write(jsonOut.getBytes());
+		} catch (IOException e) {
+			//logger.warn(Utils.stacktrace2Str(e));
+		}
+	}
+
+
+
+
 	public static String stacktrace2Str(Throwable t) {
 		StringWriter sw = new StringWriter();
 		t.printStackTrace(new PrintWriter(sw));

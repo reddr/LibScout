@@ -26,10 +26,13 @@ import java.util.Set;
 import java.util.TreeSet;
 
 
-
-//// TODO TODO
-//// -store how often unstable api is due to major version or minor or sub-minor!
-//// - check api compatibility additionally for all versions within major versions, e.g. for facebook 3.x and 4.x
+/**
+ * Container class to store library API changes across versions
+ * Includes information such as
+ *   - # public APIs per version
+ *   - APIs -> set of versions in which they are included
+ *   - set of alternative APIs (if any), if API is no longer in some version
+ */
 
 public class LibApiRobustnessStats implements Serializable {
 	private static final long serialVersionUID = -3951094682839938234L;
@@ -80,7 +83,7 @@ public class LibApiRobustnessStats implements Serializable {
 	 */
 	
 	public int getNumberOfPublicApis(String version) {
-		return this.versions2pubApiCount.containsKey(version)? this.versions2pubApiCount.get(version) : -1;
+		return this.versions2pubApiCount.getOrDefault(version, -1);
 	}
 
 	
@@ -170,7 +173,7 @@ public class LibApiRobustnessStats implements Serializable {
 
 	
 	public boolean isApiIncludedIn(String signature, String version) {
-		return api2Versions.containsKey(signature)? api2Versions.get(signature).contains(version) : false;
+		return api2Versions.containsKey(signature) && api2Versions.get(signature).contains(version);
 	}
 	
 	

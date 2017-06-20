@@ -15,7 +15,6 @@
 package de.infsec.tpl;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -31,15 +30,12 @@ import org.apache.commons.cli.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.zafarkhaja.semver.Version;
-
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.core.joran.spi.JoranException;
 import ch.qos.logback.core.util.StatusPrinter;
 import de.infsec.tpl.stats.SQLStats;
 import de.infsec.tpl.utils.Utils;
-import de.infsec.tpl.utils.VersionWrapper;
 import de.infsec.tpl.eval.LibraryApiAnalysis;
 import de.infsec.tpl.profile.LibProfile;
 
@@ -49,12 +45,13 @@ public class TplCLI {
 	private static Options options;
 	
     /*
-     *  mode of operation
-     *    - PROFILE:  generate library profiles from original lib SDKs and descriptions
-     *    -   MATCH:  match lib profiles in provided apps
-     *    -      DB:  build sqlite database from app stat files 
+     *  mode of operations
+     *    -          PROFILE:  generate library profiles from original lib SDKs and descriptions
+     *    -            MATCH:  match lib profiles in provided apps
+     *    -               DB:  build sqlite database from app stat files
+     *    - LIB_API_ANALYSIS:  analyzes library api robustness (api additions, removals, changes)
      */
-	public static  enum OpMode {PROFILE, MATCH, DB};
+	public static  enum OpMode {PROFILE, MATCH, DB, LIB_API_ANALYSIS};
 
 	public static class CliArgs {
 		public static final String ARG_OPMODE = "o";
@@ -86,6 +83,9 @@ public class TplCLI {
 
 		public static final String ARG_LIB_DESCRIPTION = "x";
 		public static final String ARGL_LIB_DESCRIPTION = "library-description";
+
+		public static final String ARG_LIB_VERBOSE_PROFILES = "v";
+		public static final String ARGL_LIB_VERBOSE_PROFILES = "verbose-profiles";
 	}
 	
 	public static class CliOptions {
@@ -99,19 +99,19 @@ public class TplCLI {
 		
 		public static boolean noPartialMatching = false;
 		public static boolean runLibUsageAnalysis = false;
+		public static boolean genVerboseProfiles = false;   // generate lib profiles with TRACE + PubOnly
 		public static boolean generateStats = false;
 		public static boolean generateJSON = false;
 	}
 	
-	public static class LibProfiles {
-		public static List<LibProfile> profiles;
-	}
-	
+
 	private static final String TOOLNAME = "LibScout";
-	private static final String USAGE = TOOLNAME + " --opmode [profile|match|db] <options>";
+	private static final String USAGE = TOOLNAME + " --opmode [profile|match|db|lib_api_analysis] <options>";
 	private static final String USAGE_PROFILE = TOOLNAME + " --opmode profile -a <path-to-android.jar> -x <path-to-lib-desc> <options> $lib.[jar|aar]";
 	private static final String USAGE_MATCH = TOOLNAME + " --opmode match -a <path-to-android.jar> <options> $path-to-app(-dir)";
 	private static final String USAGE_DB = TOOLNAME + " --opmode db -p <path-to-profiles> -s <path-to-stats>";
+	private static final String USAGE_LIB_API_ANALYSIS = TOOLNAME + " --opmode lib_api_analysis -p <path-to-profiles> -j <output-dir>";
+
 	private static ArrayList<File> inputFiles;
 	private static File libraryDescription = null;
 	protected static long libProfileLoadingTime = 0l;
@@ -124,37 +124,31 @@ public class TplCLI {
 		// initialize logback
 		initLogging();
 
-// TODO with new modes use switch over opmode to make individual steps per mode explicit		
 
-		
-		
-		
-		// load profiles
 		List<LibProfile> profiles = null;
-		if (!CliOptions.opmode.equals(OpMode.PROFILE)) {
-			try {
+
+		// TODO MODE = LIB_UPDATABILITY
+		//new LibraryUpdatability().run(new File("./libApiEval-libsecNEW.lstats"), new File("./appStats_libsec_usage.sqlite"));
+
+		switch (CliOptions.opmode) {
+			// generate SQLite DB from app stats only
+			case DB:
+			    profiles = loadLibraryProfiles();
+			    SQLStats.stats2DB(profiles);
+				System.exit(0);
+
+			case MATCH:
 				profiles = loadLibraryProfiles();
-			} catch (Exception e) {
-				logger.error(Utils.stacktrace2Str(e));
-			}
-			
-			if (profiles == null || profiles.isEmpty()) {
-				System.err.println("No profiles found in " + CliOptions.profilesDir + ". Check your settings!");
-				System.exit(1);
-			}
+				break;
+
+			case LIB_API_ANALYSIS:
+			    profiles = loadLibraryProfiles();
+				new LibraryApiAnalysis().run(profiles);
+				System.exit(0);
+
+			case PROFILE:
 		}
 
-//new LibraryUpdateabilityEval().run(new File("./libApiEval-libsecNEW.lstats"), new File("./appStats_libsec_usage.sqlite"));
-//////////
-//new LibraryApiAnalysis().run(profiles);
-//System.exit(0); 
-		
-		// generate SQLite DB from app stats only
-		if (CliOptions.opmode.equals(OpMode.DB)) {
-			SQLStats.stats2DB(profiles);
-			System.exit(0);
-		} 
-				
 		// process input files, either library files or apps
 		for (File inputFile: inputFiles) {
 			try {
@@ -171,25 +165,34 @@ public class TplCLI {
 		}
 	}
 
-	
-	
-	public static List<LibProfile> loadLibraryProfiles() throws ClassNotFoundException, IOException {
+
+	public static List<LibProfile> loadLibraryProfiles() {
 		long s = System.currentTimeMillis();
-		
-		// de-serialize library profiles
 		List<LibProfile> profiles = new ArrayList<LibProfile>();
-		for (File f: Utils.collectFiles(CliOptions.profilesDir, new String[]{LibraryProfiler.FILE_EXT_LIB_PROFILE})) {
-			LibProfile lp = (LibProfile) Utils.disk2Object(f);
-			profiles.add(lp);
+
+		try {
+			// de-serialize library profiles
+			for (File f : Utils.collectFiles(CliOptions.profilesDir, new String[]{LibraryProfiler.FILE_EXT_LIB_PROFILE})) {
+				LibProfile lp = (LibProfile) Utils.disk2Object(f);
+				profiles.add(lp);
+			}
+
+			Collections.sort(profiles, LibProfile.comp);
+			libProfileLoadingTime = System.currentTimeMillis() - s;
+		} catch (ClassNotFoundException e) {
+			logger.error(Utils.stacktrace2Str(e));
+			System.exit(1);
 		}
-		
-		Collections.sort(profiles, LibProfile.comp);
-		libProfileLoadingTime = System.currentTimeMillis() - s;
-		
+
+		if (profiles.isEmpty()) {
+			System.err.println("No profiles found in " + CliOptions.profilesDir + ". Check your settings!");
+			System.exit(1);
+		}
+
 		return profiles;
 	}
 
-	
+
 	private static void parseCL(String[] args) {
 		try {
 			CommandLineParser parser = new BasicParser();
@@ -232,7 +235,7 @@ public class TplCLI {
 			
 			
 			// profiles dir option, if provided without argument output is written to default dir
-			if (checkOptionalUse(cmd, CliArgs.ARG_PROFILES_DIR, OpMode.PROFILE, OpMode.MATCH, OpMode.DB)) {
+			if (checkOptionalUse(cmd, CliArgs.ARG_PROFILES_DIR, OpMode.PROFILE, OpMode.MATCH, OpMode.DB, OpMode.LIB_API_ANALYSIS)) {
 				File profilesDir = new File(cmd.getOptionValue(CliArgs.ARG_PROFILES_DIR));
 				if (profilesDir.exists() && !profilesDir.isDirectory())
 					throw new ParseException("Profiles directory " + profilesDir + " already exists and is not a directory");
@@ -260,7 +263,11 @@ public class TplCLI {
 				libraryDescription = libraryDescriptionFile;
 			}
 
-			
+			// generate verbose library profiles?
+			if (checkOptionalUse(cmd, CliArgs.ARG_LIB_VERBOSE_PROFILES, OpMode.PROFILE)) {
+				CliOptions.genVerboseProfiles = true;
+			}
+
 			// enable/disable generation of stats with optional stats directory
 			if (checkOptionalUse(cmd, CliArgs.ARG_STATS_DIR, OpMode.MATCH, OpMode.DB)) {
 				CliOptions.generateStats = true;
@@ -275,7 +282,7 @@ public class TplCLI {
 			}
 			
 			// enable/disable generation of json output
-			if (checkOptionalUse(cmd, CliArgs.ARG_JSON_DIR, OpMode.MATCH)) {
+			if (checkOptionalUse(cmd, CliArgs.ARG_JSON_DIR, OpMode.MATCH, OpMode.LIB_API_ANALYSIS)) {
 				CliOptions.generateJSON = true;
 
 				if (cmd.getOptionValue(CliArgs.ARG_JSON_DIR) != null) {   // json dir provided?
@@ -293,7 +300,7 @@ public class TplCLI {
 			 *  - in profile mode pass *one* library (since it is linked to lib description file)
 			 *  - in match mode pass one application file or one directory file (including apks)
 			 */
-			if (!CliOptions.opmode.equals(OpMode.DB)) {
+			if (!(CliOptions.opmode.equals(OpMode.DB) || CliOptions.opmode.equals(OpMode.LIB_API_ANALYSIS))) {
 				inputFiles = new ArrayList<File>();
 				String[] fileExts = CliOptions.opmode.equals(OpMode.MATCH)? new String[]{"apk"} : new String[]{"jar", "aar"};
 
@@ -409,6 +416,12 @@ public class TplCLI {
 	        .create(CliArgs.ARG_PROFILES_DIR));
 
 		options.addOption(OptionBuilder.withArgName("value")
+			.isRequired(false)
+			.withLongOpt(CliArgs.ARGL_LIB_VERBOSE_PROFILES)
+			.withDescription("enable verbose profiling (trace+pubonly)")
+			.create(CliArgs.ARG_LIB_VERBOSE_PROFILES));
+
+		options.addOption(OptionBuilder.withArgName("value")
 	        .isRequired(false)
 	        .withLongOpt(CliArgs.ARGL_NO_PARTIAL_MATCHING)
 	        .withDescription("disables partial matching (full matching only)")
@@ -442,6 +455,8 @@ public class TplCLI {
 			helpMsg = USAGE_MATCH;
 		else if (OpMode.DB.equals(CliOptions.opmode))
 			helpMsg = USAGE_DB;
+		else if (OpMode.LIB_API_ANALYSIS.equals(CliOptions.opmode))
+			helpMsg = USAGE_LIB_API_ANALYSIS;
 
 		formatter.printHelp(helpMsg, options);
 		System.exit(1);

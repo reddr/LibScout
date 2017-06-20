@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import de.infsec.tpl.TplCLI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,7 +80,11 @@ public abstract class Profile implements Serializable {
 			boolean filterInnerClasses = false;
 			
 			HashTree hashTree = new HashTree(filterDups, filterInnerClasses, algorithm);
-//			hashTree.setPublicOnlyFilter();  // TODO
+
+			if (TplCLI.CliOptions.genVerboseProfiles) {
+				hashTree.setBuildVerboseness(HashTree.HTREE_BUILD_VERBOSENESS.TRACE);
+				hashTree.setPublicOnlyFilter();
+			}
 			hashTree.generate(cha);
 			hTrees.add(hashTree);
 		} catch (NoSuchAlgorithmException e) {
