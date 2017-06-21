@@ -141,8 +141,12 @@ public class ProfileMatch implements Serializable {
 	
 
 	public void print() {
+		final String VULN_INDICATOR = "[SECURITY]";   // indicates that this version includes a security vulnerability
+		final String VULN_FIX_INDICATOR = "[SECURITY-FIX]";   // indicates that this version includes a fix for a security vulnerability
+
  		for (String str: lib.description.getDescription()) {
-			if (str.contains("comment:")) continue;
+			if (str.contains("comment:") && !(str.contains(VULN_INDICATOR) || str.contains(VULN_FIX_INDICATOR))) continue;
+
 			if (str.contains("version") && lib.isDeprecatedLib())
 				str += "  [OLD VERSION]";    // TODO store in db?
 			

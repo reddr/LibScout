@@ -26,7 +26,7 @@ import de.infsec.tpl.utils.Pair;
 
 
 public class SerializableProfileMatch implements Serializable {
-	private static final long serialVersionUID = -6375317865524765307L;
+	private static final long serialVersionUID = -6375317863324765307L;
 
 	public static final int MATCH_ALL_CONFIGS = 10000;   
 	public static final int MATCH_SOME_CONFIGS = 1000; 
@@ -38,6 +38,8 @@ public class SerializableProfileMatch implements Serializable {
 	public final String libVersion;
 	public final boolean isLibObfuscated;
 	public final boolean libRootPackagePresent;
+	public final boolean includesSecurityVulnerability;
+	public final boolean includesSecurityVulnerabilityFix;
 	public final int matchLevel;
 	public float simScore = 0f;  // 1f if exact match
 	public List<SerializableConfig> matchedConfigs;  // only if some configs match
@@ -51,6 +53,8 @@ public class SerializableProfileMatch implements Serializable {
 		this.libVersion = pm.lib.description.version;
 		this.isLibObfuscated = pm.isLibObfuscated();
 		this.libRootPackagePresent = pm.libRootPackagePresent;
+		this.includesSecurityVulnerability = pm.lib.description.comment.contains("[SECURITY]");
+		this.includesSecurityVulnerabilityFix = pm.lib.description.comment.contains("[SECURITY-FIX]");
 		
 		if (pm.doAllConfigsMatch()) {
 			this.matchLevel = MATCH_ALL_CONFIGS;
