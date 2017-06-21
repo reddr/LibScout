@@ -1,0 +1,3072 @@
+name,version,category,releaseDate,rootPackage
+ADResult,1.0.1,Advertising,0,jp.adresult.android
+AMoAd,3.0.11,Advertising,0,com.amoad
+AdColony,1.9.11,Advertising,1354662000000,com.jirbo.adcolony
+AdColony,1.9.12,Advertising,1357772400000,com.jirbo.adcolony
+AdColony,1.9.13,Advertising,1368828000000,com.jirbo.adcolony
+AdColony,2.0.3,Advertising,1379973600000,com.jirbo.adcolony
+AdColony,2.0.4,Advertising,1383606000000,com.jirbo.adcolony
+AdColony,2.0.5,Advertising,1386543600000,com.jirbo.adcolony
+AdColony,2.0.6,Advertising,1389913200000,com.jirbo.adcolony
+AdColony,2.0.7,Advertising,1400796000000,com.jirbo.adcolony
+AdColony,2.1.0,Advertising,1403906400000,com.jirbo.adcolony
+AdColony,2.1.1,Advertising,1406757600000,com.jirbo.adcolony
+AdColony,2.2.0,Advertising,1419289200000,N/A
+AdColony,2.2.2,Advertising,1433109600000,N/A
+AdColony,2.3.0,Advertising,1444341600000,N/A
+AdColony,2.3.1,Advertising,1454626800000,N/A
+AdColony,2.3.2,Advertising,1455058800000,N/A
+AdColony,2.3.3,Advertising,1457910000000,N/A
+AdColony,2.3.4,Advertising,1458601200000,N/A
+AdColony,2.3.5,Advertising,1460671200000,N/A
+AdColony,2.3.6,Advertising,1466978400000,N/A
+AdFalcon,2.1.4,Advertising,1399240800000,com.noqoush.adfalcon.android.sdk
+Adrally,1.37.4,Advertising,1419289200000,com.fusepowered
+Adrally,1.37.5,Advertising,1421103600000,com.fusepowered
+Adrally,1.38.0,Advertising,1423177200000,com.fusepowered
+Adrally,1.38.4,Advertising,1427238000000,com.fusepowered
+Adrally,1.38.5,Advertising,1427410800000,com.fusepowered
+Adrally,2.0.2,Advertising,1428530400000,com.fusepowered
+Adrally,2.0.5,Advertising,1431295200000,com.fusepowered
+Adrally,2.1.0,Advertising,1432764000000,com.fusepowered
+Adrally,2.1.3,Advertising,1433973600000,com.fusepowered
+Adrally,2.2.0,Advertising,1438898400000,com.fusepowered
+Adrally,2.4.2,Advertising,1450652400000,N/A
+Airpush (Bundle1),8.0.0,Advertising,0,com.gwrbcxcxsm.yqszheqrll240988
+Airpush (Bundle1),8.11,Advertising,1453071600000,com.qvjclgjf.dtmwxgfp257390
+Airpush (Bundle1),9.0,Advertising,1475100000000,com.qvjclgjf.dtmwxgfp257390
+Airpush (Standard),8.0.0,Advertising,0,com.gwrbcxcxsm.yqszheqrll240988
+Airpush (Standard),8.11,Advertising,1453071600000,com.qvjclgjf.dtmwxgfp257390
+Airpush (Standard),9.01,Advertising,1475100000000,com.qvjclgjf.dtmwxgfp257390
+Airpush (Universal),8.0.0,Advertising,0,com.gwrbcxcxsm.yqszheqrll240988
+Airpush (Universal),8.13,Advertising,1453071600000,com.qvjclgjf.dtmwxgfp257390
+Airpush (Universal),9.03,Advertising,1475100000000,com.qvjclgjf.dtmwxgfp257390
+Amazon Ads,5.1.153,Advertising,1382914800000,com.amazon.device.ads
+Amazon Ads,5.5.102,Advertising,1427151600000,com.amazon.device.ads
+Amazon Ads,5.6.20,Advertising,1433887200000,com.amazon.device.ads
+Amazon Ads,5.7.1.1,Advertising,1458860400000,com.amazon.device.ads
+Amazon Ads,5.7.2,Advertising,1462312800000,com.amazon.device.ads
+AppBrain,10.4,Advertising,1418770800000,com.appbrain
+AppBrain,10.41,Advertising,1419289200000,com.appbrain
+AppBrain,10.51,Advertising,1427065200000,com.appbrain
+AppBrain,11.01,Advertising,1437429600000,com.appbrain
+AppBrain,11.02,Advertising,1437516000000,com.appbrain
+AppBrain,11.10,Advertising,1443650400000,com.appbrain
+AppBrain,11.20,Advertising,1449788400000,com.appbrain
+AppBrain,12.00,Advertising,1458774000000,com.appbrain
+AppFlood,2.21,Advertising,0,com.appflood
+Appsfire,2.0.1,Advertising,1408917600000,N/A
+Appsfire,2.1.0,Advertising,1412719200000,N/A
+Appsfire,2.1.1,Advertising,1413756000000,N/A
+Appsfire,2.1.2,Advertising,1414623600000,N/A
+Appsfire,2.1.3,Advertising,1415142000000,N/A
+Appsfire,2.1.4,Advertising,1415314800000,N/A
+Appsfire,2.2.0,Advertising,1426028400000,N/A
+Appsfire,2.3.0,Advertising,1429048800000,N/A
+Brightroll,,Advertising,1395097200000,com.brightroll.androidsdk
+Chartboost,4.1.2,Advertising,1408485600000,com.chartboost.sdk
+Chartboost,5.5.3,Advertising,1438725600000,com.chartboost.sdk
+Facebook-Audience,3.14,Advertising,1398808800000,com.facebook.ads
+Facebook-Audience,3.14.1,Advertising,1399845600000,com.facebook.ads
+Facebook-Audience,3.15.0,Advertising,1402524000000,com.facebook.ads
+Facebook-Audience,3.16,Advertising,1405634400000,com.facebook.ads
+Facebook-Audience,3.17.0,Advertising,1407362400000,com.facebook.ads
+Facebook-Audience,3.17.1,Advertising,1407362400000,com.facebook.ads
+Facebook-Audience,3.17.2,Advertising,1408572000000,com.facebook.ads
+Facebook-Audience,3.18,Advertising,1409695200000,com.facebook.ads
+Facebook-Audience,3.18.1,Advertising,1411596000000,com.facebook.ads
+Facebook-Audience,3.19.0,Advertising,1412200800000,com.facebook.ads
+Facebook-Audience,3.19.1,Advertising,1413410400000,com.facebook.ads
+Facebook-Audience,3.20.0,Advertising,1414623600000,com.facebook.ads
+Facebook-Audience,3.21.0,Advertising,1417388400000,com.facebook.ads
+Facebook-Audience,3.21.1,Advertising,1417734000000,com.facebook.ads
+Facebook-Audience,3.22.0,Advertising,1420498800000,com.facebook.ads
+Facebook-Audience,3.23.0,Advertising,1423090800000,com.facebook.ads
+Facebook-Audience,3.23.1,Advertising,1426114800000,com.facebook.ads
+Facebook-Audience,4.0.0,Advertising,1427238000000,com.facebook.ads
+Facebook-Audience,4.0.1,Advertising,1427925600000,com.facebook.ads
+Facebook-Audience,4.1.0,Advertising,1430344800000,com.facebook.ads
+Facebook-Audience,4.1.1,Advertising,1430863200000,com.facebook.ads
+Facebook-Audience,4.1.2,Advertising,1431554400000,com.facebook.ads
+Facebook-Audience,4.10.0,Advertising,1455058800000,com.facebook.ads
+Facebook-Audience,4.10.1,Advertising,1458687600000,com.facebook.ads
+Facebook-Audience,4.11.0,Advertising,1460412000000,com.facebook.ads
+Facebook-Audience,4.12.0,Advertising,1463695200000,com.facebook.ads
+Facebook-Audience,4.12.1,Advertising,1464300000000,com.facebook.ads
+Facebook-Audience,4.13.0,Advertising,1466546400000,com.facebook.ads
+Facebook-Audience,4.14.0,Advertising,1468360800000,com.facebook.ads
+Facebook-Audience,4.14.1,Advertising,1470261600000,com.facebook.ads
+Facebook-Audience,4.15.0,Advertising,1471903200000,com.facebook.ads
+Facebook-Audience,4.16.0,Advertising,1475013600000,com.facebook.ads
+Facebook-Audience,4.16.1,Advertising,1475791200000,com.facebook.ads
+Facebook-Audience,4.17.0,Advertising,1477432800000,com.facebook.ads
+Facebook-Audience,4.18.0,Advertising,1480546800000,com.facebook.ads
+Facebook-Audience,4.19.0,Advertising,1485385200000,com.facebook.ads
+Facebook-Audience,4.2.0,Advertising,1432764000000,com.facebook.ads
+Facebook-Audience,4.20.0,Advertising,1488409200000,com.facebook.ads
+Facebook-Audience,4.21.0,Advertising,1491343200000,com.facebook.ads
+Facebook-Audience,4.21.1,Advertising,1491429600000,com.facebook.ads
+Facebook-Audience,4.22.0,Advertising,1492466400000,com.facebook.ads
+Facebook-Audience,4.22.1,Advertising,1494453600000,com.facebook.ads
+Facebook-Audience,4.23.0,Advertising,1495663200000,com.facebook.ads
+Facebook-Audience,4.3.0,Advertising,1435183200000,com.facebook.ads
+Facebook-Audience,4.4.0,Advertising,1436306400000,com.facebook.ads
+Facebook-Audience,4.4.1,Advertising,1436738400000,com.facebook.ads
+Facebook-Audience,4.5.0,Advertising,1439157600000,com.facebook.ads
+Facebook-Audience,4.5.1,Advertising,1439416800000,com.facebook.ads
+Facebook-Audience,4.6.0,Advertising,1443477600000,com.facebook.ads
+Facebook-Audience,4.7.0,Advertising,1444255200000,com.facebook.ads
+Facebook-Audience,4.8.0,Advertising,1447196400000,com.facebook.ads
+Facebook-Audience,4.8.1,Advertising,1447282800000,com.facebook.ads
+Facebook-Audience,4.8.2,Advertising,1448319600000,com.facebook.ads
+Facebook-Audience,4.9.0,Advertising,1453244400000,com.facebook.ads
+Flurry,2.2.5,Advertising,1329865200000,com.flurry.android
+Flurry,3.3.2,Advertising,1386802800000,com.flurry
+Flurry,3.3.4,Advertising,1392073200000,com.flurry
+Flurry,3.4.0,Advertising,1393801200000,com.flurry
+Flurry,4.0.0,Advertising,1400450400000,com.flurry
+Flurry,5.6.0,Advertising,1437688800000,com.flurry
+Flurry,6.0.0,Advertising,1440453600000,com.flurry
+Flurry,6.1.0,Advertising,1443391200000,com.flurry
+Flurry,6.2.0,Advertising,1447023600000,com.flurry
+Flurry,6.3.0,Advertising,1458601200000,com.flurry
+Flurry,6.4.0,Advertising,1466114400000,com.flurry
+Flurry,6.4.2,Advertising,1469484000000,com.flurry
+Flurry,6.5.0,Advertising,1471471200000,com.flurry
+Fyber,7.1.0,Advertising,1422745200000,com.sponsorpay
+Fyber,7.1.1,Advertising,1422745200000,com.sponsorpay
+Fyber,7.2.0,Advertising,1427839200000,com.sponsorpay
+Fyber,7.2.3,Advertising,1435701600000,com.sponsorpay
+Fyber,7.2.4,Advertising,1435701600000,com.sponsorpay
+Fyber,7.2.5,Advertising,1435701600000,com.sponsorpay
+Fyber,7.2.6,Advertising,1438380000000,com.sponsorpay
+Fyber,7.2.7,Advertising,1441058400000,com.sponsorpay
+Fyber,8.0.0,Advertising,1441058400000,com.fyber
+Fyber,8.0.1,Advertising,1446332400000,com.fyber
+Fyber,8.1.0,Advertising,1451602800000,com.fyber
+Fyber,8.1.1,Advertising,1451689200000,com.fyber
+Fyber,8.1.2,Advertising,1454281200000,com.fyber
+Fyber,8.1.3,Advertising,1454367600000,com.fyber
+Fyber,8.1.4,Advertising,1454454000000,com.fyber
+Fyber,8.1.5,Advertising,1456786800000,com.fyber
+Fyber,8.1.6,Advertising,1456873200000,com.fyber
+Fyber,8.3.0,Advertising,1459461600000,com.fyber
+Fyber,8.3.1,Advertising,1462053600000,com.fyber
+Fyber,8.3.2,Advertising,1467324000000,com.fyber
+Fyber,8.4.1,Advertising,1467324000000,com.fyber
+Google Admob,4.0.4,Advertising,0,com.google
+Google Admob,4.1.0,Advertising,0,com.google.ads
+Google Admob,4.1.1,Advertising,0,com.google.ads
+Google Admob,4.3.1,Advertising,0,com.google.ads
+Google Admob,6.0.0,Advertising,0,com.google.ads
+Google Admob,6.0.1,Advertising,0,com.google.ads
+Google Admob,6.1.0,Advertising,0,com.google.ads
+Google Admob,6.2.1,Advertising,0,com.google.ads
+Google Admob,6.3.0,Advertising,0,com.google.ads
+Google Admob,6.4.1,Advertising,0,com.google.ads
+Hunt mobile advertising,,Advertising,0,com.huntmads.admobadaptor
+InMobi,4.0.4,Advertising,1384470000000,com.inmobi
+InMobi,4.1.1,Advertising,1387753200000,com.inmobi
+InMobi,4.4.0,Advertising,1401832800000,com.inmobi
+InMobi,4.5.1,Advertising,1410991200000,com.inmobi
+InMobi,4.5.5,Advertising,1432245600000,com.inmobi
+InMobi,5.0.0,Advertising,1444168800000,com.inmobi
+InMobi,5.2.3,Advertising,1457305200000,com.inmobi
+InMobi,5.3.0,Advertising,1459980000000,com.inmobi
+InMobi,5.3.1,Advertising,1463349600000,com.inmobi
+LG U+AD,3.0,Advertising,0,kr.co.uplusad.dmpcontrol
+Leadbolt,5.1,Advertising,1428530400000,com.apptracker.android
+Leadbolt,5.2,Advertising,1435010400000,com.apptracker.android
+Leadbolt,6.0,Advertising,1444860000000,com.apptracker.android
+Leadbolt,7.0,Advertising,1462917600000,com.apptracker.android
+MdotM,3.1.3,Advertising,0,com.mdotm.android
+MdotM,3.4.0,Advertising,1430431200000,com.mdotm.android
+MdotM,3.5.0,Advertising,1438380000000,com.mdotm.android
+MdotM,3.5.1,Advertising,1437256800000,com.mdotm.android
+MdotM,3.6.0,Advertising,1449615600000,com.mdotm.android
+MdotM,3.6.1,Advertising,1447887600000,com.mdotm.android
+Millennial Media,6.0.0,Advertising,1437516000000,com.millennialmedia
+Millennial Media,6.1.0,Advertising,1442354400000,com.millennialmedia
+Millennial Media,6.3.1,Advertising,0,com.moat.analytics.mobile.aol
+MoPub,3.10.0,Advertising,1438552800000,com.mopub
+MoPub,3.11.0,Advertising,1440021600000,com.mopub
+MoPub,3.12.0,Advertising,1440972000000,com.mopub
+MoPub,3.13.0,Advertising,1442786400000,com.mopub
+MoPub,4.0.0,Advertising,1444082400000,com.mopub
+MoPub,4.1.0,Advertising,1447282800000,com.mopub
+MoPub,4.2.0,Advertising,1448838000000,com.mopub
+MoPub,4.3.0,Advertising,1450134000000,com.mopub
+MoPub,4.4.0,Advertising,1455145200000,com.mopub
+MoPub,4.4.1,Advertising,1456182000000,com.mopub
+MoPub,4.5.0,Advertising,1458774000000,com.mopub
+MoPub,4.5.1,Advertising,1459375200000,com.mopub
+MoPub,4.6.0,Advertising,1461189600000,com.mopub
+MoPub,4.6.1,Advertising,1462399200000,com.mopub
+MoPub,4.7.0,Advertising,1464818400000,com.mopub
+MoPub,4.7.1,Advertising,1465509600000,com.mopub
+MoPub,4.8.0,Advertising,1470002400000,com.mopub
+Mobfox,6.0.8,Advertising,1423436400000,com.adsdk.sdk
+Pollfish,4.0.0,Advertising,1418252400000,com.pollfish
+Pollfish,4.0.1,Advertising,1420412400000,com.pollfish
+Pollfish,4.0.2,Advertising,1421190000000,com.pollfish
+Pollfish,4.0.3,Advertising,1425423600000,com.pollfish
+Pollfish,4.1.0,Advertising,1435010400000,com.pollfish
+Pollfish,4.2.0,Advertising,1457478000000,com.pollfish
+Pollfish,4.2.1,Advertising,1465336800000,com.pollfish
+Pollfish,4.3.0,Advertising,1474495200000,com.pollfish
+Pollfish,4.3.1,Advertising,1475445600000,com.pollfish
+Supersonic,5.14,Advertising,1425942000000,com.supersonicads.sdk
+Supersonic,6.0.0,Advertising,1477605600000,com.supersonic
+Supersonic,6.1.0,Advertising,1432504800000,com.supersonic
+Supersonic,6.1.1,Advertising,1433714400000,com.supersonic
+Supersonic,6.2.0,Advertising,1436133600000,com.supersonic
+Supersonic,6.2.1,Advertising,1439762400000,com.supersonic
+Supersonic,6.2.2,Advertising,1440972000000,com.supersonic
+Supersonic,6.3.0,Advertising,1443477600000,com.supersonic
+Supersonic,6.3.1,Advertising,1444600800000,com.supersonic
+Supersonic,6.3.2,Advertising,1445814000000,com.supersonic
+Supersonic,6.3.3,Advertising,1447196400000,com.supersonic
+Supersonic,6.3.4,Advertising,1481065200000,com.supersonic
+Supersonic,6.3.5,Advertising,1451862000000,com.supersonic
+Supersonic,6.3.6,Advertising,1454281200000,com.supersonic
+Supersonic,6.3.7,Advertising,1456614000000,com.supersonic
+Supersonic,6.3.8,Advertising,1457910000000,com.supersonic
+Supersonic,6.4.10,Advertising,1467669600000,com.supersonic
+Supersonic,6.4.11,Advertising,1470002400000,com.supersonic
+Supersonic,6.4.12,Advertising,1471212000000,com.supersonic
+Supersonic,6.4.13,Advertising,1471730400000,com.supersonic
+Supersonic,6.4.14,Advertising,1472421600000,com.supersonic
+Supersonic,6.4.15,Advertising,1472594400000,com.supersonic
+Supersonic,6.4.16,Advertising,1473631200000,com.supersonic
+Supersonic,6.4.17,Advertising,1474927200000,com.supersonic
+Supersonic,6.4.18,Advertising,1477868400000,com.supersonic
+Supersonic,6.4.19,Advertising,1479078000000,com.supersonic
+Supersonic,6.4.20,Advertising,1481497200000,com.supersonic
+Supersonic,6.4.21,Advertising,1483311600000,com.supersonic
+Supersonic,6.4.3,Advertising,1460325600000,com.supersonic
+Supersonic,6.4.4,Advertising,1461535200000,com.supersonic
+Supersonic,6.4.6,Advertising,1464040800000,com.supersonic
+Supersonic,6.4.7,Advertising,1465164000000,com.supersonic
+Supersonic,6.4.8,Advertising,1467669600000,com.supersonic
+Syrup,3.11.0,Advertising,1439935200000,com.skplanet.tad
+TapIt,1.7.9,Advertising,1377036000000,com.tapit
+TapIt,1.8.0,Advertising,1383951600000,com.tapit
+TapIt,2.0.2,Advertising,1403820000000,com.tapit
+TapIt,2.0.3,Advertising,1406239200000,com.tapit
+TapIt,2.0.4,Advertising,1407794400000,com.tapit
+TapIt,2.1.0,Advertising,1419980400000,com.tapit
+TapIt,2.1.1,Advertising,1423177200000,com.tapit
+TapIt,2.1.4,Advertising,1430258400000,com.tapit
+TapIt,2.1.5,Advertising,1432677600000,com.tapit
+Tapjoy,11.0.1,Advertising,1425250800000,com.tapjoy
+Tapjoy,11.0.3,Advertising,1427925600000,com.tapjoy
+Tapjoy,11.1.0,Advertising,1433800800000,com.tapjoy
+Tapjoy,11.2.0,Advertising,1439848800000,com.tapjoy
+Tapjoy,11.2.2,Advertising,1444255200000,com.tapjoy
+Tapjoy,11.3.0,Advertising,1449529200000,com.tapjoy
+Tapjoy,11.4.1,Advertising,1454886000000,com.tapjoy
+Tapjoy,11.5.0,Advertising,1457305200000,com.tapjoy
+Tapjoy,11.5.1,Advertising,1458687600000,com.tapjoy
+Tapjoy,11.6.0,Advertising,1461621600000,com.tapjoy
+Tapjoy,11.7.0,Advertising,1468274400000,com.tapjoy
+Tencent GDT,4.8.504,Advertising,0,com.qq.e
+Tremor Video,3.10.0,Advertising,0,com.tremorvideo
+Vdopia,1,Advertising,0,com.vdopia.ads.lw
+Vdopia,2,Advertising,0,com.vdopia.ads.lw
+Vdopia,3,Advertising,0,com.vdopia.ads.lw
+Vungle,3.0.6,Advertising,0,com.vungle
+Vungle,3.1.0,Advertising,0,com.vungle
+Vungle,3.2.2,Advertising,0,com.vungle
+Vungle,3.3.0,Advertising,0,com.vungle
+Vungle,3.3.1,Advertising,1443132000000,com.vungle
+Vungle,3.3.2,Advertising,1443391200000,com.vungle
+Vungle,3.3.3,Advertising,1445378400000,com.vungle
+Vungle,3.3.4,Advertising,0,com.vungle
+Vungle,3.3.5,Advertising,0,com.vungle
+Vungle,4.0.2,Advertising,0,com.vungle
+Vungle,4.0.3,Advertising,0,com.vungle
+domob,4.0.1,Advertising,1382652000000,cn.domob.android
+domob,4.0.2,Advertising,1384210800000,cn.domob.android
+domob,4.0.3,Advertising,1384383600000,cn.domob.android
+domob,4.1.0,Advertising,1386457200000,cn.domob.android
+domob,4.1.1,Advertising,1388444400000,cn.domob.android
+domob,4.2.2,Advertising,1393887600000,cn.domob.android
+domob,4.2.7,Advertising,1402005600000,cn.domob.android
+domob,4.3.0,Advertising,1407880800000,cn.domob.android
+domob,4.5.0,Advertising,1410732000000,cn.domob
+domob,4.5.1,Advertising,1415055600000,cn.domob.android
+domob,4.5.2,Advertising,1415314800000,cn.domob.android
+drawbridge,3.1.0,Advertising,1406498400000,com.android.adsymp
+heyZap,5.6.2,Advertising,1402610400000,com.heyzap
+heyZap,6.2.2,Advertising,1402610400000,N/A
+heyZap,6.4.1,Advertising,1402610400000,com.heyzap
+heyZap,6.4.2,Advertising,1402610400000,com.heyzap
+heyZap,6.4.3,Advertising,1402610400000,com.heyzap
+heyZap,6.4.4,Advertising,1402610400000,com.heyzap
+heyZap,6.4.6,Advertising,1402610400000,com.heyzap
+heyZap,6.5.0,Advertising,1404252000000,com.heyzap
+heyZap,6.5.1,Advertising,1404770400000,com.heyzap
+heyZap,6.5.2,Advertising,1404943200000,com.heyzap
+heyZap,6.5.3,Advertising,1404943200000,com.heyzap
+heyZap,6.6.0,Advertising,1406066400000,com.heyzap
+heyZap,6.6.3,Advertising,1406844000000,com.heyzap
+heyZap,6.6.4,Advertising,1409263200000,com.heyzap
+heyZap,6.6.5,Advertising,1409868000000,com.heyzap
+heyZap,7.1.0,Advertising,1412028000000,com.heyzap
+heyZap,7.1.1,Advertising,1412114400000,com.heyzap
+heyZap,7.2.0,Advertising,1415228400000,com.heyzap
+heyZap,7.2.2,Advertising,1416524400000,com.heyzap
+heyZap,7.2.3,Advertising,1416956400000,com.heyzap
+heyZap,7.2.4,Advertising,1417734000000,com.heyzap
+heyZap,7.2.5,Advertising,1421190000000,com.heyzap
+heyZap,7.2.6,Advertising,1422313200000,com.heyzap
+heyZap,8.0.0,Advertising,1422486000000,com.heyzap
+heyZap,8.0.10,Advertising,1426201200000,com.heyzap
+heyZap,8.0.12,Advertising,1426546800000,com.heyzap
+heyZap,8.0.13,Advertising,1427666400000,com.heyzap
+heyZap,8.0.5,Advertising,1423090800000,com.heyzap
+heyZap,8.0.7,Advertising,1423782000000,com.heyzap
+heyZap,8.0.8,Advertising,1425337200000,com.heyzap
+heyZap,8.1.0,Advertising,1428530400000,com.heyzap
+heyZap,8.1.1,Advertising,1430776800000,com.heyzap
+heyZap,8.1.2,Advertising,1430863200000,com.heyzap
+heyZap,8.1.3,Advertising,1431036000000,com.heyzap
+heyZap,8.1.4,Advertising,1431381600000,com.heyzap
+heyZap,8.2.0,Advertising,1431640800000,com.heyzap
+heyZap,8.2.1,Advertising,1431640800000,com.heyzap
+heyZap,8.3.0,Advertising,1432245600000,com.heyzap
+heyZap,8.3.1,Advertising,1433368800000,com.heyzap
+heyZap,8.4.0,Advertising,1434060000000,com.heyzap
+heyZap,8.4.1,Advertising,1434578400000,com.heyzap
+heyZap,8.4.2,Advertising,1435269600000,com.heyzap
+heyZap,9.0.0-beta,Advertising,1436565600000,com.heyzap
+heyZap,9.0.1-beta,Advertising,1436824800000,com.heyzap
+heyZap,9.0.3-beta,Advertising,1436997600000,com.heyzap
+heyZap,9.0.4-beta,Advertising,1437429600000,com.heyzap
+heyZap,9.0.5-beta,Advertising,1437602400000,com.heyzap
+heyZap,9.0.6,Advertising,1437775200000,com.heyzap
+heyZap,9.0.7-beta,Advertising,1439935200000,com.heyzap
+heyZap,9.1.0-beta,Advertising,1440712800000,com.heyzap
+heyZap,9.1.1-beta,Advertising,1441058400000,com.heyzap
+heyZap,9.1.10,Advertising,1442959200000,com.heyzap
+heyZap,9.1.11,Advertising,1443477600000,com.heyzap
+heyZap,9.1.12,Advertising,1443564000000,com.heyzap
+heyZap,9.1.13,Advertising,1441490400000,com.heyzap
+heyZap,9.1.14,Advertising,1444168800000,com.heyzap
+heyZap,9.1.16,Advertising,1444600800000,com.heyzap
+heyZap,9.1.2-beta,Advertising,1441058400000,com.heyzap
+heyZap,9.1.3-beta,Advertising,1441144800000,com.heyzap
+heyZap,9.1.4-beta,Advertising,1441231200000,com.heyzap
+heyZap,9.1.5-beta,Advertising,1441663200000,com.heyzap
+heyZap,9.1.7-beta,Advertising,1441922400000,com.heyzap
+heyZap,9.1.8-beta,Advertising,1442181600000,com.heyzap
+heyZap,9.1.9,Advertising,1442354400000,com.heyzap
+heyZap,9.2.1-beta,Advertising,1444255200000,com.heyzap
+heyZap,9.2.2-beta,Advertising,1444341600000,com.heyzap
+heyZap,9.2.3-beta,Advertising,1444946400000,com.heyzap
+heyZap,9.2.5,Advertising,1446591600000,com.heyzap
+heyZap,9.2.6,Advertising,1447110000000,com.heyzap
+heyZap,9.2.7,Advertising,1447369200000,com.heyzap
+heyZap,9.2.8,Advertising,1449270000000,com.heyzap
+heyZap,9.3.0-beta,Advertising,1447801200000,com.heyzap
+heyZap,9.3.10,Advertising,1455750000000,com.heyzap
+heyZap,9.3.12,Advertising,1456268400000,com.heyzap
+heyZap,9.3.3,Advertising,1449529200000,com.heyzap
+heyZap,9.3.4,Advertising,1450306800000,com.heyzap
+heyZap,9.3.5,Advertising,1451948400000,com.heyzap
+heyZap,9.3.6,Advertising,1452466800000,com.heyzap
+heyZap,9.3.7,Advertising,1452639600000,com.heyzap
+heyZap,9.3.8,Advertising,1454540400000,com.heyzap
+heyZap,9.3.9,Advertising,1454626800000,com.heyzap
+heyZap,9.4.0-beta,Advertising,1455231600000,com.heyzap
+heyZap,9.4.1-beta,Advertising,1455750000000,com.heyzap
+heyZap,9.4.3-beta,Advertising,1456268400000,com.heyzap
+heyZap,9.4.4,Advertising,1457046000000,com.heyzap
+heyZap,9.4.5,Advertising,1459893600000,com.heyzap
+heyZap,9.4.6,Advertising,1459980000000,com.heyzap
+heyZap,9.4.7,Advertising,1460066400000,com.heyzap
+heyZap,9.5.1-beta,Advertising,1459893600000,com.heyzap
+heyZap,9.5.2-beta,Advertising,1459893600000,com.heyzap
+heyZap,9.5.5-beta,Advertising,1460066400000,com.heyzap
+heyZap,9.5.6,Advertising,1461189600000,com.heyzap
+heyZap,9.5.7,Advertising,1463090400000,com.heyzap
+heyZap,9.6.0-beta,Advertising,1465768800000,com.heyzap
+heyZap,9.6.1-beta,Advertising,1467064800000,com.heyzap
+heyZap,9.6.2-beta,Advertising,1469052000000,com.heyzap
+ironSource,6.5.0,Advertising,1486594800000,com.ironsource
+ironSource,6.5.1,Advertising,1488063600000,com.ironsource
+ironSource,6.5.2,Advertising,1490223600000,com.ironsource
+ironSource,6.5.2.1,Advertising,1490652000000,com.ironsource
+ironSource,6.5.3,Advertising,1492639200000,com.ironsource
+ironSource,6.6.0,Advertising,1494194400000,com.ironsource
+ironSource,6.6.1,Advertising,1495317600000,com.ironsource
+mAdserve,1.3,Advertising,1320793200000,com.madserve.sdk
+smaato,5.0.2,Advertising,1453158000000,com.smaato.soma
+vpon,4.2.7,Advertising,1413324000000,N/A
+vpon,4.2.8,Advertising,1424818800000,N/A
+vpon,4.3.0,Advertising,1432677600000,N/A
+vpon,4.3.1,Advertising,1435528800000,N/A
+vpon,4.3.2,Advertising,1445464800000,N/A
+vpon,4.6.1,Advertising,1475532000000,N/A
+vpon,4.6.3,Advertising,1482361200000,N/A
+Amazon-AWS-Mobile-Analytics,2.1.10,Analytics,1425337200000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.1.3,Analytics,1413756000000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.1.4,Analytics,1414188000000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.1.5,Analytics,1415228400000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.1.7,Analytics,1421103600000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.1.8,Analytics,1421708400000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.1.9,Analytics,1424818800000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.0,Analytics,1428530400000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.1,Analytics,1429653600000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.10,Analytics,1452121200000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.11,Analytics,1454022000000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.12,Analytics,1455318000000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.13,Analytics,1456441200000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.14,Analytics,1459375200000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.15,Analytics,1461016800000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.16,Analytics,1462917600000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.17,Analytics,1463781600000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.18,Analytics,1464904800000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.19,Analytics,1466719200000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.2,Analytics,1434060000000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.20,Analytics,1467064800000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.21,Analytics,1469138400000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.22,Analytics,1469570400000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.3,Analytics,1436392800000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.4,Analytics,1437516000000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.5,Analytics,1438898400000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.6,Analytics,1442527200000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.7,Analytics,1444255200000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.8,Analytics,1446764400000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.2.9,Analytics,1448319600000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.3.0,Analytics,1469743200000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.3.1,Analytics,1473372000000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.3.2,Analytics,1475791200000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.3.3,Analytics,1476655200000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.3.4,Analytics,1480460400000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.3.5,Analytics,1480546800000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.3.6,Analytics,1481151600000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.3.7,Analytics,1481670000000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.3.8,Analytics,1482188400000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.3.9,Analytics,1486076400000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.4.0,Analytics,1490137200000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.4.1,Analytics,1491516000000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.4.2,Analytics,1492639200000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.4.3,Analytics,1495058400000,com.amazonaws
+Amazon-AWS-Mobile-Analytics,2.4.4,Analytics,1496440800000,com.amazonaws
+Crittercism,4.5.1,Analytics,1402956000000,com.crittercism.app
+Crittercism,4.5.3,Analytics,1403301600000,com.crittercism.app
+Crittercism,4.5.4,Analytics,1412287200000,com.crittercism.app
+Crittercism,5.0.3,Analytics,1413237600000,com.crittercism.app
+Crittercism,5.0.4,Analytics,1422054000000,com.crittercism
+Crittercism,5.0.5,Analytics,1424732400000,com.crittercism
+Crittercism,5.0.6,Analytics,1425510000000,com.crittercism
+Crittercism,5.2.0,Analytics,1431468000000,com.crittercism
+Crittercism,5.3.0-rc-1,Analytics,1433973600000,com.crittercism
+Crittercism,5.3.1-rc-1,Analytics,1433973600000,com.crittercism
+Crittercism,5.3.2-rc-1,Analytics,1437688800000,com.crittercism
+Crittercism,5.3.3,Analytics,1439416800000,com.crittercism
+Crittercism,5.3.3-rc-1,Analytics,1438120800000,com.crittercism
+Crittercism,5.3.4-rc-1,Analytics,1444082400000,com.crittercism
+Crittercism,5.4.0,Analytics,1445464800000,com.crittercism
+Crittercism,5.4.0-rc-1,Analytics,1444082400000,com.crittercism
+Crittercism,5.5.0,Analytics,1450047600000,com.crittercism
+Crittercism,5.5.0-rc-1,Analytics,1447110000000,com.crittercism
+Crittercism,5.5.1,Analytics,1452121200000,com.crittercism
+Crittercism,5.5.1-rc-1,Analytics,1450047600000,com.crittercism
+Crittercism,5.5.5,Analytics,1455836400000,com.crittercism
+Crittercism,5.5.5-rc-1,Analytics,1452207600000,com.crittercism
+Crittercism,5.6.3-rc-1,Analytics,1460412000000,com.crittercism
+Crittercism,5.6.4,Analytics,1464300000000,com.crittercism
+Crittercism,5.8.1,Analytics,1488150000000,com.crittercism
+Crittercism,5.8.1-rc-1,Analytics,1477260000000,com.crittercism
+Flurry Analytics,3.3.0,Analytics,1382652000000,com.flurry
+Flurry Analytics,3.3.2,Analytics,1386802800000,com.flurry
+Flurry Analytics,3.3.4,Analytics,1392073200000,com.flurry
+Flurry Analytics,3.4.0,Analytics,1393801200000,com.flurry
+Flurry Analytics,4.0.0,Analytics,1400450400000,com.flurry
+Flurry Analytics,4.1.0,Analytics,1405029600000,com.flurry
+Flurry Analytics,4.2.0,Analytics,1412114400000,com.flurry
+Flurry Analytics,5.6.0,Analytics,1437688800000,com.flurry
+Flurry Analytics,6.0.0,Analytics,1440453600000,com.flurry
+Flurry Analytics,6.1.0,Analytics,1443391200000,com.flurry
+Flurry Analytics,6.2.0,Analytics,1447023600000,com.flurry
+Flurry Analytics,6.3.0,Analytics,1458601200000,com.flurry
+Flurry Analytics,6.4.0,Analytics,1466114400000,com.flurry
+Flurry Analytics,6.4.2,Analytics,1469484000000,com.flurry
+Flurry Analytics,6.5.0,Analytics,1471471200000,com.flurry
+HockeyApp,2.2.1,Analytics,1346018400000,net.hockeyapp.android
+HockeyApp,3.0.0,Analytics,1372629600000,net.hockeyapp.android
+HockeyApp,3.0.1,Analytics,1378418400000,net.hockeyapp.android
+HockeyApp,3.0.2,Analytics,1398722400000,net.hockeyapp.android
+HockeyApp,3.5.0,Analytics,1419289200000,net.hockeyapp.android
+HockeyApp,3.5.0-b.4,Analytics,1410127200000,net.hockeyapp.android
+HockeyApp,3.6.0,Analytics,1443996000000,net.hockeyapp.android
+HockeyApp,3.6.0-b.1,Analytics,1441231200000,net.hockeyapp.android
+HockeyApp,3.6.0-rc.1,Analytics,1442354400000,net.hockeyapp.android
+HockeyApp,3.6.1,Analytics,1444168800000,net.hockeyapp.android
+HockeyApp,3.6.2,Analytics,1444687200000,net.hockeyapp.android
+HockeyApp,3.7.0,Analytics,1452639600000,net.hockeyapp.android
+HockeyApp,3.7.0-beta.1,Analytics,1445814000000,net.hockeyapp.android
+HockeyApp,3.7.0-beta.2,Analytics,1447801200000,net.hockeyapp.android
+HockeyApp,3.7.0-rc.1,Analytics,1449702000000,net.hockeyapp.android
+HockeyApp,3.7.1,Analytics,1456441200000,net.hockeyapp.android
+HockeyApp,3.7.2,Analytics,1458774000000,net.hockeyapp.android
+HockeyApp,4.0.0,Analytics,1461621600000,net.hockeyapp.android
+HockeyApp,4.0.0-beta.1,Analytics,1460412000000,net.hockeyapp.android
+HockeyApp,4.0.1,Analytics,1462831200000,net.hockeyapp.android
+HockeyApp,4.0.2,Analytics,1468965600000,net.hockeyapp.android
+HockeyApp,4.0.3,Analytics,1472076000000,net.hockeyapp.android
+HockeyApp,4.1.0,Analytics,1472508000000,net.hockeyapp.android
+HockeyApp,4.1.0-beta.1,Analytics,1461708000000,net.hockeyapp.android
+HockeyApp,4.1.0-beta.2,Analytics,1463608800000,net.hockeyapp.android
+HockeyApp,4.1.1,Analytics,1472680800000,net.hockeyapp.android
+HockeyApp,4.1.2,Analytics,1481151600000,net.hockeyapp.android
+HockeyApp,4.1.3,Analytics,1488927600000,net.hockeyapp.android
+HockeyApp,4.1.4,Analytics,1493244000000,net.hockeyapp.android
+Mixpanel,4.6.0,Analytics,1433973600000,com.mixpanel.android
+Mixpanel,4.6.1,Analytics,1434578400000,com.mixpanel.android
+Mixpanel,4.6.2,Analytics,1436997600000,com.mixpanel.android
+Mixpanel,4.6.3,Analytics,1439503200000,com.mixpanel.android
+Mixpanel,4.6.4,Analytics,1440453600000,com.mixpanel.android
+Mixpanel,4.7-RC1,Analytics,1443218400000,com.mixpanel.android
+Mixpanel,4.7.0,Analytics,1445900400000,com.mixpanel.android
+Segment,3.0.0,Analytics,1424818800000,com.segment.analytics
+Segment,3.0.1,Analytics,1425596400000,com.segment.analytics
+Segment,3.0.2,Analytics,1426892400000,com.segment.analytics
+Segment,3.1.0,Analytics,1429653600000,com.segment.analytics
+Segment,3.1.1,Analytics,1431295200000,com.segment.analytics
+Segment,3.1.2,Analytics,1431468000000,com.segment.analytics
+Segment,3.1.3,Analytics,1432764000000,com.segment.analytics
+Segment,3.1.4,Analytics,1434924000000,com.segment.analytics
+Segment,3.1.5,Analytics,1436738400000,com.segment.analytics
+Segment,3.1.6,Analytics,1437343200000,com.segment.analytics
+Segment,3.1.7,Analytics,1440626400000,com.segment.analytics
+Segment,3.1.8,Analytics,1441922400000,com.segment.analytics
+Segment,3.1.9,Analytics,1443132000000,com.segment.analytics
+Segment,3.2.0,Analytics,1442786400000,com.segment.analytics
+Segment,3.2.1,Analytics,1443132000000,com.segment.analytics
+Segment,3.3.0,Analytics,1443909600000,com.segment.analytics
+Segment,3.3.1,Analytics,1444082400000,com.segment.analytics
+Segment,3.3.3,Analytics,1444428000000,com.segment.analytics
+Segment,3.4.0,Analytics,1445378400000,com.segment.analytics
+Urban-Airship,7.2.1,Analytics,1469570400000,com.urbanairship
+Urban-Airship,7.2.2,Analytics,1470261600000,com.urbanairship
+Urban-Airship,7.2.3,Analytics,1470866400000,com.urbanairship
+Urban-Airship,7.2.4,Analytics,1471039200000,com.urbanairship
+Urban-Airship,7.2.5,Analytics,1476136800000,com.urbanairship
+Urban-Airship,7.3.0,Analytics,1472594400000,com.urbanairship
+Urban-Airship,8.0.0,Analytics,1473717600000,com.urbanairship
+Urban-Airship,8.0.1,Analytics,1473976800000,com.urbanairship
+Urban-Airship,8.0.2,Analytics,1475618400000,com.urbanairship
+Urban-Airship,8.0.3,Analytics,1476396000000,com.urbanairship
+Urban-Airship,8.0.4,Analytics,1478818800000,com.urbanairship
+Urban-Airship,8.1.0,Analytics,1479510000000,com.urbanairship
+Urban-Airship,8.1.1,Analytics,1479682800000,com.urbanairship
+Urban-Airship,8.2.0,Analytics,1480460400000,com.urbanairship
+Urban-Airship,8.2.1,Analytics,1480978800000,com.urbanairship
+Urban-Airship,8.2.2,Analytics,1481238000000,com.urbanairship
+Urban-Airship,8.2.3,Analytics,1481842800000,com.urbanairship
+Urban-Airship,8.2.4,Analytics,1482361200000,com.urbanairship
+Urban-Airship,8.2.5,Analytics,1484002800000,com.urbanairship
+Urban-Airship,8.3.0,Analytics,1487286000000,com.urbanairship
+Urban-Airship,8.3.1,Analytics,1490137200000,com.urbanairship
+Urban-Airship,8.3.2,Analytics,1491343200000,com.urbanairship
+Urban-Airship,8.4.0,Analytics,1493762400000,com.urbanairship
+Urban-Airship,8.4.1,Analytics,1494453600000,com.urbanairship
+Urban-Airship,8.4.2,Analytics,1495490400000,com.urbanairship
+Urban-Airship,8.4.3,Analytics,1495576800000,com.urbanairship
+Urban-Airship,8.5.0,Analytics,1496268000000,com.urbanairship
+Urban-Airship,8.5.1,Analytics,1496268000000,com.urbanairship
+piwik,0.0.2,Analytics,1439762400000,org.piwik.sdk
+piwik,0.0.3,Analytics,1444600800000,org.piwik.sdk
+piwik,0.0.4,Analytics,1453676400000,org.piwik.sdk
+piwik,1.0.0,Analytics,1464127200000,org.piwik.sdk
+piwik,1.0.1,Analytics,1464213600000,org.piwik.sdk
+piwik,1.0.2,Analytics,1469397600000,org.piwik.sdk
+ACRA,4.2.3,Android,1309557600000,org.acra
+ACRA,4.3.0,Android,1346968800000,org.acra
+ACRA,4.3.1,Android,1350338400000,org.acra
+ACRA,4.4.0,Android,1350943200000,org.acra
+ACRA,4.5.0,Android,1368136800000,org.acra
+ACRA,4.5.0-RC,Android,1364940000000,org.acra
+ACRA,4.5.0-RC2,Android,1366581600000,org.acra
+ACRA,4.5.0-RC3,Android,1367013600000,org.acra
+ACRA,4.6.0,Android,1423263600000,org.acra
+ACRA,4.6.0-RC1,Android,1420671600000,org.acra
+ACRA,4.6.0-RC2,Android,1421967600000,org.acra
+ACRA,4.6.1,Android,1423954800000,org.acra
+ACRA,4.6.2,Android,1430172000000,org.acra
+ACRA,4.7.0,Android,1449097200000,org.acra
+ACRA,4.7.0-RC.1,Android,1442959200000,org.acra
+ACRA,4.7.0-RC.2,Android,1447369200000,org.acra
+ACRA,4.7.0-RC.3,Android,1448406000000,org.acra
+ACRA,4.8.0,Android,1454108400000,org.acra
+ACRA,4.8.1,Android,1454454000000,org.acra
+ACRA,4.8.2,Android,1455577200000,org.acra
+ACRA,4.8.3,Android,1458082800000,org.acra
+ACRA,4.8.4,Android,1458082800000,org.acra
+ACRA,4.8.5,Android,1458169200000,org.acra
+ACRA,4.9.0,Android,1464991200000,org.acra
+ACRA,4.9.0-RC-1,Android,1462140000000,org.acra
+ACRA,4.9.0-RC-2,Android,1462658400000,org.acra
+ACRA,4.9.1,Android,1476223200000,org.acra
+ACRA,4.9.2,Android,1483743600000,org.acra
+AirMapView,1.1.1,Android,1427238000000,com.airbnb.android.airmapview
+AirMapView,1.1.2,Android,1427410800000,com.airbnb.android.airmapview
+AirMapView,1.1.3,Android,1427666400000,com.airbnb.android.airmapview
+AirMapView,1.1.4,Android,1427752800000,com.airbnb.android.airmapview
+AirMapView,1.1.5,Android,1430258400000,com.airbnb.android.airmapview
+AirMapView,1.2.0,Android,1435528800000,com.airbnb.android.airmapview
+AirMapView,1.3.0,Android,1443391200000,com.airbnb.android.airmapview
+AirMapView,1.3.1,Android,1452121200000,com.airbnb.android.airmapview
+AirMapView,1.3.2,Android,1455836400000,com.airbnb.android.airmapview
+AirMapView,1.3.3,Android,1459202400000,com.airbnb.android.airmapview
+AirMapView,1.3.4,Android,1459893600000,com.airbnb.android.airmapview
+AirMapView,1.4.0,Android,1484953200000,com.airbnb.android.airmapview
+Android support v13,10,Android,1343772000000,android.support.v13
+Android support v13,11,Android,1351724400000,android.support.v13.app
+Android support v13,12,Android,1359673200000,android.support.v13.app
+Android support v13,13,Android,1367359200000,android.support.v13.app
+Android support v13,18.0.0,Android,1372629600000,android.support.v13.app
+Android support v13,19.0.0,Android,1380578400000,android.support.v13.app
+Android support v13,19.0.1,Android,1385852400000,android.support.v13.app
+Android support v13,19.1.0,Android,1393628400000,android.support.v13.app
+Android support v13,20.0.0,Android,1404165600000,android.support.v13.app
+Android support v13,21.0.0,Android,1412114400000,android.support.v13.app
+Android support v13,21.0.2,Android,1414796400000,android.support.v13.app
+Android support v13,21.0.3,Android,1417388400000,android.support.v13.app
+Android support v13,22.0.0,Android,1425164400000,android.support.v13.app
+Android support v13,22.1.0,Android,1427839200000,android.support.v13.app
+Android support v13,22.1.1,Android,1430949600000,android.support.v13.app
+Android support v13,22.2.0,Android,1430431200000,android.support.v13.app
+Android support v13,22.2.1,Android,1435701600000,android.support.v13.app
+Android support v13,23.0.0,Android,1438380000000,android.support.v13.app
+Android support v13,23.0.1,Android,1441058400000,android.support.v13.app
+Android support v13,23.1,Android,1443650400000,android.support
+Android support v13,23.1.1,Android,1446332400000,android.support.v13.app
+Android support v13,23.2.0,Android,1454281200000,android.support.v13.app
+Android support v13,23.2.1,Android,1456786800000,android.support.v13.app
+Android support v13,23.3.0,Android,1459461600000,android.support.v13.app
+Android support v13,23.4.0,Android,1462053600000,android.support.v13.app
+Android support v13,24.0.0,Android,1464732000000,android.support.v13
+Android support v13,24.0.0-alpha1,Android,1464732000000,android.support.v13
+Android support v13,24.0.0-alpha2,Android,1464732000000,android.support.v13
+Android support v13,24.0.0-beta1,Android,1464732000000,android.support.v13
+Android support v13,24.1.0,Android,1467324000000,android.support.v13
+Android support v13,24.1.1,Android,1467324000000,android.support.v13
+Android support v13,4,Android,1317420000000,android.support.v13
+Android support v13,5,Android,1322694000000,android.support.v13
+Android support v13,6,Android,1322694000000,android.support.v13.app
+Android support v13,7,Android,1330556400000,android.support.v13.app
+Android support v13,8,Android,1333231200000,android.support.v13.app
+Android support v13,9,Android,1338501600000,android.support.v13
+Android support v4,10,Android,1343772000000,android.support.v4
+Android support v4,11,Android,1351724400000,android.support.v4
+Android support v4,12,Android,1359673200000,android.support.v4
+Android support v4,13,Android,1367359200000,android.support.v4
+Android support v4,18.0.0,Android,1372629600000,android.support.v4
+Android support v4,19.0.0,Android,1380578400000,android.support.v4
+Android support v4,19.0.1,Android,1385852400000,android.support.v4
+Android support v4,19.1.0,Android,1393628400000,android.support.v4
+Android support v4,20.0.0,Android,1404165600000,android.support.v4
+Android support v4,21.0.0,Android,1412114400000,android.support.v4
+Android support v4,21.0.2,Android,1414796400000,android.support.v4
+Android support v4,21.0.3,Android,1417388400000,android.support.v4
+Android support v4,22.0.0,Android,1425164400000,android.support.v4
+Android support v4,22.1.0,Android,1427839200000,android.support.v4
+Android support v4,22.1.1,Android,1430949600000,android.support.v4
+Android support v4,22.2.0,Android,1430431200000,android.support.v4
+Android support v4,22.2.1,Android,1435701600000,android.support.v4
+Android support v4,23.0.0,Android,1438380000000,android.support.v4
+Android support v4,23.0.1,Android,1441058400000,android.support.v4
+Android support v4,23.1.0,Android,1443650400000,android.support.v4
+Android support v4,23.1.1,Android,1446332400000,android.support.v4
+Android support v4,23.2.0,Android,1454281200000,android.support.v4
+Android support v4,23.2.1,Android,1456786800000,android.support.v4
+Android support v4,23.3.0,Android,1459461600000,android.support.v4
+Android support v4,23.4.0,Android,1462053600000,android.support.v4
+Android support v4,24.0.0,Android,1464732000000,android.support.v4
+Android support v4,24.0.0-alpha1,Android,1464732000000,android.support.v4
+Android support v4,24.0.0-alpha2,Android,1464732000000,android.support.v4
+Android support v4,24.0.0-beta1,Android,1464732000000,android.support.v4
+Android support v4,24.1.0,Android,1467324000000,android.support.v4
+Android support v4,24.1.1,Android,1467324000000,android.support.v4
+Android support v4,4,Android,1317420000000,android.support.v4
+Android support v4,5,Android,1322694000000,android.support.v4
+Android support v4,6,Android,1322694000000,android.support.v4
+Android support v4,7,Android,1330556400000,android.support.v4
+Android support v4,8,Android,1333231200000,android.support.v4
+Android support v4,9,Android,1338501600000,android.support.v4
+Android support v7 appcompat,18.0.0,Android,1372629600000,android.support.v7
+Android support v7 appcompat,19.0.0,Android,1380578400000,android.support.v7
+Android support v7 appcompat,19.0.1,Android,1385852400000,android.support.v7
+Android support v7 appcompat,19.1.0,Android,1393628400000,android.support.v7
+Android support v7 appcompat,20.0.0,Android,1404165600000,android.support.v7
+Android support v7 appcompat,21.0.0,Android,1412114400000,android.support.v7
+Android support v7 appcompat,21.0.2,Android,1414796400000,android.support.v7
+Android support v7 appcompat,21.0.3,Android,1417388400000,android.support.v7
+Android support v7 appcompat,22.0.0,Android,1425164400000,android.support.v7
+Android support v7 appcompat,22.1.0,Android,1427839200000,android.support.v7
+Android support v7 appcompat,22.1.1,Android,1427839200000,android.support.v7
+Android support v7 appcompat,22.2.0,Android,1430431200000,android.support.v7
+Android support v7 appcompat,22.2.1,Android,1435701600000,android.support.v7
+Android support v7 appcompat,23.0.0,Android,1438380000000,android.support.v7
+Android support v7 appcompat,23.0.1,Android,1441058400000,android.support.v7
+Android support v7 appcompat,23.1,Android,1443650400000,android.support.v7
+Android support v7 appcompat,23.1.1,Android,1446332400000,android.support.v7
+Android support v7 appcompat,23.2.0,Android,1454281200000,android.support.v7
+Android support v7 appcompat,23.2.1,Android,1456786800000,android.support.v7
+Android support v7 appcompat,23.3.0,Android,1459461600000,android.support.v7
+Android support v7 appcompat,23.4.0,Android,1462053600000,android.support.v7
+Android support v7 appcompat,24.0.0,Android,1464732000000,android.support.v7
+Android support v7 appcompat,24.0.0-alpha1,Android,1464732000000,android.support.v7
+Android support v7 appcompat,24.0.0-alpha2,Android,1464732000000,android.support.v7
+Android support v7 appcompat,24.0.0-beta1,Android,1464732000000,android.support.v7
+Android support v7 appcompat,24.1.0,Android,1467324000000,android.support.v7
+Android support v7 appcompat,24.1.1,Android,1467324000000,android.support.v7
+Android-Beacon-Library,2.0,Android,1412805600000,org.altbeacon
+Android-Beacon-Library,2.1,Android,1422658800000,org.altbeacon
+Android-Beacon-Library,2.1-beta-1,Android,1416783600000,org.altbeacon
+Android-Beacon-Library,2.1-beta-4,Android,1421622000000,org.altbeacon
+Android-Beacon-Library,2.1.1,Android,1422918000000,org.altbeacon
+Android-Beacon-Library,2.1.2,Android,1423004400000,org.altbeacon
+Android-Beacon-Library,2.1.3,Android,1423782000000,org.altbeacon
+Android-Beacon-Library,2.1.4,Android,1426114800000,org.altbeacon
+Android-Beacon-Library,2.10,Android,1493071200000,org.altbeacon
+Android-Beacon-Library,2.3,Android,1434578400000,org.altbeacon
+Android-Beacon-Library,2.3.1,Android,1436047200000,org.altbeacon
+Android-Beacon-Library,2.3.2,Android,1436133600000,org.altbeacon
+Android-Beacon-Library,2.3.3,Android,1436479200000,org.altbeacon
+Android-Beacon-Library,2.3.4,Android,1436738400000,org.altbeacon
+Android-Beacon-Library,2.3.5,Android,1436824800000,org.altbeacon
+Android-Beacon-Library,2.4,Android,1436997600000,org.altbeacon
+Android-Beacon-Library,2.5,Android,1437429600000,org.altbeacon
+Android-Beacon-Library,2.5.1,Android,1437516000000,org.altbeacon
+Android-Beacon-Library,2.6,Android,1443477600000,org.altbeacon
+Android-Beacon-Library,2.6.1,Android,1443564000000,org.altbeacon
+Android-Beacon-Library,2.7,Android,1447369200000,org.altbeacon
+Android-Beacon-Library,2.7.1,Android,1447714800000,org.altbeacon
+Android-Beacon-Library,2.8,Android,1459807200000,org.altbeacon
+Android-Beacon-Library,2.8.1,Android,1460930400000,org.altbeacon
+Android-Beacon-Library,2.9,Android,1469397600000,org.altbeacon
+Android-Beacon-Library,2.9.1,Android,1472162400000,org.altbeacon
+Android-Beacon-Library,2.9.2,Android,1480633200000,org.altbeacon
+AndroidAsync,1.0.0,Android,1369864800000,com.koushikdutta.async
+AndroidAsync,1.0.1,Android,1370037600000,com.koushikdutta.async
+AndroidAsync,1.0.2,Android,1370037600000,com.koushikdutta.async
+AndroidAsync,1.0.3,Android,1370037600000,com.koushikdutta.async
+AndroidAsync,1.0.5,Android,1370037600000,com.koushikdutta.async
+AndroidAsync,1.0.6,Android,1370124000000,com.koushikdutta.async
+AndroidAsync,1.0.7,Android,1370296800000,com.koushikdutta.async
+AndroidAsync,1.0.8,Android,1370383200000,com.koushikdutta.async
+AndroidAsync,1.0.9,Android,1371074400000,com.koushikdutta.async
+AndroidAsync,1.1.0,Android,1371074400000,com.koushikdutta.async
+AndroidAsync,1.1.1,Android,1371679200000,com.koushikdutta.async
+AndroidAsync,1.1.2,Android,1372543200000,com.koushikdutta.async
+AndroidAsync,1.1.3,Android,1373148000000,com.koushikdutta.async
+AndroidAsync,1.1.4,Android,1373580000000,com.koushikdutta.async
+AndroidAsync,1.1.5,Android,1374444000000,com.koushikdutta.async
+AndroidAsync,1.1.6,Android,1376258400000,com.koushikdutta.async
+AndroidAsync,1.1.8,Android,1379196000000,com.koushikdutta.async
+AndroidAsync,1.1.9,Android,1382824800000,com.koushikdutta.async
+AndroidAsync,1.2.0,Android,1383692400000,com.koushikdutta.async
+AndroidAsync,1.2.1,Android,1388703600000,com.koushikdutta.async
+AndroidAsync,1.2.2,Android,1392246000000,com.koushikdutta.async
+AndroidAsync,1.2.3,Android,1392246000000,com.koushikdutta.async
+AndroidAsync,1.2.4,Android,1392332400000,com.koushikdutta.async
+AndroidAsync,1.2.5,Android,1399759200000,com.koushikdutta.async
+AndroidAsync,1.2.6,Android,1400796000000,com.koushikdutta.async
+AndroidAsync,1.2.8,Android,1404597600000,com.koushikdutta.async
+AndroidAsync,1.2.9,Android,1404856800000,com.koushikdutta.async
+AndroidAsync,1.3.0,Android,1404943200000,com.koushikdutta.async
+AndroidAsync,1.3.1,Android,1405029600000,com.koushikdutta.async
+AndroidAsync,1.3.2,Android,1405029600000,com.koushikdutta.async
+AndroidAsync,1.3.3,Android,1405029600000,com.koushikdutta.async
+AndroidAsync,1.3.4,Android,1405202400000,com.koushikdutta.async
+AndroidAsync,1.3.5,Android,1405202400000,com.koushikdutta.async
+AndroidAsync,1.3.6,Android,1405202400000,com.koushikdutta.async
+AndroidAsync,1.3.7,Android,1405202400000,com.koushikdutta.async
+AndroidAsync,1.3.8,Android,1409004000000,com.koushikdutta.async
+AndroidAsync,1.3.9,Android,1415228400000,com.koushikdutta.async
+AndroidAsync,1.4.0,Android,1415228400000,com.koushikdutta.async
+AndroidAsync,1.4.1,Android,1416524400000,com.koushikdutta.async
+AndroidAsync,2.0.0,Android,1415055600000,com.koushikdutta.async
+AndroidAsync,2.0.1,Android,1416524400000,com.koushikdutta.async
+AndroidAsync,2.0.2,Android,1418079600000,com.koushikdutta.async
+AndroidAsync,2.0.3,Android,1419548400000,com.koushikdutta.async
+AndroidAsync,2.0.4,Android,1420153200000,com.koushikdutta.async
+AndroidAsync,2.0.5,Android,1421103600000,com.koushikdutta.async
+AndroidAsync,2.0.6,Android,1424041200000,com.koushikdutta.async
+AndroidAsync,2.0.7,Android,1424473200000,com.koushikdutta.async
+AndroidAsync,2.0.8,Android,1424818800000,com.koushikdutta.async
+AndroidAsync,2.0.9,Android,1425510000000,com.koushikdutta.async
+AndroidAsync,2.1.0,Android,1425942000000,com.koushikdutta.async
+AndroidAsync,2.1.1,Android,1426201200000,com.koushikdutta.async
+AndroidAsync,2.1.2,Android,1426287600000,com.koushikdutta.async
+AndroidAsync,2.1.3,Android,1427238000000,com.koushikdutta.async
+AndroidAsync,2.1.4,Android,1431468000000,com.koushikdutta.async
+AndroidAsync,2.1.5,Android,1433800800000,com.koushikdutta.async
+AndroidAsync,2.1.6,Android,1434060000000,com.koushikdutta.async
+AndroidAsync,2.1.7,Android,1455145200000,com.koushikdutta.async
+AndroidAsync,2.1.8,Android,1465855200000,com.koushikdutta.async
+AndroidAsync,2.1.9,Android,1473112800000,com.koushikdutta.async
+BeaconsInSpace,1.1.11,Android,1471903200000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.1.2,Android,1466546400000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.1.3,Android,1466978400000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.1.4,Android,1467064800000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.1.5,Android,1467237600000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.1.6,Android,1469743200000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.1.7,Android,1470607200000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.1.8,Android,1470952800000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.1.9,Android,1470952800000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.2.0,Android,1475445600000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.2.1,Android,1477346400000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.2.2,Android,1480460400000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.3.1,Android,1481756400000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.3.2,Android,1483657200000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.3.4,Android,1487026800000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.3.5,Android,1487631600000,com.beaconsinspace.android.beacon.detector
+BeaconsInSpace,1.3.6,Android,1487804400000,com.beaconsinspace.android.beacon.detector
+Calligraphy,0.7.0,Android,1395961200000,uk.co.chrisjenx.calligraphy
+Calligraphy,0.7.1,Android,1398117600000,uk.co.chrisjenx.calligraphy
+Calligraphy,0.7.2,Android,1401314400000,uk.co.chrisjenx.calligraphy
+Calligraphy,1.0.0,Android,1404597600000,uk.co.chrisjenx.calligraphy
+Calligraphy,1.1.0,Android,1406930400000,uk.co.chrisjenx.calligraphy
+Calligraphy,1.2.0,Android,1413756000000,uk.co.chrisjenx.calligraphy
+Calligraphy,2.0.0,Android,1421362800000,uk.co.chrisjenx.calligraphy
+Calligraphy,2.0.1,Android,1422399600000,uk.co.chrisjenx.calligraphy
+Calligraphy,2.0.2,Android,1425510000000,uk.co.chrisjenx.calligraphy
+Calligraphy,2.1.0,Android,1473804000000,uk.co.chrisjenx.calligraphy
+Calligraphy,2.2.0,Android,1459893600000,uk.co.chrisjenx.calligraphy
+Calligraphy,2.3.0,Android,1494453600000,uk.co.chrisjenx.calligraphy
+CleverTap,2.0.10,Android,1459893600000,com.clevertap.android.sdk
+CleverTap,2.0.4,Android,1451170800000,com.clevertap.android.sdk
+CleverTap,2.0.5,Android,1452207600000,com.clevertap.android.sdk
+CleverTap,2.0.8,Android,1457996400000,com.clevertap.android.sdk
+CleverTap,2.0.9,Android,1457996400000,com.clevertap.android.sdk
+CleverTap,2.1.1,Android,1465423200000,com.clevertap.android.sdk
+CleverTap,2.1.2,Android,1465941600000,com.clevertap.android.sdk
+CleverTap,2.1.3,Android,1466632800000,com.clevertap.android.sdk
+CleverTap,2.2.0,Android,1468965600000,com.clevertap.android.sdk
+CleverTap,3.0.0,Android,1472594400000,com.clevertap.android.sdk
+CleverTap,3.1.0,Android,1476914400000,com.clevertap.android.sdk
+CleverTap,3.1.1,Android,1481670000000,com.clevertap.android.sdk
+CleverTap,3.1.2,Android,1485730800000,com.clevertap.android.sdk
+Crashlytics,2.1.0,Android,1416524400000,com.crashlytics.android
+Crashlytics,2.2.0,Android,1418598000000,com.crashlytics.android
+Crashlytics,2.2.1,Android,1422486000000,com.crashlytics.android
+Crashlytics,2.2.2,Android,1424905200000,com.crashlytics.android
+Crashlytics,2.2.3,Android,1427925600000,com.crashlytics.android
+Crashlytics,2.2.4,Android,1430949600000,com.crashlytics.android
+Crashlytics,2.4.0,Android,1434924000000,com.crashlytics.android
+Crashlytics,2.5.0,Android,1437516000000,com.crashlytics.android
+Crashlytics,2.5.1,Android,1439157600000,com.crashlytics.android
+Crashlytics,2.5.2,Android,1441231200000,com.crashlytics.android
+Crashlytics,2.5.3,Android,1447801200000,com.crashlytics.android
+Crashlytics,2.5.4,Android,1448924400000,com.crashlytics.android
+Crashlytics,2.5.5,Android,1449183600000,com.crashlytics.android
+Crashlytics,2.5.6,Android,1464732000000,com.crashlytics.android
+Crashlytics,2.5.7,Android,1465941600000,com.crashlytics.android
+Dexter,1.0.0,Android,1447714800000,com.karumi.dexter
+Dexter,1.0.1,Android,1447714800000,com.karumi.dexter
+Dexter,1.0.2,Android,1447801200000,com.karumi.dexter
+Dexter,1.0.3,Android,1447974000000,com.karumi.dexter
+Dexter,2.0.0,Android,1448319600000,com.karumi.dexter
+Dexter,2.1.0,Android,1448838000000,com.karumi.dexter
+Dexter,2.1.1,Android,1448924400000,com.karumi.dexter
+Dexter,2.1.2,Android,1448924400000,com.karumi.dexter
+Dexter,2.1.3,Android,1450134000000,com.karumi.dexter
+Dexter,2.1.4,Android,1450306800000,com.karumi.dexter
+Dexter,2.2.0,Android,1452553200000,com.karumi.dexter
+Dexter,2.2.1,Android,1453417200000,com.karumi.dexter
+Dexter,2.2.2,Android,1458082800000,com.karumi.dexter
+Dexter,2.3.0,Android,1465768800000,com.karumi.dexter
+Dexter,2.3.1,Android,1473026400000,com.karumi.dexter
+Dexter,2.4.0,Android,1482447600000,com.karumi.dexter
+Dexter,3.0.0,Android,1482447600000,com.karumi.dexter
+Dexter,3.0.1,Android,1485298800000,com.karumi.dexter
+Dexter,3.0.2,Android,1485903600000,com.karumi.dexter
+Dexter,3.1.0,Android,1488754800000,com.karumi.dexter
+Dexter,4.0.0,Android,1488754800000,com.karumi.dexter
+Dexter,4.1.0,Android,1491170400000,com.karumi.dexter
+Fresco,0.1.0,Android,1427324400000,com.facebook.drawee.backends.pipeline
+Fresco,0.10.0,Android,1461189600000,com.facebook.drawee.backends.pipeline
+Fresco,0.11.0,Android,1465855200000,com.facebook.drawee.backends.pipeline
+Fresco,0.12.0,Android,1471557600000,com.facebook.drawee.backends.pipeline
+Fresco,0.13.0,Android,1471557600000,com.facebook.drawee.backends.pipeline
+Fresco,0.14.0,Android,1474581600000,com.facebook.drawee.backends.pipeline
+Fresco,0.14.1,Android,1475532000000,com.facebook.drawee.backends.pipeline
+Fresco,0.2.0,Android,1428444000000,com.facebook.drawee.backends.pipeline
+Fresco,0.3.0,Android,1429135200000,com.facebook.drawee.backends.pipeline
+Fresco,0.4.0,Android,1429740000000,com.facebook.drawee.backends.pipeline
+Fresco,0.5.0,Android,1431640800000,com.facebook.drawee.backends.pipeline
+Fresco,0.5.1,Android,1433368800000,com.facebook.drawee.backends.pipeline
+Fresco,0.5.2,Android,1434319200000,com.facebook.drawee.backends.pipeline
+Fresco,0.5.3,Android,1435528800000,com.facebook.drawee.backends.pipeline
+Fresco,0.6.0,Android,1437343200000,com.facebook.drawee.backends.pipeline
+Fresco,0.6.1,Android,1439157600000,com.facebook.drawee.backends.pipeline
+Fresco,0.7.0,Android,1440626400000,com.facebook.drawee.backends.pipeline
+Fresco,0.8.0,Android,1446073200000,com.facebook.drawee.backends.pipeline
+Fresco,0.8.1,Android,1446332400000,com.facebook.drawee.backends.pipeline
+Fresco,0.9.0,Android,1452812400000,com.facebook.drawee.backends.pipeline
+Fresco,1.0,Android,1481756400000,com.facebook.drawee.backends.pipeline
+Fresco,1.0.0,Android,1481842800000,com.facebook.drawee.backends.pipeline
+Fresco,1.0.1,Android,1484780400000,com.facebook.drawee.backends.pipeline
+Fresco,1.1.0,Android,1487026800000,com.facebook.drawee.backends.pipeline
+Fresco,1.2.0,Android,1490050800000,com.facebook.drawee.backends.pipeline
+Fresco,1.3.0,Android,1492639200000,com.facebook.drawee.backends.pipeline
+Google Maps for Work,2.17.0,Android,0,com.google
+Google Maps for Work,2.18.0,Android,0,com.google
+Google Maps for Work,2.19.0,Android,0,com.google.android.m4b.maps
+Google Maps for Work,2.21.0,Android,0,com.google
+Google Maps for Work,2.22.0,Android,0,com.google
+Google Maps for Work,2.23.0,Android,0,com.google
+Google Maps for Work,2.24.0,Android,0,com.google
+Google Play Services,3.1.36,Android,1317420000000,com.google.android.gms
+Google Play Services,3.1.59,Android,1317420000000,com.google.android.gms
+Google Play Services,3.2.25,Android,1317420000000,com.google.android.gms
+Google Play Services,3.2.65,Android,1317420000000,com.google.android.gms
+Google Play Services,4.0.30,Android,1317420000000,com.google
+Google Play Services,4.1.32,Android,1317420000000,com.google
+Google Play Services,4.2.42,Android,1317420000000,com.google
+Google Play Services,4.3.23,Android,1393628400000,com.google
+Google Play Services,4.4.52,Android,1398895200000,com.google
+Google Play Services,5.0.89,Android,1404165600000,com.google
+Google Play Services,6.1.11,Android,1412114400000,com.google
+Google Play Services,6.1.71,Android,1412114400000,com.google
+Google Play Services,6.5.87,Android,1417388400000,com.google
+Google Play Services Ads,6.5.87,Android,1417388400000,com.google
+Google Play Services Ads,7.0.0,Android,1425164400000,com.google
+Google Play Services Ads,7.3.0,Android,1427839200000,com.google
+Google Play Services Ads,7.5.0,Android,1430431200000,com.google
+Google Play Services Ads,7.8.0,Android,1438380000000,com.google
+Google Play Services Ads,8.1.0,Android,1441058400000,com.google
+Google Play Services Ads,8.3.0,Android,1446332400000,com.google
+Google Play Services Ads,8.4.0,Android,1448924400000,com.google
+Google Play Services Ads,9.0.0,Android,1462053600000,com.google
+Google Play Services Ads,9.0.1,Android,1462053600000,com.google
+Google Play Services Ads,9.0.2,Android,1462053600000,com.google
+Google Play Services Ads,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Ads,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Ads,9.4.0,Android,1470002400000,com.google.android.gms
+Google Play Services Ads Lite,9.0.0,Android,1462053600000,com.google
+Google Play Services Ads Lite,9.0.1,Android,1462053600000,com.google
+Google Play Services Ads Lite,9.0.2,Android,1462053600000,com.google
+Google Play Services Ads Lite,9.2.0,Android,1464732000000,com.google
+Google Play Services Ads Lite,9.2.1,Android,1464732000000,com.google
+Google Play Services All Wear,6.5.87,Android,1417388400000,com.google.android.gms
+Google Play Services Analytics,7.0.0,Android,1425164400000,com.google.android.gms
+Google Play Services Analytics,7.3.0,Android,1427839200000,com.google.android.gms
+Google Play Services Analytics,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Analytics,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Analytics,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Analytics,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Analytics,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Analytics,9.0.0,Android,1462053600000,com.google.android.gms.analytics
+Google Play Services Analytics,9.0.1,Android,1462053600000,com.google.android.gms.analytics
+Google Play Services Analytics,9.0.2,Android,1462053600000,com.google.android.gms.analytics
+Google Play Services Analytics,9.2.0,Android,1464732000000,com.google.android.gms.analytics
+Google Play Services Analytics,9.2.1,Android,1464732000000,com.google.android.gms.analytics
+Google Play Services Analytics Impl,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Analytics Impl,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Analytics Impl,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Analytics Impl,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Analytics Impl,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Appindexing,6.5.87,Android,1417388400000,com.google.android.gms
+Google Play Services Appindexing,7.0.0,Android,1425164400000,com.google.android.gms
+Google Play Services Appindexing,7.3.0,Android,1427839200000,com.google.android.gms
+Google Play Services Appindexing,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Appindexing,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Appindexing,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Appindexing,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Appindexing,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Appindexing,9.0.0,Android,1462053600000,com.google
+Google Play Services Appindexing,9.0.1,Android,1462053600000,com.google
+Google Play Services Appindexing,9.0.2,Android,1462053600000,com.google
+Google Play Services Appindexing,9.2.0,Android,1464732000000,com.google
+Google Play Services Appindexing,9.2.1,Android,1464732000000,com.google
+Google Play Services Appinvite,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Appinvite,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Appinvite,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Appinvite,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Appinvite,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Appinvite,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Appinvite,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Appinvite,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Appinvite,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Appinvite,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Appstate,6.5.87,Android,1417388400000,com.google.android.gms
+Google Play Services Appstate,7.0.0,Android,1425164400000,com.google.android.gms
+Google Play Services Appstate,7.3.0,Android,1427839200000,com.google.android.gms
+Google Play Services Appstate,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Appstate,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Auth,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Auth,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Auth,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Auth,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Auth,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Auth,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Auth,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Auth Base,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Auth Base,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Auth Base,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Auth Base,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Auth Base,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Base,6.5.87,Android,1417388400000,com.google.android.gms
+Google Play Services Base,7.0.0,Android,1425164400000,com.google.android.gms
+Google Play Services Base,7.3.0,Android,1427839200000,com.google.android.gms
+Google Play Services Base,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Base,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Base,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Base,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Base,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Base,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Base,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Base,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Base,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Base,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Basement,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Basement,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Basement,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Basement,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Basement,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Basement,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Basement,9.2.0,Android,1464732000000,com.google
+Google Play Services Basement,9.2.1,Android,1464732000000,com.google
+Google Play Services Cast,6.5.87,Android,1417388400000,com.google.android.gms
+Google Play Services Cast,7.0.0,Android,1425164400000,com.google.android.gms
+Google Play Services Cast,7.3.0,Android,1427839200000,com.google.android.gms
+Google Play Services Cast,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Cast,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Cast,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Cast,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Cast,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Cast,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Cast,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Cast,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Cast,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Cast,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Cast Framework,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Cast Framework,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Clearcut,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Clearcut,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Contextmanager,9.2.0,Android,1464732000000,com.google.android
+Google Play Services Contextmanager,9.2.1,Android,1464732000000,com.google.android
+Google Play Services Drive,6.5.87,Android,1417388400000,com.google.android.gms
+Google Play Services Drive,7.0.0,Android,1425164400000,com.google.android.gms
+Google Play Services Drive,7.3.0,Android,1427839200000,com.google.android.gms
+Google Play Services Drive,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Drive,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Drive,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Drive,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Drive,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Drive,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Drive,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Drive,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Drive,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Drive,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Fitness,6.5.87,Android,1417388400000,com.google.android.gms
+Google Play Services Fitness,7.0.0,Android,1425164400000,com.google.android.gms
+Google Play Services Fitness,7.3.0,Android,1427839200000,com.google.android.gms
+Google Play Services Fitness,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Fitness,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Fitness,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Fitness,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Fitness,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Fitness,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Fitness,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Fitness,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Fitness,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Fitness,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Games,6.5.87,Android,1417388400000,com.google.android.gms.games
+Google Play Services Games,7.0.0,Android,1425164400000,com.google.android.gms.games
+Google Play Services Games,7.3.0,Android,1427839200000,com.google.android.gms.games
+Google Play Services Games,7.5.0,Android,1430431200000,com.google.android.gms.games
+Google Play Services Games,7.8.0,Android,1438380000000,com.google.android.gms.games
+Google Play Services Games,8.1.0,Android,1441058400000,com.google.android.gms.games
+Google Play Services Games,8.3.0,Android,1446332400000,com.google.android.gms.games
+Google Play Services Games,8.4.0,Android,1448924400000,com.google.android.gms.games
+Google Play Services Games,9.0.0,Android,1462053600000,com.google.android.gms.games
+Google Play Services Games,9.0.1,Android,1462053600000,com.google.android.gms.games
+Google Play Services Games,9.0.2,Android,1462053600000,com.google.android.gms.games
+Google Play Services Games,9.2.0,Android,1464732000000,com.google.android.gms.games
+Google Play Services Games,9.2.1,Android,1464732000000,com.google.android.gms.games
+Google Play Services Gass,9.2.0,Android,1464732000000,com.google.android.gms.gass.internal
+Google Play Services Gass,9.2.1,Android,1464732000000,com.google.android.gms.gass.internal
+Google Play Services Gcm,7.0.0,Android,1425164400000,com.google.android.gms.gcm
+Google Play Services Gcm,7.3.0,Android,1427839200000,com.google.android.gms.gcm
+Google Play Services Gcm,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Gcm,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Gcm,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Gcm,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Gcm,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Gcm,9.0.0,Android,1462053600000,com.google.android.gms.gcm
+Google Play Services Gcm,9.0.1,Android,1462053600000,com.google.android.gms.gcm
+Google Play Services Gcm,9.0.2,Android,1462053600000,com.google.android.gms.gcm
+Google Play Services Gcm,9.2.0,Android,1464732000000,com.google.android.gms.gcm
+Google Play Services Gcm,9.2.1,Android,1464732000000,com.google.android.gms.gcm
+Google Play Services Identity,6.5.87,Android,1417388400000,com.google.android.gms
+Google Play Services Identity,7.0.0,Android,1425164400000,com.google.android.gms
+Google Play Services Identity,7.3.0,Android,1427839200000,com.google.android.gms
+Google Play Services Identity,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Identity,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Identity,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Identity,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Identity,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Identity,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Identity,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Identity,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Identity,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Identity,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Iid,9.0.0,Android,1462053600000,com.google.android.gms.iid
+Google Play Services Iid,9.0.1,Android,1462053600000,com.google.android.gms.iid
+Google Play Services Iid,9.0.2,Android,1462053600000,com.google.android.gms.iid
+Google Play Services Iid,9.2.0,Android,1464732000000,com.google.android.gms.iid
+Google Play Services Iid,9.2.1,Android,1464732000000,com.google.android.gms.iid
+Google Play Services Location,6.5.87,Android,1417388400000,com.google.android.gms
+Google Play Services Location,7.0.0,Android,1425164400000,com.google.android.gms
+Google Play Services Location,7.3.0,Android,1427839200000,com.google.android.gms
+Google Play Services Location,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Location,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Location,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Location,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Location,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Location,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Location,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Location,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Location,9.2.0,Android,1464732000000,com.google.android.gms.location
+Google Play Services Location,9.2.1,Android,1464732000000,com.google.android.gms.location
+Google Play Services Maps,6.5.87,Android,1417388400000,com.google.android.gms.maps
+Google Play Services Maps,7.0.0,Android,1425164400000,com.google.android.gms.maps
+Google Play Services Maps,7.3.0,Android,1427839200000,com.google.android.gms.maps
+Google Play Services Maps,7.5.0,Android,1430431200000,com.google.android.gms.maps
+Google Play Services Maps,7.8.0,Android,1438380000000,com.google.android.gms.maps
+Google Play Services Maps,8.1.0,Android,1441058400000,com.google.android.gms.maps
+Google Play Services Maps,8.3.0,Android,1446332400000,com.google.android.gms.maps
+Google Play Services Maps,8.4.0,Android,1448924400000,com.google.android.gms.maps
+Google Play Services Maps,9.0.0,Android,1462053600000,com.google.android.gms.maps
+Google Play Services Maps,9.0.1,Android,1462053600000,com.google.android.gms.maps
+Google Play Services Maps,9.0.2,Android,1462053600000,com.google.android.gms.maps
+Google Play Services Maps,9.2.0,Android,1464732000000,com.google.android.gms.maps
+Google Play Services Maps,9.2.1,Android,1464732000000,com.google.android.gms.maps
+Google Play Services Measurement,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Measurement,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Measurement,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Nearby,7.0.0,Android,1425164400000,com.google.android.gms
+Google Play Services Nearby,7.3.0,Android,1427839200000,com.google.android.gms
+Google Play Services Nearby,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Nearby,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Nearby,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Nearby,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Nearby,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Nearby,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Nearby,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Nearby,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Nearby,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Nearby,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Panorama,6.5.87,Android,1417388400000,com.google.android.gms
+Google Play Services Panorama,7.0.0,Android,1425164400000,com.google.android.gms
+Google Play Services Panorama,7.3.0,Android,1427839200000,com.google.android.gms
+Google Play Services Panorama,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Panorama,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Panorama,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Panorama,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Panorama,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Panorama,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Panorama,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Panorama,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Panorama,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Panorama,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Places,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Places,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Plus,6.5.87,Android,1417388400000,com.google.android.gms
+Google Play Services Plus,7.0.0,Android,1425164400000,com.google.android.gms
+Google Play Services Plus,7.3.0,Android,1427839200000,com.google.android.gms
+Google Play Services Plus,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Plus,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Plus,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Plus,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Plus,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Plus,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Plus,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Plus,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Plus,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Plus,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Safetynet,7.0.0,Android,1425164400000,com.google.android.gms
+Google Play Services Safetynet,7.3.0,Android,1427839200000,com.google.android.gms
+Google Play Services Safetynet,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Safetynet,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Safetynet,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Safetynet,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Safetynet,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Safetynet,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Safetynet,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Safetynet,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Safetynet,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Safetynet,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Tagmanager,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Tagmanager,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Tagmanager,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Tagmanager,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Tagmanager,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Tagmanager Api,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Tagmanager Api,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Tagmanager Api,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Tagmanager Api,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Tagmanager Api,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Tasks,9.0.0,Android,1462053600000,com.google.android.gms.tasks
+Google Play Services Tasks,9.0.1,Android,1462053600000,com.google.android.gms.tasks
+Google Play Services Tasks,9.0.2,Android,1462053600000,com.google.android.gms.tasks
+Google Play Services Tasks,9.2.0,Android,1464732000000,com.google.android.gms.tasks
+Google Play Services Tasks,9.2.1,Android,1464732000000,com.google.android.gms.tasks
+Google Play Services Vision,7.8.0,Android,1438380000000,com.google.android.gms.vision
+Google Play Services Vision,8.1.0,Android,1441058400000,com.google.android.gms.vision
+Google Play Services Vision,8.3.0,Android,1446332400000,com.google.android.gms.vision
+Google Play Services Vision,8.4.0,Android,1448924400000,com.google.android.gms.vision
+Google Play Services Vision,9.0.0,Android,1462053600000,com.google.android.gms.vision
+Google Play Services Vision,9.0.1,Android,1462053600000,com.google.android.gms.vision
+Google Play Services Vision,9.0.2,Android,1462053600000,com.google.android.gms.vision
+Google Play Services Vision,9.2.0,Android,1464732000000,com.google.android.gms.vision
+Google Play Services Vision,9.2.1,Android,1464732000000,com.google.android.gms.vision
+Google Play Services Wallet,6.5.87,Android,1417388400000,com.google.android.gms
+Google Play Services Wallet,7.0.0,Android,1425164400000,com.google.android.gms
+Google Play Services Wallet,7.3.0,Android,1427839200000,com.google.android.gms
+Google Play Services Wallet,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Wallet,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Wallet,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Wallet,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Wallet,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Wallet,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Wallet,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Wallet,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Wallet,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Wallet,9.2.1,Android,1464732000000,com.google.android.gms
+Google Play Services Wearable,5.0.77,Android,1404165600000,com.google.android.gms
+Google Play Services Wearable,6.1.11,Android,1412114400000,com.google.android.gms
+Google Play Services Wearable,6.1.71,Android,1412114400000,com.google.android.gms
+Google Play Services Wearable,6.5.87,Android,1417388400000,com.google.android.gms
+Google Play Services Wearable,7.0.0,Android,1425164400000,com.google.android.gms
+Google Play Services Wearable,7.3.0,Android,1427839200000,com.google.android.gms
+Google Play Services Wearable,7.5.0,Android,1430431200000,com.google.android.gms
+Google Play Services Wearable,7.8.0,Android,1438380000000,com.google.android.gms
+Google Play Services Wearable,8.1.0,Android,1441058400000,com.google.android.gms
+Google Play Services Wearable,8.3.0,Android,1446332400000,com.google.android.gms
+Google Play Services Wearable,8.4.0,Android,1448924400000,com.google.android.gms
+Google Play Services Wearable,9.0.0,Android,1462053600000,com.google.android.gms
+Google Play Services Wearable,9.0.1,Android,1462053600000,com.google.android.gms
+Google Play Services Wearable,9.0.2,Android,1462053600000,com.google.android.gms
+Google Play Services Wearable,9.2.0,Android,1464732000000,com.google.android.gms
+Google Play Services Wearable,9.2.1,Android,1464732000000,com.google.android.gms
+Ion,1.0.0,Android,1370037600000,com.koushikdutta.ion
+Ion,1.0.2,Android,1370037600000,com.koushikdutta.ion
+Ion,1.0.3,Android,1370124000000,com.koushikdutta.ion
+Ion,1.0.4,Android,1370124000000,com.koushikdutta.ion
+Ion,1.0.5,Android,1370210400000,com.koushikdutta.ion
+Ion,1.0.6,Android,1370210400000,com.koushikdutta.ion
+Ion,1.0.7,Android,1370383200000,com.koushikdutta.ion
+Ion,1.0.8,Android,1370383200000,com.koushikdutta.ion
+Ion,1.0.9,Android,1371074400000,com.koushikdutta.ion
+Ion,1.1.1,Android,1371679200000,com.koushikdutta.ion
+Ion,1.1.2,Android,1372543200000,com.koushikdutta.ion
+Ion,1.1.3,Android,1373148000000,com.koushikdutta.ion
+Ion,1.1.4,Android,1373580000000,com.koushikdutta.ion
+Ion,1.1.5,Android,1374444000000,com.koushikdutta.ion
+Ion,1.1.6,Android,1376258400000,com.koushikdutta.ion
+Ion,1.1.7,Android,1377554400000,com.koushikdutta.ion
+Ion,1.1.8,Android,1379196000000,com.koushikdutta.ion
+Ion,1.1.9,Android,1382824800000,com.koushikdutta.ion
+Ion,1.2.0,Android,1383692400000,com.koushikdutta.ion
+Ion,1.2.1,Android,1388703600000,com.koushikdutta.ion
+Ion,1.2.2,Android,1392246000000,com.koushikdutta.ion
+Ion,1.2.4,Android,1392332400000,com.koushikdutta.ion
+Ion,1.2.5,Android,1399845600000,com.koushikdutta.ion
+Ion,1.2.6,Android,1400796000000,com.koushikdutta.ion
+Ion,1.2.7,Android,1400796000000,com.koushikdutta.ion
+Ion,1.2.9,Android,1404856800000,com.koushikdutta.ion
+Ion,1.3.0,Android,1404943200000,com.koushikdutta.ion
+Ion,1.3.1,Android,1405029600000,com.koushikdutta.ion
+Ion,1.3.2,Android,1405029600000,com.koushikdutta.ion
+Ion,1.3.3,Android,1405029600000,com.koushikdutta.ion
+Ion,1.3.4,Android,1405202400000,com.koushikdutta.ion
+Ion,1.3.5,Android,1405202400000,com.koushikdutta.ion
+Ion,1.3.6,Android,1405202400000,com.koushikdutta.ion
+Ion,1.3.7,Android,1405202400000,com.koushikdutta.ion
+Ion,1.3.8,Android,1409004000000,com.koushikdutta.ion
+Ion,1.3.9,Android,1415228400000,com.koushikdutta.ion
+Ion,1.4.0,Android,1415228400000,com.koushikdutta.ion
+Ion,1.4.1,Android,1416524400000,com.koushikdutta.ion
+Ion,2.0.0,Android,1415055600000,com.koushikdutta.ion
+Ion,2.0.1,Android,1416524400000,com.koushikdutta.ion
+Ion,2.0.2,Android,1418079600000,com.koushikdutta.ion
+Ion,2.0.3,Android,1419548400000,com.koushikdutta.ion
+Ion,2.0.4,Android,1420153200000,com.koushikdutta.ion
+Ion,2.0.5,Android,1421103600000,com.koushikdutta.ion
+Ion,2.0.6,Android,1424041200000,com.koushikdutta.ion
+Ion,2.0.7,Android,1424473200000,com.koushikdutta.ion
+Ion,2.0.8,Android,1424818800000,com.koushikdutta.ion
+Ion,2.0.9,Android,1425510000000,com.koushikdutta.ion
+Ion,2.1.0,Android,1425942000000,com.koushikdutta.ion
+Ion,2.1.1,Android,1426201200000,com.koushikdutta.ion
+Ion,2.1.2,Android,1426287600000,com.koushikdutta.ion
+Ion,2.1.3,Android,1427238000000,com.koushikdutta.ion
+Ion,2.1.4,Android,1431468000000,com.koushikdutta.ion
+Ion,2.1.5,Android,1433800800000,com.koushikdutta.ion
+Ion,2.1.6,Android,1434060000000,com.koushikdutta.ion
+Ion,2.1.7,Android,1455145200000,com.koushikdutta.ion
+Ion,2.1.8,Android,1465855200000,com.koushikdutta.ion
+Ion,2.1.9,Android,1473112800000,com.koushikdutta.ion
+Logger,1.10,Android,1432936800000,com.orhanobut.logger
+Logger,1.11,Android,1438466400000,com.orhanobut.logger
+Logger,1.13,Android,1466287200000,com.orhanobut.logger
+Logger,1.14,Android,1466805600000,com.orhanobut.logger
+Logger,1.15,Android,1467064800000,com.orhanobut.logger
+Logger,1.2,Android,1427065200000,com.orhanobut.logger
+Logger,1.3,Android,1427065200000,com.orhanobut.logger
+Logger,1.4,Android,1427497200000,com.orhanobut.logger
+Logger,1.5,Android,1428530400000,com.orhanobut.logger
+Logger,1.6,Android,1428789600000,com.orhanobut.logger
+Logger,1.7,Android,1428876000000,com.orhanobut.logger
+Logger,1.8,Android,1428876000000,com.orhanobut.logger
+Logger,1.9,Android,1432504800000,com.orhanobut.logger
+Logger,2.0.0,Android,1495836000000,com.orhanobut.logger
+Logger,2.1.0,Android,1496008800000,com.orhanobut.logger
+Logger,2.1.1,Android,1496700000000,com.orhanobut.logger
+Material-Calendar-View,0.2.0,Android,1423609200000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.2.1,Android,1423609200000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.2.2,Android,1424905200000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.2.3,Android,1425596400000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.2.4,Android,1425596400000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.2.5,Android,1426114800000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.3.0,Android,1429048800000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.3.1,Android,1429740000000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.3.2,Android,1430604000000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.4.0,Android,1431986400000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.5.0,Android,1434578400000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.5.1,Android,1435096800000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.6.0,Android,1435096800000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.6.1,Android,1435615200000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.7.0,Android,1436392800000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.8.0,Android,1440194400000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,0.8.1,Android,1440799200000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,1.0.0,Android,1443564000000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,1.0.0-beta1,Android,1442613600000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,1.0.1,Android,1443564000000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,1.1.0,Android,1445292000000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,1.2.0,Android,1453676400000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,1.2.1,Android,1462399200000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,1.3.0,Android,1463349600000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,1.4.0,Android,1464732000000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,1.4.1,Android,1476050400000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,1.4.2,Android,1476050400000,com.prolificinteractive.materialcalendarview
+Material-Calendar-View,1.4.3,Android,1488150000000,com.prolificinteractive.materialcalendarview
+MaterialEditText,1.0.0,Android,1414969200000,com.rengwuxian.materialedittext
+MaterialEditText,1.1.0,Android,1415228400000,com.rengwuxian.materialedittext
+MaterialEditText,1.2.1,Android,1415660400000,com.rengwuxian.materialedittext
+MaterialEditText,1.3.0,Android,1415833200000,com.rengwuxian.materialedittext
+MaterialEditText,1.3.1,Android,1415833200000,com.rengwuxian.materialedittext
+MaterialEditText,1.3.2,Android,1415919600000,com.rengwuxian.materialedittext
+MaterialEditText,1.4.0,Android,1416092400000,com.rengwuxian.materialedittext
+MaterialEditText,1.4.2,Android,1416438000000,com.rengwuxian.materialedittext
+MaterialEditText,1.4.3,Android,1416524400000,com.rengwuxian.materialedittext
+MaterialEditText,1.5.0,Android,1416956400000,com.rengwuxian.materialedittext
+MaterialEditText,1.6.0,Android,1417906800000,com.rengwuxian.materialedittext
+MaterialEditText,1.7.0,Android,1418338800000,com.rengwuxian.materialedittext
+MaterialEditText,1.7.1,Android,1418338800000,com.rengwuxian.materialedittext
+MaterialEditText,1.8.0,Android,1420671600000,com.rengwuxian.materialedittext
+MaterialEditText,1.8.1,Android,1420930800000,com.rengwuxian.materialedittext
+MaterialEditText,1.8.2,Android,1421449200000,com.rengwuxian.materialedittext
+MaterialEditText,1.8.3,Android,1425250800000,com.rengwuxian.materialedittext
+MaterialEditText,2.0.0,Android,1427583600000,com.rengwuxian.materialedittext
+MaterialEditText,2.0.1,Android,1427583600000,com.rengwuxian.materialedittext
+MaterialEditText,2.0.2,Android,1427583600000,com.rengwuxian.materialedittext
+MaterialEditText,2.0.3,Android,1427583600000,com.rengwuxian.materialedittext
+MaterialEditText,2.1.3,Android,1430172000000,com.rengwuxian.materialedittext
+MaterialEditText,2.1.4,Android,1433368800000,com.rengwuxian.materialedittext
+New-Relic,2.365,Android,1368828000000,com.newrelic.agent.android
+New-Relic,2.397,Android,1370556000000,com.newrelic.agent.android
+New-Relic,2.412.0,Android,1371592800000,com.newrelic.agent.android
+New-Relic,2.426.0,Android,1372197600000,com.newrelic.agent.android
+New-Relic,2.433.0,Android,1381183200000,com.newrelic.agent.android
+New-Relic,2.440.0,Android,1381183200000,com.newrelic.agent.android
+New-Relic,2.444.0,Android,1385074800000,com.newrelic.agent.android
+New-Relic,3.199.0,Android,1385074800000,com.newrelic
+New-Relic,3.214.0,Android,1385593200000,com.newrelic
+New-Relic,3.239.0,Android,1387148400000,com.newrelic
+New-Relic,3.264.0,Android,1389222000000,com.newrelic
+New-Relic,3.308.0,Android,1393023600000,com.newrelic
+New-Relic,3.330.0,Android,1394492400000,com.newrelic
+New-Relic,3.361.0,Android,1396389600000,com.newrelic
+New-Relic,3.378.0,Android,1400018400000,com.newrelic
+New-Relic,3.407.0,Android,1402437600000,com.newrelic
+New-Relic,3.419.0,Android,1405029600000,com.newrelic
+New-Relic,3.429.0,Android,1408658400000,com.newrelic
+New-Relic,4.120.0,Android,1416524400000,com.newrelic
+New-Relic,4.177.0,Android,1420585200000,com.newrelic
+New-Relic,4.178.0,Android,1420585200000,com.newrelic
+New-Relic,4.190.0,Android,1422918000000,com.newrelic
+New-Relic,4.244.0,Android,1424300400000,com.newrelic
+New-Relic,4.265.0,Android,1425423600000,com.newrelic
+New-Relic,4.273.4,Android,1428444000000,com.newrelic
+New-Relic,4.83.0,Android,1412114400000,com.newrelic
+New-Relic,4.87.0,Android,1412719200000,com.newrelic
+New-Relic,4.95.0,Android,1413928800000,com.newrelic
+New-Relic,4.98.0,Android,1414450800000,com.newrelic
+New-Relic,5.0.0,Android,1430431200000,com.newrelic
+New-Relic,5.0.1,Android,1430517600000,com.newrelic
+New-Relic,5.0.3,Android,1431986400000,com.newrelic
+New-Relic,5.1.0,Android,1433282400000,com.newrelic
+New-Relic,5.1.1,Android,1433541600000,com.newrelic
+New-Relic,5.1.2,Android,1434405600000,com.newrelic
+New-Relic,5.10.0,Android,1484089200000,com.newrelic
+New-Relic,5.11.0,Android,1488150000000,com.newrelic
+New-Relic,5.12.0,Android,1488927600000,com.newrelic
+New-Relic,5.12.1,Android,1490223600000,com.newrelic
+New-Relic,5.12.2,Android,1490652000000,com.newrelic
+New-Relic,5.12.3,Android,1492639200000,com.newrelic
+New-Relic,5.13.0,Android,1494367200000,com.newrelic
+New-Relic,5.2.0,Android,1438034400000,com.newrelic
+New-Relic,5.2.1,Android,1438552800000,com.newrelic
+New-Relic,5.3.0,Android,1441144800000,com.newrelic
+New-Relic,5.3.1,Android,1444341600000,com.newrelic
+New-Relic,5.3.2,Android,1446073200000,com.newrelic
+New-Relic,5.3.3,Android,1448319600000,com.newrelic
+New-Relic,5.4.0,Android,1452121200000,com.newrelic
+New-Relic,5.4.1,Android,1454972400000,com.newrelic
+New-Relic,5.5.0,Android,1457305200000,com.newrelic
+New-Relic,5.6.0,Android,1462312800000,com.newrelic
+New-Relic,5.6.1,Android,1464213600000,com.newrelic
+New-Relic,5.7.0,Android,1470261600000,com.newrelic
+New-Relic,5.7.1,Android,1472767200000,com.newrelic
+New-Relic,5.8.0,Android,1474668000000,com.newrelic
+New-Relic,5.8.1,Android,1475013600000,com.newrelic
+New-Relic,5.8.2,Android,1475100000000,com.newrelic
+New-Relic,5.8.3,Android,1475445600000,com.newrelic
+New-Relic,5.8.4,Android,1476741600000,com.newrelic
+New-Relic,5.9.0,Android,1480978800000,com.newrelic
+Nine Old Androids,1.0.0,Android,1323385200000,com.jakewharton.nineoldandroids
+Nine Old Androids,1.1.0,Android,1323817200000,com.jakewharton.nineoldandroids
+Nine Old Androids,2.0.0,Android,1326841200000,com.nineoldandroids
+Nine Old Androids,2.0.1,Android,1326927600000,com.nineoldandroids
+Nine Old Androids,2.1.0,Android,1327618800000,com.nineoldandroids
+Nine Old Androids,2.1.1,Android,1327618800000,com.nineoldandroids
+Nine Old Androids,2.2.0,Android,1327878000000,com.nineoldandroids
+Nine Old Androids,2.3.0,Android,1335391200000,com.nineoldandroids
+Nine Old Androids,2.4.0,Android,1340575200000,com.nineoldandroids
+PhotoView,1.2.4,Android,1427925600000,uk.co.senab.photoview
+PhotoView,1.2.5,Android,1458255600000,uk.co.senab.photoview
+PhotoView,1.2.6,Android,1460757600000,uk.co.senab.photoview
+Picasso,1.0.0,Android,1368482400000,com.squareup.picasso
+Picasso,1.0.1,Android,1368568800000,com.squareup.picasso
+Picasso,1.0.2,Android,1369346400000,com.squareup.picasso
+Picasso,1.1.0,Android,1371074400000,com.squareup.picasso
+Picasso,1.1.1,Android,1371160800000,com.squareup.picasso
+Picasso,2.0.0,Android,1377813600000,com.squareup.picasso
+Picasso,2.0.1,Android,1378332000000,com.squareup.picasso
+Picasso,2.0.2,Android,1378850400000,com.squareup.picasso
+Picasso,2.1.0,Android,1380664800000,com.squareup.picasso
+Picasso,2.1.1,Android,1380924000000,com.squareup.picasso
+Picasso,2.2.0,Android,1391209200000,com.squareup.picasso
+Picasso,2.3.0,Android,1401314400000,com.squareup.picasso
+Picasso,2.3.1,Android,1401314400000,com.squareup.picasso
+Picasso,2.3.2,Android,1402005600000,com.squareup.picasso
+Picasso,2.3.3,Android,1405893600000,com.squareup.picasso
+Picasso,2.3.4,Android,1409004000000,com.squareup.picasso
+Picasso,2.4.0,Android,1415142000000,com.squareup.picasso
+Picasso,2.5.0,Android,1423177200000,com.squareup.picasso
+Picasso,2.5.1,Android,1426719600000,com.squareup.picasso
+Picasso,2.5.2,Android,1426806000000,com.squareup.picasso
+RxAndroid,0.21.0,Android,1412114400000,rx
+RxAndroid,0.22.0,Android,1413324000000,rx.android
+RxAndroid,0.23.0,Android,1415833200000,rx.android
+RxAndroid,0.24.0,Android,1420239600000,rx.android
+RxAndroid,0.25.0,Android,1435528800000,rx.android
+RxAndroid,1.0.0,Android,1438725600000,rx.android
+RxAndroid,1.0.0-rc1,Android,1438725600000,rx.android
+RxAndroid,1.0.1,Android,1439157600000,rx.android
+RxAndroid,1.0.2,Android,1449615600000,rx.android
+RxAndroid,1.1.0,Android,1449615600000,rx.android
+RxAndroid,1.2.0,Android,1462312800000,rx.android
+RxAndroid,1.2.1,Android,1466114400000,rx.android
+RxAndroidBle,0.0.1,Android,1456873200000,com.polidea.rxandroidble
+RxAndroidBle,0.0.2,Android,1458169200000,com.polidea.rxandroidble
+RxAndroidBle,0.0.3,Android,1458774000000,com.polidea.rxandroidble
+RxAndroidBle,0.0.4,Android,1459202400000,com.polidea.rxandroidble
+RxAndroidBle,1.0.0,Android,1459202400000,com.polidea.rxandroidble
+RxAndroidBle,1.0.1,Android,1459288800000,com.polidea.rxandroidble
+RxAndroidBle,1.0.2,Android,1470607200000,com.polidea.rxandroidble
+RxAndroidBle,1.1.0,Android,1479078000000,com.polidea.rxandroidble
+RxAndroidBle,1.2.0,Android,1490738400000,com.polidea.rxandroidble
+RxAndroidBle,1.2.1,Android,1493244000000,com.polidea.rxandroidble
+RxAndroidBle,1.2.2,Android,1493330400000,com.polidea.rxandroidble
+RxAndroidBle,1.2.3,Android,1496268000000,com.polidea.rxandroidble
+RxAndroidBle,1.2.4,Android,1496613600000,com.polidea.rxandroidble
+Sensey,1.0.1,Android,1447282800000,in.excogitation.lib.sensey
+Sensey,1.1.0,Android,1465077600000,com.github.nisrulz.sensey
+Sensey,1.2.0,Android,1465855200000,com.github.nisrulz.sensey
+Sensey,1.3.0,Android,1466719200000,com.github.nisrulz.sensey
+Sensey,1.4.0,Android,1467583200000,com.github.nisrulz.sensey
+Sensey,1.5.1,Android,1477087200000,com.github.nisrulz.sensey
+Sensey,1.6.1,Android,1488236400000,com.github.nisrulz.sensey
+Stetho,1.0.0,Android,1424214000000,com.facebook.stetho
+Stetho,1.0.1,Android,1424991600000,com.facebook.stetho
+Stetho,1.1.0,Android,1428098400000,com.facebook.stetho
+Stetho,1.1.1,Android,1430431200000,com.facebook.stetho
+Stetho,1.2.0,Android,1442008800000,com.facebook.stetho
+Stetho,1.3.0,Android,1453330800000,com.facebook.stetho
+Stetho,1.3.1,Android,1456441200000,com.facebook.stetho
+Stetho,1.4.0,Android,1473285600000,com.facebook.stetho
+Stetho,1.4.1,Android,1473717600000,com.facebook.stetho
+Stetho,1.4.2,Android,1481756400000,com.facebook.stetho
+Stetho,1.5.0,Android,1492034400000,com.facebook.stetho
+Ticker,1.0.0,Android,1468879200000,com.robinhood.ticker
+Ticker,1.0.1,Android,1469397600000,com.robinhood.ticker
+Ticker,1.1.0,Android,1470866400000,com.robinhood.ticker
+Ticker,1.1.1,Android,1478559600000,com.robinhood.ticker
+Ticker,1.2.0,Android,1493330400000,com.robinhood.ticker
+TimesSquare,1.1.0,Android,1390950000000,com.squareup.timessquare
+TimesSquare,1.1.1,Android,1393369200000,com.squareup.timessquare
+TimesSquare,1.2.0,Android,1402264800000,com.squareup.timessquare
+TimesSquare,1.2.1,Android,1402351200000,com.squareup.timessquare
+TimesSquare,1.3.0,Android,1407448800000,com.squareup.timessquare
+TimesSquare,1.4.0,Android,1413324000000,com.squareup.timessquare
+TimesSquare,1.4.1,Android,1414364400000,com.squareup.timessquare
+TimesSquare,1.5.0,Android,1418684400000,com.squareup.timessquare
+TimesSquare,1.6.0,Android,1428616800000,com.squareup.timessquare
+TimesSquare,1.6.1,Android,1428876000000,com.squareup.timessquare
+TimesSquare,1.6.2,Android,1430258400000,com.squareup.timessquare
+TimesSquare,1.6.3,Android,1439935200000,com.squareup.timessquare
+TimesSquare,1.6.4,Android,1441058400000,com.squareup.timessquare
+TimesSquare,1.6.5,Android,1455058800000,com.squareup.timessquare
+TimesSquare,1.7.0,Android,1477432800000,com.squareup.timessquare
+TimesSquare,1.7.1,Android,1488236400000,com.squareup.timessquare
+TimesSquare,1.7.2,Android,1491516000000,com.squareup.timessquare
+TimesSquare,1.7.3,Android,1493762400000,com.squareup.timessquare
+TrustKit,0.1.0,Android,1484262000000,com.datatheorem.android.trustkit
+TrustKit,1.0.0,Android,1484262000000,com.datatheorem.android.trustkit
+TrustKit,1.0.1,Android,1491948000000,com.datatheorem.android.trustkit
+android-gif-drawable,1.0.10,Android,1411855200000,pl.droidsonroids.gif
+android-gif-drawable,1.0.11,Android,1413151200000,pl.droidsonroids.gif
+android-gif-drawable,1.0.12,Android,1414188000000,pl.droidsonroids.gif
+android-gif-drawable,1.0.6,Android,1393455600000,pl.droidsonroids.gif
+android-gif-drawable,1.0.7,Android,1395788400000,pl.droidsonroids.gif
+android-gif-drawable,1.0.8,Android,1401573600000,pl.droidsonroids.gif
+android-gif-drawable,1.0.9,Android,1407103200000,pl.droidsonroids.gif
+android-gif-drawable,1.1.0,Android,1418166000000,pl.droidsonroids.gif
+android-gif-drawable,1.1.1,Android,1419116400000,pl.droidsonroids.gif
+android-gif-drawable,1.1.10,Android,1443736800000,pl.droidsonroids.gif
+android-gif-drawable,1.1.11,Android,1449010800000,pl.droidsonroids.gif
+android-gif-drawable,1.1.12,Android,1453503600000,pl.droidsonroids.gif
+android-gif-drawable,1.1.13,Android,1453676400000,pl.droidsonroids.gif
+android-gif-drawable,1.1.14,Android,1456786800000,pl.droidsonroids.gif
+android-gif-drawable,1.1.15,Android,1458860400000,pl.droidsonroids.gif
+android-gif-drawable,1.1.16,Android,1463868000000,pl.droidsonroids.gif
+android-gif-drawable,1.1.17,Android,1468101600000,pl.droidsonroids.gif
+android-gif-drawable,1.1.2,Android,1421362800000,pl.droidsonroids.gif
+android-gif-drawable,1.1.3,Android,1427324400000,pl.droidsonroids.gif
+android-gif-drawable,1.1.4,Android,1428876000000,pl.droidsonroids.gif
+android-gif-drawable,1.1.5,Android,1428876000000,pl.droidsonroids.gif
+android-gif-drawable,1.1.6,Android,1429826400000,pl.droidsonroids.gif
+android-gif-drawable,1.1.7,Android,1432159200000,pl.droidsonroids.gif
+android-gif-drawable,1.1.8,Android,1437516000000,pl.droidsonroids.gif
+android-gif-drawable,1.1.9,Android,1439244000000,pl.droidsonroids.gif
+android-gif-drawable,1.2.0,Android,1471471200000,pl.droidsonroids.gif
+android-gif-drawable,1.2.1,Android,1472508000000,pl.droidsonroids.gif
+android-gif-drawable,1.2.2,Android,1473026400000,pl.droidsonroids.gif
+android-gif-drawable,1.2.3,Android,1478300400000,pl.droidsonroids.gif
+android-gif-drawable,1.2.4,Android,1484002800000,pl.droidsonroids.gif
+android-gif-drawable,1.2.5,Android,1486335600000,pl.droidsonroids.gif
+android-gif-drawable,1.2.6,Android,1489359600000,pl.droidsonroids.gif
+android-gif-drawable,1.2.7,Android,1492984800000,pl.droidsonroids.gif
+glide,2.0.0,Android,1377554400000,com.bumptech.glide
+glide,2.0.1,Android,1378332000000,com.bumptech.glide
+glide,2.0.2,Android,1393801200000,com.bumptech.glide
+glide,2.0.3,Android,1397512800000,com.bumptech.glide
+glide,2.0.4,Android,1402783200000,com.bumptech.glide
+glide,2.0.5,Android,1403128800000,com.bumptech.glide
+glide,3.3.0,Android,1409608800000,com.bumptech.glide
+glide,3.3.1,Android,1410732000000,com.bumptech.glide
+glide,3.4.0,Android,1415314800000,com.bumptech.glide
+glide,3.5.0,Android,1422140400000,com.bumptech.glide
+glide,3.5.1,Android,1422572400000,com.bumptech.glide
+glide,3.5.2,Android,1424559600000,com.bumptech.glide
+glide,3.6.0,Android,1430431200000,com.bumptech.glide
+glide,3.6.1,Android,1435442400000,com.bumptech.glide
+glide,3.7.0,Android,1453590000000,com.bumptech.glide
+glide,3.8.0,Android,1493762400000,com.bumptech.glide
+glide,4.0.0-RC0,Android,1495058400000,com.bumptech.glide
+uCrop,1.0.0,Android,1453330800000,com.yalantis.ucrop
+uCrop,1.0.1,Android,1453417200000,com.yalantis.ucrop
+uCrop,1.1.0,Android,1453849200000,com.yalantis.ucrop
+uCrop,1.1.1,Android,1453935600000,com.yalantis.ucrop
+uCrop,1.1.2,Android,1454022000000,com.yalantis.ucrop
+uCrop,1.2.0,Android,1454281200000,com.yalantis.ucrop
+uCrop,1.2.1,Android,1454454000000,com.yalantis.ucrop
+uCrop,1.2.2,Android,1454454000000,com.yalantis.ucrop
+uCrop,1.2.3,Android,1454540400000,com.yalantis.ucrop
+uCrop,1.2.4,Android,1455663600000,com.yalantis.ucrop
+uCrop,1.3.0,Android,1456527600000,com.yalantis.ucrop
+uCrop,1.3.1,Android,1457478000000,com.yalantis.ucrop
+uCrop,1.3.2,Android,1457564400000,com.yalantis.ucrop
+uCrop,1.4.0,Android,1460066400000,com.yalantis.ucrop
+uCrop,1.4.1,Android,1460152800000,com.yalantis.ucrop
+uCrop,1.5.0,Android,1461189600000,com.yalantis.ucrop
+uCrop,2.0.0,Android,1462140000000,com.yalantis.ucrop
+uCrop,2.0.0-alpha,Android,1462140000000,com.yalantis.ucrop
+uCrop,2.1.0,Android,1466805600000,com.yalantis.ucrop
+uCrop,2.1.1,Android,1466978400000,com.yalantis.ucrop
+uCrop,2.1.2,Android,1469397600000,com.yalantis.ucrop
+uCrop,2.2.0,Android,1473285600000,com.yalantis.ucrop
+uCrop,2.2.0-native,Android,1473285600000,com.yalantis.ucrop
+universal-image-loader,1.7.0,Android,1358550000000,com.nostra13.universalimageloader
+universal-image-loader,1.9.5,Android,1448578800000,com.nostra13.universalimageloader
+Amazon Cloud Drive,1.0.0,Cloud,1434492000000,com.amazon.clouddrive
+Amazon-AWS-Cognito,2.1.10,Cloud,1425337200000,com.amazonaws
+Amazon-AWS-Cognito,2.1.3,Cloud,1413756000000,com.amazonaws
+Amazon-AWS-Cognito,2.1.4,Cloud,1414188000000,com.amazonaws
+Amazon-AWS-Cognito,2.1.5,Cloud,1415228400000,com.amazonaws
+Amazon-AWS-Cognito,2.1.7,Cloud,1421103600000,com.amazonaws
+Amazon-AWS-Cognito,2.1.8,Cloud,1421708400000,com.amazonaws
+Amazon-AWS-Cognito,2.1.9,Cloud,1424818800000,com.amazonaws
+Amazon-AWS-Cognito,2.2.0,Cloud,1428530400000,com.amazonaws
+Amazon-AWS-Cognito,2.2.1,Cloud,1429653600000,com.amazonaws
+Amazon-AWS-Cognito,2.2.10,Cloud,1452121200000,com.amazonaws
+Amazon-AWS-Cognito,2.2.11,Cloud,1454022000000,com.amazonaws
+Amazon-AWS-Cognito,2.2.12,Cloud,1455318000000,com.amazonaws
+Amazon-AWS-Cognito,2.2.13,Cloud,1456441200000,com.amazonaws
+Amazon-AWS-Cognito,2.2.14,Cloud,1459375200000,com.amazonaws
+Amazon-AWS-Cognito,2.2.15,Cloud,1461016800000,com.amazonaws
+Amazon-AWS-Cognito,2.2.16,Cloud,1462917600000,com.amazonaws
+Amazon-AWS-Cognito,2.2.17,Cloud,1463781600000,com.amazonaws
+Amazon-AWS-Cognito,2.2.18,Cloud,1464904800000,com.amazonaws
+Amazon-AWS-Cognito,2.2.19,Cloud,1466719200000,com.amazonaws
+Amazon-AWS-Cognito,2.2.2,Cloud,1434060000000,com.amazonaws
+Amazon-AWS-Cognito,2.2.20,Cloud,1467064800000,com.amazonaws
+Amazon-AWS-Cognito,2.2.21,Cloud,1469138400000,com.amazonaws
+Amazon-AWS-Cognito,2.2.22,Cloud,1469570400000,com.amazonaws
+Amazon-AWS-Cognito,2.2.3,Cloud,1436392800000,com.amazonaws
+Amazon-AWS-Cognito,2.2.4,Cloud,1437516000000,com.amazonaws
+Amazon-AWS-Cognito,2.2.5,Cloud,1438898400000,com.amazonaws
+Amazon-AWS-Cognito,2.2.6,Cloud,1442527200000,com.amazonaws
+Amazon-AWS-Cognito,2.2.7,Cloud,1444255200000,com.amazonaws
+Amazon-AWS-Cognito,2.2.8,Cloud,1446764400000,com.amazonaws
+Amazon-AWS-Cognito,2.2.9,Cloud,1448319600000,com.amazonaws
+Amazon-AWS-Cognito,2.3.0,Cloud,1469743200000,com.amazonaws
+Amazon-AWS-Cognito,2.3.1,Cloud,1473372000000,com.amazonaws
+Amazon-AWS-Cognito,2.3.2,Cloud,1475791200000,com.amazonaws
+Amazon-AWS-Cognito,2.3.3,Cloud,1476655200000,com.amazonaws
+Amazon-AWS-Cognito,2.3.4,Cloud,1480460400000,com.amazonaws
+Amazon-AWS-Cognito,2.3.5,Cloud,1480546800000,com.amazonaws
+Amazon-AWS-Cognito,2.3.6,Cloud,1481151600000,com.amazonaws
+Amazon-AWS-Cognito,2.3.7,Cloud,1481670000000,com.amazonaws
+Amazon-AWS-Cognito,2.3.8,Cloud,1482188400000,com.amazonaws
+Amazon-AWS-Cognito,2.3.9,Cloud,1486076400000,com.amazonaws
+Amazon-AWS-Cognito,2.4.0,Cloud,1490137200000,com.amazonaws
+Amazon-AWS-Cognito,2.4.1,Cloud,1491516000000,com.amazonaws
+Amazon-AWS-Cognito,2.4.2,Cloud,1492639200000,com.amazonaws
+Amazon-AWS-Cognito,2.4.3,Cloud,1495058400000,com.amazonaws
+Amazon-AWS-Cognito,2.4.4,Cloud,1496440800000,com.amazonaws
+Amazon-AWS-S3,2.1.10,Cloud,1425337200000,com.amazonaws
+Amazon-AWS-S3,2.1.3,Cloud,1413756000000,com.amazonaws
+Amazon-AWS-S3,2.1.4,Cloud,1414188000000,com.amazonaws
+Amazon-AWS-S3,2.1.5,Cloud,1415228400000,com.amazonaws
+Amazon-AWS-S3,2.1.7,Cloud,1421103600000,com.amazonaws
+Amazon-AWS-S3,2.1.8,Cloud,1421708400000,com.amazonaws
+Amazon-AWS-S3,2.1.9,Cloud,1424818800000,com.amazonaws
+Amazon-AWS-S3,2.2.0,Cloud,1428530400000,com.amazonaws
+Amazon-AWS-S3,2.2.1,Cloud,1429653600000,com.amazonaws
+Amazon-AWS-S3,2.2.10,Cloud,1452121200000,com.amazonaws
+Amazon-AWS-S3,2.2.11,Cloud,1454022000000,com.amazonaws
+Amazon-AWS-S3,2.2.12,Cloud,1455318000000,com.amazonaws
+Amazon-AWS-S3,2.2.13,Cloud,1456441200000,com.amazonaws
+Amazon-AWS-S3,2.2.14,Cloud,1459375200000,com.amazonaws
+Amazon-AWS-S3,2.2.15,Cloud,1461016800000,com.amazonaws
+Amazon-AWS-S3,2.2.16,Cloud,1462917600000,com.amazonaws
+Amazon-AWS-S3,2.2.17,Cloud,1463781600000,com.amazonaws
+Amazon-AWS-S3,2.2.18,Cloud,1464904800000,com.amazonaws
+Amazon-AWS-S3,2.2.19,Cloud,1466719200000,com.amazonaws
+Amazon-AWS-S3,2.2.2,Cloud,1434060000000,com.amazonaws
+Amazon-AWS-S3,2.2.20,Cloud,1467064800000,com.amazonaws
+Amazon-AWS-S3,2.2.21,Cloud,1469138400000,com.amazonaws
+Amazon-AWS-S3,2.2.22,Cloud,1469570400000,com.amazonaws
+Amazon-AWS-S3,2.2.3,Cloud,1436392800000,com.amazonaws
+Amazon-AWS-S3,2.2.4,Cloud,1437516000000,com.amazonaws
+Amazon-AWS-S3,2.2.5,Cloud,1438898400000,com.amazonaws
+Amazon-AWS-S3,2.2.6,Cloud,1442527200000,com.amazonaws
+Amazon-AWS-S3,2.2.7,Cloud,1444255200000,com.amazonaws
+Amazon-AWS-S3,2.2.8,Cloud,1446764400000,com.amazonaws
+Amazon-AWS-S3,2.2.9,Cloud,1448319600000,com.amazonaws
+Amazon-AWS-S3,2.3.0,Cloud,1469743200000,com.amazonaws
+Amazon-AWS-S3,2.3.1,Cloud,1473372000000,com.amazonaws
+Amazon-AWS-S3,2.3.2,Cloud,1475791200000,com.amazonaws
+Amazon-AWS-S3,2.3.3,Cloud,1476655200000,com.amazonaws
+Amazon-AWS-S3,2.3.4,Cloud,1480460400000,com.amazonaws
+Amazon-AWS-S3,2.3.5,Cloud,1480546800000,com.amazonaws
+Amazon-AWS-S3,2.3.6,Cloud,1481151600000,com.amazonaws
+Amazon-AWS-S3,2.3.7,Cloud,1481670000000,com.amazonaws
+Amazon-AWS-S3,2.3.8,Cloud,1482188400000,com.amazonaws
+Amazon-AWS-S3,2.3.9,Cloud,1486076400000,com.amazonaws
+Amazon-AWS-S3,2.4.0,Cloud,1490137200000,com.amazonaws
+Amazon-AWS-S3,2.4.1,Cloud,1491516000000,com.amazonaws
+Amazon-AWS-S3,2.4.2,Cloud,1492639200000,com.amazonaws
+Amazon-AWS-S3,2.4.3,Cloud,1495058400000,com.amazonaws
+Amazon-AWS-S3,2.4.4,Cloud,1496440800000,com.amazonaws
+Box Browse SDK,1.1.0,Cloud,1434319200000,com.box.androidsdk.browse
+Box Browse SDK,1.1.1,Cloud,1440540000000,com.box.androidsdk.browse
+Box Browse SDK,1.1.2,Cloud,1446159600000,com.box.androidsdk.browse
+Box Content SDK,1.0.0,Cloud,1429912800000,com.box.androidsdk.content
+Box Content SDK,1.0.1,Cloud,1431036000000,com.box.androidsdk.content
+Box Content SDK,3.0.0,Cloud,1433196000000,com.box.androidsdk.content
+Box Content SDK,3.0.1,Cloud,1434060000000,com.box.androidsdk.content
+Box Content SDK,3.0.2,Cloud,1440540000000,com.box.androidsdk.content
+Box Content SDK,3.0.3,Cloud,1446159600000,com.box.androidsdk.content
+Box Preview SDK,1.0.0,Cloud,1446418800000,com.pspdfkit
+Box Share SDK,1.0.0,Cloud,1440540000000,com.box.androidsdk.share
+Box Share SDK,1.0.1,Cloud,1446418800000,com.box.androidsdk.share
+Dropbox,1.2.2,Cloud,1321311600000,com.dropbox.client2
+Dropbox,1.2.3,Cloud,1326236400000,com.dropbox.client2
+Dropbox,1.3.1,Cloud,1337119200000,com.dropbox.client2
+Dropbox,1.5.3,Cloud,1354057200000,com.dropbox.client2
+Dropbox,1.5.4,Cloud,1364252400000,com.dropbox.client2
+Dropbox,1.6,Cloud,1390950000000,com.dropbox.core
+Dropbox,1.6-beta-1,Cloud,1372716000000,com.dropbox.core
+Dropbox,1.6.1,Cloud,1394665200000,com.dropbox.client2
+Dropbox,1.6.2,Cloud,1417734000000,com.dropbox.client2
+Dropbox,1.6.3,Cloud,1420758000000,com.dropbox.client2
+Dropbox,1.7,Cloud,1375221600000,com.dropbox.core
+Dropbox,1.7.1,Cloud,1377122400000,com.dropbox.core
+Dropbox,1.7.2,Cloud,1377122400000,com.dropbox.core
+Dropbox,1.7.3,Cloud,1378332000000,com.dropbox.core
+Dropbox,1.7.4,Cloud,1379109600000,com.dropbox.core
+Dropbox,1.7.5,Cloud,1379368800000,com.dropbox.core
+Dropbox,1.7.6,Cloud,1386630000000,com.dropbox.core
+Dropbox,1.7.7,Cloud,1409695200000,com.dropbox.core
+Dropbox,1.8,Cloud,1442268000000,com.dropbox.core
+Dropbox,1.8.1,Cloud,1442786400000,com.dropbox.core
+Dropbox,1.8.2,Cloud,1445205600000,com.dropbox.core
+Dropbox,2.0-beta-1,Cloud,1444687200000,com.dropbox.core
+Dropbox,2.0-beta-2,Cloud,1447455600000,com.dropbox.core
+Dropbox,2.0-beta-3,Cloud,1449010800000,com.dropbox.core
+Dropbox,2.0-beta-4,Cloud,1449702000000,com.dropbox.core
+Dropbox,2.0-beta-5,Cloud,1453503600000,com.dropbox.core
+Dropbox,2.0-beta-6,Cloud,1456182000000,com.dropbox.core
+Dropbox,2.0-beta-7,Cloud,1456354800000,com.dropbox.core
+Dropbox,2.0.0,Cloud,1456959600000,com.dropbox.core
+Dropbox,2.0.1,Cloud,1457478000000,com.dropbox.core
+Dropbox,2.0.2,Cloud,1461794400000,com.dropbox.core
+Dropbox,2.0.3,Cloud,1462572000000,com.dropbox.core
+Dropbox,2.0.4,Cloud,1464645600000,com.dropbox.core
+Dropbox,2.0.5,Cloud,1465336800000,com.dropbox.core
+Dropbox,2.0.5.1,Cloud,1465509600000,com.dropbox.core
+Dropbox,2.0.6,Cloud,1466373600000,com.dropbox.core
+Dropbox,2.0.7,Cloud,1466546400000,com.dropbox.core
+Dropbox,2.1.0,Cloud,1469743200000,com.dropbox.core
+Dropbox,2.1.1,Cloud,1470002400000,com.dropbox.core
+Dropbox,2.1.2,Cloud,1475532000000,com.dropbox.core
+Dropbox,3.0.0,Cloud,1489186800000,com.dropbox.core
+Dropbox,3.0.1,Cloud,1490824800000,com.dropbox.core
+Dropbox,3.0.2,Cloud,1491948000000,com.dropbox.core
+Dropbox,3.0.3,Cloud,1493676000000,com.dropbox.core
+OneDrive,1.0.0,Cloud,1447282800000,com.onedrive.sdk
+OneDrive,1.0.1,Cloud,1448492400000,com.onedrive.sdk
+OneDrive,1.0.2,Cloud,1450134000000,com.onedrive.sdk
+OneDrive,1.1.0,Cloud,1451948400000,com.onedrive.sdk
+OneDrive,1.1.1,Cloud,1454454000000,com.onedrive.sdk
+OneDrive,1.1.3,Cloud,1455836400000,com.onedrive.sdk
+OneDrive,1.1.4,Cloud,1459461600000,com.onedrive.sdk
+Parse,1.13.1,Cloud,1465423200000,com.parse
+Parse,1.13.3,Cloud,1489100400000,com.parse
+Parse,1.14.0,Cloud,1489705200000,com.parse
+Parse,1.14.1,Cloud,1490396400000,com.parse
+Parse,1.15.0,Cloud,1492466400000,com.parse
+Parse,1.15.1,Cloud,1492466400000,com.parse
+Parse,1.15.2,Cloud,1493244000000,com.parse
+Parse,1.15.3,Cloud,1493416800000,com.parse
+Parse,1.15.4,Cloud,1493503200000,com.parse
+Parse,1.15.5,Cloud,1493503200000,com.parse
+Parse,1.15.6,Cloud,1493762400000,com.parse
+Parse,1.15.7,Cloud,1494972000000,com.parse
+Parse.com,1.10.0,Cloud,1439416800000,com.parse
+Parse.com,1.10.1,Cloud,1439935200000,com.parse
+Parse.com,1.10.2,Cloud,1442268000000,com.parse
+Parse.com,1.10.3,Cloud,1444255200000,com.parse
+Parse.com,1.11.0,Cloud,1447196400000,com.parse
+Parse.com,1.12.0,Cloud,1451343600000,com.parse
+Parse.com,1.13.0,Cloud,1453417200000,com.parse
+QuickBlox chat,2.2.6,Cloud,1436738400000,N/A
+QuickBlox chat,2.3,Cloud,1441576800000,N/A
+QuickBlox chat,2.3.1,Cloud,1442181600000,N/A
+QuickBlox chat,2.3.3,Cloud,1446678000000,N/A
+QuickBlox content,2.2.6,Cloud,1436738400000,com.quickblox.content
+QuickBlox content,2.3,Cloud,1441576800000,com.quickblox.content
+QuickBlox content,2.3.1,Cloud,1442181600000,com.quickblox.content
+QuickBlox content,2.3.3,Cloud,1446678000000,com.quickblox.content
+QuickBlox core,2.2.6,Cloud,1436738400000,N/A
+QuickBlox core,2.3,Cloud,1441576800000,N/A
+QuickBlox core,2.3.1,Cloud,1442181600000,N/A
+QuickBlox core,2.3.3,Cloud,1446678000000,N/A
+QuickBlox customobjects,2.2.6,Cloud,1436738400000,com.quickblox.customobjects
+QuickBlox customobjects,2.3,Cloud,1441576800000,com.quickblox.customobjects
+QuickBlox customobjects,2.3.1,Cloud,1442181600000,com.quickblox.customobjects
+QuickBlox customobjects,2.3.3,Cloud,1446678000000,com.quickblox.customobjects
+QuickBlox location,2.2.6,Cloud,1436738400000,com.quickblox.location
+QuickBlox location,2.3,Cloud,1441576800000,com.quickblox.location
+QuickBlox location,2.3.1,Cloud,1442181600000,com.quickblox.location
+QuickBlox location,2.3.3,Cloud,1446678000000,com.quickblox.location
+QuickBlox messages,2.2.6,Cloud,1436738400000,com.quickblox.messages
+QuickBlox messages,2.3,Cloud,1441576800000,com.quickblox.messages
+QuickBlox messages,2.3.1,Cloud,1442181600000,com.quickblox.messages
+QuickBlox messages,2.3.3,Cloud,1446678000000,com.quickblox.messages
+QuickBlox videochat,2.2.6,Cloud,1436738400000,com.quickblox.videochat.webrtc
+QuickBlox videochat,2.3,Cloud,1441576800000,com.quickblox.videochat.webrtc
+QuickBlox videochat,2.3.1,Cloud,1442181600000,com.quickblox.videochat.webrtc
+QuickBlox videochat,2.3.3,Cloud,1446678000000,com.quickblox.videochat.webrtc
+Facebook,3.0,SocialMedia,1355353200000,com.facebook
+Facebook,3.0.1,SocialMedia,1363734000000,com.facebook
+Facebook,3.0.2,SocialMedia,1372629600000,com.facebook
+Facebook,3.14,SocialMedia,1398808800000,com.facebook
+Facebook,3.14.1,SocialMedia,1399845600000,com.facebook
+Facebook,3.15.0,SocialMedia,1402524000000,com.facebook
+Facebook,3.16,SocialMedia,1405634400000,com.facebook
+Facebook,3.17.0,SocialMedia,1407362400000,com.facebook
+Facebook,3.17.1,SocialMedia,1407362400000,com.facebook
+Facebook,3.17.2,SocialMedia,1408572000000,com.facebook
+Facebook,3.18,SocialMedia,1409695200000,com.facebook
+Facebook,3.18.1,SocialMedia,1411596000000,com.facebook
+Facebook,3.19.0,SocialMedia,1413237600000,com.facebook
+Facebook,3.19.1,SocialMedia,1413410400000,com.facebook
+Facebook,3.20.0,SocialMedia,1414623600000,com.facebook
+Facebook,3.21.0,SocialMedia,1417474800000,com.facebook
+Facebook,3.21.1,SocialMedia,1417734000000,com.facebook
+Facebook,3.22.0,SocialMedia,1420498800000,com.facebook
+Facebook,3.23.0,SocialMedia,1423090800000,com.facebook
+Facebook,3.23.1,SocialMedia,1426114800000,com.facebook
+Facebook,3.5,SocialMedia,1376949600000,com.facebook
+Facebook,3.5.1,SocialMedia,1380146400000,com.facebook
+Facebook,3.5.2,SocialMedia,1380578400000,com.facebook
+Facebook,3.6,SocialMedia,1386630000000,com.facebook
+Facebook,3.7,SocialMedia,1392937200000,com.facebook
+Facebook,3.8.0,SocialMedia,1395615600000,com.facebook
+Facebook,4.0.0,SocialMedia,1427238000000,com.facebook
+Facebook,4.0.1,SocialMedia,1427925600000,com.facebook
+Facebook,4.1.0,SocialMedia,1430344800000,com.facebook
+Facebook,4.1.1,SocialMedia,1430949600000,com.facebook
+Facebook,4.1.2,SocialMedia,1431554400000,com.facebook
+Facebook,4.10.0,SocialMedia,1455058800000,com.facebook
+Facebook,4.10.1,SocialMedia,1458687600000,com.facebook
+Facebook,4.11.0,SocialMedia,1460412000000,com.facebook
+Facebook,4.12.0,SocialMedia,1463695200000,com.facebook
+Facebook,4.12.1,SocialMedia,1464300000000,com.facebook
+Facebook,4.13.0,SocialMedia,1466028000000,com.facebook
+Facebook,4.13.1,SocialMedia,1466114400000,com.facebook
+Facebook,4.13.2,SocialMedia,1467324000000,com.facebook
+Facebook,4.14.0,SocialMedia,1468360800000,com.facebook
+Facebook,4.14.1,SocialMedia,1470261600000,com.facebook
+Facebook,4.15.0,SocialMedia,1471903200000,com.facebook
+Facebook,4.16.0,SocialMedia,1475013600000,com.facebook
+Facebook,4.16.1,SocialMedia,1475791200000,com.facebook
+Facebook,4.17.0,SocialMedia,1477432800000,com.facebook
+Facebook,4.18.0,SocialMedia,1480546800000,com.facebook
+Facebook,4.19.0,SocialMedia,1485385200000,com.facebook
+Facebook,4.2.0,SocialMedia,1432850400000,com.facebook
+Facebook,4.20.0,SocialMedia,1488409200000,com.facebook
+Facebook,4.21.0,SocialMedia,1491343200000,com.facebook
+Facebook,4.21.1,SocialMedia,1491429600000,com.facebook
+Facebook,4.22.0,SocialMedia,1492466400000,com.facebook
+Facebook,4.22.1,SocialMedia,1494453600000,com.facebook
+Facebook,4.23.0,SocialMedia,1495663200000,com.facebook
+Facebook,4.3.0,SocialMedia,1435183200000,com.facebook
+Facebook,4.4.0,SocialMedia,1436306400000,com.facebook
+Facebook,4.4.1,SocialMedia,1436738400000,com.facebook
+Facebook,4.5.0,SocialMedia,1439244000000,com.facebook
+Facebook,4.5.1,SocialMedia,1439416800000,com.facebook
+Facebook,4.6.0,SocialMedia,1441922400000,com.facebook
+Facebook,4.7.0,SocialMedia,1444168800000,com.facebook
+Facebook,4.8.0,SocialMedia,1447196400000,com.facebook
+Facebook,4.8.1,SocialMedia,1447282800000,com.facebook
+Facebook,4.8.2,SocialMedia,1448319600000,com.facebook
+Facebook,4.9.0,SocialMedia,1452639600000,com.facebook
+JTwitter,3.1.9,SocialMedia,1447369200000,winterwell
+LinkedIn,1.0.0,SocialMedia,1423695600000,com.linkedin.platform
+LinkedIn,1.1.0,SocialMedia,1435701600000,com.linkedin.platform
+LinkedIn,1.1.2,SocialMedia,1440021600000,com.linkedin.platform
+LinkedIn,1.1.4,SocialMedia,1446418800000,com.linkedin.platform
+Pinterest,1.0,SocialMedia,1437429600000,com.pinterest.android.pdk
+Twitter4J,2.0.10,SocialMedia,1255298400000,twitter4j
+Twitter4J,2.1.0,SocialMedia,1264201200000,twitter4j
+Twitter4J,2.1.1,SocialMedia,1270072800000,twitter4j
+Twitter4J,2.1.10,SocialMedia,1294268400000,twitter4j
+Twitter4J,2.1.11,SocialMedia,1295391600000,twitter4j
+Twitter4J,2.1.12,SocialMedia,1298156400000,twitter4j
+Twitter4J,2.1.2,SocialMedia,1271541600000,twitter4j
+Twitter4J,2.1.3,SocialMedia,1279836000000,twitter4j
+Twitter4J,2.1.4,SocialMedia,1284156000000,twitter4j
+Twitter4J,2.1.5,SocialMedia,1285970400000,twitter4j
+Twitter4J,2.1.6,SocialMedia,1286488800000,twitter4j
+Twitter4J,2.1.7,SocialMedia,1290466800000,twitter4j
+Twitter4J,2.1.8,SocialMedia,1291676400000,twitter4j
+Twitter4J,2.1.9,SocialMedia,1293922800000,twitter4j
+Twitter4J,2.2.0,SocialMedia,1298415600000,twitter4j
+Twitter4J,2.2.1,SocialMedia,1300489200000,twitter4j
+Twitter4J,2.2.2,SocialMedia,1304028000000,twitter4j
+Twitter4J,2.2.3,SocialMedia,1307570400000,twitter4j
+Twitter4J,2.2.4,SocialMedia,1312236000000,twitter4j
+Twitter4J,2.2.5,SocialMedia,1319320800000,twitter4j
+Twitter4J,2.2.6,SocialMedia,1341957600000,twitter4j
+Twitter4J,3.0.0,SocialMedia,1353452400000,twitter4j
+Twitter4J,3.0.1,SocialMedia,1353538800000,twitter4j
+Twitter4J,3.0.2,SocialMedia,1354402800000,twitter4j
+Twitter4J,3.0.3,SocialMedia,1356217200000,twitter4j
+Twitter4J,3.0.4,SocialMedia,1381183200000,twitter4j
+Twitter4J,3.0.5,SocialMedia,1382824800000,twitter4j
+Twitter4J,3.0.6,SocialMedia,1394319600000,twitter4j
+Twitter4J,4.0.0,SocialMedia,1394665200000,twitter4j
+Twitter4J,4.0.1,SocialMedia,1395183600000,twitter4j
+Twitter4J,4.0.2,SocialMedia,1403560800000,twitter4j
+Twitter4J,4.0.3,SocialMedia,1427497200000,twitter4j
+Twitter4J,4.0.4,SocialMedia,1435010400000,twitter4j
+Twitter4J,4.0.5,SocialMedia,1473717600000,twitter4j
+Twitter4J,4.0.6,SocialMedia,1482620400000,twitter4j
+TwitterCore,1.3.0,SocialMedia,1422486000000,com.twitter.sdk.android.core
+TwitterCore,1.3.1,SocialMedia,1424905200000,com.twitter.sdk.android.core
+TwitterCore,1.4.1,SocialMedia,1436997600000,com.twitter.sdk.android.core
+TwitterCore,1.5.0,SocialMedia,1440972000000,com.twitter.sdk.android.core
+TwitterCore,1.6.0,SocialMedia,1445205600000,com.twitter.sdk.android.core
+TwitterCore,1.6.1,SocialMedia,1447282800000,com.twitter.sdk.android.core
+TwitterCore,1.6.2,SocialMedia,1449183600000,com.twitter.sdk.android.core
+TwitterCore,1.6.3,SocialMedia,1452553200000,com.twitter.sdk.android.core
+TwitterCore,1.6.4,SocialMedia,1454540400000,com.twitter.sdk.android.core
+TwitterCore,1.6.5,SocialMedia,1457046000000,com.twitter.sdk.android.core
+TwitterCore,1.6.6,SocialMedia,1461708000000,com.twitter.sdk.android.core
+TwitterCore,1.6.7,SocialMedia,1464732000000,com.twitter.sdk.android.core
+TwitterCore,1.6.8,SocialMedia,1465941600000,com.twitter.sdk.android.core
+TwitterCore,1.7.0,SocialMedia,1466632800000,com.twitter.sdk.android.core
+WeChat,1.0.0,SocialMedia,0,com.tencent.mm
+WeChat,2.0.0,SocialMedia,0,com.tencent.mm
+flickrj,1.0.0,SocialMedia,1321916400000,com.gmail.yuyang226.flickr
+flickrj,1.0.1,SocialMedia,1321916400000,com.gmail.yuyang226.flickr
+flickrj,1.0.2,SocialMedia,1334095200000,com.gmail.yuyang226.flickr
+flickrj,1.0.3,SocialMedia,1340056800000,com.gmail.yuyang226.flickr
+flickrj,2.0.0,SocialMedia,1342648800000,com.googlecode.flickrjandroid
+flickrj,2.0.1,SocialMedia,1355353200000,com.googlecode.flickrjandroid
+flickrj,2.0.2,SocialMedia,1355353200000,com.googlecode.flickrjandroid
+flickrj,2.0.3,SocialMedia,1356562800000,com.googlecode.flickrjandroid
+flickrj,2.0.4,SocialMedia,1358550000000,com.googlecode.flickrjandroid
+flickrj,2.0.5,SocialMedia,1361055600000,com.googlecode.flickrjandroid
+flickrj,2.0.6,SocialMedia,1361919600000,com.googlecode.flickrjandroid
+flickrj,2.0.7,SocialMedia,1367532000000,com.googlecode.flickrjandroid
+flickrj,2.0.8,SocialMedia,1380578400000,com.googlecode.flickrjandroid
+flickrj,2.1.0,SocialMedia,1402956000000,com.googlecode.flickrjandroid
+vkontakte,1.2.2,SocialMedia,1407708000000,com.vk.sdk
+vkontakte,1.3.0,SocialMedia,1407794400000,com.vk.sdk
+vkontakte,1.3.1,SocialMedia,1407967200000,com.vk.sdk
+vkontakte,1.3.10,SocialMedia,1437516000000,com.vk.sdk
+vkontakte,1.3.2,SocialMedia,1408053600000,com.vk.sdk
+vkontakte,1.3.3,SocialMedia,1413496800000,com.vk.sdk
+vkontakte,1.3.4,SocialMedia,1416956400000,com.vk.sdk
+vkontakte,1.3.6,SocialMedia,1418857200000,com.vk.sdk
+vkontakte,1.3.7,SocialMedia,1423177200000,com.vk.sdk
+vkontakte,1.3.8,SocialMedia,1427410800000,com.vk.sdk
+vkontakte,1.3.9,SocialMedia,1427752800000,com.vk.sdk
+vkontakte,1.5,SocialMedia,1437516000000,com.vk.sdk
+vkontakte,1.5.1,SocialMedia,1437602400000,com.vk.sdk
+vkontakte,1.5.10,SocialMedia,1440626400000,com.vk.sdk
+vkontakte,1.5.2,SocialMedia,1438812000000,com.vk.sdk
+vkontakte,1.5.3,SocialMedia,1439157600000,com.vk.sdk
+vkontakte,1.5.4,SocialMedia,1439330400000,com.vk.sdk
+vkontakte,1.5.5,SocialMedia,1439416800000,com.vk.sdk
+vkontakte,1.5.7,SocialMedia,1440108000000,com.vk.sdk
+vkontakte,1.5.9,SocialMedia,1440540000000,com.vk.sdk
+vkontakte,1.6.0,SocialMedia,1443132000000,com.vk.sdk
+vkontakte,1.6.1,SocialMedia,1444255200000,com.vk.sdk
+vkontakte,1.6.2,SocialMedia,1446678000000,com.vk.sdk
+vkontakte,1.6.3,SocialMedia,1451257200000,com.vk.sdk
+vkontakte,1.6.4,SocialMedia,1458082800000,com.vk.sdk
+vkontakte,1.6.5,SocialMedia,1458082800000,com.vk.sdk
+vkontakte,1.6.6,SocialMedia,1458169200000,com.vk.sdk
+vkontakte,1.6.7,SocialMedia,1460584800000,com.vk.sdk
+vkontakte,1.6.8,SocialMedia,1482793200000,com.vk.sdk
+Amazon Device Messaging,1.0.1,Utilities,1373407200000,com.amazon.device.messaging
+Amazon GameCircle,2.3.0,Utilities,1391209200000,com.amazon.ags
+Amazon GameCircle,2.4.2,Utilities,1406844000000,com.amazon.ags
+Amazon GameCircle,2.4.3,Utilities,1450134000000,com.amazon.ags
+Amazon In-App Billing,1.0.20,Utilities,0,com.amazon.inapp.purchasing
+Amazon In-App Billing,1.0.3,Utilities,0,com.amazon.inapp.purchasing
+Amazon In-App Billing,2.0.61,Utilities,1423004400000,com.amazon.device.iap
+Amazon Maps,1.0.2,Utilities,0,com.amazon.geo.maps
+Amazon Mobile Associates,1.0.73,Utilities,0,com.amazon.device.associates
+Apache Commons Collections,1.0,Utilities,0,org.apache.commons.collections
+Apache Commons Collections,2.0,Utilities,0,org.apache.commons.collections
+Apache Commons Collections,2.1,Utilities,0,org.apache.commons.collections
+Apache Commons Collections,2.1.1,Utilities,0,org.apache.commons.collections
+Apache Commons Collections,3.0,Utilities,0,org.apache.commons.collections
+Apache Commons Collections,3.1,Utilities,0,org.apache.commons.collections
+Apache Commons Collections,3.2,Utilities,0,org.apache.commons.collections
+Apache Commons Collections,3.2.1,Utilities,0,org.apache.commons.collections
+Apache Commons Collections,3.2.2,Utilities,0,org.apache.commons.collections
+Apache Commons Collections,4.0,Utilities,0,org.apache.commons.collections4
+Apache Commons Collections,4.1,Utilities,0,org.apache.commons.collections4
+Apache Commons IO,1.0,Utilities,1083967200000,org.apache.commons.io
+Apache Commons IO,1.1,Utilities,1128981600000,org.apache.commons.io
+Apache Commons IO,1.2,Utilities,1142722800000,org.apache.commons.io
+Apache Commons IO,1.3,Utilities,1170111600000,org.apache.commons.io
+Apache Commons IO,1.3.1,Utilities,1171321200000,org.apache.commons.io
+Apache Commons IO,1.3.2,Utilities,1182895200000,org.apache.commons.io
+Apache Commons IO,1.4,Utilities,1200783600000,org.apache.commons.io
+Apache Commons IO,2.0,Utilities,1287352800000,org.apache.commons.io
+Apache Commons IO,2.0.1,Utilities,1293318000000,org.apache.commons.io
+Apache Commons IO,2.1,Utilities,1317592800000,org.apache.commons.io
+Apache Commons IO,2.2,Utilities,1334008800000,org.apache.commons.io
+Apache Commons IO,2.3,Utilities,1334008800000,org.apache.commons.io
+Apache Commons IO,2.4,Utilities,1362265200000,org.apache.commons.io
+Apache Commons Lang,1.0,Utilities,1040943600000,org.apache.commons.lang
+Apache Commons Lang,1.0.1,Utilities,1040943600000,org.apache.commons.lang
+Apache Commons Lang,2.0,Utilities,1062021600000,org.apache.commons.lang
+Apache Commons Lang,2.1,Utilities,1118527200000,org.apache.commons.lang
+Apache Commons Lang,2.2,Utilities,1159912800000,org.apache.commons.lang
+Apache Commons Lang,2.3,Utilities,1171321200000,org.apache.commons.lang
+Apache Commons Lang,2.4,Utilities,1205881200000,org.apache.commons.lang
+Apache Commons Lang,2.5,Utilities,1266706800000,org.apache.commons.lang
+Apache Commons Lang,2.6,Utilities,1362265200000,org.apache.commons.lang
+Apache Commons Lang,3.0,Utilities,1311026400000,org.apache.commons.lang3
+Apache Commons Lang,3.0.1,Utilities,1362265200000,org.apache.commons.lang3
+Apache Commons Lang,3.1,Utilities,1362265200000,org.apache.commons.lang3
+Apache Commons Lang,3.2,Utilities,1388530800000,org.apache.commons.lang3
+Apache Commons Lang,3.2.1,Utilities,1389135600000,org.apache.commons.lang3
+Apache Commons Lang,3.3,Utilities,1393887600000,org.apache.commons.lang3
+Apache Commons Lang,3.3.1,Utilities,1395097200000,org.apache.commons.lang3
+Apache Commons Lang,3.3.2,Utilities,1396994400000,org.apache.commons.lang3
+Apache Commons Lang,3.4,Utilities,1428271200000,org.apache.commons.lang3
+Apache HttpClient for Android,4.3.3,Utilities,1394838000000,org.apache.http
+Apache HttpClient for Android,4.3.5,Utilities,1407708000000,org.apache.http
+Apache HttpClient for Android,4.3.5.1,Utilities,1420930800000,org.apache.http
+Apache James Mime4J,0.3,Utilities,1180389600000,org.apache.james.mime4j
+Apache James Mime4J,0.4,Utilities,1219096800000,org.apache.james.mime4j
+Apache James Mime4J,0.5,Utilities,1224021600000,org.apache.james.mime4j
+Apache James Mime4J,0.6,Utilities,1236207600000,org.apache.james.mime4j
+Apache James Mime4J,0.6.1,Utilities,1293836400000,org.apache.james.mime4j
+Apache James Mime4J,0.7,Utilities,1311544800000,org.apache.james.mime4j
+Apache James Mime4J,0.7.1,Utilities,1318543200000,org.apache.james.mime4j
+Apache James Mime4J,0.7.2,Utilities,1325890800000,org.apache.james.mime4j
+AppAuth,0.1,Utilities,1456441200000,net.openid.appauth
+AppAuth,0.1.1,Utilities,1456700400000,net.openid.appauth
+AppAuth,0.2.0,Utilities,1458860400000,net.openid.appauth
+AppAuth,0.3.0,Utilities,1469397600000,net.openid.appauth
+AppAuth,0.4.0,Utilities,1477432800000,net.openid.appauth
+AppAuth,0.4.1,Utilities,1479250800000,net.openid.appauth
+AppAuth,0.5.0,Utilities,1484866800000,net.openid.appauth
+AppAuth,5.1.0,Utilities,1485298800000,net.openid.appauth
+Bolts,1.1.1,Utilities,1408399200000,bolts
+Bolts,1.1.2,Utilities,1408572000000,bolts
+Bolts,1.1.3,Utilities,1412114400000,bolts
+Bolts,1.1.4,Utilities,1418079600000,bolts
+Bolts,1.2.0,Utilities,1427151600000,bolts
+Bolts,1.2.1,Utilities,1436997600000,bolts
+CacheWord,0.1,Utilities,1411682400000,info.guardianproject.cacheword
+Dagger,1.0.0,Utilities,1367877600000,dagger
+Dagger,1.0.1,Utilities,1370296800000,dagger
+Dagger,1.1.0,Utilities,1375740000000,dagger
+Dagger,1.2.0,Utilities,1386975600000,dagger
+Dagger,1.2.1,Utilities,1392591600000,dagger
+Dagger,1.2.2,Utilities,1405980000000,dagger
+Dagger,1.2.3,Utilities,1462226400000,dagger
+Dagger,1.2.4,Utilities,1462226400000,dagger
+Dagger,1.2.5,Utilities,1462831200000,dagger
+Dagger2,2.0,Utilities,1428444000000,dagger
+Dagger2,2.0.1,Utilities,1432764000000,dagger
+Dagger2,2.0.2,Utilities,1446591600000,dagger
+Dagger2,2.1,Utilities,1457564400000,dagger
+Dagger2,2.10,Utilities,1489964400000,dagger
+Dagger2,2.10-rc1,Utilities,1487631600000,dagger
+Dagger2,2.10-rc2,Utilities,1488495600000,dagger
+Dagger2,2.10-rc3,Utilities,1489100400000,dagger
+Dagger2,2.10-rc4,Utilities,1489100400000,dagger
+Dagger2,2.11,Utilities,1495663200000,dagger
+Dagger2,2.11-rc1,Utilities,1492984800000,dagger
+Dagger2,2.11-rc2,Utilities,1493762400000,dagger
+Dagger2,2.2,Utilities,1459116000000,dagger
+Dagger2,2.3,Utilities,1460066400000,dagger
+Dagger2,2.4,Utilities,1461189600000,dagger
+Dagger2,2.5,Utilities,1465855200000,dagger
+Dagger2,2.6,Utilities,1469570400000,dagger
+Dagger2,2.6.1,Utilities,1471989600000,dagger
+Dagger2,2.7,Utilities,1473717600000,dagger
+Dagger2,2.8,Utilities,1479769200000,dagger
+Dagger2,2.9,Utilities,1486076400000,dagger
+Digits,1.0.0,Utilities,1413324000000,com.digits.sdk
+Digits,1.0.1,Utilities,1414623600000,com.digits.sdk
+Digits,1.0.2,Utilities,1416438000000,com.digits.sdk
+Digits,1.1.0,Utilities,1418598000000,com.digits.sdk
+Digits,1.10.0,Utilities,1457046000000,com.digits.sdk
+Digits,1.10.1,Utilities,1459375200000,com.digits.sdk
+Digits,1.10.2,Utilities,1459807200000,com.digits.sdk
+Digits,1.10.3,Utilities,1461708000000,com.digits.sdk
+Digits,1.11.0,Utilities,1466632800000,com.digits.sdk
+Digits,1.2.0,Utilities,1422486000000,com.digits.sdk
+Digits,1.3.0,Utilities,1422745200000,com.digits.sdk
+Digits,1.4.0,Utilities,1425164400000,com.digits.sdk
+Digits,1.4.1,Utilities,1427839200000,com.digits.sdk
+Digits,1.5.0,Utilities,1433714400000,com.digits.sdk
+Digits,1.6.0,Utilities,1433800800000,com.digits.sdk
+Digits,1.6.1,Utilities,1434924000000,com.digits.sdk
+Digits,1.6.2,Utilities,1436911200000,com.digits.sdk
+Digits,1.7.0,Utilities,1438639200000,com.digits.sdk
+Digits,1.7.1,Utilities,1439935200000,com.digits.sdk
+Digits,1.7.2,Utilities,1439935200000,com.digits.sdk
+Digits,1.8.0,Utilities,1441058400000,com.digits.sdk
+Digits,1.9.0,Utilities,1444946400000,com.digits.sdk
+Digits,1.9.1,Utilities,1447282800000,com.digits.sdk
+Digits,1.9.2,Utilities,1449097200000,com.digits.sdk
+Digits,1.9.3,Utilities,1452553200000,com.digits.sdk
+Digits,1.9.4,Utilities,1455145200000,com.digits.sdk
+ExoPlayer,1.2.3,Utilities,1424818800000,com.google.android.exoplayer
+ExoPlayer,1.2.4,Utilities,1427752800000,com.google.android.exoplayer
+ExoPlayer,1.3.1,Utilities,1431381600000,com.google.android.exoplayer
+ExoPlayer,1.3.2,Utilities,1431986400000,com.google.android.exoplayer
+ExoPlayer,1.3.3,Utilities,1432245600000,com.google.android.exoplayer
+ExoPlayer,1.4.0,Utilities,1436997600000,com.google.android.exoplayer
+ExoPlayer,1.4.1,Utilities,1437084000000,com.google.android.exoplayer
+ExoPlayer,1.4.2,Utilities,1438639200000,com.google.android.exoplayer
+ExoPlayer,1.5.0,Utilities,1443477600000,com.google.android.exoplayer
+ExoPlayer,1.5.1,Utilities,1444860000000,com.google.android.exoplayer
+ExoPlayer,1.5.2,Utilities,1445900400000,com.google.android.exoplayer
+ExoPlayer,1.5.3,Utilities,1449702000000,com.google.android.exoplayer
+ExoPlayer,1.5.4,Utilities,1453417200000,com.google.android.exoplayer
+ExoPlayer,1.5.5,Utilities,1454367600000,com.google.android.exoplayer
+ExoPlayer,1.5.6,Utilities,1456095600000,com.google.android.exoplayer
+ExoPlayer,1.5.7,Utilities,1460325600000,com.google.android.exoplayer
+ExoPlayer,1.5.8,Utilities,1462831200000,com.google.android.exoplayer
+ExoPlayer,1.5.9,Utilities,1465855200000,com.google.android.exoplayer
+FasterXML-Jackson-Core,2.0.0,Utilities,1332630000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.0.0-RC1,Utilities,1329606000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.0.0-RC2,Utilities,1330988400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.0.0-RC3,Utilities,1332457200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.0.1,Utilities,1335045600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.0.2,Utilities,1337032800000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.0.4,Utilities,1340748000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.0.5,Utilities,1343426400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.0.6,Utilities,1346882400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.1.0,Utilities,1349733600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.1.1,Utilities,1352674800000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.1.2,Utilities,1354575600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.1.3,Utilities,1358550000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.1.4,Utilities,1361919600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.1.5,Utilities,1362265200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.2.0,Utilities,1366668000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.2.0-rc1,Utilities,1366236000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.2.1,Utilities,1367618400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.2.2,Utilities,1369605600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.2.3,Utilities,1377208800000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.2.4,Utilities,1402437600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.3.0,Utilities,1384383600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.3.0-rc1,Utilities,1382738400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.3.1,Utilities,1388185200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.3.2,Utilities,1393628400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.3.3,Utilities,1397080800000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.3.4,Utilities,1405634400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.3.5,Utilities,1421190000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.4.0,Utilities,1401314400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.4.0-rc1,Utilities,1398463200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.4.0-rc2,Utilities,1398808800000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.4.0-rc3,Utilities,1399500000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.4.1,Utilities,1402869600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.4.1.1,Utilities,1404856800000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.4.2,Utilities,1407967200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.4.3,Utilities,1412287200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.4.4,Utilities,1416870000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.4.5,Utilities,1421190000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.4.6,Utilities,1429826400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.5.0,Utilities,1420153200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.5.0-rc1,Utilities,1418943600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.5.1,Utilities,1423263600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.5.2,Utilities,1427666400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.5.3,Utilities,1429826400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.5.4,Utilities,1433887200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.5.5,Utilities,1449529200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.6.0,Utilities,1437084000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.6.0-rc1,Utilities,1431986400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.6.0-rc2,Utilities,1433800800000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.6.0-rc3,Utilities,1435183200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.6.0-rc4,Utilities,1436565600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.6.1,Utilities,1439157600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.6.2,Utilities,1442268000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.6.3,Utilities,1444600800000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.6.4,Utilities,1449529200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.6.5,Utilities,1453158000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.6.6,Utilities,1459807200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.6.7,Utilities,1465077600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.7.0,Utilities,1452380400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.7.0-rc1,Utilities,1448492400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.7.0-rc2,Utilities,1449874800000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.7.0-rc3,Utilities,1452034800000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.7.1,Utilities,1454367600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.7.2,Utilities,1456527600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.7.3,Utilities,1458082800000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.7.4,Utilities,1461880800000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.7.5,Utilities,1465596000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.7.6,Utilities,1469224800000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.7.7,Utilities,1472162400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.7.8,Utilities,1474840800000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.7.9,Utilities,1486162800000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.8.0,Utilities,1467583200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.8.0.rc1,Utilities,1465250400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.8.0.rc2,Utilities,1466114400000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.8.1,Utilities,1468965600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.8.2,Utilities,1472508000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.8.3,Utilities,1474149600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.8.4,Utilities,1476396000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.8.5,Utilities,1479078000000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.8.6,Utilities,1484175600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.8.7,Utilities,1487631600000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.8.8,Utilities,1491343200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.9.0.pr1,Utilities,1488409200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.9.0.pr2,Utilities,1490137200000,com.fasterxml.jackson.core
+FasterXML-Jackson-Core,2.9.0.pr3,Utilities,1493071200000,com.fasterxml.jackson.core
+GeoJSON,1.0.0,Utilities,1402437600000,com.cocoahero.android.geojson
+GeoJSON,1.0.1,Utilities,1426114800000,com.cocoahero.android.geojson
+Gson,1.1,Utilities,1269039600000,com.google.gson
+Gson,1.4,Utilities,1269385200000,com.google.gson
+Gson,1.5,Utilities,1300057200000,com.google.gson
+Gson,1.6,Utilities,1300143600000,com.google.gson
+Gson,1.7.1,Utilities,1302645600000,com.google.gson
+Gson,1.7.2,Utilities,1317333600000,com.google.gson
+Gson,2.0,Utilities,1321138800000,com.google.gson
+Gson,2.1,Utilities,1325286000000,com.google.gson
+Gson,2.2,Utilities,1336255200000,com.google.gson
+Gson,2.2.1,Utilities,1336687200000,com.google.gson
+Gson,2.2.2,Utilities,1341266400000,com.google.gson
+Gson,2.2.3,Utilities,1365717600000,com.google.gson
+Gson,2.2.4,Utilities,1368396000000,com.google.gson
+Gson,2.3,Utilities,1407708000000,com.google.gson
+Gson,2.3.1,Utilities,1416438000000,com.google.gson
+Gson,2.4,Utilities,1443909600000,com.google.gson
+Gson,2.5,Utilities,1448319600000,com.google.gson
+Gson,2.6,Utilities,1455145200000,com.google.gson
+Gson,2.6.1,Utilities,1455231600000,com.google.gson
+Gson,2.6.2,Utilities,1456527600000,com.google.gson
+Gson,2.7,Utilities,1465941600000,com.google.gson
+Gson,2.8.0,Utilities,1477519200000,com.google.gson
+Gson,2.8.1,Utilities,1496181600000,com.google.gson
+Guava,03,Utilities,1272232800000,com.google.common
+Guava,05,Utilities,1275343200000,com.google.common
+Guava,06,Utilities,1278540000000,com.google.common
+Guava,07,Utilities,1285279200000,com.google.common
+Guava,08,Utilities,1296428400000,com.google.common
+Guava,09,Utilities,1302213600000,com.google.common
+Guava,10.0,Utilities,1317160800000,com.google.common
+Guava,10.0-rc1,Utilities,1315519200000,com.google.common
+Guava,10.0-rc2,Utilities,1316383200000,com.google.common
+Guava,10.0-rc3,Utilities,1316728800000,com.google.common
+Guava,10.0.1,Utilities,1318197600000,com.google.common
+Guava,11.0,Utilities,1324162800000,com.google.common
+Guava,11.0-rc1,Utilities,1323817200000,com.google.common
+Guava,11.0.1,Utilities,1326063600000,com.google.common
+Guava,11.0.2,Utilities,1329865200000,com.google.common
+Guava,12.0,Utilities,1335736800000,com.google.common
+Guava,12.0-rc1,Utilities,1333058400000,com.google.common
+Guava,12.0-rc2,Utilities,1334613600000,com.google.common
+Guava,12.0.1,Utilities,1341871200000,com.google.common
+Guava,13.0,Utilities,1343858400000,com.google.common
+Guava,13.0-rc1,Utilities,1340661600000,com.google.common
+Guava,13.0-rc2,Utilities,1342735200000,com.google.common
+Guava,13.0.1,Utilities,1346104800000,com.google.common
+Guava,14.0,Utilities,1361746800000,com.google.common
+Guava,14.0-rc1,Utilities,1355439600000,com.google.common
+Guava,14.0-rc2,Utilities,1358377200000,com.google.common
+Guava,14.0-rc3,Utilities,1360710000000,com.google.common
+Guava,14.0.1,Utilities,1363302000000,com.google.common
+Guava,15.0,Utilities,1378418400000,com.google.common
+Guava,15.0-rc1,Utilities,1377468000000,com.google.common
+Guava,16.0,Utilities,1389913200000,com.google
+Guava,16.0-rc1,Utilities,1387494000000,com.google
+Guava,16.0.1,Utilities,1391382000000,com.google
+Guava,17.0,Utilities,1398117600000,com.google
+Guava,17.0-rc1,Utilities,1396908000000,com.google
+Guava,17.0-rc2,Utilities,1397080800000,com.google
+Guava,18.0,Utilities,1408917600000,com.google
+Guava,18.0-rc1,Utilities,1407189600000,com.google
+Guava,18.0-rc2,Utilities,1408312800000,com.google
+Guava,19.0,Utilities,1449615600000,com.google
+Guava,19.0-rc1,Utilities,1437602400000,com.google
+Guava,19.0-rc2,Utilities,1442440800000,com.google
+Guava,19.0-rc3,Utilities,1448924400000,com.google
+Guava,20.0,Utilities,1477605600000,com.google
+Guava,20.0-rc1,Utilities,1475704800000,com.google
+Guava,21.0,Utilities,1484175600000,com.google
+Guava,21.0-rc1,Utilities,1482102000000,com.google
+Guava,21.0-rc2,Utilities,1483398000000,com.google
+Guava,22.0,Utilities,1495404000000,com.google
+Guava,22.0-android,Utilities,1495404000000,com.google
+Guava,22.0-rc1,Utilities,1493676000000,com.google
+Guava,22.0-rc1-android,Utilities,1493676000000,com.google
+Guice,1.0,Utilities,1243288800000,com.google.inject
+Guice,2.0,Utilities,1249077600000,com.google.inject
+Guice,2.0-no-aop,Utilities,1295650800000,com.google.inject
+Guice,3.0,Utilities,1301007600000,com.google.inject
+Guice,3.0-rc2,Utilities,1294614000000,com.google.inject
+Guice,3.0-rc3,Utilities,1299452400000,com.google.inject
+Guice,4.0,Utilities,1430172000000,com.google.inject
+Guice,4.0-beta,Utilities,1375308000000,com.google.inject
+Guice,4.0-beta4,Utilities,1395270000000,com.google.inject
+Guice,4.0-beta5,Utilities,1411509600000,com.google.inject
+Guice,4.1.0,Utilities,1466114400000,com.google.inject
+IOCipher,0.3,Utilities,1442527200000,info.guardianproject
+Joda-Time,0.95,Utilities,1132786800000,org.joda.time
+Joda-Time,1.0,Utilities,1132786800000,org.joda.time
+Joda-Time,1.1,Utilities,1132786800000,org.joda.time
+Joda-Time,1.2,Utilities,1136847600000,org.joda.time
+Joda-Time,1.2.1,Utilities,1139785200000,org.joda.time
+Joda-Time,1.3,Utilities,1156543200000,org.joda.time
+Joda-Time,1.4,Utilities,1163631600000,org.joda.time
+Joda-Time,1.5,Utilities,1193698800000,org.joda.time
+Joda-Time,1.5.1,Utilities,1196895600000,org.joda.time
+Joda-Time,1.5.2,Utilities,1201474800000,org.joda.time
+Joda-Time,1.6,Utilities,1228086000000,org.joda.time
+Joda-Time,1.6.1,Utilities,1281218400000,org.joda.time
+Joda-Time,1.6.2,Utilities,1284415200000,org.joda.time
+Joda-Time,2.0,Utilities,1312149600000,org.joda.time
+Joda-Time,2.1,Utilities,1329865200000,org.joda.time
+Joda-Time,2.2,Utilities,1362697200000,org.joda.time
+Joda-Time,2.3,Utilities,1376604000000,org.joda.time
+Joda-Time,2.4,Utilities,1406412000000,org.joda.time
+Joda-Time,2.5,Utilities,1412287200000,org.joda.time
+Joda-Time,2.6,Utilities,1417388400000,org.joda.time
+Joda-Time,2.7,Utilities,1421017200000,org.joda.time
+Joda-Time,2.8,Utilities,1432850400000,org.joda.time
+Joda-Time,2.8.1,Utilities,1434319200000,org.joda.time
+Joda-Time,2.8.2,Utilities,1439244000000,org.joda.time
+Joda-Time,2.9,Utilities,1445637600000,org.joda.time
+Joda-Time,2.9.1,Utilities,1447282800000,org.joda.time
+Joda-Time,2.9.2,Utilities,1453935600000,org.joda.time
+Joda-Time,2.9.3,Utilities,1459033200000,org.joda.time
+Joda-Time,2.9.4,Utilities,1464300000000,org.joda.time
+Joda-Time,2.9.5,Utilities,1478127600000,org.joda.time
+Joda-Time,2.9.6,Utilities,1478732400000,org.joda.time
+Joda-Time,2.9.7,Utilities,1482102000000,org.joda.time
+Joda-Time,2.9.8,Utilities,1490137200000,org.joda.time
+Joda-Time,2.9.9,Utilities,1490223600000,org.joda.time
+Login with Amazon,2.0.1,Utilities,1440540000000,com.amazon.identity.auth
+Login with Amazon,2.0.2,Utilities,1464645600000,com.amazon.identity.auth
+MapBox,0.2.3,Utilities,1400104800000,com.mapbox.mapboxsdk
+MapBox,0.3.0,Utilities,1403733600000,com.mapbox.mapboxsdk
+MapBox,0.4.0,Utilities,1407794400000,com.mapbox.mapboxsdk
+MapBox,0.5.0,Utilities,1416265200000,N/A
+MapBox,0.5.1,Utilities,1419030000000,N/A
+MapBox,0.6.0,Utilities,1421708400000,N/A
+MapBox,0.7.0,Utilities,1423090800000,N/A
+MapBox,0.7.1,Utilities,1424646000000,N/A
+MapBox,0.7.2,Utilities,1426114800000,N/A
+MapBox,0.7.3,Utilities,1428530400000,N/A
+MapBox,0.7.4,Utilities,1433282400000,N/A
+MapBox,2.0.0,Utilities,1443996000000,com.mapbox.mapboxsdk
+MapBox,2.1.0,Utilities,1445378400000,com.mapbox.mapboxsdk
+MapBox,2.2.0,Utilities,1446073200000,com.mapbox.mapboxsdk
+MapBox,2.3.0,Utilities,1449183600000,com.mapbox.mapboxsdk
+MapBox,3.0.0,Utilities,1450652400000,com.mapbox.mapboxsdk
+MapBox,3.1.0,Utilities,1453244400000,com.mapbox.mapboxsdk
+MapBox,3.2.0,Utilities,1453935600000,com.mapbox.mapboxsdk
+MapBox,4.0.0,Utilities,1459288800000,com.mapbox.mapboxsdk
+MapBox,4.0.0-beta.1,Utilities,1457996400000,com.mapbox.mapboxsdk
+MapBox,4.0.0-beta.2,Utilities,1458601200000,com.mapbox.mapboxsdk
+MapBox,4.0.0-rc.1,Utilities,1458860400000,com.mapbox.mapboxsdk
+MapBox,4.0.1,Utilities,1463004000000,com.mapbox.mapboxsdk
+MapBox,4.1.0,Utilities,1467151200000,com.mapbox.mapboxsdk
+MapBox,4.1.0-beta.1,Utilities,1464213600000,com.mapbox.mapboxsdk
+MapBox,4.1.0-beta.2,Utilities,1465336800000,com.mapbox.mapboxsdk
+MapBox,4.1.0-beta.3,Utilities,1466373600000,com.mapbox.mapboxsdk
+MapBox,4.1.1,Utilities,1468879200000,com.mapbox.mapboxsdk
+MapBox,4.2.0,Utilities,1481670000000,com.mapbox.mapboxsdk
+MapBox,4.2.0-beta.1,Utilities,1470434400000,com.mapbox.mapboxsdk
+MapBox,4.2.0-beta.2,Utilities,1472076000000,com.mapbox.mapboxsdk
+MapBox,4.2.0-beta.3,Utilities,1474408800000,com.mapbox.mapboxsdk
+MapBox,4.2.0-beta.4,Utilities,1477346400000,com.mapbox.mapboxsdk
+MapBox,4.2.0-beta.5,Utilities,1479164400000,com.mapbox.mapboxsdk
+MapBox,4.2.1,Utilities,1482361200000,com.mapbox.mapboxsdk
+MapBox,4.2.2,Utilities,1485385200000,com.mapbox.mapboxsdk
+MapBox,5.0.0,Utilities,1489705200000,com.mapbox.mapboxsdk
+MapBox,5.0.0-beta.1,Utilities,1487026800000,com.mapbox.mapboxsdk
+MapBox,5.0.0-beta.2,Utilities,1488322800000,com.mapbox.mapboxsdk
+MapBox,5.0.0-beta.3,Utilities,1489186800000,com.mapbox.mapboxsdk
+MapBox,5.0.1,Utilities,1490137200000,com.mapbox.mapboxsdk
+MapBox,5.0.2,Utilities,1491256800000,com.mapbox.mapboxsdk
+MapBox,5.1.0-beta.1,Utilities,1493676000000,com.mapbox.mapboxsdk
+MapBox,5.1.0-beta.2,Utilities,1494540000000,com.mapbox.mapboxsdk
+MapBox,5.1.0-beta.3,Utilities,1495749600000,com.mapbox.mapboxsdk
+MessagePack,0.6.0,Utilities,1317592800000,org.msgpack
+MessagePack,0.6.1,Utilities,1317852000000,org.msgpack
+MessagePack,0.6.10,Utilities,1393369200000,org.msgpack
+MessagePack,0.6.11,Utilities,1397944800000,org.msgpack
+MessagePack,0.6.12,Utilities,1431813600000,org.msgpack
+MessagePack,0.6.2,Utilities,1319407200000,org.msgpack
+MessagePack,0.6.3,Utilities,1320706800000,org.msgpack
+MessagePack,0.6.4,Utilities,1325631600000,org.msgpack
+MessagePack,0.6.5,Utilities,1326322800000,org.msgpack
+MessagePack,0.6.6,Utilities,1336514400000,org.msgpack
+MessagePack,0.6.7,Utilities,1355007600000,org.msgpack
+MessagePack,0.6.8,Utilities,1376949600000,org.msgpack
+MessagePack,0.6.9,Utilities,1387321200000,org.msgpack
+NetCipher,1.2,Utilities,1440626400000,info.guardianproject.netcipher
+NetCipher,1.2.1,Utilities,1456441200000,info.guardianproject.netcipher
+NetCipher,2.0.0-alpha1,Utilities,1470088800000,info.guardianproject.netcipher
+NetCipher-chboye,2.0.0-alpha1,Utilities,1470088800000,info.guardianproject.netcipher.client
+NetCipher-httpclient,2.0.0-alpha1,Utilities,1470088800000,info.guardianproject.netcipher.client
+NetCipher-okhttp3,2.0.0-alpha1,Utilities,1470088800000,info.guardianproject.netcipher.client
+NetCipher-volley,2.0.0-alpha1,Utilities,1470088800000,info.guardianproject.netcipher.client
+ORMLite-JDBC,3.2,Utilities,1284415200000,com.j256.ormlite
+ORMLite-JDBC,3.3,Utilities,1285106400000,com.j256.ormlite
+ORMLite-JDBC,3.4,Utilities,1285279200000,com.j256.ormlite
+ORMLite-JDBC,3.5,Utilities,1285624800000,com.j256.ormlite
+ORMLite-JDBC,4.0,Utilities,1286056800000,com.j256.ormlite
+ORMLite-JDBC,4.1,Utilities,1286488800000,com.j256.ormlite
+ORMLite-JDBC,4.10,Utilities,1296687600000,com.j256.ormlite
+ORMLite-JDBC,4.11,Utilities,1297638000000,com.j256.ormlite
+ORMLite-JDBC,4.12,Utilities,1297897200000,com.j256.ormlite
+ORMLite-JDBC,4.13,Utilities,1298674800000,com.j256.ormlite
+ORMLite-JDBC,4.14,Utilities,1298934000000,com.j256.ormlite
+ORMLite-JDBC,4.15,Utilities,1299452400000,com.j256.ormlite
+ORMLite-JDBC,4.16,Utilities,1300834800000,com.j256.ormlite
+ORMLite-JDBC,4.17,Utilities,1301180400000,com.j256.ormlite
+ORMLite-JDBC,4.18,Utilities,1301436000000,com.j256.ormlite
+ORMLite-JDBC,4.19,Utilities,1302472800000,com.j256.ormlite
+ORMLite-JDBC,4.2,Utilities,1286920800000,com.j256.ormlite
+ORMLite-JDBC,4.20,Utilities,1304114400000,com.j256.ormlite
+ORMLite-JDBC,4.21,Utilities,1304632800000,com.j256.ormlite
+ORMLite-JDBC,4.22,Utilities,1305756000000,com.j256.ormlite
+ORMLite-JDBC,4.23,Utilities,1307052000000,com.j256.ormlite
+ORMLite-JDBC,4.24,Utilities,1310940000000,com.j256.ormlite
+ORMLite-JDBC,4.25,Utilities,1314050400000,com.j256.ormlite
+ORMLite-JDBC,4.26,Utilities,1316988000000,com.j256.ormlite
+ORMLite-JDBC,4.27,Utilities,1318284000000,com.j256.ormlite
+ORMLite-JDBC,4.28,Utilities,1319407200000,com.j256.ormlite
+ORMLite-JDBC,4.29,Utilities,1319580000000,com.j256.ormlite
+ORMLite-JDBC,4.3,Utilities,1289257200000,com.j256.ormlite
+ORMLite-JDBC,4.30,Utilities,1320966000000,com.j256.ormlite
+ORMLite-JDBC,4.31,Utilities,1323298800000,com.j256.ormlite
+ORMLite-JDBC,4.32,Utilities,1326322800000,com.j256.ormlite
+ORMLite-JDBC,4.33,Utilities,1326409200000,com.j256.ormlite
+ORMLite-JDBC,4.34,Utilities,1329865200000,com.j256.ormlite
+ORMLite-JDBC,4.35,Utilities,1329951600000,com.j256.ormlite
+ORMLite-JDBC,4.36,Utilities,1332198000000,com.j256.ormlite
+ORMLite-JDBC,4.37,Utilities,1332284400000,com.j256.ormlite
+ORMLite-JDBC,4.38,Utilities,1332457200000,com.j256.ormlite
+ORMLite-JDBC,4.39,Utilities,1334268000000,com.j256.ormlite
+ORMLite-JDBC,4.4,Utilities,1289516400000,com.j256.ormlite
+ORMLite-JDBC,4.40,Utilities,1334613600000,com.j256.ormlite
+ORMLite-JDBC,4.41,Utilities,1338933600000,com.j256.ormlite
+ORMLite-JDBC,4.42,Utilities,1348696800000,com.j256.ormlite
+ORMLite-JDBC,4.43,Utilities,1360105200000,com.j256.ormlite
+ORMLite-JDBC,4.44,Utilities,1363129200000,com.j256.ormlite
+ORMLite-JDBC,4.45,Utilities,1363561200000,com.j256.ormlite
+ORMLite-JDBC,4.46,Utilities,1375048800000,com.j256.ormlite
+ORMLite-JDBC,4.47,Utilities,1378591200000,com.j256.ormlite
+ORMLite-JDBC,4.48,Utilities,1387148400000,com.j256.ormlite
+ORMLite-JDBC,4.5,Utilities,1289948400000,com.j256.ormlite
+ORMLite-JDBC,4.6,Utilities,1292367600000,com.j256.ormlite
+ORMLite-JDBC,4.7,Utilities,1295910000000,com.j256.ormlite
+ORMLite-JDBC,4.8,Utilities,1295910000000,com.j256.ormlite
+ORMLite-JDBC,4.9,Utilities,1295996400000,com.j256.ormlite
+ORMLite-JDBC,5.0,Utilities,1469656800000,com.j256.ormlite
+OkHttp,1.0.0,Utilities,1367791200000,com.squareup.okhttp
+OkHttp,1.0.1,Utilities,1367791200000,com.squareup.okhttp
+OkHttp,1.0.2,Utilities,1368309600000,com.squareup.okhttp
+OkHttp,1.1.0,Utilities,1371333600000,com.squareup.okhttp
+OkHttp,1.1.1,Utilities,1372024800000,com.squareup.okhttp
+OkHttp,1.2.0,Utilities,1376258400000,com.squareup.okhttp
+OkHttp,1.2.1,Utilities,1377295200000,com.squareup.okhttp
+OkHttp,1.3.0,Utilities,1389481200000,com.squareup.okhttp
+OkHttp,1.5.0,Utilities,1394233200000,com.squareup.okhttp
+OkHttp,1.5.1,Utilities,1394578800000,com.squareup.okhttp
+OkHttp,1.5.2,Utilities,1395097200000,com.squareup.okhttp
+OkHttp,1.5.3,Utilities,1396047600000,com.squareup.okhttp
+OkHttp,1.5.4,Utilities,1397512800000,com.squareup.okhttp
+OkHttp,1.6.0,Utilities,1400882400000,com.squareup.okhttp
+OkHttp,2.0.0,Utilities,1403301600000,com.squareup.okhttp
+OkHttp,2.0.0-RC1,Utilities,1400882400000,com.squareup.okhttp
+OkHttp,2.0.0-RC2,Utilities,1402437600000,com.squareup.okhttp
+OkHttp,2.1.0,Utilities,1415746800000,com.squareup.okhttp
+OkHttp,2.1.0-RC1,Utilities,1415142000000,com.squareup.okhttp
+OkHttp,2.2.0,Utilities,1419980400000,com.squareup.okhttp
+OkHttp,2.3.0,Utilities,1426546800000,com.squareup.okhttp
+OkHttp,2.4.0,Utilities,1432332000000,com.squareup.okhttp
+OkHttp,2.4.0-RC1,Utilities,1431727200000,com.squareup.okhttp
+OkHttp,2.5.0,Utilities,1440540000000,com.squareup.okhttp
+OkHttp,2.6.0,Utilities,1448146800000,com.squareup.okhttp
+OkHttp,2.7.0,Utilities,1450047600000,com.squareup.okhttp
+OkHttp,2.7.1,Utilities,1451602800000,com.squareup.okhttp
+OkHttp,2.7.2,Utilities,1452207600000,com.squareup.okhttp
+OkHttp,2.7.3,Utilities,1454799600000,com.squareup.okhttp
+OkHttp,2.7.4,Utilities,1454886000000,com.squareup.okhttp
+OkHttp,2.7.5,Utilities,1456441200000,com.squareup.okhttp
+OkHttp,3.0.0,Utilities,1452639600000,okhttp3
+OkHttp,3.0.0-RC1,Utilities,1451689200000,okhttp3
+OkHttp,3.0.1,Utilities,1452812400000,okhttp3
+OkHttp,3.1.0,Utilities,1454713200000,okhttp3
+OkHttp,3.1.1,Utilities,1454886000000,okhttp3
+OkHttp,3.1.2,Utilities,1455058800000,okhttp3
+OkHttp,3.2.0,Utilities,1456441200000,okhttp3
+OkHttp,3.3.0,Utilities,1464127200000,okhttp3
+OkHttp,3.3.1,Utilities,1464386400000,okhttp3
+OkHttp,3.4.0,Utilities,1468015200000,okhttp3
+OkHttp,3.4.0-RC1,Utilities,1467496800000,okhttp3
+OkHttp,3.4.1,Utilities,1468101600000,okhttp3
+OkHttp,3.4.2,Utilities,1478214000000,okhttp3
+OkHttp,3.5.0,Utilities,1480546800000,okhttp3
+OkHttp,3.6.0,Utilities,1485644400000,okhttp3
+OkHttp,3.7.0,Utilities,1492293600000,okhttp3
+OkHttp,3.8.0,Utilities,1494626400000,okhttp3
+OrmLite,3.2,Utilities,1284415200000,com.j256.ormlite
+OrmLite,3.3,Utilities,1285106400000,com.j256.ormlite
+OrmLite,3.4,Utilities,1285279200000,com.j256.ormlite
+OrmLite,3.5,Utilities,1285624800000,com.j256.ormlite
+OrmLite,4.0,Utilities,1286056800000,com.j256.ormlite
+OrmLite,4.1,Utilities,1286488800000,com.j256.ormlite
+OrmLite,4.10,Utilities,1296687600000,com.j256.ormlite
+OrmLite,4.11,Utilities,1297638000000,com.j256.ormlite
+OrmLite,4.12,Utilities,1297897200000,com.j256.ormlite
+OrmLite,4.13,Utilities,1298674800000,com.j256.ormlite
+OrmLite,4.14,Utilities,1298934000000,com.j256.ormlite
+OrmLite,4.15,Utilities,1299452400000,com.j256.ormlite
+OrmLite,4.16,Utilities,1300834800000,com.j256.ormlite
+OrmLite,4.17,Utilities,1301180400000,com.j256.ormlite
+OrmLite,4.18,Utilities,1301436000000,com.j256.ormlite
+OrmLite,4.19,Utilities,1302472800000,com.j256.ormlite
+OrmLite,4.2,Utilities,1286920800000,com.j256.ormlite
+OrmLite,4.20,Utilities,1304114400000,com.j256.ormlite
+OrmLite,4.21,Utilities,1304632800000,com.j256.ormlite
+OrmLite,4.22,Utilities,1305756000000,com.j256.ormlite
+OrmLite,4.23,Utilities,1307052000000,com.j256.ormlite
+OrmLite,4.24,Utilities,1310940000000,com.j256.ormlite
+OrmLite,4.25,Utilities,1314050400000,com.j256.ormlite
+OrmLite,4.26,Utilities,1316988000000,com.j256.ormlite
+OrmLite,4.27,Utilities,1318284000000,com.j256.ormlite
+OrmLite,4.28,Utilities,1319407200000,com.j256.ormlite
+OrmLite,4.29,Utilities,1319580000000,com.j256.ormlite
+OrmLite,4.3,Utilities,1289257200000,com.j256.ormlite
+OrmLite,4.30,Utilities,1320966000000,com.j256.ormlite
+OrmLite,4.31,Utilities,1323298800000,com.j256.ormlite
+OrmLite,4.32,Utilities,1326322800000,com.j256.ormlite
+OrmLite,4.33,Utilities,1326409200000,com.j256.ormlite
+OrmLite,4.34,Utilities,1329865200000,com.j256.ormlite
+OrmLite,4.35,Utilities,1329951600000,com.j256.ormlite
+OrmLite,4.36,Utilities,1332198000000,com.j256.ormlite
+OrmLite,4.37,Utilities,1332284400000,com.j256.ormlite
+OrmLite,4.38,Utilities,1332457200000,com.j256.ormlite
+OrmLite,4.39,Utilities,1334268000000,com.j256.ormlite
+OrmLite,4.4,Utilities,1289516400000,com.j256.ormlite
+OrmLite,4.40,Utilities,1334613600000,com.j256.ormlite
+OrmLite,4.41,Utilities,1338933600000,com.j256.ormlite
+OrmLite,4.42,Utilities,1348696800000,com.j256.ormlite
+OrmLite,4.43,Utilities,1360105200000,com.j256.ormlite
+OrmLite,4.44,Utilities,1363129200000,com.j256.ormlite
+OrmLite,4.45,Utilities,1363561200000,com.j256.ormlite
+OrmLite,4.46,Utilities,1375048800000,com.j256.ormlite
+OrmLite,4.47,Utilities,1378591200000,com.j256.ormlite
+OrmLite,4.48,Utilities,1387148400000,com.j256.ormlite
+OrmLite,4.5,Utilities,1289948400000,com.j256.ormlite
+OrmLite,4.6,Utilities,1292367600000,com.j256.ormlite
+OrmLite,4.7,Utilities,1295910000000,com.j256.ormlite
+OrmLite,4.8,Utilities,1295910000000,com.j256.ormlite
+OrmLite,4.9,Utilities,1295996400000,com.j256.ormlite
+OrmLite,5.0,Utilities,1469656800000,com.j256.ormlite
+PNGJ,2.0.1,Utilities,1376085600000,ar.com.hjg.pngj
+PNGJ,2.1.0,Utilities,1399413600000,ar.com.hjg.pngj
+Panic,0.0,Utilities,1444946400000,info.guardianproject.panic
+Panic,0.1,Utilities,1447628400000,info.guardianproject.panic
+Panic,0.2,Utilities,1449788400000,info.guardianproject.panic
+Panic,0.3,Utilities,1450825200000,info.guardianproject.panic
+Panic,0.4,Utilities,1451948400000,info.guardianproject.panic
+Panic,0.5,Utilities,1452121200000,info.guardianproject.panic
+Paypal,2.10.0,Utilities,1441922400000,com.paypal.android.sdk
+Paypal,2.10.1,Utilities,1443736800000,com.paypal.android.sdk
+Paypal,2.11.0,Utilities,1444946400000,com.paypal.android.sdk
+Paypal,2.11.1,Utilities,1445378400000,com.paypal.android.sdk
+Paypal,2.11.2,Utilities,1446073200000,com.paypal.android.sdk
+Paypal,2.12.0,Utilities,1447887600000,com.paypal.android.sdk
+Paypal,2.12.1,Utilities,1448060400000,com.paypal.android.sdk
+Paypal,2.12.2,Utilities,1449529200000,com.paypal.android.sdk
+Paypal,2.12.3,Utilities,1449702000000,com.paypal.android.sdk
+Paypal,2.12.4,Utilities,1449788400000,com.paypal.android.sdk
+Paypal,2.12.5,Utilities,1452466800000,com.paypal.android.sdk
+Paypal,2.13.0,Utilities,1453330800000,com.paypal.android.sdk
+Paypal,2.13.1,Utilities,1453762800000,com.paypal.android.sdk
+Paypal,2.13.2,Utilities,1456095600000,com.paypal.android.sdk
+Paypal,2.13.3,Utilities,1456182000000,com.paypal.android.sdk
+Paypal,2.14.0,Utilities,1458601200000,com.paypal.android.sdk
+Paypal,2.14.1,Utilities,1459807200000,com.paypal.android.sdk
+Paypal,2.14.2,Utilities,1461708000000,com.paypal.android.sdk
+Paypal,2.14.3,Utilities,1466460000000,com.paypal.android.sdk
+Paypal,2.14.4,Utilities,1467756000000,com.paypal.android.sdk
+Paypal,2.14.5,Utilities,1473199200000,com.paypal.android.sdk
+Paypal,2.14.6,Utilities,1474495200000,com.paypal.android.sdk
+Paypal,2.15.0,Utilities,1475532000000,com.paypal.android.sdk
+Paypal,2.15.1,Utilities,1478473200000,com.paypal.android.sdk
+Paypal,2.15.2,Utilities,1485817200000,com.paypal.android.sdk
+Paypal,2.15.3,Utilities,1486681200000,com.paypal.android.sdk
+Paypal,2.5.3,Utilities,1411336800000,com.paypal.android.sdk
+Paypal,2.5.4,Utilities,1411596000000,com.paypal.android.sdk
+Paypal,2.5.5,Utilities,1412114400000,com.paypal.android.sdk
+Paypal,2.5.6,Utilities,1412719200000,com.paypal.android.sdk
+Paypal,2.6.0,Utilities,1413928800000,com.paypal.android.sdk
+Paypal,2.6.1,Utilities,1414537200000,com.paypal.android.sdk
+Paypal,2.7.0,Utilities,1415919600000,com.paypal.android.sdk
+Paypal,2.7.1,Utilities,1416438000000,com.paypal.android.sdk
+Paypal,2.7.3,Utilities,1417474800000,com.paypal.android.sdk
+Paypal,2.8.0,Utilities,1417734000000,com.paypal.android.sdk
+Paypal,2.8.1,Utilities,1418079600000,com.paypal.android.sdk
+Paypal,2.8.2,Utilities,1418338800000,com.paypal.android.sdk
+Paypal,2.8.3,Utilities,1418857200000,com.paypal.android.sdk
+Paypal,2.8.4,Utilities,1419807600000,com.paypal.android.sdk
+Paypal,2.8.5,Utilities,1422918000000,com.paypal.android.sdk
+Paypal,2.8.6,Utilities,1423782000000,com.paypal.android.sdk
+Paypal,2.8.7,Utilities,1424991600000,com.paypal.android.sdk
+Paypal,2.8.8,Utilities,1425942000000,com.paypal.android.sdk
+Paypal,2.9.0,Utilities,1427065200000,com.paypal.android.sdk
+Paypal,2.9.1,Utilities,1427839200000,com.paypal.android.sdk
+Paypal,2.9.10,Utilities,1436392800000,com.paypal.android.sdk
+Paypal,2.9.11,Utilities,1439416800000,com.paypal.android.sdk
+Paypal,2.9.3,Utilities,1430172000000,com.paypal.android.sdk
+Paypal,2.9.4,Utilities,1430776800000,com.paypal.android.sdk
+Paypal,2.9.5,Utilities,1431381600000,com.paypal.android.sdk
+Paypal,2.9.6,Utilities,1433800800000,com.paypal.android.sdk
+Paypal,2.9.7,Utilities,1434664800000,com.paypal.android.sdk
+Paypal,2.9.8,Utilities,1435788000000,com.paypal.android.sdk
+Paypal,2.9.9,Utilities,1436306400000,com.paypal.android.sdk
+PrettyTime,1.0.8-Final,Utilities,1332712800000,org.ocpsoft.pretty.time
+PrettyTime,2.0.0-Final,Utilities,1354834800000,org.ocpsoft.prettytime
+PrettyTime,2.1.0,Utilities,1355785200000,org.ocpsoft.prettytime
+PrettyTime,2.1.1-Final,Utilities,1355871600000,org.ocpsoft.prettytime
+PrettyTime,2.1.2-Final,Utilities,1356649200000,org.ocpsoft.prettytime
+PrettyTime,2.1.3-Final,Utilities,1359586800000,org.ocpsoft.prettytime
+PrettyTime,3.0.0-Final,Utilities,1369605600000,org.ocpsoft.prettytime
+PrettyTime,3.0.1-Final,Utilities,1369778400000,org.ocpsoft.prettytime
+PrettyTime,3.0.2-Final,Utilities,1369951200000,org.ocpsoft.prettytime
+PrettyTime,3.0.3-Final,Utilities,1379282400000,org.ocpsoft.prettytime
+PrettyTime,3.1.0-Final,Utilities,1379282400000,org.ocpsoft.prettytime
+PrettyTime,3.2.0-Final,Utilities,1384038000000,org.ocpsoft.prettytime
+PrettyTime,3.2.1-Final,Utilities,1384124400000,org.ocpsoft.prettytime
+PrettyTime,3.2.3-Final,Utilities,1386630000000,org.ocpsoft.prettytime
+PrettyTime,3.2.4-Final,Utilities,1389308400000,org.ocpsoft.prettytime
+PrettyTime,3.2.5-Final,Utilities,1398895200000,org.ocpsoft.prettytime
+PrettyTime,3.2.7-Final,Utilities,1419375600000,org.ocpsoft.prettytime
+PrettyTime,4.0.0-Final,Utilities,1429135200000,org.ocpsoft.prettytime
+PrettyTime,4.0.1-Final,Utilities,1449010800000,org.ocpsoft.prettytime
+PubNub,3.4,Utilities,1366149600000,com.pubnub.api
+PubNub,3.5.2,Utilities,1372716000000,com.pubnub.api
+PubNub,3.5.3,Utilities,1373407200000,com.pubnub.api
+PubNub,3.5.4,Utilities,1373493600000,com.pubnub.api
+PubNub,3.5.5,Utilities,1381356000000,com.pubnub.api
+PubNub,3.5.6,Utilities,1383692400000,com.pubnub.api
+PubNub,3.6.0,Utilities,1394665200000,com.pubnub.api
+PubNub,3.6.1,Utilities,1403647200000,com.pubnub.api
+PubNub,3.6.2,Utilities,1404770400000,com.pubnub.api
+PubNub,3.6.3,Utilities,1406066400000,com.pubnub.api
+PubNub,3.7.0,Utilities,1413928800000,com.pubnub.api
+PubNub,3.7.1,Utilities,1418166000000,com.pubnub.api
+PubNub,3.7.10,Utilities,1462485600000,com.pubnub.api
+PubNub,3.7.11,Utilities,1483743600000,com.pubnub.api
+PubNub,3.7.2,Utilities,1420671600000,com.pubnub.api
+PubNub,3.7.3,Utilities,1431986400000,com.pubnub.api
+PubNub,3.7.4,Utilities,1434924000000,com.pubnub.api
+PubNub,3.7.5,Utilities,1439762400000,com.pubnub.api
+PubNub,3.7.6,Utilities,1455404400000,com.pubnub.api
+PubNub,3.7.7,Utilities,1458082800000,com.pubnub.api
+PubNub,3.7.8,Utilities,1459116000000,com.pubnub.api
+PubNub,3.7.9,Utilities,1462226400000,com.pubnub.api
+PubNub,4.0.0,Utilities,1464904800000,com.pubnub.api
+PubNub,4.0.0-beta1,Utilities,1462140000000,com.pubnub.api
+PubNub,4.0.0-beta2,Utilities,1463090400000,com.pubnub.api
+PubNub,4.0.0-beta3,Utilities,1463695200000,com.pubnub.api
+PubNub,4.0.0-beta4,Utilities,1464300000000,com.pubnub.api
+PubNub,4.0.1,Utilities,1465164000000,com.pubnub.api
+PubNub,4.0.10,Utilities,1473285600000,com.pubnub.api
+PubNub,4.0.11,Utilities,1473372000000,com.pubnub.api
+PubNub,4.0.12,Utilities,1473717600000,com.pubnub.api
+PubNub,4.0.13,Utilities,1473804000000,com.pubnub.api
+PubNub,4.0.14,Utilities,1474322400000,com.pubnub.api
+PubNub,4.0.2,Utilities,1465768800000,com.pubnub.api
+PubNub,4.0.3,Utilities,1465941600000,com.pubnub.api
+PubNub,4.0.4,Utilities,1466719200000,com.pubnub.api
+PubNub,4.0.5,Utilities,1467324000000,com.pubnub.api
+PubNub,4.0.6,Utilities,1468879200000,com.pubnub.api
+PubNub,4.0.7,Utilities,1470866400000,com.pubnub.api
+PubNub,4.0.8,Utilities,1471298400000,com.pubnub.api
+PubNub,4.0.9,Utilities,1471989600000,com.pubnub.api
+PubNub,4.1.0,Utilities,1476223200000,com.pubnub.api
+PubNub,4.2.0,Utilities,1477346400000,com.pubnub.api
+PubNub,4.2.2,Utilities,1481238000000,com.pubnub.api
+PubNub,4.2.3,Utilities,1481497200000,com.pubnub.api
+Retrofit,1.0.0,Utilities,1368396000000,retrofit
+Retrofit,1.0.1,Utilities,1368396000000,retrofit
+Retrofit,1.0.2,Utilities,1369346400000,retrofit
+Retrofit,1.1.0,Utilities,1371679200000,retrofit
+Retrofit,1.1.1,Utilities,1372111200000,retrofit
+Retrofit,1.2.0,Utilities,1377208800000,retrofit
+Retrofit,1.2.1,Utilities,1377813600000,retrofit
+Retrofit,1.2.2,Utilities,1379023200000,retrofit
+Retrofit,1.3.0,Utilities,1385334000000,retrofit
+Retrofit,1.4.0,Utilities,1391209200000,retrofit
+Retrofit,1.4.1,Utilities,1391209200000,retrofit
+Retrofit,1.5.0,Utilities,1395356400000,retrofit
+Retrofit,1.5.1,Utilities,1399500000000,retrofit
+Retrofit,1.6.0,Utilities,1402092000000,retrofit
+Retrofit,1.6.1,Utilities,1404252000000,retrofit
+Retrofit,1.7.0,Utilities,1412719200000,retrofit
+Retrofit,1.7.1,Utilities,1414015200000,retrofit
+Retrofit,1.8.0,Utilities,1416265200000,retrofit
+Retrofit,1.9.0,Utilities,1420671600000,retrofit
+Retrofit,2.0.0,Utilities,1457650800000,retrofit2
+Retrofit,2.0.0-beta1,Utilities,1440626400000,retrofit
+Retrofit,2.0.0-beta2,Utilities,1443391200000,retrofit
+Retrofit,2.0.0-beta3,Utilities,1451948400000,retrofit2
+Retrofit,2.0.0-beta4,Utilities,1454540400000,retrofit2
+Retrofit,2.0.1,Utilities,1459375200000,retrofit2
+Retrofit,2.0.2,Utilities,1460671200000,retrofit2
+Retrofit,2.1.0,Utilities,1465941600000,retrofit2
+Retrofit,2.2.0,Utilities,1487631600000,retrofit2
+Retrofit,2.3.0,Utilities,1494712800000,retrofit2
+Retrolambda,1.0.0,Utilities,1374530400000,org.objectweb.asm
+Retrolambda,1.1.0,Utilities,1374703200000,org.objectweb.asm
+Retrolambda,1.1.1,Utilities,1385506800000,org.objectweb.asm
+Retrolambda,1.1.2,Utilities,1389049200000,org.objectweb.asm
+Retrolambda,1.1.3,Utilities,1395702000000,org.objectweb.asm
+Retrolambda,1.1.4,Utilities,1396047600000,org.objectweb.asm
+Retrolambda,1.2.0,Utilities,1398981600000,org.objectweb.asm
+Retrolambda,1.2.1,Utilities,1399154400000,net.orfjackal.retrolambda
+Retrolambda,1.2.2,Utilities,1400018400000,net.orfjackal.retrolambda
+Retrolambda,1.2.3,Utilities,1400450400000,net.orfjackal.retrolambda
+Retrolambda,1.3.0,Utilities,1401832800000,net.orfjackal.retrolambda
+Retrolambda,1.4.0,Utilities,1404424800000,net.orfjackal.retrolambda
+Retrolambda,1.5.0,Utilities,1405720800000,net.orfjackal.retrolambda
+Retrolambda,1.6.0,Utilities,1408485600000,net.orfjackal.retrolambda
+Retrolambda,1.6.1,Utilities,1408831200000,net.orfjackal.retrolambda
+Retrolambda,1.6.2,Utilities,1412287200000,net.orfjackal.retrolambda
+Retrolambda,1.7.0,Utilities,1413842400000,net.orfjackal.retrolambda
+Retrolambda,1.8.0,Utilities,1416092400000,net.orfjackal.retrolambda
+Retrolambda,1.8.1,Utilities,1420498800000,net.orfjackal.retrolambda
+Retrolambda,2.0.0,Utilities,1427497200000,net.orfjackal.retrolambda
+Retrolambda,2.0.1,Utilities,1428271200000,net.orfjackal.retrolambda
+Retrolambda,2.0.2,Utilities,1428962400000,net.orfjackal.retrolambda
+Retrolambda,2.0.3,Utilities,1433628000000,net.orfjackal.retrolambda
+Retrolambda,2.0.4,Utilities,1436306400000,net.orfjackal.retrolambda
+Retrolambda,2.0.5,Utilities,1437256800000,net.orfjackal.retrolambda
+Retrolambda,2.0.6,Utilities,1441490400000,net.orfjackal.retrolambda
+Retrolambda,2.1.0,Utilities,1450479600000,net.orfjackal.retrolambda
+Retrolambda,2.2.0,Utilities,1461880800000,net.orfjackal.retrolambda
+Retrolambda,2.3.0,Utilities,1461967200000,net.orfjackal.retrolambda
+Retrolambda,2.4.0,Utilities,1484089200000,net.orfjackal.retrolambda
+Retrolambda,2.5.0,Utilities,1485039600000,net.orfjackal.retrolambda
+Retrolambda,2.5.1,Utilities,1487804400000,net.orfjackal.retrolambda
+SQLBrite,0.1.0,Utilities,1424473200000,com.squareup.sqlbrite
+SQLBrite,0.2.0,Utilities,1435615200000,com.squareup.sqlbrite
+SQLBrite,0.2.1,Utilities,1436911200000,com.squareup.sqlbrite
+SQLBrite,0.3.0,Utilities,1440972000000,com.squareup.sqlbrite
+SQLBrite,0.3.1,Utilities,1441144800000,com.squareup.sqlbrite
+SQLBrite,0.4.0,Utilities,1442872800000,com.squareup.sqlbrite
+SQLBrite,0.4.1,Utilities,1445205600000,com.squareup.sqlbrite
+SQLBrite,0.5.0,Utilities,1449615600000,com.squareup.sqlbrite
+SQLBrite,0.5.1,Utilities,1454454000000,com.squareup.sqlbrite
+SQLBrite,0.6.0,Utilities,1455663600000,com.squareup.sqlbrite
+SQLBrite,0.6.1,Utilities,1456786800000,com.squareup.sqlbrite
+SQLBrite,0.6.2,Utilities,1456786800000,com.squareup.sqlbrite
+SQLBrite,0.6.3,Utilities,1460498400000,com.squareup.sqlbrite
+SQLBrite,0.7.0,Utilities,1467756000000,com.squareup.sqlbrite
+SQLBrite,0.8.0,Utilities,1477000800000,com.squareup.sqlbrite
+SQLBrite,1.0.0,Utilities,1480633200000,com.squareup.sqlbrite
+SQLBrite,1.1.0,Utilities,1481842800000,com.squareup.sqlbrite
+SQLBrite,1.1.1,Utilities,1482188400000,com.squareup.sqlbrite
+SQLCipher,3.3.1,Utilities,1443132000000,net.sqlcipher
+SQLCipher,3.3.1-1,Utilities,1443996000000,net.sqlcipher
+SQLCipher,3.3.1-2,Utilities,1445464800000,net.sqlcipher
+SQLCipher,3.4.0,Utilities,1459807200000,net.sqlcipher
+SQLCipher,3.5.0,Utilities,1466632800000,net.sqlcipher
+SQLCipher,3.5.1,Utilities,1466719200000,net.sqlcipher
+SQLCipher,3.5.2,Utilities,1467842400000,net.sqlcipher
+SQLCipher,3.5.3,Utilities,1469570400000,net.sqlcipher
+SQLCipher,3.5.4,Utilities,1473717600000,net.sqlcipher
+SQLCipher,3.5.5,Utilities,1486594800000,net.sqlcipher
+SQLCipher,3.5.6,Utilities,1487545200000,net.sqlcipher
+SQLCipher,3.5.7,Utilities,1491775200000,net.sqlcipher
+ScribeJava-Core,2.0,Utilities,1447974000000,com.github.scribejava.core
+ScribeJava-Core,2.0.1,Utilities,1450306800000,com.github.scribejava.core
+ScribeJava-Core,2.1.0,Utilities,1451430000000,com.github.scribejava.core
+ScribeJava-Core,2.2.0,Utilities,1453762800000,com.github.scribejava.core
+ScribeJava-Core,2.2.1,Utilities,1454367600000,com.github.scribejava.core
+ScribeJava-Core,2.2.2,Utilities,1454540400000,com.github.scribejava.core
+ScribeJava-Core,2.3.0,Utilities,1456441200000,com.github.scribejava.core
+ScribeJava-Core,2.4.0,Utilities,1457910000000,com.github.scribejava.core
+ScribeJava-Core,2.5.2,Utilities,1459116000000,com.github.scribejava.core
+ScribeJava-Core,2.5.3,Utilities,1460671200000,com.github.scribejava.core
+ScribeJava-Core,2.6.0,Utilities,1463954400000,com.github.scribejava.core
+ScribeJava-Core,2.7.0,Utilities,1465164000000,com.github.scribejava.core
+ScribeJava-Core,2.7.1,Utilities,1465336800000,com.github.scribejava.core
+ScribeJava-Core,2.7.2,Utilities,1465336800000,com.github.scribejava.core
+ScribeJava-Core,2.7.3,Utilities,1465423200000,com.github.scribejava.core
+ScribeJava-Core,2.8.0,Utilities,1466632800000,com.github.scribejava.core
+ScribeJava-Core,2.8.1,Utilities,1467583200000,com.github.scribejava.core
+ScribeJava-Core,3.0.0,Utilities,1469138400000,com.github.scribejava.core
+ScribeJava-Core,3.1.0,Utilities,1472162400000,com.github.scribejava.core
+ScribeJava-Core,3.2.0,Utilities,1473285600000,com.github.scribejava.core
+ScribeJava-Core,3.3.0,Utilities,1479423600000,com.github.scribejava.core
+ScribeJava-Core,3.4.0,Utilities,1481151600000,com.github.scribejava.core
+ScribeJava-Core,3.4.1,Utilities,1481670000000,com.github.scribejava.core
+ScribeJava-Core,4.0.0,Utilities,1484262000000,com.github.scribejava.core
+ScribeJava-Core,4.1.0,Utilities,1492466400000,com.github.scribejava.core
+ScribeJava-Core,4.1.1,Utilities,1494885600000,com.github.scribejava.core
+Tape,1.0.0,Utilities,1348524000000,com.squareup.tape
+Tape,1.1.0,Utilities,1352329200000,com.squareup.tape
+Tape,1.1.1,Utilities,1382392800000,com.squareup.tape
+Tape,1.2.0,Utilities,1389913200000,com.squareup.tape
+Tape,1.2.1,Utilities,1394060400000,com.squareup.tape
+Tape,1.2.2,Utilities,1395183600000,com.squareup.tape
+Tape,1.2.3,Utilities,1412632800000,com.squareup.tape
+TrustedIntents,0.0,Utilities,1440712800000,info.guardianproject
+TrustedIntents,0.1,Utilities,1449529200000,info.guardianproject
+TrustedIntents,0.2,Utilities,1452121200000,info.guardianproject
+android-oauth-client,0.0.1,Utilities,1372370400000,com.wuman.android.auth
+android-oauth-client,0.0.2,Utilities,1380146400000,com.wuman.android.auth
+android-oauth-client,0.0.3,Utilities,1392073200000,com.wuman.android.auth
+android-oauth-client,0.0.4,Utilities,1394492400000,com.wuman.android.auth
+android-oauth-client,0.0.5,Utilities,1400104800000,com.wuman.android.auth
+android-oauth-client,0.0.6,Utilities,1401314400000,com.wuman.android.auth
+android-oauth-client,0.1.0,Utilities,1411596000000,com.wuman.android.auth
+android-oauth-client,0.2.0,Utilities,1412546400000,com.wuman.android.auth
+android-oauth-client,0.3.0,Utilities,1413928800000,com.wuman.android.auth
+android-oauth-client,0.3.1,Utilities,1414015200000,com.wuman.android.auth
+android-oauth-client,0.3.2,Utilities,1414623600000,com.wuman.android.auth
+android-oauth-client,0.4.0,Utilities,1414969200000,com.wuman.android.auth
+android-oauth-client,0.4.1,Utilities,1416783600000,com.wuman.android.auth
+android-oauth-client,0.4.2,Utilities,1417388400000,com.wuman.android.auth
+android-oauth-client,0.4.3,Utilities,1418684400000,com.wuman.android.auth
+android-oauth-client,0.4.4,Utilities,1426028400000,com.wuman.android.auth
+android-oauth-client,0.4.5,Utilities,1427238000000,com.wuman.android.auth
+braintree-payments,1.0.0,Utilities,1404856800000,com.braintreepayments.api.dropin
+braintree-payments,1.0.1,Utilities,1405029600000,com.braintreepayments.api.dropin
+braintree-payments,1.0.2,Utilities,1405548000000,com.braintreepayments.api.dropin
+braintree-payments,1.0.3,Utilities,1405634400000,com.braintreepayments.api.dropin
+braintree-payments,1.0.4,Utilities,1406930400000,com.braintreepayments.api.dropin
+braintree-payments,1.0.5,Utilities,1407189600000,com.braintreepayments.api.dropin
+braintree-payments,1.0.6,Utilities,1407448800000,com.braintreepayments.api.dropin
+braintree-payments,1.0.7,Utilities,1407794400000,com.braintreepayments.api.dropin
+braintree-payments,1.0.8,Utilities,1407967200000,com.braintreepayments.api.dropin
+braintree-payments,1.1.0,Utilities,1409004000000,com.braintreepayments.api.dropin
+braintree-payments,1.2.0,Utilities,1410127200000,com.braintreepayments.api.dropin
+braintree-payments,1.2.1,Utilities,1410559200000,com.braintreepayments.api.dropin
+braintree-payments,1.2.2,Utilities,1412200800000,com.braintreepayments.api.dropin
+braintree-payments,1.2.3,Utilities,1412892000000,com.braintreepayments.api.dropin
+braintree-payments,1.2.4,Utilities,1413324000000,com.braintreepayments.api.dropin
+braintree-payments,1.2.5,Utilities,1413410400000,com.braintreepayments.api.dropin
+braintree-payments,1.2.6,Utilities,1414710000000,com.braintreepayments.api.dropin
+braintree-payments,1.2.7,Utilities,1417734000000,com.braintreepayments.api.dropin
+braintree-payments,1.3.0,Utilities,1423090800000,com.braintreepayments.api.dropin
+braintree-payments,1.4.0,Utilities,1427324400000,com.braintreepayments.api.dropin
+braintree-payments,1.5.0,Utilities,1431036000000,com.braintreepayments.api.dropin
+braintree-payments,1.5.1,Utilities,1432332000000,com.braintreepayments.api.dropin
+braintree-payments,1.6.0,Utilities,1434146400000,com.braintreepayments.api.dropin
+braintree-payments,1.6.1,Utilities,1434319200000,com.braintreepayments.api.dropin
+braintree-payments,1.6.2,Utilities,1435010400000,com.braintreepayments.api.dropin
+braintree-payments,1.6.3,Utilities,1435096800000,com.braintreepayments.api.dropin
+braintree-payments,1.6.4,Utilities,1436306400000,com.braintreepayments.api.dropin
+braintree-payments,1.6.5,Utilities,1438812000000,com.braintreepayments.api.dropin
+braintree-payments,1.7.0,Utilities,1444082400000,com.braintreepayments.api.dropin
+braintree-payments,1.7.1,Utilities,1444082400000,com.braintreepayments.api.dropin
+braintree-payments,1.7.2,Utilities,1445464800000,com.braintreepayments.api.dropin
+braintree-payments,1.7.3,Utilities,1445551200000,com.braintreepayments.api.dropin
+braintree-payments,1.7.4,Utilities,1446073200000,com.braintreepayments.api.dropin
+braintree-payments,1.7.5,Utilities,1447023600000,com.braintreepayments.api.dropin
+braintree-payments,1.7.6,Utilities,1452207600000,com.braintreepayments.api.dropin
+braintree-payments,1.7.7,Utilities,1452553200000,com.braintreepayments.api.dropin
+braintree-payments,1.7.8,Utilities,1452639600000,com.braintreepayments.api.dropin
+braintree-payments,1.7.9,Utilities,1468188000000,com.braintreepayments.api.dropin
+braintree-payments,2.0.0,Utilities,1447196400000,com.braintreepayments.api
+braintree-payments,2.0.1,Utilities,1447628400000,com.braintreepayments.api
+braintree-payments,2.1.0,Utilities,1449529200000,com.braintreepayments.api
+braintree-payments,2.1.1,Utilities,1452207600000,com.braintreepayments.api
+braintree-payments,2.1.2,Utilities,1452466800000,com.braintreepayments.api
+braintree-payments,2.2.0,Utilities,1454022000000,com.braintreepayments.api
+braintree-payments,2.2.1,Utilities,1454108400000,com.braintreepayments.api
+braintree-payments,2.2.2,Utilities,1457650800000,com.braintreepayments.api
+braintree-payments,2.2.3,Utilities,1457650800000,com.braintreepayments.api
+braintree-payments,2.2.4,Utilities,1460412000000,com.braintreepayments.api
+braintree-payments,2.2.5,Utilities,1460584800000,com.braintreepayments.api
+braintree-payments,2.3.0,Utilities,1462226400000,com.braintreepayments.api
+braintree-payments,2.3.1,Utilities,1464127200000,com.braintreepayments.api
+braintree-payments,2.3.10,Utilities,1475791200000,com.braintreepayments.api
+braintree-payments,2.3.11,Utilities,1477260000000,com.braintreepayments.api
+braintree-payments,2.3.12,Utilities,1479250800000,com.braintreepayments.api
+braintree-payments,2.3.2,Utilities,1465164000000,com.braintreepayments.api
+braintree-payments,2.3.3,Utilities,1466028000000,com.braintreepayments.api
+braintree-payments,2.3.4,Utilities,1467842400000,com.braintreepayments.api
+braintree-payments,2.3.5,Utilities,1468965600000,com.braintreepayments.api
+braintree-payments,2.3.6,Utilities,1469743200000,com.braintreepayments.api
+braintree-payments,2.3.7,Utilities,1472162400000,com.braintreepayments.api
+braintree-payments,2.3.8,Utilities,1473372000000,com.braintreepayments.api
+braintree-payments,2.3.9,Utilities,1473372000000,com.braintreepayments.api
+braintree-payments,2.4.0,Utilities,1484348400000,com.braintreepayments.api
+braintree-payments,2.4.1,Utilities,1485298800000,com.braintreepayments.api
+braintree-payments,2.4.2,Utilities,1486681200000,com.braintreepayments.api
+braintree-payments,2.4.3,Utilities,1490223600000,com.braintreepayments.api
+braintree-payments,2.5.0,Utilities,1490911200000,com.braintreepayments.api
+braintree-payments,2.5.1,Utilities,1490911200000,com.braintreepayments.api
+braintree-payments,2.5.2,Utilities,1493330400000,com.braintreepayments.api
+braintree-payments,2.5.3,Utilities,1494453600000,com.braintreepayments.api
+braintree-payments,2.5.4,Utilities,1496786400000,com.braintreepayments.api
+jsoup,0.2.1-beta,Utilities,1265324400000,org.jsoup
+jsoup,0.2.2,Utilities,1265497200000,org.jsoup
+jsoup,0.3.1,Utilities,1266620400000,org.jsoup
+jsoup,1.1.1,Utilities,1275948000000,org.jsoup
+jsoup,1.10.1,Utilities,1477173600000,org.jsoup
+jsoup,1.10.2,Utilities,1483311600000,org.jsoup
+jsoup,1.2.1,Utilities,1277071200000,org.jsoup
+jsoup,1.2.2,Utilities,1278799200000,org.jsoup
+jsoup,1.2.3,Utilities,1280872800000,org.jsoup
+jsoup,1.3.1,Utilities,1282514400000,org.jsoup
+jsoup,1.3.2,Utilities,1283119200000,org.jsoup
+jsoup,1.3.3,Utilities,1284847200000,org.jsoup
+jsoup,1.4.1,Utilities,1290466800000,org.jsoup
+jsoup,1.5.1,Utilities,1298070000000,org.jsoup
+jsoup,1.5.2,Utilities,1298761200000,org.jsoup
+jsoup,1.6.0,Utilities,1307916000000,org.jsoup
+jsoup,1.6.1,Utilities,1309557600000,org.jsoup
+jsoup,1.6.2,Utilities,1332885600000,org.jsoup
+jsoup,1.6.3,Utilities,1338156000000,org.jsoup
+jsoup,1.7.1,Utilities,1348437600000,org.jsoup
+jsoup,1.7.2,Utilities,1359327600000,org.jsoup
+jsoup,1.7.3,Utilities,1384124400000,org.jsoup
+jsoup,1.8.1,Utilities,1411855200000,org.jsoup
+jsoup,1.8.2,Utilities,1428962400000,org.jsoup
+jsoup,1.8.3,Utilities,1438466400000,org.jsoup
+jsoup,1.9.1,Utilities,1460844000000,org.jsoup
+jsoup,1.9.2,Utilities,1463522400000,org.jsoup
+leakcanary,1.3,Utilities,1431036000000,com.squareup.leakcanary
+leakcanary,1.3.1,Utilities,1431727200000,com.squareup.leakcanary
+leakcanary,1.4,Utilities,1473631200000,com.squareup.leakcanary
+leakcanary,1.4-beta1,Utilities,1452207600000,com.squareup.leakcanary
+leakcanary,1.4-beta2,Utilities,1458774000000,com.squareup.leakcanary
+leakcanary,1.5,Utilities,1475013600000,com.squareup.leakcanary
+leakcanary,1.5.1,Utilities,1493157600000,com.squareup.leakcanary
+log4j,2.0,Utilities,1405202400000,org.apache.logging.log4j.core
+log4j,2.0-alpha1,Utilities,1343512800000,org.apache.logging.log4j.core
+log4j,2.0-alpha2,Utilities,1345759200000,org.apache.logging.log4j.core
+log4j,2.0-beta1,Utilities,1347919200000,org.apache.logging.log4j.core
+log4j,2.0-beta2,Utilities,1349560800000,org.apache.logging.log4j.core
+log4j,2.0-beta3,Utilities,1352588400000,org.apache.logging.log4j.core
+log4j,2.0-beta4,Utilities,1359327600000,org.apache.logging.log4j.core
+log4j,2.0-beta5,Utilities,1366408800000,org.apache.logging.log4j.core
+log4j,2.0-beta6,Utilities,1367877600000,org.apache.logging.log4j.core
+log4j,2.0-beta7,Utilities,1370296800000,org.apache.logging.log4j.core
+log4j,2.0-beta8,Utilities,1373407200000,org.apache.logging.log4j.core
+log4j,2.0-beta9,Utilities,1379109600000,org.apache.logging.log4j.core
+log4j,2.0-rc1,Utilities,1391900400000,org.apache.logging.log4j.core
+log4j,2.0-rc2,Utilities,1403388000000,org.apache.logging.log4j.core
+log4j,2.0.1,Utilities,1406671200000,org.apache.logging.log4j.core
+log4j,2.0.2,Utilities,1408226400000,org.apache.logging.log4j.core
+log4j,2.1,Utilities,1413756000000,org.apache.logging.log4j.core
+log4j,2.2,Utilities,1424559600000,org.apache.logging.log4j.core
+log4j,2.3,Utilities,1431208800000,org.apache.logging.log4j.core
+log4j,2.4,Utilities,1442700000000,org.apache.logging.log4j.core
+log4j,2.4.1,Utilities,1444341600000,org.apache.logging.log4j.core
+log4j,2.5,Utilities,1449442800000,org.apache.logging.log4j.core
+log4j,2.6,Utilities,1464127200000,org.apache.logging.log4j.core
+log4j,2.6.1,Utilities,1465164000000,org.apache.logging.log4j.core
+log4j,2.6.2,Utilities,1467756000000,org.apache.logging.log4j.core
+log4j,2.7,Utilities,1475359200000,org.apache.logging.log4j
+log4j,2.8,Utilities,1485039600000,org.apache.logging.log4j.core
+log4j,2.8.1,Utilities,1488150000000,org.apache.logging.log4j.core
+log4j,2.8.2,Utilities,1491084000000,org.apache.logging.log4j.core
+mapsforge,0.4.1,Utilities,1399586400000,org.mapsforge.core
+mapsforge,0.4.2,Utilities,1399672800000,org.mapsforge.core
+mapsforge,0.4.3,Utilities,1399672800000,org.mapsforge.core
+mapsforge,0.5.0,Utilities,1417993200000,org.mapsforge.core
+mapsforge,0.5.0-rc1,Utilities,1412373600000,org.mapsforge.core
+mapsforge,0.5.0-rc3,Utilities,1417042800000,org.mapsforge.core
+mapsforge,0.5.0-rc4,Utilities,1417734000000,org.mapsforge.core
+mapsforge,0.5.1,Utilities,1427151600000,org.mapsforge.core
+mapsforge,0.5.2,Utilities,1440280800000,org.mapsforge.core
+mapsforge,0.5.2-rc2,Utilities,1438984800000,org.mapsforge.core
+mapsforge,0.5.2-rc3,Utilities,1439935200000,org.mapsforge.core
+mapsforge,0.6.0,Utilities,1448406000000,org.mapsforge.core
+mapsforge,0.6.0-rc1,Utilities,1446246000000,org.mapsforge.core
+mapsforge,0.6.0-rc2,Utilities,1447369200000,org.mapsforge.core
+mapsforge,0.6.0-rc3,Utilities,1447887600000,org.mapsforge.core
+mapsforge,0.6.1,Utilities,1465596000000,org.mapsforge.core
+mapsforge,0.6.1-rc1,Utilities,1463349600000,org.mapsforge.core
+mapsforge,0.6.1-rc2,Utilities,1464559200000,org.mapsforge.core
+mapsforge,0.7.0,Utilities,1483052400000,org.mapsforge.core
+mapsforge,0.7.0-rc1,Utilities,1482361200000,org.mapsforge.core
+mapsforge,0.7.0-rc2,Utilities,1482447600000,org.mapsforge.core
+mapsforge,0.8.0,Utilities,1489791600000,org.mapsforge.core
+mapsforge,0.8.0-rc1,Utilities,1489186800000,org.mapsforge.core
+okio,0.5.0,Utilities,1396908000000,okio
+okio,0.6.0,Utilities,1397512800000,okio
+okio,0.6.1,Utilities,1397772000000,okio
+okio,0.7.0,Utilities,1397772000000,okio
+okio,0.8.0,Utilities,1398376800000,okio
+okio,0.9.0,Utilities,1399068000000,okio
+okio,1.0.0,Utilities,1400882400000,okio
+okio,1.0.1,Utilities,1407535200000,okio
+okio,1.1.0,Utilities,1418252400000,okio
+okio,1.10.0,Utilities,1472335200000,okio
+okio,1.11.0,Utilities,1476223200000,okio
+okio,1.12.0,Utilities,1491948000000,okio
+okio,1.13.0,Utilities,1494540000000,okio
+okio,1.2.0,Utilities,1419980400000,okio
+okio,1.3.0,Utilities,1426460400000,okio
+okio,1.4.0,Utilities,1431727200000,okio
+okio,1.5.0,Utilities,1434664800000,okio
+okio,1.6.0,Utilities,1440540000000,okio
+okio,1.7.0,Utilities,1460325600000,okio
+okio,1.8.0,Utilities,1462140000000,okio
+okio,1.9.0,Utilities,1467324000000,okio
+roboguice,1.1,Utilities,1295910000000,roboguice
+roboguice,1.1.1,Utilities,1299711600000,roboguice
+roboguice,1.1.2,Utilities,1310162400000,roboguice
+roboguice,1.1.3,Utilities,1327964400000,roboguice
+roboguice,2.0,Utilities,1335132000000,roboguice
+roboguice,2.0-RC1,Utilities,1332198000000,roboguice
+roboguice,2.0-RC2,Utilities,1334181600000,roboguice
+roboguice,2.0-RC2b,Utilities,1334700000000,roboguice
+roboguice,2.0-beta1,Utilities,1318456800000,roboguice
+roboguice,2.0-beta2,Utilities,1318888800000,roboguice
+roboguice,2.0-beta3,Utilities,1322175600000,roboguice
+roboguice,2.0-beta4,Utilities,1330038000000,roboguice
+roboguice,3.0,Utilities,1414015200000,roboguice
+roboguice,3.0-alpha-1,Utilities,1375912800000,roboguice
+roboguice,3.0-alpha-2,Utilities,1398981600000,roboguice
+roboguice,3.0-experimental-a,Utilities,1359932400000,roboguice
+roboguice,3.0-experimental-b,Utilities,1359932400000,roboguice
+roboguice,3.0.1,Utilities,1415574000000,roboguice
+roboguice,4.0.0,Utilities,1457391600000,org.roboguice.shaded.goole.common
+scribe,1.0.6,Utilities,1287871200000,org.scribe
+scribe,1.0.7,Utilities,1288130400000,org.scribe
+scribe,1.0.8,Utilities,1290207600000,org.scribe
+scribe,1.0.9,Utilities,1292367600000,org.scribe
+scribe,1.1.0,Utilities,1295132400000,org.scribe
+scribe,1.1.1,Utilities,1299970800000,org.scribe
+scribe,1.1.2,Utilities,1301436000000,org.scribe
+scribe,1.1.3,Utilities,1303250400000,org.scribe
+scribe,1.2.0,Utilities,1304460000000,org.scribe
+scribe,1.2.1,Utilities,1309125600000,org.scribe
+scribe,1.2.2,Utilities,1314568800000,org.scribe
+scribe,1.2.3,Utilities,1316988000000,org.scribe
+scribe,1.3.0,Utilities,1324076400000,org.scribe
+scribe,1.3.1,Utilities,1336514400000,org.scribe
+scribe,1.3.2,Utilities,1346796000000,org.scribe
+scribe,1.3.3,Utilities,1356217200000,org.scribe
+scribe,1.3.5,Utilities,1371938400000,org.scribe
+scribe,1.3.6,Utilities,1419634800000,org.scribe
+scribe,1.3.7,Utilities,1419634800000,org.scribe
+signpost,1.2.1.1,Utilities,1269126000000,oauth.signpost
+signpost,1.2.1.2,Utilities,1331593200000,oauth.signpost
+universal-image-loader,1.7.1,Utilities,1359586800000,com.nostra13.universalimageloader
+universal-image-loader,1.8.0,Utilities,1360450800000,com.nostra13.universalimageloader
+universal-image-loader,1.8.1,Utilities,1362697200000,com.nostra13.universalimageloader
+universal-image-loader,1.8.2,Utilities,1363129200000,com.nostra13.universalimageloader
+universal-image-loader,1.8.3,Utilities,1364684400000,com.nostra13.universalimageloader
+universal-image-loader,1.8.4,Utilities,1365804000000,com.nostra13.universalimageloader
+universal-image-loader,1.8.5,Utilities,1372543200000,com.nostra13.universalimageloader
+universal-image-loader,1.8.6,Utilities,1374703200000,com.nostra13.universalimageloader
+universal-image-loader,1.9.0,Utilities,1385506800000,com.nostra13.universalimageloader
+universal-image-loader,1.9.1,Utilities,1388098800000,com.nostra13.universalimageloader
+universal-image-loader,1.9.2,Utilities,1400882400000,com.nostra13.universalimageloader
+universal-image-loader,1.9.3,Utilities,1409954400000,com.nostra13.universalimageloader
+universal-image-loader,1.9.4,Utilities,1432850400000,com.nostra13.universalimageloader

@@ -16,17 +16,22 @@ For technical details and large-scale evaluation results, please refer to our pu
 If you use LibScout in a scientific publication, we would appreciate citations using this Bibtex entry: [[bib]](https://www.infsec.cs.uni-saarland.de/~derr/publications/bib/derr_ccs16.bib)<br>
 
 
-##   Library Profiles
+##   Library Profiles and Scripts
 
 To facilitate usage of LibScout we are happy to release our datasets to the community. <br>
 You can find the following resources in the data/scripts directory:<br>
 
-<ul>
- <li>all <b>library profiles</b> (ready-to-use for detection in apps)&nbsp;&nbsp; [data/library-profiles.zip]</li>
- <li>an accompanying SQLite DB with parsed <b>library data</b> (name, version, release date, ..)&nbsp;&nbsp;  [data/library-data.sqlite]</li>
- <li>a python script to automatically download complete version histories from maven-central
-   incl. config script&nbsp;&nbsp; [scripts/mvn-central/mvn-central-crawler.py]</li>
-</ul>
+
+### Library Profiles (last updated:  06/27/2017)
+
+You can find all <b>library profiles</b> (ready-to-use) for lib detection in apps in the data directory as compressed .zip file.<br>
+It currently includes <b>205</b> unique libraries and <b>3,071</b> library versions.<br> For convenience, data/library-data.csv contains a
+complete list of library/-versions including meta data such as release dates.
+
+### Scripts (scripts/mnv-central)
+The scripts directory further contains a python script to automatically download original library SDKs including complete version histories from maven-central.<br>
+The set of libraries we currently retrieve is stored in a json file.<br>
+
 
 Due to copyright reasons we cannot publicy provide the original library SDKs. If you are interested in this data, send us an email.<br>
 We also welcome contributions to LibScout or our library database (either original SDKs or scripts for automatic retrieval from sources other than mvn central).<br><br>
@@ -38,8 +43,8 @@ Contact us for comments, feedback, how to contribute:  Erik Derr  [lastname@cs.u
 <pre><code>
 |_ build.xml (ant build file to generate runnable .jar)
 |_ data (library profiles and supplemental data sets)
-|    |_ library-data.sqlite (library meta data)
-|    |_ library-profiles.zip (all library profiles)
+|    |_ library-data.csv (library meta data)
+|    |_ library-profiles-21.06.zip (all library profiles)
 |    |_ app-version-codes.csv (app packages with valid version codes)
 |_ lib
 |    pre-compiled WALA libs, Apache commons*, log4j, Android SDK 
@@ -114,5 +119,3 @@ Contact us for comments, feedback, how to contribute:  Erik Derr  [lastname@cs.u
 </li>
 
 </ol>
-
-
