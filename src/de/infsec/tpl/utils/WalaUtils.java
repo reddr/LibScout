@@ -116,6 +116,32 @@ public class WalaUtils {
 	}
 
 
+	public static boolean isObjectClass(IClass clazz) {
+		return "java.lang.Object".equals(simpleName(clazz));
+	}
+
+	/**
+	 * Hierarchical lookup of an {@link IMethod} via {@link IClass} and {@link CallSiteReference}.
+	 * @param clazz   the {@link IClass} to start with
+	 * @param csr  the {@link CallSiteReference}
+	 * @return  a {@link IMethod} object of the resolved method or null
+ 	 */
+	public static IMethod resolveMethod(IClass clazz, CallSiteReference csr) {
+		IMethod targetMethod = null;
+
+		while (targetMethod == null && !WalaUtils.isObjectClass(clazz)) {
+			targetMethod = clazz.getMethod(csr.getDeclaredTarget().getSelector());
+			if (targetMethod != null)
+				break;
+
+			clazz = clazz.getSuperclass();
+		}
+		return targetMethod;
+	}
+
+
+
+
 	/**
 	 * Hierarchy lookup of a method selector. If the method is not declared in the class
 	 * the lookup is continued at the superclass. This is continued until the method is found or

@@ -126,7 +126,10 @@ public enum AccessFlags {
 	
 	public static int getMethodAccessCode(IMethod m) {
 		int res = 0x0;
-		
+
+		if (m == null)
+		    return res;
+
 		if (m.isPublic()) {
 			res |= AccessFlags.PUBLIC.getValue();
 		} else if (m.isProtected()) {

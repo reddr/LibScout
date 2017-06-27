@@ -123,6 +123,10 @@ public class LibCodeUsage {
 								}
 
 								IMethod targetMethod = targetClazz.getMethod(csr.getDeclaredTarget().getSelector());
+
+								if (targetMethod == null) {  // e.g. if clazz is interface without declared methods
+									targetMethod = WalaUtils.resolveMethod(clazz, csr);
+								}
 								int accessSpecifier = AccessFlags.getMethodAccessCode(targetMethod);
 								
 								String accessSpec = AccessFlags.flags2Str(accessSpecifier);
