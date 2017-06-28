@@ -1,7 +1,6 @@
 # LibScout
 
-LibScout is a light-weight and effective static analysis tool to detect third-party libraries in Android apps. The detection is resilient against<br>
-common bytecode obfuscation techniques such as identifier renaming or code-based obfuscations such as reflection-based API hiding or control-flow randomization.<br>
+LibScout is a light-weight and effective static analysis tool to detect third-party libraries in Android apps. The detection is resilient against common bytecode obfuscation techniques such as identifier renaming or code-based obfuscations such as reflection-based API hiding or control-flow randomization.<br>
 LibScout requires the original library SDKs (compiled .jar/.aar files) to extract library profiles that can be used for detection on Android apps.
 
 Unique features:
@@ -25,15 +24,14 @@ You can find the following resources in the data/scripts directory:<br>
 ### Library Profiles (last updated:  06/27/2017)
 
 You can find all <b>library profiles</b> (ready-to-use) for lib detection in apps in the data directory as compressed .zip file.<br>
-It currently includes <b>205</b> unique libraries and <b>3,071</b> library versions.<br> For convenience, data/library-data.csv contains a
-complete list of library/-versions including meta data such as release dates.
+It currently includes <b>205</b> unique libraries and <b>3,071</b> library versions.<br> For convenience, data/library-data.csv contains a complete list of library/-versions including meta data such as release dates.
 
-### Scripts (scripts/mnv-central)
+### Scripts (scripts/mvn-central)
 The scripts directory further contains a python script to automatically download original library SDKs including complete version histories from maven-central.<br>
 The set of libraries we currently retrieve is stored in a json file.<br>
 
 
-Due to copyright reasons we cannot publicy provide the original library SDKs. If you are interested in this data, send us an email.<br>
+Due to copyright reasons we cannot publicy provide the original library SDKs. If you are interested in this data, send us an email.
 We also welcome contributions to LibScout or our library database (either original SDKs or scripts for automatic retrieval from sources other than mvn central).<br><br>
 Contact us for comments, feedback, how to contribute:  Erik Derr  [lastname@cs.uni-saarland.de]
 
