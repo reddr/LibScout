@@ -36,6 +36,29 @@ We also welcome contributions to LibScout or our library database (either origin
 Contact us for comments, feedback, how to contribute:  Erik Derr  [lastname@cs.uni-saarland.de]
 
 
+## Detecting vulnerable library versions
+
+LibScout has builtin functionality to report library versions with the following security vulnerabilities.<br>
+Detected vulnerable versions are tagged with <b>[SECURITY]</b>, patches with <b>[SECURITY-FIX]</b>. <br>
+This information is encoded in the library.xml files that have been used to generate the profiles.
+We try to update the list/profiles whenever we encounter new security issues. If you can share information, please let us know.
+
+
+| Library    |   Version(s)    | Fix Version   |  Vulnerability                         |     Link  |
+| ---------- | ---------------:|--------------:|--------------------------------------- | ---------------------------------------------------------------------------------------------------------------   |
+| Airpush    |      < 8.1      |  > 8.1        |  Unsanitized default WebView settings  |  [Link](https://support.google.com/faqs/answer/6376737)  |
+| Apache CC  | 3.2.1 / 4.0     |  3.2.2 / 4.1  |  Deserialization vulnerability         |  [Link](http://www.kb.cert.org/vuls/id/576313)  |
+| Dropbox    | 1.5.4 - 1.6.1   |   1.6.2       |  DroppedIn vulnerability               |  [Link](https://blogs.dropbox.com/developers/2015/03/security-bug-resolved-in-the-dropbox-sdks-for-android)  |
+| Facebook   |       3.15      |    3.16       |  Account hijacking vulnerability       |  [Link](http://thehackernews.com/2014/07/facebook-sdk-vulnerability-puts.html)  |
+| MoPub      |    < 4.4.0      |  4.4.0        |  Unsanitized default WebView settings  |  [Link](https://support.google.com/faqs/answer/6345928)  |
+| OkHttp     | 2.1-2.7.4 / 3.0.0-3.1.2  |  2.7.5 / 3.2.0 |  Certificate pinning bypass  |  [Link](https://medium.com/square-corner-blog/vulnerability-in-okhttps-certificate-pinner-2a7326ad073b)  |
+| SuperSonic |    < 6.3.5      |   6.3.5       |  Unsafe functionality exposure via JS  |  [Link](https://support.google.com/faqs/answer/7126517)  |
+| Vungle     |    < 3.3.0      |  3.3.0        |  MitM attack vulnerability             |  [Link](https://support.google.com/faqs/answer/6313713)  |
+
+
+On our last scan of free apps on Google Play (05/25/2017), LibScout detected >20k apps containing one of these vulnerable lib versions.
+These results have been reported to Google's [ASI program](https://developer.android.com/google/play/asi.html) (still under investigation).
+
 
 ##   LibScout Repo Structure
 <pre><code>
