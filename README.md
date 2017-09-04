@@ -8,11 +8,15 @@ Unique features:
  * Capability of pinpointing the exact library version (in some cases to a set of 2-3 candidate versions)
  * Capability of handling dead-code elimination, by computing a similarity score against baseline SDKs
 
-For technical details and large-scale evaluation results, please refer to our publication:<br>
+For technical details and large-scale evaluation results, please refer to our publications:<br>
 > Reliable Third-Party Library Detection in Android and its Security Applications<br>
 > https://www.infsec.cs.uni-saarland.de/~derr/publications/pdfs/derr_ccs16.pdf
+>
+> Keep me Updated: An Empirical Study of Third-Party Library Updatability on Android<br>
+> https://www.infsec.cs.uni-saarland.de/~derr/publications/pdfs/derr_ccs17.pdf
 
-If you use LibScout in a scientific publication, we would appreciate citations using this Bibtex entry: [[bib]](https://www.infsec.cs.uni-saarland.de/~derr/publications/bib/derr_ccs16.bib)<br>
+If you use LibScout in a scientific publication, we would appreciate citations using these Bibtex entries: [[bib-ccs16]](https://www.infsec.cs.uni-saarland.de/~derr/publications/bib/derr_ccs16.bib)
+[[bib-ccs17]](https://www.infsec.cs.uni-saarland.de/~derr/publications/bib/derr_ccs17.bib)<br>
 
 
 ##   Library Profiles and Scripts
