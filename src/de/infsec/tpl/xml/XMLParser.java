@@ -47,7 +47,7 @@ import de.infsec.tpl.profile.LibraryDescription.LibraryCategory;
  *	    <!-- optional: version string --> 
  *	    <version>{}</version>
  *	
- *	    <!-- optional: date (format: DD/MM/YYYY)
+ *	    <!-- optional: date (format: dd.MM.yyyy)
  *	    <releasedate>{}</releasedate>
  *	
  *	    <!-- optional: comment --> 
