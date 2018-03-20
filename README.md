@@ -1,7 +1,7 @@
 # LibScout
 
-LibScout is a light-weight and effective static analysis tool to detect third-party libraries in Android apps. The detection is resilient against common bytecode obfuscation techniques such as identifier renaming or code-based obfuscations such as reflection-based API hiding or control-flow randomization.<br>
-LibScout requires the original library SDKs (compiled .jar/.aar files) to extract library profiles that can be used for detection on Android apps.
+LibScout is a light-weight and effective static analysis tool to detect third-party libraries in Android/Java apps. The detection is resilient against common bytecode obfuscation techniques such as identifier renaming or code-based obfuscations such as reflection-based API hiding or control-flow randomization. Further LibScout is capable of pinpointing exact library versions.<br>
+LibScout requires the original library SDKs (compiled .jar/.aar files) to extract library profiles that can be used for detection on Android apps. Pre-generated library profiles are hosted at the repository [LibScout-Profiles](https://github.com/reddr/LibScout-Profiles).
 
 Unique features:
  * Library detection resilient against many kinds of bytecode obfuscation
@@ -21,26 +21,10 @@ If you use LibScout in a scientific publication, we would appreciate citations u
 
 ##   Library Profiles and Scripts
 
-To facilitate usage of LibScout we are happy to release our datasets to the community. <br>
-You can find the following resources in the data/scripts directory:<br>
+Ready-to-use library profiles and library meta-data can be found in the repository [LibScout-Profiles](https://github.com/reddr/LibScout-Profiles).
+It further includes scripts to automatically retrieve complete library version histories.
 
-
-### Library Profiles (last updated:  06/27/2017)
-
-You can find all <b>library profiles</b> (ready-to-use) for lib detection in apps in the data directory as compressed .zip file.<br>
-It currently includes <b>205</b> unique libraries and <b>3,071</b> library versions.<br> For convenience, data/library-data.csv contains a complete list of library/-versions including meta data such as release dates.
-
-### Scripts (scripts/mvn-central)
-The scripts directory further contains a python script to automatically download original library SDKs including complete version histories from maven-central.<br>
-The set of libraries we currently retrieve is stored in a json file.<br>
-
-
-Due to copyright reasons we cannot publicy provide the original library SDKs. If you are interested in this data, send us an email.
-We also welcome contributions to LibScout or our library database (either original SDKs or scripts for automatic retrieval from sources other than mvn central).<br><br>
-Contact us for comments, feedback, how to contribute:  Erik Derr  [lastname@cs.uni-saarland.de]
-
-
-## Detecting vulnerable library versions
+### Detecting vulnerable library versions
 
 LibScout has builtin functionality to report library versions with the following security vulnerabilities.<br>
 Detected vulnerable versions are tagged with <b>[SECURITY]</b>, patches with <b>[SECURITY-FIX]</b>. <br>
@@ -67,17 +51,14 @@ These results have been reported to Google's [ASI program](https://developer.and
 ##   LibScout Repo Structure
 <pre><code>
 |_ build.xml (ant build file to generate runnable .jar)
-|_ data (library profiles and supplemental data sets)
-|    |_ library-data.csv (library meta data)
-|    |_ library-profiles-21.06.zip (all library profiles)
-|    |_ app-version-codes.csv (app packages with valid version codes)
+|_ assets
+|    |_ library.xml (Library meta-data template)
+|_ data
+|    |_ app-version-codes.csv (Google Play app packages with valid version codes)
 |_ lib
 |    pre-compiled WALA libs, Apache commons*, log4j, Android SDK 
 |_ logging
 |    |_ logback.xml (log4j configuration file)
-|_ scripts
-|    |_ mvn-central
-|         |_ mvn-central-crawler.py (script to retrieve complete library histories from mvn-central)
 |_ src
     source directory of LibScout (de/infsec/tpl). Includes some open-source,
     third-party code to parse AXML resources / app manifests etc.
