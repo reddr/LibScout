@@ -470,7 +470,7 @@ public class TplCLI {
 			JoranConfigurator configurator = new JoranConfigurator();
 		    configurator.setContext(context);
 		    context.reset();  // clear any previous configuration 
-		    configurator.doConfigure("./logging/logback.xml");   
+		    configurator.doConfigure("/root/LibScout/logging/logback.xml");   
 		    
 	    	ch.qos.logback.classic.Logger rootLogger = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
 	    	switch (CliOptions.logType) {
