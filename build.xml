@@ -30,7 +30,7 @@
 		<mkdir dir="${build.dir}"/>
 
 		<!-- necessary for android xml parsing -->
-		<unjar src="${lib.dir}/android-23.jar" dest="${bin.dir}">
+		<unjar src="${lib.dir}/android-xml.jar" dest="${bin.dir}">
 			<patternset>
 				<include name="android/content/res/*.class" />
 				<include name="org/xmlpull/v1/*.class" />
