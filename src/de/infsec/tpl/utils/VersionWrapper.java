@@ -12,9 +12,22 @@ import com.github.zafarkhaja.semver.Version;
 public class VersionWrapper {
 	private static final Logger logger = LoggerFactory.getLogger(de.infsec.tpl.utils.VersionWrapper.class);
 	
-	private static final String CHANGE_MAJOR = "major";
-	private static final String CHANGE_MINOR = "minor";
-	private static final String CHANGE_PATCH = "patch";
+	public enum SEMVER {
+		PATCH ("patch"),
+		MINOR ("minor"),
+		MAJOR ("major");
+
+		private final String name;
+
+		private SEMVER(String s) {
+			name = s;
+		}
+
+		public String toString() {
+			return this.name;
+		}
+	}
+
 	
 	/**
 	 * {@link Version.valueOf} requires a valid x.y.z scheme. This version parser further allows x and x.y schemes
@@ -73,30 +86,73 @@ public class VersionWrapper {
 	 * @param versionStr1  second version string
 	 * @return  version change, one of ["major", "minor", "patch"] or null if some error occurs
 	 */
+
+	// TODO TODO rewrite
 	public static String determineVersionChange(String versionStr0, String versionStr1) {
 		Version v0 = VersionWrapper.valueOf(versionStr0);
 		Version v1 = VersionWrapper.valueOf(versionStr1);
 		
 		if (v0.getMajorVersion() < v1.getMajorVersion()) {
-			return CHANGE_MAJOR;
+			return SEMVER.MAJOR.toString();
 		} 
 		
 		else if (v0.getMajorVersion() == v1.getMajorVersion()) {
 			
 			if (v0.getMinorVersion() < v1.getMinorVersion()) {
-				return CHANGE_MINOR;
+				return SEMVER.MINOR.toString();
 			} else if (v0.getMinorVersion() == v1.getMinorVersion()) {
 				
 				if (v0.getPatchVersion() < v1.getPatchVersion()) {
-					return CHANGE_PATCH;
+					return SEMVER.PATCH.toString();
 				} else if (v0.getPatchVersion() == v1.getPatchVersion()) {
 					if (!v1.getBuildMetadata().isEmpty())  // subpatch levels are encoded by build meta data through VersionWrapper
-						return CHANGE_PATCH;
+						return SEMVER.PATCH.toString();
 				} else
 					return null;
 			}
 		} 
 
 		return null;
+	}
+
+
+	public static SEMVER getExpectedSemver(Version v0, Version v1) {
+		if (v0.getMajorVersion() < v1.getMajorVersion()) {
+			return SEMVER.MAJOR;
+		}
+
+		else if (v0.getMajorVersion() == v1.getMajorVersion()) {
+
+			if (v0.getMinorVersion() < v1.getMinorVersion()) {
+				return SEMVER.MINOR;
+			} else if (v0.getMinorVersion() == v1.getMinorVersion()) {
+
+				if (v0.getPatchVersion() < v1.getPatchVersion()) {
+					return SEMVER.PATCH;
+				} else if (v0.getPatchVersion() == v1.getPatchVersion()) {
+					if (!v1.getBuildMetadata().isEmpty())  // subpatch levels are encoded by build meta data through VersionWrapper
+						return SEMVER.PATCH;
+				} else
+					return null;
+			}
+		}
+
+		return null;
+	}
+
+
+	// strip trailling zeros, e.g. 3.4.0 -> 3.4
+	public static String getTruncatedVersion(Version v) {
+		String vStr = "" + v.getMajorVersion();
+		if (v.getMinorVersion() > 0  || (v.getMinorVersion() == 0 && v.getPatchVersion() > 0)) {
+			vStr += "." + v.getMinorVersion();
+
+			if (v.getPatchVersion() > 0)
+				vStr += "." + v.getPatchVersion();
+
+			if (v.getBuildMetadata().length() > 1)
+				vStr += "-" + v.getBuildMetadata();
+		}
+		return vStr;
 	}
 }

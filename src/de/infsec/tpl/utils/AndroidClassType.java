@@ -27,6 +27,7 @@ public enum AndroidClassType {
 	Handler,
 	LayoutContainer,  // Layout Container like RelativeLayout 
 	Plain,  // default
+	Runnable,
 	Service,
 	Thread, 
 	View  // UI Widget

@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import de.infsec.tpl.modules.libapi.LibraryApiAnalysis;
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -36,7 +37,6 @@ import ch.qos.logback.core.joran.spi.JoranException;
 import ch.qos.logback.core.util.StatusPrinter;
 import de.infsec.tpl.stats.SQLStats;
 import de.infsec.tpl.utils.Utils;
-import de.infsec.tpl.eval.LibraryApiAnalysis;
 import de.infsec.tpl.profile.LibProfile;
 
 
@@ -49,7 +49,7 @@ public class TplCLI {
      *    -          PROFILE:  generate library profiles from original lib SDKs and descriptions
      *    -            MATCH:  match lib profiles in provided apps
      *    -               DB:  build sqlite database from app stat files
-     *    - LIB_API_ANALYSIS:  analyzes library api robustness (api additions, removals, changes)
+     *    - LIB_API_ANALYSIS:  analyzes library api stability (api additions, removals, changes)
      */
 	public static  enum OpMode {PROFILE, MATCH, DB, LIB_API_ANALYSIS};
 
@@ -110,7 +110,7 @@ public class TplCLI {
 	private static final String USAGE_PROFILE = TOOLNAME + " --opmode profile -a <path-to-android.jar> -x <path-to-lib-desc> <options> $lib.[jar|aar]";
 	private static final String USAGE_MATCH = TOOLNAME + " --opmode match -a <path-to-android.jar> <options> $path-to-app(-dir)";
 	private static final String USAGE_DB = TOOLNAME + " --opmode db -p <path-to-profiles> -s <path-to-stats>";
-	private static final String USAGE_LIB_API_ANALYSIS = TOOLNAME + " --opmode lib_api_analysis -p <path-to-profiles> -j <output-dir>";
+	private static final String USAGE_LIB_API_ANALYSIS = TOOLNAME + " --opmode lib_api_analysis -a <path-to-android.jar> $path-to-lib-sdks";
 
 	private static ArrayList<File> inputFiles;
 	private static File libraryDescription = null;
@@ -123,7 +123,6 @@ public class TplCLI {
 
 		// initialize logback
 		initLogging();
-
 
 		List<LibProfile> profiles = null;
 
@@ -142,10 +141,6 @@ public class TplCLI {
 				break;
 
 			case LIB_API_ANALYSIS:
-			    profiles = loadLibraryProfiles();
-				new LibraryApiAnalysis().run(profiles);
-				System.exit(0);
-
 			case PROFILE:
 		}
 
@@ -156,7 +151,10 @@ public class TplCLI {
 					new LibraryIdentifier(inputFile).identifyLibraries(profiles);
 		
 				} else if (CliOptions.opmode.equals(OpMode.PROFILE)) {
-					new LibraryProfiler(inputFile, libraryDescription).extractFingerPrints();   
+					new LibraryProfiler(inputFile, libraryDescription).extractFingerPrints();
+
+				} else if (CliOptions.opmode.equals(OpMode.LIB_API_ANALYSIS)) {
+					new LibraryApiAnalysis(inputFile);
 				}
 			} catch (Throwable t) {
 				logger.error("[FATAL " + (t instanceof Exception? "EXCEPTION" : "ERROR") + "] analysis aborted: " + t.getMessage());
@@ -229,13 +227,13 @@ public class TplCLI {
 			}
 
 			// path to Android SDK jar
-			if (checkRequiredUse(cmd, CliArgs.ARG_ANDROID_LIB, OpMode.PROFILE, OpMode.MATCH)) {
+			if (checkRequiredUse(cmd, CliArgs.ARG_ANDROID_LIB, OpMode.PROFILE, OpMode.MATCH, OpMode.LIB_API_ANALYSIS)) {
 				CliOptions.pathToAndroidJar = new File(cmd.getOptionValue(CliArgs.ARG_ANDROID_LIB));
 			}
 			
 			
 			// profiles dir option, if provided without argument output is written to default dir
-			if (checkOptionalUse(cmd, CliArgs.ARG_PROFILES_DIR, OpMode.PROFILE, OpMode.MATCH, OpMode.DB, OpMode.LIB_API_ANALYSIS)) {
+			if (checkOptionalUse(cmd, CliArgs.ARG_PROFILES_DIR, OpMode.PROFILE, OpMode.MATCH, OpMode.DB)) {
 				File profilesDir = new File(cmd.getOptionValue(CliArgs.ARG_PROFILES_DIR));
 				if (profilesDir.exists() && !profilesDir.isDirectory())
 					throw new ParseException("Profiles directory " + profilesDir + " already exists and is not a directory");
@@ -300,34 +298,49 @@ public class TplCLI {
 			 *  - in profile mode pass *one* library (since it is linked to lib description file)
 			 *  - in match mode pass one application file or one directory file (including apks)
 			 */
-			if (!(CliOptions.opmode.equals(OpMode.DB) || CliOptions.opmode.equals(OpMode.LIB_API_ANALYSIS))) {
+			if (!(CliOptions.opmode.equals(OpMode.DB))) {
 				inputFiles = new ArrayList<File>();
-				String[] fileExts = CliOptions.opmode.equals(OpMode.MATCH)? new String[]{"apk"} : new String[]{"jar", "aar"};
 
-				for (String apkFileName: cmd.getArgs()) {
-					File arg = new File(apkFileName);
+				if (CliOptions.opmode.equals(OpMode.LIB_API_ANALYSIS)) {
+					// we require a directory including library packages/descriptions
+					for (String path: cmd.getArgs()) {
+						File dir = new File(path);
 
-					if (arg.isDirectory()) {
-						inputFiles.addAll(Utils.collectFiles(arg, fileExts));
-					} else if (arg.isFile()) {
-						if (arg.getName().endsWith("." + fileExts[0]))
-							inputFiles.add(arg);
-						else if (fileExts.length > 1 && arg.getName().endsWith("." + fileExts[1]))
-							inputFiles.add(arg);
-						else
-							throw new ParseException("File " + arg.getName() + " is no valid ." + Utils.join(Arrays.asList(fileExts), "/")  + " file");
-					} else {
-						throw new ParseException("Argument is no valid file or directory!");
+						if (dir.isDirectory())
+							inputFiles.add(dir);
 					}
+
+					if (inputFiles.isEmpty()) {
+						throw new ParseException("You have to provide at least one directory that includes a library package and description");
+					}
+				} else {
+					String[] fileExts = CliOptions.opmode.equals(OpMode.MATCH) ? new String[]{"apk"} : new String[]{"jar", "aar"};
+
+					for (String apkFileName : cmd.getArgs()) {
+						File arg = new File(apkFileName);
+
+						if (arg.isDirectory()) {
+							inputFiles.addAll(Utils.collectFiles(arg, fileExts));
+						} else if (arg.isFile()) {
+							if (arg.getName().endsWith("." + fileExts[0]))
+								inputFiles.add(arg);
+							else if (fileExts.length > 1 && arg.getName().endsWith("." + fileExts[1]))
+								inputFiles.add(arg);
+							else
+								throw new ParseException("File " + arg.getName() + " is no valid ." + Utils.join(Arrays.asList(fileExts), "/") + " file");
+						} else {
+							throw new ParseException("Argument is no valid file or directory!");
+						}
+					}
+
+					if (inputFiles.isEmpty()) {
+						if (CliOptions.opmode.equals(OpMode.PROFILE))
+							throw new ParseException("You have to provide one library.jar to be processed");
+						else
+							throw new ParseException("You have to provide a path to a single application file or a directory");
+					} else if (inputFiles.size() > 1 && CliOptions.opmode.equals(OpMode.PROFILE))
+						throw new ParseException("You have to provide a path to a single library file or a directory incl. a single lib file");
 				}
-				
-				if (inputFiles.isEmpty()) {
-					if (CliOptions.opmode.equals(OpMode.PROFILE))
-						throw new ParseException("You have to provide one library.jar to be processed");
-					else
-						throw new ParseException("You have to provide a path to a single application file or a directory");
-				} else if (inputFiles.size() > 1 && CliOptions.opmode.equals(OpMode.PROFILE))
-					throw new ParseException("You have to provide a path to a single library file or a directory incl. a single lib file");
 			}
 			
 		} catch (ParseException e) {

@@ -13,6 +13,9 @@
 	<logger name="de.infsec.tpl.LibCodeUsage" level="debug"/> 
 	<logger name="de.infsec.tpl.eval.LibraryApiAnalysis" level="info"/>
 
+	<logger name="de.infsec.tpl.modules.libapi" level="info"/>
+
+
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
 			<pattern>%d{HH:mm:ss} %-5level %-25logger{0} : %msg%n</pattern>

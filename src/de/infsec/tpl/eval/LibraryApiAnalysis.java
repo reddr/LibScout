@@ -44,6 +44,8 @@ import org.slf4j.MDC;
  * are public APIs removed, modified, and/or added
  * For each library a {@link LibApiRobustnessStats} is created that tracks APIs across versions
  * The results are written in the configured json directory and logged.
+ *
+ * @deprecated
  */
 
 public class LibraryApiAnalysis {

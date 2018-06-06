@@ -85,7 +85,12 @@ public class WalaUtils {
     public static String simpleName(IClass c) {
     	return c == null? "null" : Utils.convertToFullClassName(c.getName().toString());
     }
-	
+
+    public static String getName(IMethod m) {
+    	return m.getReference().getName().toString();
+	}
+
+
 	public static IPredicate<SSAInstruction> invokeFilter = new Utils.IPredicate<SSAInstruction>() {
 		@Override
 		public boolean apply(SSAInstruction type) {
@@ -93,7 +98,7 @@ public class WalaUtils {
 		}
 	};
 
-	
+
 	/**
 	 * Looks up a method by name in a class object. If the method is overloaded,
 	 * the first one found is returned.
@@ -480,7 +485,7 @@ public class WalaUtils {
 	 */
 	public static AndroidClassType classifyClazz(IClass clazz) {
 		for (IClass c: WalaUtils.getSuperClassesIncluding(clazz)) {
-			
+
 			if (WalaUtils.simpleName(c).equals(AndroidEntryPointConstants.ACTIVITYCLASS))
 				return AndroidClassType.Activity;
 			
@@ -505,7 +510,10 @@ public class WalaUtils {
 
 			else if (WalaUtils.simpleName(c).equals(AndroidEntryPointConstants.THREADCLASS))
 				return AndroidClassType.Thread;
-			
+
+			else if (WalaUtils.simpleName(c).equals(AndroidEntryPointConstants.RUNNABLECLASS))
+				return AndroidClassType.Runnable;
+
 			else if (WalaUtils.simpleName(c).equals(AndroidEntryPointConstants.HANDLERCLASS))
 				return AndroidClassType.Handler;
 			

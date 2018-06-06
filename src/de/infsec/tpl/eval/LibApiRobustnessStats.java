@@ -32,6 +32,8 @@ import java.util.TreeSet;
  *   - # public APIs per version
  *   - APIs -> set of versions in which they are included
  *   - set of alternative APIs (if any), if API is no longer in some version
+ *
+ *   @deprecated
  */
 
 public class LibApiRobustnessStats implements Serializable {
