@@ -62,7 +62,7 @@ Refer to <a href="https://developer.android.com/studio/">https://developer.andro
 |_ data
 |    |_ app-version-codes.csv (Google Play app packages with valid version codes)
 |_ lib
-|    pre-compiled WALA libs, Apache commons*, log4j, Android SDK 
+|    pre-compiled WALA libs, Apache commons*, log4j
 |_ logging
 |    |_ logback.xml (log4j configuration file)
 |_ src
