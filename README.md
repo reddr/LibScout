@@ -48,7 +48,13 @@ On our last scan of free apps on Google Play (05/25/2017), LibScout detected >20
 These results have been reported to Google's [ASI program](https://developer.android.com/google/play/asi.html) (still under investigation).
 
 
-##   LibScout Repo Structure
+##  LibScout 101
+
+ * LibScout requires Java 1.8 or higher. A runnable jar can be generated with the ant script <i>build.xml</i>
+ * Most LibScout modules require an Android SDK (jar) to distinguish app code from framework code (via the -a switch).<br>
+Refer to <a href="https://developer.android.com/studio/">https://developer.android.com/studio/</a> for download instructions.
+ * By default, LibScout logs to stdout. Use the -d switch to redirect output to files. The -m switch disables any text output.
+ * A short view on the repo structure:<br>
 <pre><code>
 |_ build.xml (ant build file to generate runnable .jar)
 |_ assets
@@ -63,65 +69,43 @@ These results have been reported to Google's [ASI program](https://developer.and
     source directory of LibScout (de/infsec/tpl). Includes some open-source,
     third-party code to parse AXML resources / app manifests etc.
 </code></pre>
+  * LibScout supports different use cases implemented as modules (modes of operation). Below a detailed description for each module.
 
+### Library Profiling (-o profile)
 
-##   Getting Started
+This module generates unique library fingerprints from original lib SDKs (.jar and .aar files supported). These profiles can subsequently be used for testing whether the respective library
+versions are included in apps. Each library file additionally requires a <i>library.xml</i> that contains meta data (e.g. name, version,..). A template can be found in the assets directory.
+For your convenience, you can use our ([Library Scraper](https://github.com/reddr/LibScout-Profiles/tree/master/scripts/mvn-central)) that downloads full library histories from Maven Central.
+By default, LibScout generates hashtree-based profiles with Package and Class information (omitting methods).<br>
+<pre>java -jar LibScout.jar -o profile -a lib/android-X.jar -x ${lib-dir/library.xml} ${lib-dir/lib.[jar|aar]} </pre>
 
+### Library Detection (-o match)
+
+Detects libraries in apps using pre-generated profiles. Analysis results can be written in to formats.
 <ol>
-<li>LibScout requires Java 1.8 or higher. A runnable jar can be generated with the ant script <i>build.xml</i></li>
-<li><b>Modes of operation (provided via -o switch):</b><br>
-    Profile and Match mode require an Android SDK, provided via the -a switch, to distinguish app code from framework code.<br>
-    For your convenience, you can use the one provided in the lib directory.
-    <ol type="a">
-        <li>
-            Library Profiling (-o profile)<br>
-            Generate library profiles from original library SDKs (.jar and .aar files supported). Besides the library file, this mode requires a library.xml that
-            contains some meta-data about the library (e.g. name, version, etc.). A library.xml template can be found in the assets directory. Use the -v switch to generate trace profiles,
-            i.e. profiles with class and method signatures, where methods are limited to public methods (Trace profiles are required as input for the library api analysis):<br>
-            <pre>java -jar LibScout.jar -o profile -a lib/android-X.jar -x ${lib-dir/library.xml} ${lib-dir/lib.[jar|aar]} </pre>
-        </li>
-        <li>
-            Library Matching (-o match)<br>
-            Detect libraries in apps using pre-generated profiles (this example logs to directory + serializes results):<br>
-            <pre>java -jar LibScout.jar -o match -a lib/android-X.jar -p &lt;path-to-lib-profiles&gt; -s -d &lt;log-dir&gt; $someapp.apk  </pre>
-        </li>
-        <li>
-            Database creation (-o db)<br>
-            Generate a SQLite database from library profiles and serialized app stats:<br>
-            <pre>java -jar LibScout.jar -o db -p &lt;path-to-lib-profiles&gt; -s &lt;path-to-app-stats&gt; </pre>
-        </li>
-        <li>
-            Library API robustness analysis (-o lib_api_analysis)<br>
-            Analyzes changes in the set of library APIs across versions (additions/removals/modifcations). Checks for <a href="http://semver.org">SemVer</a> compliance, i.e. whether the change in the version string matches
-            the changes in the public API set. SemVer compliance statistics are logged, while API robustness data is written out in JSON format (use -j switch to configure).
-            If you use this mode you have to provide trace profiles (generated via -o profile -v).<br>    
-            <pre>java -jar LibScout.jar -o lib_api_analysis -p &lt;path-to-lib-profiles&gt; -j &lt;json-output-path&gt; </pre>
-        </li>
-    </ol>
-</li>
-<li><b>Output formats:</b> There are three different output formats available (individually configurable).
-    <ol type="a">
-        <li>
-            <b>Textual logging</b>. Per default, LibScout logs to stdout. Use the -d switch to redirect output to files. The -m switch disables any text output.
-        </li>
-        <li>
-            <b>JSON</b> output can be enabled via -j switch.
-        </li>
-        <li>
-            The analysis results per app can also be <b>serialized</b> to disk using the -s switch. This is particularly useful for large-scale evaluations.
-            After all apps have been processed, you can use operation mode c) to generate one convenient SQLite file from the serialized results
-            (the DB structure can be found in class de.infsec.tpl.stats.SQLStats).
-        </li>
-    </ol>
-</li>
-<li>
-    If you are interested in digging into the source, here are some classes to start with:
-    <ul>
-      <li><b>de.infsec.tpl.TplCLI</b>: &nbsp;&nbsp;  Starting class including CLI parsing and logging init</li>
-      <li><b>de.infsec.tpl.LibraryProfiler</b>:&nbsp;&nbsp;  Starting class to extract library profiles</li>
-      <li><b>de.infsec.tpl.LibraryIdentifier</b>:&nbsp;&nbsp;  Code to match lib profiles and application bytecode</li>
-      <li><b>de.infsec.tpl.hash.HashTree</b>:&nbsp;&nbsp;  main data structures used for profiles</li>
-    </ul>
-</li>
-
+    <li> the JSON format (-j switch), creates subfolders in the specified directory following the app package, i.e. com.foo will create com/foo subfolders.
+        This is useful when coping with a large number of apps.</li>
+    <li> the <b>serialization</b> option (-s switch) writes stat files per app to disk that can be used with the database module to create a SQLite database (the DB structure can be found in class
+    <b>de.infsec.tpl.stats.SQLStats</b></li>
 </ol>
+The following example both logs to directory and serializes results to disk:<br>
+<pre>java -jar LibScout.jar -o match -a lib/android-X.jar -p &lt;path-to-lib-profiles&gt; -s -d &lt;log-dir&gt; $someapp.apk  </pre>
+
+### Database Generator (-o db)
+
+Generates a SQLite database from library profiles and serialized app stats:<br>
+<pre>java -jar LibScout.jar -o db -p &lt;path-to-lib-profiles&gt; -s &lt;path-to-app-stats&gt; </pre>
+
+### Library API analysis (-o lib_api_analysis)
+
+Analyzes changes in the documented (public) API sets of library versions.<br>
+The analysis results currently include the following information:
+
+Compliance to <a href="http://semver.org">Semantic Versioning (SemVer)</a>, i.e. whether the change in the version string between consecutive versions (expected SemVer) matches
+the changes in the respective public API sets (actual SemVer). Results further include statistics about changes in API sets (additions/removals/modifcations). For removed APIs,
+LibScout additionally tries to infer alternative APIs (based on different features).<br>
+
+For the analysis, you have to provide a path to library SDKs. LibScout recursively searches for library jars|aars (leaf directories are expected to have at most one jar|aar file and one library.xml file).
+For your convenience use the Maven Central Scraper. Analysis results are written to disk in JSON format (-j switch).<br>
+<pre>java -jar LibScout.jar -o lib_api_analysis -a lib/android-X.jar -j &lt;json-dir&gt; $path-to-lib-sdks</pre>
+
