@@ -283,7 +283,7 @@ public class PackageTree implements Serializable {
 	 * @return 
 	 */
 	public String locateRootPackageForPackageName(String packageName) {
-		List<String> struct = PackageUtils.parsePackage(packageName, false);
+		List<String> struct = PackageUtils.parsePackage(packageName, true);  // TODO: check second arg
 
 		List<String> result = new ArrayList<String>();
 		Node curNode = rootNode;
@@ -315,7 +315,7 @@ public class PackageTree implements Serializable {
 	}
 	
 	public Node locateNodeByPackage(String packageName) {
-		List<String> struct = PackageUtils.parsePackage(packageName, false);
+		List<String> struct = PackageUtils.parsePackage(packageName, true);   // TODO: check second arg
 
 		Node curNode = rootNode;
 		for (int i = 0; i < struct.size(); i++) {
@@ -337,7 +337,7 @@ public class PackageTree implements Serializable {
 
 	
 	public boolean update(String packageName, boolean includesClazz) {
-		List<String> struct = PackageUtils.parsePackage(packageName, includesClazz);
+		List<String> struct = PackageUtils.parsePackage(packageName, !includesClazz);  // TODO: check second arg
 		return update(struct);
 	}
 
@@ -584,7 +584,7 @@ public class PackageTree implements Serializable {
      */
     public PackageTree getCopyOfSubTree(String packageName) {
     	// parse provided package
-    	List<String> fragments = PackageUtils.parsePackage(packageName, false);
+    	List<String> fragments = PackageUtils.parsePackage(packageName, true);  // TODO recheck second arg, precondition!
     	if (fragments.isEmpty())
     		return null;
     	
