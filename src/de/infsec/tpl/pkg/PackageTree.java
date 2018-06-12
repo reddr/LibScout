@@ -139,7 +139,7 @@ public class PackageTree implements Serializable {
 			if (o instanceof IClass)
 				tree.update((IClass) o);
 			else if (o instanceof String)
-				tree.update((String) o, false);
+				tree.update((String) o, true);
 			else if (o instanceof PackageNode)
 				tree.update(((PackageNode) o).packageName, false);
 		}

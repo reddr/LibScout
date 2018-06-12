@@ -14,11 +14,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Tests the relationship/compatibility of documented API sets of consecutive versions
+ * Feature: Tests the relationship/compatibility of documented API sets of consecutive versions
  */
 public class LibApiComparator {
     private static final Logger logger = LoggerFactory.getLogger(LibApiComparator.class);
-      private Map<Version, ApiDiff> version2ApiDiff;
+    private Map<Version, ApiDiff> version2ApiDiff;
 
 
     /**

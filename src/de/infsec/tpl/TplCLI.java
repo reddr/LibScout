@@ -86,6 +86,9 @@ public class TplCLI {
 
 		public static final String ARG_LIB_VERBOSE_PROFILES = "v";
 		public static final String ARGL_LIB_VERBOSE_PROFILES = "verbose-profiles";
+
+		public static final String ARG_LIB_DEPENDENCY_ANALYSIS = "da";
+		public static final String ARGL_LIB_DEPENDENCY_ANALYSIS = "lib-dependency-analysis";
 	}
 	
 	public static class CliOptions {
@@ -102,6 +105,7 @@ public class TplCLI {
 		public static boolean genVerboseProfiles = false;   // generate lib profiles with TRACE + PubOnly
 		public static boolean generateStats = false;
 		public static boolean generateJSON = false;
+		public static boolean libDependencyAnalysis = false;
 	}
 	
 
@@ -264,6 +268,11 @@ public class TplCLI {
 			// generate verbose library profiles?
 			if (checkOptionalUse(cmd, CliArgs.ARG_LIB_VERBOSE_PROFILES, OpMode.PROFILE)) {
 				CliOptions.genVerboseProfiles = true;
+			}
+
+			// generate verbose library profiles?
+			if (checkOptionalUse(cmd, CliArgs.ARG_LIB_DEPENDENCY_ANALYSIS, OpMode.LIB_API_ANALYSIS)) {
+				CliOptions.libDependencyAnalysis = true;
 			}
 
 			// enable/disable generation of stats with optional stats directory
@@ -452,7 +461,14 @@ public class TplCLI {
 	        .withLongOpt(CliArgs.ARGL_LIB_DESCRIPTION)
 	        .withDescription("xml file to describe the library")
 	        .create(CliArgs.ARG_LIB_DESCRIPTION));
-		
+
+		options.addOption(OptionBuilder.withArgName("value")
+			.isRequired(false)
+			.withLongOpt(CliArgs.ARGL_LIB_DEPENDENCY_ANALYSIS)
+			.withDescription("enable analysis of secondary library dependencies")
+			.create(CliArgs.ARG_LIB_DEPENDENCY_ANALYSIS));
+
+
 		return options;
 	}
 

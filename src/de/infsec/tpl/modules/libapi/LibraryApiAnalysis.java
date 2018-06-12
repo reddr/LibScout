@@ -1,17 +1,23 @@
 package de.infsec.tpl.modules.libapi;
 
 
+import com.ibm.wala.classLoader.CallSiteReference;
+import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.classLoader.IMethod;
 
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.ipa.cha.ClassHierarchy;
 import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
+import com.ibm.wala.shrikeCT.InvalidClassFileException;
 import com.ibm.wala.types.ClassLoaderReference;
 import de.infsec.tpl.TplCLI;
+import de.infsec.tpl.pkg.PackageTree;
+import de.infsec.tpl.pkg.PackageUtils;
 import de.infsec.tpl.profile.LibraryDescription;
 import de.infsec.tpl.utils.AarFile;
 import de.infsec.tpl.utils.Utils;
+import de.infsec.tpl.utils.WalaUtils;
 import de.infsec.tpl.xml.XMLParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,20 +50,33 @@ public class LibraryApiAnalysis {
         locateLibrarySDKs(libDir);
         parseLibrarySDKs(true);
 
-        analyzeLibraryAPIs();
-    }
+        if (TplCLI.CliOptions.libDependencyAnalysis)
+            analyzeSecondaryDependencies();
 
+        analyzeLibraryAPIs();
+
+        // write stats to disk
+        libName2Stats.values().forEach(s -> writeLibData(s));
+    }
 
     private void analyzeLibraryAPIs() {
         LibApiComparator comp = new LibApiComparator();
-        for (LibApiStats lib: libName2Stats.values()) {
-            logger.info("Process library: " + lib.libName);
-            lib.version2Diff = comp.run(lib);
 
-            // write to disk
-            writeLibData(lib);
+        for (LibApiStats lib: libName2Stats.values()) {
+            logger.info("- Analyze lib APIs: " + lib.libName);
+            lib.version2Diff = comp.run(lib);
         }
     }
+
+    private void analyzeSecondaryDependencies() {
+        DependencyAnalysis dp = new DependencyAnalysis();
+
+        for (LibApiStats lib: libName2Stats.values()) {
+            logger.info("- Analyze secondary deps: " + lib.libName);
+            lib.version2Deps = dp.run(lib);
+        }
+    }
+
 
 
     private void writeLibData(LibApiStats stats) {
@@ -83,7 +102,7 @@ public class LibraryApiAnalysis {
                     continue;
                 }
 
-                logger.info("Parse lib: " + ld.name + "   version: " + ld.version);
+                logger.info("- Parse lib: " + ld.name + "   version: " + ld.version);
 
                 // if stats file not existing add new one
                 if (!libName2Stats.containsKey(ld.name))
@@ -91,9 +110,11 @@ public class LibraryApiAnalysis {
 
                 libName2Stats.get(ld.name).versions.add(ld.version);
 
-                // extract public API
-                Set<IMethod> docAPIs = extractPublicApi(ld, meta2Code.get(libXML));
+                // extract public documented API
+                IClassHierarchy cha = createClassHierarchy(meta2Code.get(libXML));
+                Set<IMethod> docAPIs = PublicInterfaceExtractor.getDocumentedPublicInterface(cha);
                 libName2Stats.get(ld.name).setDocumentedAPIs(ld.version, docAPIs);
+                logger.info(Utils.INDENT + "- " + docAPIs.size() + " documented public APIs");
 
             } catch (Exception e) {
                 logger.warn(Utils.stacktrace2Str(e));
@@ -101,10 +122,7 @@ public class LibraryApiAnalysis {
         }
     }
 
-
-    private Set<IMethod> extractPublicApi(LibraryDescription ld, File libCodeFile) throws ClassHierarchyException, IOException, ClassNotFoundException {
-        logger.debug("Process library: " + ld.name + " " + ld.version);
-
+    private IClassHierarchy createClassHierarchy(File libCodeFile)  throws ClassHierarchyException, IOException, ClassNotFoundException {
         // create analysis scope and generate class hierarchy
         final AnalysisScope scope = AnalysisScope.createJavaAnalysisScope();
 
@@ -120,8 +138,7 @@ public class LibraryApiAnalysis {
             logger.trace(Utils.indent() + "tmp jar-file deleted at " + tmpJar.getName());
         }
 
-        // return extracted documented API
-        return PublicInterfaceExtractor.getDocumentedPublicInterface(cha);
+        return cha;
     }
 
 
@@ -152,7 +169,5 @@ public class LibraryApiAnalysis {
             logger.warn(Utils.stacktrace2Str(e));
         }
     }
-
-
 
 }
