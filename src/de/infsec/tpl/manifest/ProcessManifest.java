@@ -51,7 +51,7 @@ public class ProcessManifest implements Serializable {
 	private String packageName = "";
 	private int versionCode = 0;
 	private int minSdkVersion = 1;  // if not explicitly set, defaults to 1
-	private int targetSdkVersion = 0;  // if not explicitly set, defaults to minSdkValue
+	private int targetSdkVersion = 1;  // if not explicitly set, defaults to minSdkValue
 	private String sharedUserId = "";
 	private String applicationName = "";
 	private Set<String> permissions = new TreeSet<String>();
@@ -310,5 +310,5 @@ public class ProcessManifest implements Serializable {
 	}
 
 	public int getMinSdkVersion() { return this.minSdkVersion; }
-	public int getTargetSdkVersion() { return this.targetSdkVersion > 0? this.targetSdkVersion : this.minSdkVersion; }
+	public int getTargetSdkVersion() { return this.targetSdkVersion > 1? this.targetSdkVersion : this.minSdkVersion; }
 }
