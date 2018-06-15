@@ -796,10 +796,11 @@ public class LibraryIdentifier {
 		pm.loadManifestFile(appFile.getAbsolutePath());
 
 		logger.info("= Manifest Parser =");
-		logger.info(Utils.INDENT + "Package name: " + pm.getPackageName());
-		logger.info(Utils.INDENT + "Version code: " + pm.getVersionCode());
-		logger.info(Utils.INDENT + "minSdkVersion: " + pm.getMinSdkVersion());
-		logger.info(Utils.INDENT + "SharedUserId: " + (pm.getSharedUserId().isEmpty()? " - none -" : pm.getSharedUserId()));
+		logger.info(Utils.INDENT + "    Package name: " + pm.getPackageName());
+		logger.info(Utils.INDENT + "    Version code: " + pm.getVersionCode());
+		logger.info(Utils.INDENT + "   minSdkVersion: " + pm.getMinSdkVersion());
+		logger.info(Utils.INDENT + "targetSdkVersion: " + pm.getTargetSdkVersion());
+		logger.info(Utils.INDENT + "    SharedUserId: " + (pm.getSharedUserId().isEmpty()? " - none -" : pm.getSharedUserId()));
 
 		// library dependencies, e.g.
 		//  - com.google.android.maps

@@ -50,7 +50,8 @@ public class ProcessManifest implements Serializable {
 	private Set<String> entryPointsClasses = new HashSet<String>();
 	private String packageName = "";
 	private int versionCode = 0;
-	private int minSdkVersion = 1;
+	private int minSdkVersion = 1;  // if not explicitly set, defaults to 1
+	private int targetSdkVersion = 0;  // if not explicitly set, defaults to minSdkValue
 	private String sharedUserId = "";
 	private String applicationName = "";
 	private Set<String> permissions = new TreeSet<String>();
@@ -167,6 +168,10 @@ public class ProcessManifest implements Serializable {
 							} catch (NumberFormatException e) {
 								logger.warn("Could not parse minSdkVersion: " + getAttributeValue(parser, "minSdkVersion"));
 							}
+							try {
+								this.targetSdkVersion = Integer.parseInt(getAttributeValue(parser, "targetSdkVersion"));
+							} catch (NumberFormatException e) { /* targetSdkValue is optional */	}
+
 						}
 						else if (tagName.equals("application")) {
 							// Check whether the application is disabled
@@ -305,4 +310,5 @@ public class ProcessManifest implements Serializable {
 	}
 
 	public int getMinSdkVersion() { return this.minSdkVersion; }
+	public int getTargetSdkVersion() { return this.targetSdkVersion > 0? this.targetSdkVersion : this.minSdkVersion; }
 }
