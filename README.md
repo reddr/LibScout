@@ -90,7 +90,7 @@ Detects libraries in apps using pre-generated profiles. Analysis results can be 
     <b>de.infsec.tpl.stats.SQLStats</b></li>
 </ol>
 The following example both logs to directory and serializes results to disk:<br>
-<pre>java -jar LibScout.jar -o match -a lib/android-X.jar -p &lt;path-to-lib-profiles&gt; -s -d &lt;log-dir&gt; $someapp.apk  </pre>
+<pre>java -jar LibScout.jar -o match -a lib/android-X.jar -p &lt;path-to-lib-profiles&gt; -s -d &lt;log-dir&gt; someapp.apk  </pre>
 
 ### Database Generator (-o db)
 
@@ -108,5 +108,5 @@ LibScout additionally tries to infer alternative APIs (based on different featur
 
 For the analysis, you have to provide a path to library SDKs. LibScout recursively searches for library jars|aars (leaf directories are expected to have at most one jar|aar file and one library.xml file).
 For your convenience use the Maven Central Scraper. Analysis results are written to disk in JSON format (-j switch).<br>
-<pre>java -jar LibScout.jar -o lib_api_analysis -a lib/android-X.jar -j &lt;json-dir&gt; $path-to-lib-sdks</pre>
+<pre>java -jar LibScout.jar -o lib_api_analysis -a lib/android-X.jar -j &lt;json-dir&gt; path-to-lib-sdks</pre>
 
