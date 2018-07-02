@@ -78,7 +78,7 @@ This module generates unique library fingerprints from original lib SDKs (.jar a
 versions are included in apps. Each library file additionally requires a <i>library.xml</i> that contains meta data (e.g. name, version,..). A template can be found in the assets directory.
 For your convenience, you can use our ([Library Scraper](https://github.com/reddr/LibScout-Profiles/tree/master/scripts/mvn-central)) that downloads full library histories from Maven Central.
 By default, LibScout generates hashtree-based profiles with Package and Class information (omitting methods).<br>
-<pre>java -jar LibScout.jar -o profile -a lib/android-X.jar -x ${lib-dir/library.xml} ${lib-dir/lib.[jar|aar]} </pre>
+<pre>java -jar LibScout.jar -o profile -a <i>android_lib</i> -x <i>path_to_library_xml</i> <i>path_to_library_file</i> </pre>
 
 ### Library Detection (-o match)
 
@@ -90,12 +90,12 @@ Detects libraries in apps using pre-generated profiles. Analysis results can be 
     <b>de.infsec.tpl.stats.SQLStats</b></li>
 </ol>
 The following example both logs to directory and serializes results to disk:<br>
-<pre>java -jar LibScout.jar -o match -a lib/android-X.jar -p &lt;path-to-lib-profiles&gt; -s -d &lt;log-dir&gt; someapp.apk  </pre>
+<pre>java -jar LibScout.jar -o match -a <i>android_lib</i> -p <i>path_to_lib_profiles</i> [-s] [-d <i>log_dir</i>] <i>path_to_app(s)</i>  </pre>
 
 ### Database Generator (-o db)
 
 Generates a SQLite database from library profiles and serialized app stats:<br>
-<pre>java -jar LibScout.jar -o db -p &lt;path-to-lib-profiles&gt; -s &lt;path-to-app-stats&gt; </pre>
+<pre>java -jar LibScout.jar -o db -p <i>path_to_library_profiles</i> -s <i>path_to_app_stats</i> </pre>
 
 ### Library API analysis (-o lib_api_analysis)
 
@@ -108,5 +108,5 @@ LibScout additionally tries to infer alternative APIs (based on different featur
 
 For the analysis, you have to provide a path to library SDKs. LibScout recursively searches for library jars|aars (leaf directories are expected to have at most one jar|aar file and one library.xml file).
 For your convenience use the Maven Central Scraper. Analysis results are written to disk in JSON format (-j switch).<br>
-<pre>java -jar LibScout.jar -o lib_api_analysis -a lib/android-X.jar -j &lt;json-dir&gt; path-to-lib-sdks</pre>
+<pre>java -jar LibScout.jar -o lib_api_analysis -a <i>android_lib</i> [-j <i>json_dir</i>] <i>path_to_lib_sdks</i></pre>
 
