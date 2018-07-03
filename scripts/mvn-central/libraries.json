@@ -1,0 +1,703 @@
+{
+    "libraries": [
+        {
+            "name": "Facebook Audience",
+            "category": "Advertising",
+            "comment": "",
+            "groupid": "com.facebook.android",
+            "artefactid": "audience-network-sdk"
+        },
+
+        {
+            "name": "Picasso",
+            "category": "Android",
+            "comment": "A powerful image downloading and caching library for Android",
+            "groupid": "com.squareup.picasso",
+            "artefactid": "picasso"
+        },{
+            "name": "Fresco",
+            "category": "Android",
+            "comment": "An Android library for managing images and the memory they use. (http://frescolib.org)",
+            "groupid": "com.facebook.fresco",
+            "artefactid": "fresco"
+        },{
+            "name": "RxAndroid",
+            "category": "Android",
+            "comment": "Android specific bindings for RxJava",
+            "groupid": "io.reactivex",
+            "artefactid": "rxandroid"
+        },{
+            "name": "glide",
+            "category": "Android",
+            "comment": "An image loading and caching library for Android focused on smooth scrolling",
+            "groupid": "com.github.bumptech.glide",
+            "artefactid": "glide"
+        },{
+            "name": "New Relic",
+            "category": "Android",
+            "comment": "Mobile app performance monitoring",
+            "groupid": "com.newrelic.agent.android",
+            "artefactid": "android-agent"
+        },{
+            "name": "ACRA",
+            "category": "Android",
+            "comment": "Application Crash Reports for Android",
+            "groupid": "ch.acra",
+            "artefactid": "acra"
+        },{
+            "name": "Dexter",
+            "category": "Android",
+            "comment": "Dexter is an Android library that simplifies the process of requesting permissions at runtime",
+            "groupid": "com.karumi",
+            "artefactid": "dexter"
+        },{
+            "name": "universal image loader",
+            "category": "Android",
+            "comment": "Powerful and flexible library for loading, caching and displaying images on Android.",
+            "groupid": "com.nostra13.universalimageloader",
+            "artefactid": "universal-image-loader"
+        },{
+            "name": "CleverTap",
+            "category": "Android",
+            "comment": "App Personalization and Engagement",
+            "groupid": "com.clevertap.android",
+            "artefactid": "clevertap-android-sdk"
+        },{
+            "name": "Ticker",
+            "category": "Android",
+            "comment": "Android text view with scrolling text change animation",
+            "groupid": "com.robinhood.ticker",
+            "artefactid": "ticker"
+        },{
+            "name": "MaterialEditText",
+            "category": "Android",
+            "comment": "EditText in Material Design",
+            "groupid": "com.rengwuxian.materialedittext",
+            "artefactid": "library"
+        },{
+            "name": "Calligraphy",
+            "category": "Android",
+            "comment": "Custom fonts in Android the easy way",
+            "groupid": "uk.co.chrisjenx",
+            "artefactid": "calligraphy"
+        },{
+            "name": "Ion",
+            "category": "Android",
+            "comment": "Android Asynchronous Networking and Image Loading",
+            "groupid": "com.koushikdutta.ion",
+            "artefactid": "ion"
+        },{
+            "name": "AndroidAsync",
+            "category": "Android",
+            "comment": "low level network protocol library",
+            "groupid": "com.koushikdutta.async",
+            "artefactid": "androidasync"
+        },{
+            "name": "uCrop",
+            "category": "Android",
+            "comment": "Image Cropping Library for Android",
+            "groupid": "com.yalantis",
+            "artefactid": "ucrop"
+        },{
+            "name": "android-gif-drawable",
+            "category": "Android",
+            "comment": "Views and Drawable for displaying animated GIFs on Android",
+            "groupid": "pl.droidsonroids.gif",
+            "artefactid": "android-gif-drawable"
+        },{
+            "name": "AirMapView",
+            "category": "Android",
+            "comment": "A view abstraction to provide a map user interface with various underlying map providers",
+            "groupid": "com.airbnb.android",
+            "artefactid": "airmapview"
+        },{
+            "name": "Logger",
+            "category": "Android",
+            "comment": "Simple, pretty and powerful logger for Android",
+            "groupid": "com.orhanobut",
+            "artefactid": "logger"
+        },{
+            "name": "RxAndroidBle",
+            "category": "Android",
+            "comment": "RxAndroidBle is a powerful painkiller for Android's Bluetooth Low Energy headaches.",
+            "groupid": "com.polidea.rxandroidble",
+            "artefactid": "rxandroidble"
+        },{
+            "name": "Sensey",
+            "category": "Android",
+            "comment": "Detecting gestures in a snap",
+            "groupid": "com.github.nisrulz",
+            "artefactid": "sensey"
+        },{
+            "name": "Material Calendar View",
+            "category": "Android",
+            "comment": "A Material design back port of Android's CalendarView",
+            "groupid": "com.prolificinteractive",
+            "artefactid": "material-calendarview"
+        },{
+            "name": "TimesSquare",
+            "category": "Android",
+            "comment": "Standalone Android widget for picking a single date from a calendar view.",
+            "groupid": "com.squareup",
+            "artefactid": "android-times-square"
+        },{
+            "name": "Stetho",
+            "category": "Android",
+            "comment": "A debug bridge for Android applications",
+            "groupid": "com.facebook.stetho",
+            "artefactid": "stetho"
+        },{
+            "name": "Android Beacon Library",
+            "category": "Android",
+            "comment": "An Android library providing APIs to interact with BLE beacons",
+            "groupid": "org.altbeacon",
+            "artefactid": "android-beacon-library"
+        },{
+            "name": "EventBus",
+            "category": "Android",
+            "comment": "EventBus is a publish/subscribe event bus optimized for Android",
+            "groupid": "org.greenrobot",
+            "artefactid": "eventbus"
+        },{
+            "name": "Butter Knife",
+            "category": "Android",
+            "comment": "Bind Android views and callbacks to fields and methods",
+            "groupid": "com.jakewharton",
+            "artefactid": "butterknife"
+        },
+
+        {
+            "name": "Crittercism",
+            "category": "Analytics",
+            "comment": "",
+            "groupid": "com.crittercism",
+            "artefactid": "crittercism-android-agent"
+        },{
+            "name": "HockeyApp",
+            "category": "Analytics",
+            "comment": "Microsoft HockeyApp: http://hockeyapp.net/features/",
+            "groupid": "net.hockeyapp.android",
+            "artefactid": "HockeySDK"
+        },{
+            "name": "Segment",
+            "category": "Analytics",
+            "comment": "",
+            "groupid": "com.segment.analytics.android",
+            "artefactid": "analytics-core"
+        },{
+            "name": "Segment",
+            "category": "Analytics",
+            "comment": "",
+            "groupid": "com.segment.analytics.android",
+            "artefactid": "analytics"
+        },{
+            "name": "Amazon AWS Mobile Analytics",
+            "category": "Analytics",
+            "comment": "With Amazon Mobile Analytics, you can measure app usage and app revenue.",
+            "groupid": "com.amazonaws",
+            "artefactid": "aws-android-sdk-mobileanalytics"
+        },{
+            "name": "Urban Airship",
+            "category": "Analytics",
+            "comment": "",
+            "groupid": "com.urbanairship.android",
+            "artefactid": "urbanairship-sdk"
+        },{
+            "name": "AppsFlyer",
+            "category": "Analytics",
+            "comment": "Mobile Attribution and Marketing Analytics",
+            "groupid": "com.appsflyer",
+            "artefactid": "af-android-sdk"
+        },
+
+        {
+           "name": "Amazon AWS Mobile SDK core",
+           "category": "Cloud",
+           "comment": "",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-core"
+        },
+        {
+           "name": "Amazon API Gateway",
+           "category": "Cloud",
+           "comment": "API Gateway is an AWS service that enables developers to create, publish, maintain, monitor, and secure APIs at any scale.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-apigateway-core"
+        },
+        {
+           "name": "Amazon AWS IoT",
+           "category": "Cloud",
+           "comment": "AWS IoT is a managed cloud platform that lets connected devices easily and securely interact with cloud applications and other devices",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-iot"
+        },
+        {
+           "name": "Amazon AWS Elastic Beanstalk",
+           "category": "Cloud",
+           "comment": "With Elastic Beanstalk, you can quickly deploy and manage applications in the AWS Cloud without worrying about the infrastructure that runs those applications.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-elb"
+        },
+        {
+           "name": "Amazon SimpleDB",
+           "category": "Cloud",
+           "comment": "Amazon SimpleDB is a highly available NoSQL data store that offloads the work of database administration.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-sdb"
+        },
+        {
+           "name": "Amazon Rekognition",
+           "category": "Cloud",
+           "comment": "Amazon Rekognition is a service that enables you to add image analysis to your applications.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-rekognition"
+        },
+        {
+           "name": "Amazon Cloud Watch",
+           "category": "Cloud",
+           "comment": "Amazon CloudWatch is a monitoring service for AWS cloud resources and the applications you run on AWS.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-cloudwatch"
+        },
+        {
+           "name": "Amazon Cognito Identity Provider",
+           "category": "Cloud",
+           "comment": "",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-cognitoidentityprovider"
+        },
+        {
+           "name": "Amazon Cognito Auth",
+           "category": "Cloud",
+           "comment": "",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-cognitoauth"
+        },
+        {
+           "name": "Amazon Cognito Sync",
+           "category": "Cloud",
+           "comment": "Using Amazon Cognito Identity, you can create unique identities for your users and authenticate them for secure access to your AWS resources",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-cognito"
+        },
+        {
+           "name": "Amazon DynamoDB",
+           "category": "Cloud",
+           "comment": "DynamoDB is a fast, highly scalable, highly available, cost-effective, nonrelational database service.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-ddb"
+        },
+        {
+           "name": "Amazon DynamoDB Document",
+           "category": "Cloud",
+           "comment": "",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-ddb-document"
+        },
+        {
+           "name": "Amazon DynamoDB Object Mapper",
+           "category": "Cloud",
+           "comment": "DynamoDB Object Mapper lets you map client-side classes to DynamoDB tables; perform various create, read, update, and delete (CRUD) operations; and execute queries.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-ddb-mapper"
+        },
+        {
+           "name": "Amazon Elastic Compute Cloud (EC2)",
+           "category": "Cloud",
+           "comment": "Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-ec2"
+        },
+        {
+           "name": "Amazon Kinesis Streams",
+           "category": "Cloud",
+           "comment": "Amazon Kinesis is a fully managed service for real-time processing of streaming data at massive scale.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-kinesis"
+        },
+        {
+           "name": "Amazon Machine Learning",
+           "category": "Cloud",
+           "comment": "Amazon Machine Learning is a service that makes it easy for developers of all skill levels to use machine learning technology.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-machinelearning"
+        },
+        {
+           "name": "Amazon Polly",
+           "category": "Cloud",
+           "comment": "Add Text to Speech Capability to your Android App with Amazon Polly",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-polly"
+        },
+        {
+           "name": "Amazon Pinpoint",
+           "category": "Cloud",
+           "comment": "Create Push Notification Campaigns with Amazon Pinpoint",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-pinpoint"
+        },
+        {
+           "name": "Amazon Simple Storage Service (S3)",
+           "category": "Cloud",
+           "comment": "Amazon S3 provides secure, durable, highly-scalable object storage in the cloud.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-s3"
+        },
+        {
+           "name": "Amazon Simple Email Service (SES)",
+           "category": "Cloud",
+           "comment": "SES eliminates the complexity and expense of building an in-house email solution.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-ses"
+        },
+        {
+           "name": "Amazon Simple Notification Service (SNS)",
+           "category": "Cloud",
+           "comment": "SNS is a flexible, fully managed pub/sub messaging and mobile notifications service for coordinating the delivery of messages to subscribing endpoints and clients.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-sns"
+        },
+        {
+           "name": "Amazon Simple Queue Service (SQS)",
+           "category": "Cloud",
+           "comment": "SQS is a fully managed message queuing service that makes it easy to decouple and scale microservices, distributed systems, and serverless applications.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-sqs"
+        },
+        {
+           "name": "Amazon AWS Auto Scaling",
+           "category": "Cloud",
+           "comment": "Auto Scaling helps you maintain application availability and allows you to dynamically scale your Amazon EC2 capacity up or down automatically according to conditions you define.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-autoscaling"
+        },
+        {
+           "name": "Amazon AWS Key Management Service (KMS)",
+           "category": "Cloud",
+           "comment": "KMS is a managed service that makes it easy for you to create and control the encryption keys used to encrypt your data, and uses Hardware Security Modules (HSMs) to protect the security of your keys.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-kms"
+        },
+        {
+           "name": "Amazon AWS Lambda",
+           "category": "Cloud",
+           "comment": "Execute Code On Demand with Amazon Lambda",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-lambda"
+        },
+        {
+           "name": "Amazon Lex",
+           "category": "Cloud",
+           "comment": "Amazon Lex is an AWS service for building conversational interfaces for any applications using voice and text.",
+           "groupid": "com.amazonaws",
+           "artefactid": "aws-android-sdk-lex"
+        },{
+            "name": "Parse",
+            "category": "Cloud",
+            "comment": "",
+            "groupid": "com.parse",
+            "artefactid": "parse-android"
+        },{
+            "name": "OneDrive",
+            "category": "Cloud",
+            "comment": "Microsoft OneDrive",
+            "groupid": "com.onedrive.sdk",
+            "artefactid": "onedrive-sdk-android"
+        },{
+            "name": "Dropbox",
+            "category": "Cloud",
+            "comment": "A Java library to access Dropbox's HTTP-based Core API v2",
+            "groupid": "com.dropbox.core",
+            "artefactid": "dropbox-core-sdk"
+        },{
+            "name": "Twilio",
+            "category": "Cloud",
+            "comment": "High-quality VoIP calling for web and mobile apps",
+            "groupid": "com.twilio.sdk",
+            "artefactid": "twilio-java-sdk"
+        },
+
+
+        {
+            "name": "Facebook",
+            "category": "SocialMedia",
+            "comment": "",
+            "groupid": "com.facebook.android",
+            "artefactid": "facebook-android-sdk"
+        },{
+            "name": "Facebook Core",
+            "category": "SocialMedia",
+            "comment": "",
+            "groupid": "com.facebook.android",
+            "artefactid": "facebook-core"
+        },{
+            "name": "Facebook Login",
+            "category": "SocialMedia",
+            "comment": "",
+            "groupid": "com.facebook.android",
+            "artefactid": "facebook-login"
+        },{
+            "name": "Facebook Sharing",
+            "category": "SocialMedia",
+            "comment": "",
+            "groupid": "com.facebook.android",
+            "artefactid": "facebook-share"
+        },{
+            "name": "Facebook Places",
+            "category": "SocialMedia",
+            "comment": "",
+            "groupid": "com.facebook.android",
+            "artefactid": "facebook-places"
+        },{
+            "name": "Facebook Messenger",
+            "category": "SocialMedia",
+            "comment": "",
+            "groupid": "com.facebook.android",
+            "artefactid": "facebook-messenger"
+        },{
+            "name": "Facebook App Links",
+            "category": "SocialMedia",
+            "comment": "",
+            "groupid": "com.facebook.android",
+            "artefactid": "facebook-applinks"
+        },{
+            "name": "vkontakte",
+            "category": "SocialMedia",
+            "comment": "",
+            "groupid": "com.vk",
+            "artefactid": "androidsdk"
+        },{
+            "name": "flickrj",
+            "category": "SocialMedia",
+            "comment": "A Java Flickr API library built for POJO, Android and Google App Engine",
+            "groupid": "com.googlecode.flickrj-android",
+            "artefactid": "flickrj-android"
+        },{
+            "name": "twitter4j",
+            "category": "SocialMedia",
+            "comment": "Twitter4J is an unofficial Java library for the Twitter API",
+            "groupid": "org.twitter4j",
+            "artefactid": "twitter4j-core"
+        },
+
+
+        {
+            "name": "apache httpclient android",
+            "category": "Utilities",
+            "comment": "Apache HttpClient for Android",
+            "groupid": "org.apache.httpcomponents",
+            "artefactid": "httpclient-android"
+        },{
+            "name": "log4j",
+            "category": "Utilities",
+            "comment": "Apache Log4j 2 is an upgrade to Log4j that provides significant improvements over its predecessor",
+            "groupid": "org.apache.logging.log4j",
+            "artefactid": "log4j-core"
+        },{
+            "name": "MessagePack",
+            "category": "Utilities",
+            "comment": "MessagePack is an efficient binary serialization format",
+            "groupid": "org.msgpack",
+            "artefactid": "msgpack"
+        },{
+            "name": "roboguice",
+            "category": "Utilities",
+            "comment": "Google Guice on Android",
+            "groupid": "org.roboguice",
+            "artefactid": "roboguice"
+        },{
+            "name": "ScribeJava Core",
+            "category": "Utilities",
+            "comment": "Simple OAuth library for Java",
+            "groupid": "com.github.scribejava",
+            "artefactid": "scribejava-core"
+        },{
+            "name": "scribe",
+            "category": "Utilities",
+            "comment": "",
+            "groupid": "org.scribe",
+            "artefactid": "scribe"
+        },{
+            "name": "android-oauth-client",
+            "category": "Utilities",
+            "comment": "Android OAuth Client Library",
+            "groupid": "com.wu-man",
+            "artefactid": "android-oauth-client"
+        },{
+            "name": "MapBox",
+            "category": "Utilities",
+            "comment": "",
+            "groupid": "com.mapbox.mapboxsdk",
+            "artefactid": "mapbox-android-sdk"
+        },{
+            "name": "Paypal",
+            "category": "Utilities",
+            "comment": "",
+            "groupid": "com.paypal.sdk",
+            "artefactid": "paypal-android-sdk"
+        },{
+            "name": "braintree payments",
+            "category": "Utilities",
+            "comment": "",
+            "groupid": "com.braintreepayments.api",
+            "artefactid": "braintree"
+        },{
+            "name": "Guice",
+            "category": "Utilities",
+            "comment": "Guice is a lightweight dependency injection framework for Java 6+",
+            "groupid": "com.google.inject",
+            "artefactid": "guice"
+        },{
+            "name": "Guava",
+            "category": "Utilities",
+            "comment": "Google Core Libraries for Java 6+",
+            "groupid": "com.google.guava",
+            "artefactid": "guava"
+        },{
+            "name": "Gson",
+            "category": "Utilities",
+            "comment": "A Java serialization/deserialization library that can convert Java Objects into JSON and back.",
+            "groupid": "com.google.code.gson",
+            "artefactid": "gson"
+        },{
+            "name": "okio",
+            "category": "Utilities",
+            "comment": "fast I/O and resizable buffers",
+            "groupid": "com.squareup.okio",
+            "artefactid": "okio"
+        },{
+            "name": "leakcanary",
+            "category": "Utilities",
+            "comment": "A memory leak detection library for Android and Java",
+            "groupid": "com.squareup.leakcanary",
+            "artefactid": "leakcanary-android"
+        },{
+            "name": "Dagger",
+            "category": "Utilities",
+            "comment": "A fast dependency injector for Android and Java.",
+            "groupid": "com.squareup.dagger",
+            "artefactid": "dagger"
+        },{
+            "name": "Dagger2",
+            "category": "Utilities",
+            "comment": "A fast dependency injector for Android and Java.",
+            "groupid": "com.google.dagger",
+            "artefactid": "dagger"
+        },{
+            "name": "OkHttp",
+            "category": "Utilities",
+            "comment": "An HTTP and HTTP/2 client for Android and Java applications",
+            "groupid": "com.squareup.okhttp",
+            "artefactid": "okhttp"
+        },{
+            "name": "OkHttp",
+            "category": "Utilities",
+            "comment": "An HTTP and HTTP/2 client for Android and Java applications",
+            "groupid": "com.squareup.okhttp3",
+            "artefactid": "okhttp"
+        },{
+            "name": "Tape",
+            "category": "Utilities",
+            "comment": "A lightning fast, transactional, file-based FIFO for Android and Java.",
+            "groupid": "com.squareup",
+            "artefactid": "tape"
+        },{
+            "name": "Bolts",
+            "category": "Utilities",
+            "comment": "Bolts is a collection of low-level libraries designed to make developing mobile apps easier.",
+            "groupid": "com.parse.bolts",
+            "artefactid": "bolts-android"
+        },{
+            "name": "jsoup",
+            "category": "Utilities",
+            "comment": "Java HTML Parser",
+            "groupid": "org.jsoup",
+            "artefactid": "jsoup"
+        },{
+            "name": "Joda Time",
+            "category": "Utilities",
+            "comment": "Joda-Time is the widely used replacement for the Java date and time classes.",
+            "groupid": "joda-time",
+            "artefactid": "joda-time"
+        },{
+            "name": "FasterXML Jackson-Core",
+            "category": "Utilities",
+            "comment": "Core part of Jackson that defines Streaming API as well as basic shared abstractions",
+            "groupid": "com.fasterxml.jackson.core",
+            "artefactid": "jackson-core"
+        },{
+            "name": "OrmLite",
+            "category": "Utilities",
+            "comment": "Lightweight Object Relational Mapping (ORM)",
+            "groupid": "com.j256.ormlite",
+            "artefactid": "ormlite-android"
+        },{
+            "name": "mapsforge",
+            "category": "Utilities",
+            "comment": "Maps rendering based on OpenStreetMap data",
+            "groupid": "org.mapsforge",
+            "artefactid": "mapsforge-core"
+        },{
+            "name": "GeoJSON",
+            "category": "Utilities",
+            "comment": "A complete GeoJSON implementation for Android.",
+            "groupid": "com.cocoahero.android",
+            "artefactid": "geojson"
+        },{
+            "name": "Retrofit",
+            "category": "Utilities",
+            "comment": "Type-safe HTTP client for Android and Java",
+            "groupid": "com.squareup.retrofit",
+            "artefactid": "retrofit"
+        },{
+            "name": "Retrofit",
+            "category": "Utilities",
+            "comment": "Type-safe HTTP client for Android and Java",
+            "groupid": "com.squareup.retrofit2",
+            "artefactid": "retrofit"
+        },{
+            "name": "PrettyTime",
+            "category": "Utilities",
+            "comment": "PrettyTime is an OpenSource time formatting library",
+            "groupid": "org.ocpsoft.prettytime",
+            "artefactid": "prettytime"
+        },{
+            "name": "SQLCipher",
+            "category": "Utilities",
+            "comment": "Android SQLite API based on SQLCipher",
+            "groupid": "net.zetetic",
+            "artefactid": "android-database-sqlcipher"
+        },{
+            "name": "PubNub",
+            "category": "Utilities",
+            "comment": "Publish/Subscribe model for real-time data streaming and device signaling",
+            "groupid": "com.pubnub",
+            "artefactid": "pubnub"
+        },{
+            "name": "SQLBrite",
+            "category": "Utilities",
+            "comment": "A lightweight wrapper around SQLiteOpenHelper which introduces reactive stream semantics to SQL operations.",
+            "groupid": "com.squareup.sqlbrite",
+            "artefactid": "sqlbrite"
+        },{
+            "name": "Retrolambda",
+            "category": "Utilities",
+            "comment": "Backport of Java 8's lambda expressions to Java 7, 6 and 5",
+            "groupid": "net.orfjackal.retrolambda",
+            "artefactid": "retrolambda"
+        },{
+            "name": "JSch",
+            "category": "Utilities",
+            "comment": "Java Secure Channel (JSch) is a pure Java implementation of SSH2.",
+            "groupid": "com.jcraft",
+            "artefactid": "jsch"
+        },{
+            "name": "RxJava",
+            "category": "Utilities",
+            "comment": "Reactive Extensions for the JVM",
+            "groupid": "io.reactivex.rxjava2",
+            "artefactid": "rxjava"
+        }
+
+    ]
+}

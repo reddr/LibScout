@@ -1,33 +1,30 @@
 # LibScout
 
-LibScout is a light-weight and effective static analysis tool to detect third-party libraries in Android/Java apps. The detection is resilient against common bytecode obfuscation techniques such as identifier renaming or code-based obfuscations such as reflection-based API hiding or control-flow randomization. Further LibScout is capable of pinpointing exact library versions.<br>
+LibScout is a light-weight and effective static analysis tool to detect third-party libraries in Android/Java apps. The detection is resilient against common bytecode obfuscation techniques such as identifier renaming or code-based obfuscations such as reflection-based API hiding or control-flow randomization. Further LibScout is capable of pinpointing exact library versions including versions that contain severe bugs or security issues.<br>
+
 LibScout requires the original library SDKs (compiled .jar/.aar files) to extract library profiles that can be used for detection on Android apps. Pre-generated library profiles are hosted at the repository [LibScout-Profiles](https://github.com/reddr/LibScout-Profiles).
 
-Unique features:
- * Library detection resilient against many kinds of bytecode obfuscation
+Unique detection features:
+ * Library detection resilient against many kinds of bytecode obfuscation (e.g. obfuscations by ProGuard)
  * Capability of pinpointing the exact library version (in some cases to a set of 2-3 candidate versions)
  * Capability of handling dead-code elimination, by computing a similarity score against baseline SDKs
 
-For technical details and large-scale evaluation results, please refer to our publications:<br>
-> Reliable Third-Party Library Detection in Android and its Security Applications<br>
-> https://www.infsec.cs.uni-saarland.de/~derr/publications/pdfs/derr_ccs16.pdf
->
-> Keep me Updated: An Empirical Study of Third-Party Library Updatability on Android<br>
-> https://www.infsec.cs.uni-saarland.de/~derr/publications/pdfs/derr_ccs17.pdf
-
-If you use LibScout in a scientific publication, we would appreciate citations using these Bibtex entries: [[bib-ccs16]](https://www.infsec.cs.uni-saarland.de/~derr/publications/bib/derr_ccs16.bib)
-[[bib-ccs17]](https://www.infsec.cs.uni-saarland.de/~derr/publications/bib/derr_ccs17.bib)<br>
+Besides detecting libraries in apps, LibScout conducts API analyses on the library SDKs to determine API compatibility across versions and adherence to semantic versioning.
+The resulting data has recently been used to build the Android Studio extension [up2dep](https://github.com/ngcuongst/up2dep) to help developers keeping their dependencies up-to-date.
 
 
-##   Library Profiles and Scripts
+## Library History Scraper (./scripts)
 
+The scripts directory contains python scripts to automatically download original library SDKs including complete version histories from *Maven Central*, *JCenter* and *custom mvn repositories*. The original library SDKs can be used to generate profiles and to conduct library API analyses (see modules below).
+
+The scrapers need to be configured with a json config that includes metadata of the libraries to be fetched (name, groupid, artefactid). There is currently a config file for mvn central with over 100 libraries and a config to download Android libraries from Google's maven repository (350 libraries, including support, gms, ktx, jetpack, ..).
+
+
+## Detecting (vulnerable) library versions
 Ready-to-use library profiles and library meta-data can be found in the repository [LibScout-Profiles](https://github.com/reddr/LibScout-Profiles).
-It further includes scripts to automatically retrieve complete library version histories.
-
-### Detecting vulnerable library versions
 
 LibScout has builtin functionality to report library versions with the following security vulnerabilities.<br>
-Detected vulnerable versions are tagged with <b>[SECURITY]</b>, patches with <b>[SECURITY-FIX]</b>. <br>
+The pre-generated profiles for vulnerable versions are tagged with <b>[SECURITY]</b>, patches with <b>[SECURITY-FIX]</b>. <br>
 This information is encoded in the library.xml files that have been used to generate the profiles.
 We try to update the list/profiles whenever we encounter new security issues. If you can share information, please let us know.
 
@@ -55,7 +52,7 @@ These results have been reported to Google's [ASI program](https://developer.and
  * Most LibScout modules require an Android SDK (jar) to distinguish app code from framework code (via the -a switch).<br>
 Refer to <a href="https://developer.android.com/studio/">https://developer.android.com/studio/</a> for download instructions.
  * By default, LibScout logs to stdout. Use the -d switch to redirect output to files. The -m switch disables any text output.
- * A short view on the repo structure:<br>
+ * LibScout repo structure in a nutshell:<br>
 <pre><code>
 |_ build.xml (ant build file to generate runnable .jar)
 |_ assets
@@ -66,6 +63,9 @@ Refer to <a href="https://developer.android.com/studio/">https://developer.andro
 |    pre-compiled WALA libs, Apache commons*, log4j
 |_ logging
 |    |_ logback.xml (log4j configuration file)
+|_ scripts
+|    |_ mvn-central (scraper for mvn-central)
+|    |_ jcenter+mvn (scraper for jcenter/custom mvn repos)
 |_ src
     source directory of LibScout (de/infsec/tpl). Includes some open-source,
     third-party code to parse AXML resources / app manifests etc.
@@ -76,13 +76,13 @@ Refer to <a href="https://developer.android.com/studio/">https://developer.andro
 
 This module generates unique library fingerprints from original lib SDKs (.jar and .aar files supported). These profiles can subsequently be used for testing whether the respective library
 versions are included in apps. Each library file additionally requires a <i>library.xml</i> that contains meta data (e.g. name, version,..). A template can be found in the assets directory.
-For your convenience, you can use our ([Library Scraper](https://github.com/reddr/LibScout-Profiles/tree/master/scripts/mvn-central)) that downloads full library histories from Maven Central.
+For your convenience, you can use our library scrapers (./scripts) that download full library histories from Maven repositories.
 By default, LibScout generates hashtree-based profiles with Package and Class information (omitting methods).<br>
 <pre>java -jar LibScout.jar -o profile -a <i>android_lib</i> -x <i>path_to_library_xml</i> <i>path_to_library_file</i> </pre>
 
 ### Library Detection (-o match)
 
-Detects libraries in apps using pre-generated profiles. Analysis results can be written in to formats.
+Detects libraries in apps using pre-generated profiles. Analysis results can be written in different formats.
 <ol>
     <li> the JSON format (-j switch), creates subfolders in the specified directory following the app package, i.e. com.foo will create com/foo subfolders.
         This is useful when coping with a large number of apps.</li>
@@ -109,4 +109,17 @@ LibScout additionally tries to infer alternative APIs (based on different featur
 For the analysis, you have to provide a path to library SDKs. LibScout recursively searches for library jars|aars (leaf directories are expected to have at most one jar|aar file and one library.xml file).
 For your convenience use the Maven Central Scraper. Analysis results are written to disk in JSON format (-j switch).<br>
 <pre>java -jar LibScout.jar -o lib_api_analysis -a <i>android_lib</i> [-j <i>json_dir</i>] <i>path_to_lib_sdks</i></pre>
+
+## Scientific Publications
+
+For technical details and large-scale evaluation results, please refer to our publications:<br>
+> Reliable Third-Party Library Detection in Android and its Security Applications<br>
+> https://www.infsec.cs.uni-saarland.de/~derr/publications/pdfs/derr_ccs16.pdf
+>
+> Keep me Updated: An Empirical Study of Third-Party Library Updatability on Android<br>
+> https://www.infsec.cs.uni-saarland.de/~derr/publications/pdfs/derr_ccs17.pdf
+
+If you use LibScout in a scientific publication, we would appreciate citations using these Bibtex entries: [[bib-ccs16]](https://www.infsec.cs.uni-saarland.de/~derr/publications/bib/derr_ccs16.bib)
+[[bib-ccs17]](https://www.infsec.cs.uni-saarland.de/~derr/publications/bib/derr_ccs17.bib)<br>
+
 

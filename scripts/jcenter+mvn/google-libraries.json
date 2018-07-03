@@ -1,0 +1,2448 @@
+{
+    "libraries": [
+    {
+        "artefactid": "constraint-layout-solver",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support.constraint",
+        "name": "com.android.support.constraint::constraint-layout-solver",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "constraint-layout",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support.constraint",
+        "name": "com.android.support.constraint::constraint-layout",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "library",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.databinding",
+        "name": "com.android.databinding::library",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "adapters",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.databinding",
+        "name": "com.android.databinding::adapters",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "compiler",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.databinding",
+        "name": "com.android.databinding::compiler",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "compilerCommon",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.databinding",
+        "name": "com.android.databinding::compilerCommon",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "baseLibrary",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.databinding",
+        "name": "com.android.databinding::baseLibrary",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-compat",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::support-compat",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "leanback-v17",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::leanback-v17",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "recommendation",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::recommendation",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-tv-provider",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::support-tv-provider",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-vector-drawable",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::support-vector-drawable",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "recyclerview-v7",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::recyclerview-v7",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "preference-leanback-v17",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::preference-leanback-v17",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "preference-v14",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::preference-v14",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "percent",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::percent",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-media-compat",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::support-media-compat",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "cardview-v7",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::cardview-v7",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "wearable",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::wearable",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "exifinterface",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::exifinterface",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-annotations",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::support-annotations",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "appcompat-v7",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::appcompat-v7",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "palette-v7",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::palette-v7",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "multidex-instrumentation",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::multidex-instrumentation",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "multidex",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::multidex",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "mediarouter-v7",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::mediarouter-v7",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "preference-v7",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::preference-v7",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-dynamic-animation",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::support-dynamic-animation",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-fragment",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::support-fragment",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "transition",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::transition",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "customtabs",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::customtabs",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-core-ui",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::support-core-ui",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "gridlayout-v7",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::gridlayout-v7",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "animated-vector-drawable",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::animated-vector-drawable",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-core-utils",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::support-core-utils",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-v13",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::support-v13",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "instantvideo",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::instantvideo",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-v4",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::support-v4",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-emoji",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::support-emoji",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "wear",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::wear",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-emoji-appcompat",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::support-emoji-appcompat",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-emoji-bundled",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::support-emoji-bundled",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-content",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::support-content",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-bottomnavigation",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-bottomnavigation",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-button",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-button",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-circularreveal-cardview",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-circularreveal-cardview",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-bottomappbar",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-bottomappbar",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-card",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-card",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-shape",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-shape",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-drawable",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-drawable",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-bottomsheet",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-bottomsheet",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-floatingactionbutton",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-floatingactionbutton",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-circularreveal-coordinatorlayout",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-circularreveal-coordinatorlayout",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-textfield",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-textfield",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-stateful",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-stateful",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-circularreveal",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-circularreveal",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-expandable",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-expandable",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-navigation",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-navigation",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-dialog",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-dialog",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-canvas",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-canvas",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-tabs",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-tabs",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-chip",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-chip",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-snackbar",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-snackbar",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-theme",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-theme",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-math",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-math",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-transformation",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-transformation",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-widget",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-widget",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-animation",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-animation",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-typography",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-typography",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-color",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-color",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-internal",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-internal",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-resources",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-resources",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "design-ripple",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::design-ripple",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "coordinatorlayout",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::coordinatorlayout",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "collections",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::collections",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "slidingpanelayout",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::slidingpanelayout",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "asynclayoutinflater",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::asynclayoutinflater",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "slices-view",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::slices-view",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "recyclerview-selection",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::recyclerview-selection",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "viewpager",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::viewpager",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "cursoradapter",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::cursoradapter",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "localbroadcastmanager",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::localbroadcastmanager",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "heifwriter",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::heifwriter",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "customview",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::customview",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "print",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::print",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "slices-builders",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::slices-builders",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "interpolator",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::interpolator",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "slices-core",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::slices-core",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "loader",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::loader",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "swiperefreshlayout",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::swiperefreshlayout",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "drawerlayout",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::drawerlayout",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "documentfile",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::documentfile",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "webkit",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::webkit",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "car",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::car",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "versionedparcelable",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.support",
+        "name": "com.android.support::versionedparcelable",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "compiler",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.persistence.room",
+        "name": "android.arch.persistence.room::compiler",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-db-impl",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.persistence.room",
+        "name": "android.arch.persistence.room::support-db-impl",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "runtime",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.persistence.room",
+        "name": "android.arch.persistence.room::runtime",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "support-db",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.persistence.room",
+        "name": "android.arch.persistence.room::support-db",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "migration",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.persistence.room",
+        "name": "android.arch.persistence.room::migration",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "rxjava2",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.persistence.room",
+        "name": "android.arch.persistence.room::rxjava2",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.persistence.room",
+        "name": "android.arch.persistence.room::common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "db",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.persistence.room",
+        "name": "android.arch.persistence.room::db",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "db-impl",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.persistence.room",
+        "name": "android.arch.persistence.room::db-impl",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "guava",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.persistence.room",
+        "name": "android.arch.persistence.room::guava",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "compiler",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.lifecycle",
+        "name": "android.arch.lifecycle::compiler",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "runtime",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.lifecycle",
+        "name": "android.arch.lifecycle::runtime",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "extensions",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.lifecycle",
+        "name": "android.arch.lifecycle::extensions",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "reactivestreams",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.lifecycle",
+        "name": "android.arch.lifecycle::reactivestreams",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.lifecycle",
+        "name": "android.arch.lifecycle::common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "common-java8",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.lifecycle",
+        "name": "android.arch.lifecycle::common-java8",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "viewmodel",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.lifecycle",
+        "name": "android.arch.lifecycle::viewmodel",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "livedata-core",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.lifecycle",
+        "name": "android.arch.lifecycle::livedata-core",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "livedata",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.lifecycle",
+        "name": "android.arch.lifecycle::livedata",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "core",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.core",
+        "name": "android.arch.core::core",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "runtime",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.core",
+        "name": "android.arch.core::runtime",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.core",
+        "name": "android.arch.core::common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "instantapps",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.instantapps",
+        "name": "com.google.android.instantapps::instantapps",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "volleycompat",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.instantapps.thirdpartycompat",
+        "name": "com.google.android.instantapps.thirdpartycompat::volleycompat",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "dvlib",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.tools",
+        "name": "com.android.tools::dvlib",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "sdklib",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.tools",
+        "name": "com.android.tools::sdklib",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "repository",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.tools",
+        "name": "com.android.tools::repository",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "annotations",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.tools",
+        "name": "com.android.tools::annotations",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "devicelib",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.tools",
+        "name": "com.android.tools::devicelib",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "sdk-common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.tools",
+        "name": "com.android.tools::sdk-common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.tools",
+        "name": "com.android.tools::common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "r8",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.tools",
+        "name": "com.android.tools::r8",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-dynamic-links",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-dynamic-links",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-crash",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-crash",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-ads",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-ads",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-analytics",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-analytics",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-auth",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-auth",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-appindexing",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-appindexing",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-auth-common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-auth-common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-invites",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-invites",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-config",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-config",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-analytics-impl",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-analytics-impl",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-storage",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-storage",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-messaging",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-messaging",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-auth-module",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-auth-module",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-auth-impl",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-auth-impl",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-database-connection",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-database-connection",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-storage-common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-storage-common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-core",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-core",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-database",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-database",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-perf",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-perf",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-iid",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-iid",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-firestore",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-firestore",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-functions",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-functions",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-ads-lite",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-ads-lite",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-database-collection",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-database-collection",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-abt",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-abt",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-iid-interop",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-iid-interop",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "protolite-well-known-types",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::protolite-well-known-types",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-measurement-connector",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-measurement-connector",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-auth-interop",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-auth-interop",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-measurement-connector-impl",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-measurement-connector-impl",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-ml-common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-ml-common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-ml-vision-image-label-model",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-ml-vision-image-label-model",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-ml-vision",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-ml-vision",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "firebase-ml-model-interpreter",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.firebase",
+        "name": "com.google.firebase::firebase-ml-model-interpreter",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-vision",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-vision",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-tagmanager",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-tagmanager",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-vision-common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-vision-common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-all-wear",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-all-wear",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-instantapps",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-instantapps",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-tasks",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-tasks",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-ads-lite",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-ads-lite",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-analytics-impl",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-analytics-impl",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-maps",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-maps",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-appindexing",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-appindexing",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-wearable",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-wearable",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-awareness",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-awareness",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-nearby",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-nearby",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-basement",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-basement",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-tagmanager-api",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-tagmanager-api",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-tagmanager-v4-impl",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-tagmanager-v4-impl",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-safetynet",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-safetynet",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-plus",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-plus",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-base",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-base",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-iid",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-iid",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-panorama",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-panorama",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-contextmanager",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-contextmanager",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-games",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-games",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-cast",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-cast",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-location",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-location",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-places",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-places",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-wallet",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-wallet",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-identity",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-identity",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-analytics",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-analytics",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-appinvite",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-appinvite",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-auth-base",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-auth-base",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-auth-api-phone",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-auth-api-phone",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-gass",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-gass",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-appstate",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-appstate",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-fitness",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-fitness",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-drive",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-drive",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-measurement",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-measurement",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-ads",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-ads",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-clearcut",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-clearcut",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-gcm",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-gcm",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-auth",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-auth",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-cast-framework",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-cast-framework",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-fido",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-fido",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "auth-api-impl",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::auth-api-impl",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-places-placereport",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-places-placereport",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-measurement-base",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-measurement-base",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-audience",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-audience",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-ads-identifier",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-ads-identifier",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-flags",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-flags",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-phenotype",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-phenotype",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-ads-base",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-ads-base",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-stats",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-stats",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "play-services-vision-image-label",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.gms",
+        "name": "com.google.android.gms::play-services-vision-image-label",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "runtime",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.paging",
+        "name": "android.arch.paging::runtime",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.paging",
+        "name": "android.arch.paging::common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "rxjava2",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.paging",
+        "name": "android.arch.paging::rxjava2",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "answers",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.crashlytics.sdk.android",
+        "name": "com.crashlytics.sdk.android::answers",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "beta",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.crashlytics.sdk.android",
+        "name": "com.crashlytics.sdk.android::beta",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "crashlytics-core",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.crashlytics.sdk.android",
+        "name": "com.crashlytics.sdk.android::crashlytics-core",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "crashlytics",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.crashlytics.sdk.android",
+        "name": "com.crashlytics.sdk.android::crashlytics",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "crashlytics-ndk",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.crashlytics.sdk.android",
+        "name": "com.crashlytics.sdk.android::crashlytics-ndk",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "fabric",
+        "category": "Android",
+        "comment": "",
+        "groupid": "io.fabric.sdk.android",
+        "name": "io.fabric.sdk.android::fabric",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "db-framework",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.persistence",
+        "name": "android.arch.persistence::db-framework",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "db",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.persistence",
+        "name": "android.arch.persistence::db",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "wearable",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.wearable",
+        "name": "com.google.android.wearable::wearable",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "wearable",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.support",
+        "name": "com.google.android.support::wearable",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "installreferrer",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.android.installreferrer",
+        "name": "com.android.installreferrer::installreferrer",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "core-ktx",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.core",
+        "name": "androidx.core::core-ktx",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "core",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.core",
+        "name": "androidx.core::core",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "androidthings",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.things",
+        "name": "com.google.android.things::androidthings",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "baseLibrary",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.databinding",
+        "name": "androidx.databinding::baseLibrary",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "compiler",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.databinding",
+        "name": "androidx.databinding::compiler",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "compilerCommon",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.databinding",
+        "name": "androidx.databinding::compilerCommon",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "adapters",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.databinding",
+        "name": "androidx.databinding::adapters",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "library",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.databinding",
+        "name": "androidx.databinding::library",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "databinding-runtime",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.databinding",
+        "name": "androidx.databinding::databinding-runtime",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "databinding-adapters",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.databinding",
+        "name": "androidx.databinding::databinding-adapters",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "databinding-compiler-common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.databinding",
+        "name": "androidx.databinding::databinding-compiler-common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "databinding-compiler",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.databinding",
+        "name": "androidx.databinding::databinding-compiler",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "databinding-common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.databinding",
+        "name": "androidx.databinding::databinding-common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "constraintlayout-solver",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.constraintlayout",
+        "name": "androidx.constraintlayout::constraintlayout-solver",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "constraintlayout",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.constraintlayout",
+        "name": "androidx.constraintlayout::constraintlayout",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "core",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.play",
+        "name": "com.google.android.play::core",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "multidex",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.multidex",
+        "name": "androidx.multidex::multidex",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "multidex-instrumentation",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.multidex",
+        "name": "androidx.multidex::multidex-instrumentation",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "material",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.material",
+        "name": "com.google.android.material::material",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "room-rxjava2",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.room",
+        "name": "androidx.room::room-rxjava2",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "room-common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.room",
+        "name": "androidx.room::room-common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "room-compiler",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.room",
+        "name": "androidx.room::room-compiler",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "room-guava",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.room",
+        "name": "androidx.room::room-guava",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "room-migration",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.room",
+        "name": "androidx.room::room-migration",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "room-runtime",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.room",
+        "name": "androidx.room::room-runtime",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "paging-common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.paging",
+        "name": "androidx.paging::paging-common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "paging-runtime",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.paging",
+        "name": "androidx.paging::paging-runtime",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "paging-rxjava2",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.paging",
+        "name": "androidx.paging::paging-rxjava2",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "lifecycle-reactivestreams-ktx",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.lifecycle",
+        "name": "androidx.lifecycle::lifecycle-reactivestreams-ktx",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "lifecycle-viewmodel",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.lifecycle",
+        "name": "androidx.lifecycle::lifecycle-viewmodel",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "lifecycle-process",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.lifecycle",
+        "name": "androidx.lifecycle::lifecycle-process",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "lifecycle-viewmodel-ktx",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.lifecycle",
+        "name": "androidx.lifecycle::lifecycle-viewmodel-ktx",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "lifecycle-reactivestreams",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.lifecycle",
+        "name": "androidx.lifecycle::lifecycle-reactivestreams",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "lifecycle-common-java8",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.lifecycle",
+        "name": "androidx.lifecycle::lifecycle-common-java8",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "lifecycle-extensions",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.lifecycle",
+        "name": "androidx.lifecycle::lifecycle-extensions",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "lifecycle-livedata-core",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.lifecycle",
+        "name": "androidx.lifecycle::lifecycle-livedata-core",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "lifecycle-runtime",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.lifecycle",
+        "name": "androidx.lifecycle::lifecycle-runtime",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "lifecycle-compiler",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.lifecycle",
+        "name": "androidx.lifecycle::lifecycle-compiler",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "lifecycle-livedata",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.lifecycle",
+        "name": "androidx.lifecycle::lifecycle-livedata",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "lifecycle-common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.lifecycle",
+        "name": "androidx.lifecycle::lifecycle-common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "lifecycle-service",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.lifecycle",
+        "name": "androidx.lifecycle::lifecycle-service",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "sqlite-framework",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.sqlite",
+        "name": "androidx.sqlite::sqlite-framework",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "sqlite",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.sqlite",
+        "name": "androidx.sqlite::sqlite",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "sqlite-ktx",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.sqlite",
+        "name": "androidx.sqlite::sqlite-ktx",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "core-common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.arch.core",
+        "name": "androidx.arch.core::core-common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "core-runtime",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.arch.core",
+        "name": "androidx.arch.core::core-runtime",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "work-runtime-ktx",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.work",
+        "name": "android.arch.work::work-runtime-ktx",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "work-firebase",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.work",
+        "name": "android.arch.work::work-firebase",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "work-runtime",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.work",
+        "name": "android.arch.work::work-runtime",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "navigation-common",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.navigation",
+        "name": "android.arch.navigation::navigation-common",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "navigation-runtime",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.navigation",
+        "name": "android.arch.navigation::navigation-runtime",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "navigation-common-ktx",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.navigation",
+        "name": "android.arch.navigation::navigation-common-ktx",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "navigation-ui",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.navigation",
+        "name": "android.arch.navigation::navigation-ui",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "navigation-fragment-ktx",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.navigation",
+        "name": "android.arch.navigation::navigation-fragment-ktx",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "navigation-ui-ktx",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.navigation",
+        "name": "android.arch.navigation::navigation-ui-ktx",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "navigation-safe-args-generator",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.navigation",
+        "name": "android.arch.navigation::navigation-safe-args-generator",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "navigation-runtime-ktx",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.navigation",
+        "name": "android.arch.navigation::navigation-runtime-ktx",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "navigation-fragment",
+        "category": "Android",
+        "comment": "",
+        "groupid": "android.arch.navigation",
+        "name": "android.arch.navigation::navigation-fragment",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "mediarouter",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.mediarouter",
+        "name": "androidx.mediarouter::mediarouter",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "percentlayout",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.percentlayout",
+        "name": "androidx.percentlayout::percentlayout",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "emoji",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.emoji",
+        "name": "androidx.emoji::emoji",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "emoji-appcompat",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.emoji",
+        "name": "androidx.emoji::emoji-appcompat",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "emoji-bundled",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.emoji",
+        "name": "androidx.emoji::emoji-bundled",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "cardview",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.cardview",
+        "name": "androidx.cardview::cardview",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "preference",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.preference",
+        "name": "androidx.preference::preference",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "preference-ktx",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.preference",
+        "name": "androidx.preference::preference-ktx",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "wear",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.wear",
+        "name": "androidx.wear::wear",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "legacy-support-v13",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.legacy",
+        "name": "androidx.legacy::legacy-support-v13",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "legacy-preference-v14",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.legacy",
+        "name": "androidx.legacy::legacy-preference-v14",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "legacy-support-v4",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.legacy",
+        "name": "androidx.legacy::legacy-support-v4",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "legacy-support-core-ui",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.legacy",
+        "name": "androidx.legacy::legacy-support-core-ui",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "legacy-support-core-utils",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.legacy",
+        "name": "androidx.legacy::legacy-support-core-utils",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "documentfile",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.documentfile",
+        "name": "androidx.documentfile::documentfile",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "car",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.car",
+        "name": "androidx.car::car",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "swiperefreshlayout",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.swiperefreshlayout",
+        "name": "androidx.swiperefreshlayout::swiperefreshlayout",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "leanback",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.leanback",
+        "name": "androidx.leanback::leanback",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "leanback-preference",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.leanback",
+        "name": "androidx.leanback::leanback-preference",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "appcompat",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.appcompat",
+        "name": "androidx.appcompat::appcompat",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "customview",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.customview",
+        "name": "androidx.customview::customview",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "gridlayout",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.gridlayout",
+        "name": "androidx.gridlayout::gridlayout",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "vectordrawable-animated",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.vectordrawable",
+        "name": "androidx.vectordrawable::vectordrawable-animated",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "vectordrawable",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.vectordrawable",
+        "name": "androidx.vectordrawable::vectordrawable",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "heifwriter",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.heifwriter",
+        "name": "androidx.heifwriter::heifwriter",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "transition",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.transition",
+        "name": "androidx.transition::transition",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "print",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.print",
+        "name": "androidx.print::print",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "viewpager",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.viewpager",
+        "name": "androidx.viewpager::viewpager",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "annotation",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.annotation",
+        "name": "androidx.annotation::annotation",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "exifinterface",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.exifinterface",
+        "name": "androidx.exifinterface::exifinterface",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "dynamicanimation",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.dynamicanimation",
+        "name": "androidx.dynamicanimation::dynamicanimation",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "browser",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.browser",
+        "name": "androidx.browser::browser",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "localbroadcastmanager",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.localbroadcastmanager",
+        "name": "androidx.localbroadcastmanager::localbroadcastmanager",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "asynclayoutinflater",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.asynclayoutinflater",
+        "name": "androidx.asynclayoutinflater::asynclayoutinflater",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "contentpager",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.contentpager",
+        "name": "androidx.contentpager::contentpager",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "slidingpanelayout",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.slidingpanelayout",
+        "name": "androidx.slidingpanelayout::slidingpanelayout",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "cursoradapter",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.cursoradapter",
+        "name": "androidx.cursoradapter::cursoradapter",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "media-widget",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.media",
+        "name": "androidx.media::media-widget",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "media",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.media",
+        "name": "androidx.media::media",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "loader",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.loader",
+        "name": "androidx.loader::loader",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "interpolator",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.interpolator",
+        "name": "androidx.interpolator::interpolator",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "coordinatorlayout",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.coordinatorlayout",
+        "name": "androidx.coordinatorlayout::coordinatorlayout",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "fragment-ktx",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.fragment",
+        "name": "androidx.fragment::fragment-ktx",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "fragment",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.fragment",
+        "name": "androidx.fragment::fragment",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "tvprovider",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.tvprovider",
+        "name": "androidx.tvprovider::tvprovider",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "slice-core",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.slice",
+        "name": "androidx.slice::slice-core",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "slice-builders",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.slice",
+        "name": "androidx.slice::slice-builders",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "slice-view",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.slice",
+        "name": "androidx.slice::slice-view",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "slice-builders-ktx",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.slice",
+        "name": "androidx.slice::slice-builders-ktx",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "collection-ktx",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.collection",
+        "name": "androidx.collection::collection-ktx",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "collection",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.collection",
+        "name": "androidx.collection::collection",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "recommendation",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.recommendation",
+        "name": "androidx.recommendation::recommendation",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "drawerlayout",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.drawerlayout",
+        "name": "androidx.drawerlayout::drawerlayout",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "recyclerview-selection",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.recyclerview",
+        "name": "androidx.recyclerview::recyclerview-selection",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "recyclerview",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.recyclerview",
+        "name": "androidx.recyclerview::recyclerview",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "webkit",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.webkit",
+        "name": "androidx.webkit::webkit",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "palette-ktx",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.palette",
+        "name": "androidx.palette::palette-ktx",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "palette",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.palette",
+        "name": "androidx.palette::palette",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "consent-library",
+        "category": "Android",
+        "comment": "",
+        "groupid": "com.google.android.ads.consent",
+        "name": "com.google.android.ads.consent::consent-library",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    },{
+        "artefactid": "versionedparcelable",
+        "category": "Android",
+        "comment": "",
+        "groupid": "androidx.versionedparcelable",
+        "name": "androidx.versionedparcelable::versionedparcelable",
+        "repo": "https://dl.google.com/dl/android/maven2"
+    }
+]
+}
