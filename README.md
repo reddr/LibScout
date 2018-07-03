@@ -39,10 +39,11 @@ We try to update the list/profiles whenever we encounter new security issues. If
 | Dropbox    | 1.5.4 - 1.6.1   |   1.6.2       |  DroppedIn vulnerability               |  [Link](https://blogs.dropbox.com/developers/2015/03/security-bug-resolved-in-the-dropbox-sdks-for-android)  |
 | Facebook   |       3.15      |    3.16       |  Account hijacking vulnerability       |  [Link](http://thehackernews.com/2014/07/facebook-sdk-vulnerability-puts.html)  |
 | MoPub      |    < 4.4.0      |  4.4.0        |  Unsanitized default WebView settings  |  [Link](https://support.google.com/faqs/answer/6345928)  |
-| OkHttp     | 2.1-2.7.4 / 3.0.0-3.1.2  |  2.7.5 / 3.2.0 |  Certificate pinning bypass  |  [Link](https://medium.com/square-corner-blog/vulnerability-in-okhttps-certificate-pinner-2a7326ad073b)  |
+| OkHttp     | 2.1 - 2.7.4 <br>3.0.0- 3.1.2  |  2.7.5<br>3.2.0  |  Certificate pinning bypass  |  [Link](https://medium.com/square-corner-blog/vulnerability-in-okhttps-certificate-pinner-2a7326ad073b)  |
+| Plexus Archiver    |  < 3.6.0        |  3.6.0        | Zip Slip vulnerability                | [Link](https://github.com/snyk/zip-slip-vulnerability)
 | SuperSonic |    < 6.3.5      |   6.3.5       |  Unsafe functionality exposure via JS  |  [Link](https://support.google.com/faqs/answer/7126517)  |
 | Vungle     |    < 3.3.0      |  3.3.0        |  MitM attack vulnerability             |  [Link](https://support.google.com/faqs/answer/6313713)  |
-
+| ZeroTurnaround | < 1.13      | 1.13          |  Zip Slip vulnerability                | [Link](https://github.com/snyk/zip-slip-vulnerability)
 
 On our last scan of free apps on Google Play (05/25/2017), LibScout detected >20k apps containing one of these vulnerable lib versions.
 These results have been reported to Google's [ASI program](https://developer.android.com/google/play/asi.html) (still under investigation).
@@ -77,7 +78,7 @@ This module generates unique library fingerprints from original lib SDKs (.jar a
 versions are included in apps. Each library file additionally requires a <i>library.xml</i> that contains meta data (e.g. name, version,..). A template can be found in the assets directory.
 For your convenience, you can use our ([Library Scraper](https://github.com/reddr/LibScout-Profiles/tree/master/scripts/mvn-central)) that downloads full library histories from Maven Central.
 By default, LibScout generates hashtree-based profiles with Package and Class information (omitting methods).<br>
-<pre>java -jar LibScout.jar -o profile -a lib/android-X.jar -x ${lib-dir/library.xml} ${lib-dir/lib.[jar|aar]} </pre>
+<pre>java -jar LibScout.jar -o profile -a <i>android_lib</i> -x <i>path_to_library_xml</i> <i>path_to_library_file</i> </pre>
 
 ### Library Detection (-o match)
 
@@ -89,12 +90,12 @@ Detects libraries in apps using pre-generated profiles. Analysis results can be 
     <b>de.infsec.tpl.stats.SQLStats</b></li>
 </ol>
 The following example both logs to directory and serializes results to disk:<br>
-<pre>java -jar LibScout.jar -o match -a lib/android-X.jar -p &lt;path-to-lib-profiles&gt; -s -d &lt;log-dir&gt; $someapp.apk  </pre>
+<pre>java -jar LibScout.jar -o match -a <i>android_lib</i> -p <i>path_to_lib_profiles</i> [-s] [-d <i>log_dir</i>] <i>path_to_app(s)</i>  </pre>
 
 ### Database Generator (-o db)
 
 Generates a SQLite database from library profiles and serialized app stats:<br>
-<pre>java -jar LibScout.jar -o db -p &lt;path-to-lib-profiles&gt; -s &lt;path-to-app-stats&gt; </pre>
+<pre>java -jar LibScout.jar -o db -p <i>path_to_library_profiles</i> -s <i>path_to_app_stats</i> </pre>
 
 ### Library API analysis (-o lib_api_analysis)
 
@@ -107,5 +108,5 @@ LibScout additionally tries to infer alternative APIs (based on different featur
 
 For the analysis, you have to provide a path to library SDKs. LibScout recursively searches for library jars|aars (leaf directories are expected to have at most one jar|aar file and one library.xml file).
 For your convenience use the Maven Central Scraper. Analysis results are written to disk in JSON format (-j switch).<br>
-<pre>java -jar LibScout.jar -o lib_api_analysis -a lib/android-X.jar -j &lt;json-dir&gt; $path-to-lib-sdks</pre>
+<pre>java -jar LibScout.jar -o lib_api_analysis -a <i>android_lib</i> [-j <i>json_dir</i>] <i>path_to_lib_sdks</i></pre>
 
