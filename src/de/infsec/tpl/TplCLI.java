@@ -54,41 +54,41 @@ public class TplCLI {
 	public static  enum OpMode {PROFILE, MATCH, DB, LIB_API_ANALYSIS};
 
 	public static class CliArgs {
-		public static final String ARG_OPMODE = "o";
-		public static final String ARGL_OPMODE = "opmode";
+		static final String ARG_OPMODE = "o";
+		static final String ARGL_OPMODE = "opmode";
 
-		public static final String ARG_ANDROID_LIB = "a";
-		public static final String ARGL_ANDROID_LIB = "android-library";
+		static final String ARG_ANDROID_LIB = "a";
+		static final String ARGL_ANDROID_LIB = "android-sdk";
 
-		public static final String ARG_LOG_DIR = "d";
-		public static final String ARGL_LOG_DIR = "log-dir";
+		static final String ARG_LOG_DIR = "d";
+		static final String ARGL_LOG_DIR = "log-dir";
 
-		public static final String ARG_STATS_DIR = "s";
-		public static final String ARGL_STATS_DIR = "stats-dir";
+		static final String ARG_STATS_DIR = "s";
+		static final String ARGL_STATS_DIR = "stats-dir";
 
-		public static final String ARG_JSON_DIR = "j";
-		public static final String ARGL_JSON_DIR = "json-dir";
+		static final String ARG_JSON_DIR = "j";
+		static final String ARGL_JSON_DIR = "json-dir";
 		
-		public static final String ARG_PROFILES_DIR = "p";
-		public static final String ARGL_PROFILES_DIR = "profiles-dir";
+		static final String ARG_PROFILES_DIR = "p";
+		static final String ARGL_PROFILES_DIR = "profiles-dir";
 		
-		public static final String ARG_MUTE = "m";
-		public static final String ARGL_MUTE = "mute";
+		static final String ARG_MUTE = "m";
+		static final String ARGL_MUTE = "mute";
 
-		public static final String ARG_NO_PARTIAL_MATCHING = "n";
-		public static final String ARGL_NO_PARTIAL_MATCHING = "no-partial-matching";
+		static final String ARG_NO_PARTIAL_MATCHING = "n";
+		static final String ARGL_NO_PARTIAL_MATCHING = "no-partial-matching";
 
-		public static final String ARG_LIB_USAGE_ANALYSIS = "u";
-		public static final String ARGL_LIB_USAGE_ANALYSIS = "lib-usage-analysis";
+		static final String ARG_LIB_USAGE_ANALYSIS = "u";
+		static final String ARGL_LIB_USAGE_ANALYSIS = "lib-usage-analysis";
 
-		public static final String ARG_LIB_DESCRIPTION = "x";
-		public static final String ARGL_LIB_DESCRIPTION = "library-description";
+		static final String ARG_LIB_DESCRIPTION = "x";
+		static final String ARGL_LIB_DESCRIPTION = "library-description";
 
-		public static final String ARG_LIB_VERBOSE_PROFILES = "v";
-		public static final String ARGL_LIB_VERBOSE_PROFILES = "verbose-profiles";
+		static final String ARG_LIB_VERBOSE_PROFILES = "v";
+		static final String ARGL_LIB_VERBOSE_PROFILES = "verbose-profiles";
 
-		public static final String ARG_LIB_DEPENDENCY_ANALYSIS = "da";
-		public static final String ARGL_LIB_DEPENDENCY_ANALYSIS = "lib-dependency-analysis";
+		static final String ARG_LIB_DEPENDENCY_ANALYSIS = "da";
+		static final String ARGL_LIB_DEPENDENCY_ANALYSIS = "lib-dependency-analysis";
 	}
 	
 	public static class CliOptions {
@@ -110,11 +110,11 @@ public class TplCLI {
 	
 
 	private static final String TOOLNAME = "LibScout";
-	private static final String USAGE = TOOLNAME + " --opmode [profile|match|db|lib_api_analysis] <options>";
-	private static final String USAGE_PROFILE = TOOLNAME + " --opmode profile -a <path-to-android.jar> -x <path-to-lib-desc> <options> $lib.[jar|aar]";
-	private static final String USAGE_MATCH = TOOLNAME + " --opmode match -a <path-to-android.jar> <options> $path-to-app(-dir)";
-	private static final String USAGE_DB = TOOLNAME + " --opmode db -p <path-to-profiles> -s <path-to-stats>";
-	private static final String USAGE_LIB_API_ANALYSIS = TOOLNAME + " --opmode lib_api_analysis -a <path-to-android.jar> $path-to-lib-sdks";
+	private static final String USAGE = TOOLNAME + " --opmode <profile|match|db|lib_api_analysis> [options]";
+	private static final String USAGE_PROFILE = TOOLNAME + " --opmode profile -a path_to_android_sdk -x path_to_lib_desc [options] path_to_lib(jar|aar)";
+	private static final String USAGE_MATCH = TOOLNAME + " --opmode match -a path_to_android_sdk [options] path_to_app(dir)";
+	private static final String USAGE_DB = TOOLNAME + " --opmode db -p path_to_profiles -s path_to_stats";
+	private static final String USAGE_LIB_API_ANALYSIS = TOOLNAME + " --opmode lib_api_analysis -a path_to_android_sdk path_to_lib_sdks";
 
 	private static ArrayList<File> inputFiles;
 	private static File libraryDescription = null;
@@ -305,7 +305,7 @@ public class TplCLI {
 			/*
 			 * process lib|app arguments
 			 *  - in profile mode pass *one* library (since it is linked to lib description file)
-			 *  - in match mode pass one application file or one directory file (including apks)
+			 *  - in match mode pass one application file or one directory (including apks)
 			 */
 			if (!(CliOptions.opmode.equals(OpMode.DB))) {
 				inputFiles = new ArrayList<File>();
@@ -325,8 +325,8 @@ public class TplCLI {
 				} else {
 					String[] fileExts = CliOptions.opmode.equals(OpMode.MATCH) ? new String[]{"apk"} : new String[]{"jar", "aar"};
 
-					for (String apkFileName : cmd.getArgs()) {
-						File arg = new File(apkFileName);
+					for (String inputFile : cmd.getArgs()) {
+						File arg = new File(inputFile);
 
 						if (arg.isDirectory()) {
 							inputFiles.addAll(Utils.collectFiles(arg, fileExts));
@@ -344,16 +344,16 @@ public class TplCLI {
 
 					if (inputFiles.isEmpty()) {
 						if (CliOptions.opmode.equals(OpMode.PROFILE))
-							throw new ParseException("You have to provide one library.jar to be processed");
+							throw new ParseException("No libraries (jar|aar files) found to profile in "  + cmd.getArgList());
 						else
-							throw new ParseException("You have to provide a path to a single application file or a directory");
+							throw new ParseException("No apk files found in " + cmd.getArgList());
 					} else if (inputFiles.size() > 1 && CliOptions.opmode.equals(OpMode.PROFILE))
 						throw new ParseException("You have to provide a path to a single library file or a directory incl. a single lib file");
 				}
 			}
 			
 		} catch (ParseException e) {
-			System.err.println("Command line parsing failed:\n" + e.getMessage());
+			System.err.println("Command line parsing failed:\n  " + e.getMessage() + "\n");
 			usage();
 		} catch (Exception e) {
 			System.err.println("Error occured during argument processing:\n" + e.getMessage());
@@ -376,11 +376,8 @@ public class TplCLI {
 	private static boolean checkOptionalUse(CommandLine cmd, String option, OpMode... modes) throws ParseException {
 		if (!Arrays.asList(modes).contains(CliOptions.opmode))
 			return false;
-		
-		if (!cmd.hasOption(option))
-			return false;
-		
-		return true;
+
+		return cmd.hasOption(option);
 	}
 
 	
