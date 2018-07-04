@@ -119,17 +119,9 @@ public class LibraryIdentifier {
 		
 		// check stat file <stats-dir>/package-level1/package-level2/appName_appVersionCode.data
 		String statsFileName = stats.appFile.getName().replaceAll("\\.jar", "").replaceAll("\\.apk", "").replaceAll("\\.aar", "") + "_" + stats.manifest.getVersionCode();  // without file suffix
-		
-		List<String> ptoken = PackageUtils.parsePackage(stats.manifest.getPackageName());
-		File statsSubDir = null;
-		if (ptoken.size() > 0) {
-			if (ptoken.size() > 1)
-				statsSubDir = new File(ptoken.get(0) + File.separator + ptoken.get(1));
-			else
-				statsSubDir = new File(ptoken.get(0));
-		}
 
-		File statsFile = new File(CliOptions.statsDir + File.separator + (statsSubDir != null? statsSubDir + File.separator : "") + statsFileName  + FILE_EXT_SERIALIZED);
+		File statsSubDir = PackageUtils.packageToPath(stats.manifest.getPackageName());
+		File statsFile = new File(CliOptions.statsDir + File.separator + statsSubDir + File.separator + statsFileName  + FILE_EXT_SERIALIZED);
 
 		// if stat file already exists for this app, return
 		if (CliOptions.generateStats && statsFile.exists()) {
@@ -211,7 +203,7 @@ public class LibraryIdentifier {
 
 		// write app results to json
 		if (CliOptions.generateJSON) {
-			File jsonFile = new File(CliOptions.jsonDir + File.separator + (statsSubDir != null? statsSubDir + File.separator : "") + statsFileName  + FILE_EXT_JSON);
+			File jsonFile = new File(CliOptions.jsonDir + File.separator + statsSubDir + File.separator + statsFileName  + FILE_EXT_JSON);
 			Utils.obj2JsonFile(jsonFile, stats);
 			logger.info("Write app stats to JSON (dir: " + CliOptions.jsonDir + ")");
 		}

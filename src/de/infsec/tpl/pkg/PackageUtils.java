@@ -14,6 +14,7 @@
 
 package de.infsec.tpl.pkg;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -49,6 +50,14 @@ public class PackageUtils {
 		return parsePackage(clazzName, false);
 	}
 
+	/**
+	 * Transforms a package name com.foo.bar to a file path, i.e. com/foo/bar
+	 * @param packageName  the package name of the app
+	 * @return  a {@link File} including the package path
+	 */
+	public static File packageToPath (String packageName) {
+		return new File(Utils.join(parsePackage(packageName, true), File.separator));
+	}
 	
 	public static String getPackageName(IClass clazz) {
 		return Utils.join(parsePackage(clazz), ".");
