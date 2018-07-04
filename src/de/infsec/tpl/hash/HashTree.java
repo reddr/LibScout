@@ -709,7 +709,7 @@ public class HashTree implements Serializable {
 	private static String normalizeAnonymousInnerClassConstructor(IMethod m) {
 		if (WalaUtils.isAnonymousInnerInnerClass(m.getDeclaringClass()) && m.isInit() && m.getNumberOfParameters() > 1) {
 			// this can be anything -> normalize constructor to (X)V
-			logger.trace("[normalizeAnonymousInnerClassConstructor] found aonymous inner inner class constructor: "+ m.getSignature());
+			logger.trace("[normalizeAnonymousInnerClassConstructor] found anonymous inner inner class constructor: "+ m.getSignature());
 			return "(X)V";
 		}
 
@@ -737,7 +737,9 @@ public class HashTree implements Serializable {
 				IClass ic = WalaUtils.lookupClass(m.getClassHierarchy(), enclosingClazzName);
 				superClazz = ic.getSuperclass();
 			} catch (ClassNotFoundException e) {
-				logger.warn("Could not lookup " + enclosingClazzName + "  in bytecode normalization");
+				// class lookup can also fail for lambdas, e.g. if superclass is kotlin.jvm.internal.Lambda
+				// we then default to fuzzy descriptor
+				logger.trace("Could not lookup " + enclosingClazzName + "  in bytecode normalization");
 				return null;
 			}
 
