@@ -16,7 +16,7 @@ The resulting data has recently been used to build the Android Studio extension 
 
 ## Library History Scraper (./scripts)
 
-The scripts directory contains python scripts to automatically download original library SDKs including complete version histories from *Maven Central*, *JCenter* and *custom mvn repositories*. The original library SDKs can be used to generate profiles and to conduct library API analyses (see modules below).
+The scripts directory contains python scripts to automatically download original library SDKs including complete version histories from *Maven Central*, *JCenter* and *custom mvn repositories*. The original library SDKs can be used to generate profiles and to conduct library API analyses (see modules below). Use the [library-profile-generator](scripts/library-profile-generator.sh) script to conveniently generate profiles at scale.
 
 The scrapers need to be configured with a json config that includes metadata of the libraries to be fetched (name, groupid, artefactid). There is currently a config file for mvn central with over 100 libraries and a config to download Android libraries from Google's maven repository (350 libraries, including support, gms, ktx, jetpack, ..).
 

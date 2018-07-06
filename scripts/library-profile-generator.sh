@@ -31,7 +31,7 @@ LIBSCOUT="$LIBSCOUT_ROOT/build/LibScout.jar"
 ANDROID_SDK="<NOTSET>"                        # argument: path to Android SDK
 
 LOG_DIR=""    # optional argument: enable logging via "-d <log_dir>"
-JOBS=5        # Number of parallel instances
+JOBS=2        # Number of parallel instances
 
 BUILDSCRIPT="$LIBSCOUT_ROOT/build.xml"
 LIBXML="library.xml"
