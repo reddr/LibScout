@@ -49,13 +49,15 @@ These results have been reported to Google's [ASI program](https://developer.and
 
 ##  LibScout 101
 
- * LibScout requires Java 1.8 or higher. A runnable jar can be generated with the ant script <i>build.xml</i>
+ * LibScout requires Java 1.8 or higher and can be build with Gradle.
+ * Generate a runnable jar with the gradle wrapper <i>gradlew</i> (Linux/MacOS) or <i>gradlew.bat</i> (Windows), by invoking it with the <i>build</i> task, e.g. <i>./gradlew build</i><br>
+   The <i>LibScout.jar</i> is output to the <i>build/libs</i> directory.
  * Most LibScout modules require an Android SDK (jar) to distinguish app code from framework code (via the -a switch).<br>
 Refer to <a href="https://developer.android.com/studio/">https://developer.android.com/studio/</a> for download instructions.
  * By default, LibScout logs to stdout. Use the -d switch to redirect output to files. The -m switch disables any text output.
  * LibScout repo structure in a nutshell:<br>
 <pre><code>
-|_ build.xml (ant build file to generate runnable .jar)
+|_ gradlew / gradlew.bat (gradle wrappers to generate runnable LibScout.jar)
 |_ assets
 |    |_ library.xml (Library meta-data template)
 |_ data
