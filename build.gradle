@@ -1,0 +1,48 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    provided
+    // Make implementation extend from our provided configuration so that classes from dependencies can be bundled
+    implementation.extendsFrom(provided)
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+    }
+}
+
+dependencies {
+    provided 'commons-io:commons-io:2.6'
+    provided 'commons-cli:commons-cli:1.2'
+    provided 'com.google.code.gson:gson:2.8.0'
+    provided 'com.github.zafarkhaja:java-semver:0.9.0'
+    provided 'ch.qos.logback:logback-classic:1.1.2'
+    provided 'ch.qos.logback:logback-core:1.1.2'
+    provided 'org.slf4j:slf4j-api:1.7.7'
+    compileOnly 'com.google.guava:guava:26.0-jre'
+
+    // local deps
+    provided files('lib/wala.jar')         // pre-compiled custom WALA framework
+    provided files('lib/android-xml.jar')  // axml relevant classes from Android SDK
+    provided files('lib/sqlite-jdbc-3.7.15-SNAPSHOT.jar')  // loaded via reflection, at that time, the only working version
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'de.infsec.tpl.TplCLI',
+                         'Tool': 'LibScout',
+                      'Version': '2.1.0'
+    }
+
+    // build fat jar
+    from {
+        configurations.provided.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
