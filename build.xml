@@ -29,17 +29,9 @@
 	<target name="build" depends="compile" description="build the jar file">
 		<mkdir dir="${build.dir}"/>
 
-		<!-- necessary for android xml parsing -->
-		<unjar src="${lib.dir}/android-xml.jar" dest="${bin.dir}">
-			<patternset>
-				<include name="android/content/res/*.class" />
-				<include name="org/xmlpull/v1/*.class" />
-				<include name="android/util/AttributeSet.class" />
-			</patternset>
-		</unjar>
-
 		<unjar dest="${bin.dir}">
 			<fileset dir="${lib.dir}">
+				<include name="**/android-xml.jar" />
 				<include name="**/commons-cli-1.2.jar" />
 				<include name="**/commons-io-2.4.jar" />
 				<!--				<include name="**/guava-20.0.jar" /> -->
