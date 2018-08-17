@@ -6,6 +6,7 @@ import com.ibm.wala.classLoader.IMethod;
 import com.ibm.wala.shrikeCT.InvalidClassFileException;
 import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.pkg.PackageUtils;
+import de.infsec.tpl.stats.Exportable;
 import de.infsec.tpl.utils.Utils;
 import de.infsec.tpl.utils.WalaUtils;
 import org.slf4j.Logger;
@@ -25,7 +26,7 @@ public class DependencyAnalysis {
     /**
      * Secondary lib dependencies for every version and documented API
      */
-    class LibDependencies {
+    class LibDependencies implements Exportable {
         String version;
 
         // documented APIs to set of APIs from dependencies
@@ -36,6 +37,7 @@ public class DependencyAnalysis {
             this.api2Dependencies = api2Dependencies;
         }
 
+        @Override
         public DependencyAnalysis.LibDependencies.Export export() {
             return new Export(this);
         }

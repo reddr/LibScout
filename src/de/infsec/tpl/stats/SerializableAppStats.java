@@ -25,7 +25,8 @@ import de.infsec.tpl.manifest.ProcessManifest;
 import de.infsec.tpl.profile.ProfileMatch;
 import de.infsec.tpl.profile.SerializableProfileMatch;
 
-
+/* DEPRECATED - DO NOT USE ANY LONGER - */
+@Deprecated
 public class SerializableAppStats implements Serializable {
 	private static final long serialVersionUID = -5051966487916476377L;
 	
@@ -94,7 +95,7 @@ public class SerializableAppStats implements Serializable {
 	
 		// save all library names that did not match via profiles but via root package name
 		this.packageMatches = new HashSet<String>();
-		for (String matchedLibPckg: stats.packageMatches)
+		for (String matchedLibPckg: stats.packageOnlyMatches.keySet())
 			if (!libsMatched.contains(matchedLibPckg))
 				this.packageMatches.add(matchedLibPckg);
 		

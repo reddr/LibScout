@@ -3,6 +3,7 @@ package de.infsec.tpl.modules.libapi;
 import com.github.zafarkhaja.semver.Version;
 import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.classLoader.IMethod;
+import de.infsec.tpl.stats.Exportable;
 import de.infsec.tpl.utils.Utils;
 import de.infsec.tpl.utils.VersionWrapper;
 import de.infsec.tpl.utils.WalaUtils;
@@ -24,7 +25,7 @@ public class LibApiComparator {
     /**
      * API Diff Statistics compared to predecessor version
      */
-    class ApiDiff {
+    class ApiDiff implements Exportable {
         Version v;
         int apiCount;
         VersionWrapper.SEMVER expectedSemver = null;
@@ -68,6 +69,7 @@ public class LibApiComparator {
             }
         }
 
+        @Override
         public Export export() {
             return new Export(this);
         }

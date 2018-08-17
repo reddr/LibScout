@@ -24,7 +24,7 @@ import de.infsec.tpl.hash.HashTree.Config;
 import de.infsec.tpl.hash.HashTree.HashAlgorithm;
 import de.infsec.tpl.utils.Pair;
 
-
+/* DEPRECATED - DO NOT USE ANY LONGER */
 public class SerializableProfileMatch implements Serializable {
 	private static final long serialVersionUID = -6375317863324765307L;
 

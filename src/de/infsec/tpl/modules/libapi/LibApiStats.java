@@ -3,6 +3,7 @@ package de.infsec.tpl.modules.libapi;
 import com.github.zafarkhaja.semver.Version;
 import com.ibm.wala.classLoader.IMethod;
 import de.infsec.tpl.TplCLI;
+import de.infsec.tpl.stats.Exportable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 /**
  * Container class to store library API changes across versions
   */
-public class LibApiStats {
+public class LibApiStats implements Exportable {
     public String libName;
 
     // set of version strings
@@ -52,6 +53,7 @@ public class LibApiStats {
         }
     }
 
+    @Override
     public Export export() {
         return new Export(this);
     }

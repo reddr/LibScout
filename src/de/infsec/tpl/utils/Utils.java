@@ -484,7 +484,7 @@ public class Utils {
 		
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
-		String jsonOut = gson.toJson(new SerializableAppStats(stats));
+		String jsonOut = gson.toJson(stats.export());
 		
 		try (FileOutputStream fos = new FileOutputStream(jsonFile)) {
 			fos.write(jsonOut.getBytes());

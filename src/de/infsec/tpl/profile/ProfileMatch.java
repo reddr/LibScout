@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import de.infsec.tpl.stats.Exportable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,7 +38,7 @@ import de.infsec.tpl.utils.Utils.IPredicate;
 
 
 
-public class ProfileMatch implements Serializable {
+public class ProfileMatch implements Exportable, Serializable {
 	private static final long serialVersionUID = 62089083096037815L;
 	private static final Logger logger = LoggerFactory.getLogger(de.infsec.tpl.profile.ProfileMatch.class);
 
@@ -100,7 +101,36 @@ public class ProfileMatch implements Serializable {
 		}
 	}
 	
-	
+	public class Export {
+		public final String libName;
+		public final String libVersion;
+		public final boolean isLibObfuscated;  // maybe
+		public final String  libRootPackage;
+		public final boolean includesSecurityVulnerability;
+		public final boolean includesSecurityVulnerabilityFix;
+		public float simScore = 0f;  // 1f if exact match
+
+		// if lib code usage analysis is enabled, store normalized (i.e. if matched root packages differs from original root package) lib method signatures used
+		public Set<String> usedLibMethods = new TreeSet<String>();
+
+		public Export(ProfileMatch pm) {
+			this.libName = pm.lib.description.name;
+			this.libVersion = pm.lib.description.version;
+			this.isLibObfuscated = pm.isLibObfuscated();
+			this.libRootPackage = pm.getMatchedPackageTree().getRootPackage() != null? getMatchedPackageTree().getRootPackage() : "";
+			this.includesSecurityVulnerability = pm.lib.description.comment.contains("[SECURITY]");
+			this.includesSecurityVulnerabilityFix = pm.lib.description.comment.contains("[SECURITY-FIX]");
+			this.simScore = pm.getHighestSimScore().simScore;
+
+			if (!pm.usedLibMethods.isEmpty())
+				this.usedLibMethods = pm.usedLibMethods;
+		}
+	}
+
+	@Override
+	public Export export() {
+		return new Export(this);
+	}
 
 	public void addResult(HTreeMatch res) {
 		results.add(res);
