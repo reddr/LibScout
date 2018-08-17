@@ -54,7 +54,7 @@ These results have been reported to Google's [ASI program](https://developer.and
    The <i>LibScout.jar</i> is output to the <i>build/libs</i> directory.
  * Most LibScout modules require an Android SDK (jar) to distinguish app code from framework code (via the -a switch).<br>
 Refer to <a href="https://developer.android.com/studio/">https://developer.android.com/studio/</a> for download instructions.
- * By default, LibScout logs to stdout. Use the -d switch to redirect output to files. The -m switch disables any text output.
+ * By default, LibScout logs to stdout. Use the -d switch to redirect output to files. The -m switch disables any text output. Depending on the operation mode (see below), LibScout's results can be written to disk in JSON format or JAVA serialization.
  * LibScout repo structure in a nutshell:<br>
 <pre><code>
 |_ gradlew / gradlew.bat (gradle wrappers to generate runnable LibScout.jar)
@@ -63,7 +63,7 @@ Refer to <a href="https://developer.android.com/studio/">https://developer.andro
 |_ data
 |    |_ app-version-codes.csv (Google Play app packages with valid version codes)
 |_ lib
-|    pre-compiled WALA libs, Apache commons*, log4j
+|    pre-compiled WALA libs, Android axml
 |_ logging
 |    |_ logback.xml (log4j configuration file)
 |_ scripts
@@ -88,13 +88,12 @@ By default, LibScout generates hashtree-based profiles with Package and Class in
 Detects libraries in apps using pre-generated profiles. Optionally, LibScout also conducts an API usage analysis for  detected libraries, i.e. which library APIs are used by the app or by other libraries (-u switch).<br>
 Analysis results can be written in different formats.
 <ol>
-    <li> the JSON format (-j switch), creates subfolders in the specified directory following the app package, i.e. com.foo will create com/foo subfolders.
-        This is useful when coping with a large number of apps.</li>
+    <li> the JSON format (-j switch), creates subfolders in the specified directory following the app package, i.e. *com.foo* will create *com/foo* subfolders.
+        This is useful when coping with a large number of apps. For detailed information about the information stored, please refer to the <a href="https://github.com/reddr/LibScout/wiki#json-output-format-specification">JSON output specification</a>.</li>
     <li> the <b>serialization</b> option (-s switch) writes stat files per app to disk that can be used with the database module to create a SQLite database (the DB structure can be found in class
     <b>de.infsec.tpl.stats.SQLStats</b></li>
 </ol>
-The following example both logs to directory and serializes results to disk:<br>
-<pre>java -jar LibScout.jar -o match -a <i>android_sdk</i> -p <i>path_to_profiles</i> [-u] [-s <i>stats_dir</i>] [-d <i>log_dir</i>] <i>path_to_app(s)</i>  </pre>
+<pre>java -jar LibScout.jar -o match -a <i>android_sdk</i> -p <i>path_to_profiles</i> [-u] [-j <i>json_dir</i>] [-s <i>stats_dir</i>] [-m] [-d <i>log_dir</i>] <i>path_to_app(s)</i>  </pre>
 
 ### Database Generator (-o db)
 
