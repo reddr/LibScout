@@ -104,7 +104,7 @@ public class ProfileMatch implements Exportable, Serializable {
 	public class Export {
 		public final String libName;
 		public final String libVersion;
-		public final boolean isLibObfuscated;  // maybe
+		public final boolean isOriginalPackageName;
 		public final String  libRootPackage;
 		public final boolean includesSecurityVulnerability;
 		public final boolean includesSecurityVulnerabilityFix;
@@ -116,7 +116,7 @@ public class ProfileMatch implements Exportable, Serializable {
 		public Export(ProfileMatch pm) {
 			this.libName = pm.lib.description.name;
 			this.libVersion = pm.lib.description.version;
-			this.isLibObfuscated = pm.isLibObfuscated();
+			this.isOriginalPackageName = !pm.isLibObfuscated();
 			this.libRootPackage = pm.getMatchedPackageTree().getRootPackage() != null? getMatchedPackageTree().getRootPackage() : "";
 			this.includesSecurityVulnerability = pm.lib.description.comment.contains("[SECURITY]");
 			this.includesSecurityVulnerabilityFix = pm.lib.description.comment.contains("[SECURITY-FIX]");
