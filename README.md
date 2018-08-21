@@ -16,9 +16,9 @@ The resulting data has recently been used to build the Android Studio extension 
 
 ## Library History Scraper (./scripts)
 
-The scripts directory contains python scripts to automatically download original library SDKs including complete version histories from *Maven Central*, *JCenter* and *custom mvn repositories*. The original library SDKs can be used to generate profiles and to conduct library API analyses (see modules below). Use the [library-profile-generator](scripts/library-profile-generator.sh) script to conveniently generate profiles at scale.
+The scripts directory contains a [library-scraper](scripts/library-scraper.py) python script to automatically download original library SDKs including complete version histories from *Maven Central*, *JCenter* and *custom mvn repositories*. The original library SDKs can be used to generate profiles and to conduct library API analyses (see modules below). Use the [library-profile-generator](scripts/library-profile-generator.sh) script to conveniently generate profiles at scale.
 
-The scrapers need to be configured with a json config that includes metadata of the libraries to be fetched (name, groupid, artefactid). There is currently a config file for mvn central with over 100 libraries and a config to download Android libraries from Google's maven repository (350 libraries, including support, gms, ktx, jetpack, ..).
+The scrapers need to be configured with a json config that includes metadata of the libraries to be fetched (name, repo, groupid, artefactid). The *scripts/library-specs* directory contains config files to retrieve over 100 libraries from maven central and a config to download Amazon libraries and Android libraries from Google's maven repository (350 libraries, including support, gms, ktx, jetpack, ..).
 
 
 ## Detecting (vulnerable) library versions
@@ -67,8 +67,9 @@ Refer to <a href="https://developer.android.com/studio/">https://developer.andro
 |_ logging
 |    |_ logback.xml (log4j configuration file)
 |_ scripts
-|    |_ mvn-central (scraper for mvn-central)
-|    |_ jcenter+mvn (scraper for jcenter/custom mvn repos)
+|    |_ library-specs (pre-defined library specs)
+|    |_ library-scraper.py   (scraper for mvn-central, jcenter, custom mvn)
+|    |_ library-profile-generator.sh (convenience profile generator)
 |_ src
     source directory of LibScout (de/infsec/tpl). Includes some open-source,
     third-party code to parse AXML resources / app manifests etc.
@@ -79,7 +80,7 @@ Refer to <a href="https://developer.android.com/studio/">https://developer.andro
 
 This module generates unique library fingerprints from original lib SDKs (.jar and .aar files supported). These profiles can subsequently be used for testing whether the respective library
 versions are included in apps. Each library file additionally requires a <i>library.xml</i> that contains meta data (e.g. name, version,..). A template can be found in the assets directory.
-For your convenience, you can use our library scrapers (./scripts) that download full library histories from Maven repositories.
+For your convenience, you can use the library scraper (./scripts) to download full library histories from Maven repositories.
 By default, LibScout generates hashtree-based profiles with Package and Class information (omitting methods).<br>
 <pre>java -jar LibScout.jar -o profile -a <i>android_sdk</i> -x <i>path_to_library_xml</i> <i>path_to_library_file</i> </pre>
 
@@ -109,8 +110,8 @@ Compliance to <a href="http://semver.org">Semantic Versioning (SemVer)</a>, i.e.
 the changes in the respective public API sets (actual SemVer). Results further include statistics about changes in API sets (additions/removals/modifcations). For removed APIs,
 LibScout additionally tries to infer alternative APIs (based on different features).<br>
 
-For the analysis, you have to provide a path to library SDKs. LibScout recursively searches for library jars|aars (leaf directories are expected to have at most one jar|aar file and one library.xml file).
-For your convenience use the Maven Central Scraper. Analysis results are written to disk in JSON format (-j switch).<br>
+For the analysis, you have to provide a path to the original library SDKs. LibScout recursively searches for library jars|aars (leaf directories are expected to have at most one jar|aar file and one library.xml file).
+For your convenience use the library scraper. Analysis results are written to disk in JSON format (-j switch).<br>
 <pre>java -jar LibScout.jar -o lib_api_analysis -a <i>android_sdk</i> [-j <i>json_dir</i>] <i>path_to_lib_sdks</i></pre>
 
 ## Scientific Publications
