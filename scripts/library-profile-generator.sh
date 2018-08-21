@@ -27,13 +27,13 @@
 
 # LibScout dir and arguments
 LIBSCOUT_ROOT="<NOTSET>"                      # path to the LibScout root directory
-LIBSCOUT="$LIBSCOUT_ROOT/build/LibScout.jar"
+LIBSCOUT="$LIBSCOUT_ROOT/build/libs/LibScout.jar"
 ANDROID_SDK="<NOTSET>"                        # argument: path to Android SDK
 
 LOG_DIR=""    # optional argument: enable logging via "-d <log_dir>"
 JOBS=2        # Number of parallel instances
 
-BUILDSCRIPT="$LIBSCOUT_ROOT/build.xml"
+GRADLE_BUILD="$LIBSCOUT_ROOT/gradlew build"
 LIBXML="library.xml"
 
 
@@ -86,7 +86,7 @@ cd $LIBSCOUT_ROOT
 ## 3. generate LibScout.jar if not existing
 if [ ! -e $LIBSCOUT ]; then
 	echo -n "[info] $LIBSCOUT does not exist, generating jar file now..."
-	ant -f $BUILDSCRIPT build > /dev/null
+	$GRADLE_BUILD > /dev/null
 	if [ $? != 0 ]; then
 		echo "[failed]"
 		exit $rc;
