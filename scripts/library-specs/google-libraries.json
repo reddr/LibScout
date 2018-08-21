@@ -1,5 +1,5 @@
 {
-    "libraries": [
+  "libraries": [
     {
         "artefactid": "constraint-layout-solver",
         "category": "Android",
@@ -2444,5 +2444,5 @@
         "name": "androidx.versionedparcelable::versionedparcelable",
         "repo": "https://dl.google.com/dl/android/maven2"
     }
-]
+  ]
 }

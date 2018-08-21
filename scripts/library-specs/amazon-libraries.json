@@ -1,0 +1,194 @@
+{
+  "libraries": [
+    {
+        "name": "Amazon AWS Mobile Analytics",
+        "category": "Analytics",
+        "comment": "With Amazon Mobile Analytics, you can measure app usage and app revenue.",
+        "groupid": "com.amazonaws",
+        "artefactid": "aws-android-sdk-mobileanalytics",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon AWS Mobile SDK core",
+       "category": "Cloud",
+       "comment": "",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-core",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon API Gateway",
+       "category": "Cloud",
+       "comment": "API Gateway is an AWS service that enables developers to create, publish, maintain, monitor, and secure APIs at any scale.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-apigateway-core",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon AWS IoT",
+       "category": "Cloud",
+       "comment": "AWS IoT is a managed cloud platform that lets connected devices easily and securely interact with cloud applications and other devices",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-iot",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon AWS Elastic Beanstalk",
+       "category": "Cloud",
+       "comment": "With Elastic Beanstalk, you can quickly deploy and manage applications in the AWS Cloud without worrying about the infrastructure that runs those applications.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-elb",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon SimpleDB",
+       "category": "Cloud",
+       "comment": "Amazon SimpleDB is a highly available NoSQL data store that offloads the work of database administration.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-sdb",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon Rekognition",
+       "category": "Cloud",
+       "comment": "Amazon Rekognition is a service that enables you to add image analysis to your applications.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-rekognition",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon Cloud Watch",
+       "category": "Cloud",
+       "comment": "Amazon CloudWatch is a monitoring service for AWS cloud resources and the applications you run on AWS.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-cloudwatch",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon Cognito Identity Provider",
+       "category": "Cloud",
+       "comment": "",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-cognitoidentityprovider",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon Cognito Auth",
+       "category": "Cloud",
+       "comment": "",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-cognitoauth",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon Cognito Sync",
+       "category": "Cloud",
+       "comment": "Using Amazon Cognito Identity, you can create unique identities for your users and authenticate them for secure access to your AWS resources",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-cognito",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon DynamoDB",
+       "category": "Cloud",
+       "comment": "DynamoDB is a fast, highly scalable, highly available, cost-effective, nonrelational database service.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-ddb",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon DynamoDB Document",
+       "category": "Cloud",
+       "comment": "",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-ddb-document",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon DynamoDB Object Mapper",
+       "category": "Cloud",
+       "comment": "DynamoDB Object Mapper lets you map client-side classes to DynamoDB tables; perform various create, read, update, and delete (CRUD) operations; and execute queries.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-ddb-mapper",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon Elastic Compute Cloud (EC2)",
+       "category": "Cloud",
+       "comment": "Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-ec2",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon Kinesis Streams",
+       "category": "Cloud",
+       "comment": "Amazon Kinesis is a fully managed service for real-time processing of streaming data at massive scale.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-kinesis",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon Machine Learning",
+       "category": "Cloud",
+       "comment": "Amazon Machine Learning is a service that makes it easy for developers of all skill levels to use machine learning technology.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-machinelearning",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon Polly",
+       "category": "Cloud",
+       "comment": "Add Text to Speech Capability to your Android App with Amazon Polly",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-polly",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon Pinpoint",
+       "category": "Cloud",
+       "comment": "Create Push Notification Campaigns with Amazon Pinpoint",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-pinpoint",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon Simple Storage Service (S3)",
+       "category": "Cloud",
+       "comment": "Amazon S3 provides secure, durable, highly-scalable object storage in the cloud.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-s3",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon Simple Email Service (SES)",
+       "category": "Cloud",
+       "comment": "SES eliminates the complexity and expense of building an in-house email solution.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-ses",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon Simple Notification Service (SNS)",
+       "category": "Cloud",
+       "comment": "SNS is a flexible, fully managed pub/sub messaging and mobile notifications service for coordinating the delivery of messages to subscribing endpoints and clients.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-sns",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon Simple Queue Service (SQS)",
+       "category": "Cloud",
+       "comment": "SQS is a fully managed message queuing service that makes it easy to decouple and scale microservices, distributed systems, and serverless applications.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-sqs",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon AWS Auto Scaling",
+       "category": "Cloud",
+       "comment": "Auto Scaling helps you maintain application availability and allows you to dynamically scale your Amazon EC2 capacity up or down automatically according to conditions you define.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-autoscaling",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon AWS Key Management Service (KMS)",
+       "category": "Cloud",
+       "comment": "KMS is a managed service that makes it easy for you to create and control the encryption keys used to encrypt your data, and uses Hardware Security Modules (HSMs) to protect the security of your keys.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-kms",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon AWS Lambda",
+       "category": "Cloud",
+       "comment": "Execute Code On Demand with Amazon Lambda",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-lambda",
+        "repo": "mvn-central"
+    },{
+       "name": "Amazon Lex",
+       "category": "Cloud",
+       "comment": "Amazon Lex is an AWS service for building conversational interfaces for any applications using voice and text.",
+       "groupid": "com.amazonaws",
+       "artefactid": "aws-android-sdk-lex",
+        "repo": "mvn-central"
+    }
+  ]
+}
