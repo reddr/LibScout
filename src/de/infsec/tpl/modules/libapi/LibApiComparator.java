@@ -10,7 +10,6 @@ import de.infsec.tpl.utils.WalaUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.rmi.CORBA.Util;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -211,8 +210,10 @@ public class LibApiComparator {
 
 
     /*
-     * Check for each version with actual semver = major for each removed
-     * API for alternative APIs
+     * Check for each major version (actual semver) for alternative
+     * APIs for each removed API
+     * NOTE: This is getting really slow if there are 10k+ doc APIs and more than
+     *       1k+ API removals between adjacent versions
      */
     void inferAlternativeAPIs(Map<Version, Set<IMethod>> version2Api) {
         for (Version v: version2ApiDiff.keySet()) {
@@ -220,33 +221,19 @@ public class LibApiComparator {
 
             if (diff.actualSemver != null && diff.actualSemver.equals(VersionWrapper.SEMVER.MAJOR)) {
                 for (IMethod m: diff.removed) {
-                    Set<IMethod> alternatives = checkForAlternatives(m, diff.removed, version2Api.get(v));
+                    Set<IMethod> alternatives = version2Api.get(v).parallelStream()
+                       .filter(api -> !diff.removed.contains(api))  // exclude removed apis
+                       .filter(api -> isAlternativeApi(m, api))
+                       .collect(Collectors.toSet());
 
-                    if (!alternatives.isEmpty())
+                    // if we have three or more alternatives (e.g. renamed methods with one argument)
+                    // the suggestions will probably be wrong -> do not store any alternatives
+                    if (alternatives.size() <= 2)
                         diff.alternatives.put(m, alternatives);
                 }
             }
         }
     }
-
-
-    static Set<IMethod> checkForAlternatives(IMethod removedApi, Set<IMethod> removedAPIs, Set<IMethod> docAPIs) {
-        Set<IMethod> alternatives = new HashSet<IMethod>();
-
-        docAPIs.removeAll(removedAPIs);
-        for (IMethod m: docAPIs) {
-            if (isAlternativeApi(removedApi, m))
-                alternatives.add(m);
-        }
-
-        // if we have three or more alternatives (e.g. renamed methods with one argument)
-        // the suggestions will probably be wrong -> return no alternatives
-        if (alternatives.size() > 2)
-            return new HashSet<IMethod>();
-
-        return alternatives;
-    }
-
 
 
     /**
