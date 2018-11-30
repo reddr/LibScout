@@ -1,6 +1,6 @@
 # LibScout
 
-LibScout is a light-weight and effective static analysis tool to detect third-party libraries in Android/Java apps. The detection is resilient against common bytecode obfuscation techniques such as identifier renaming or code-based obfuscations such as reflection-based API hiding or control-flow randomization. Further LibScout is capable of pinpointing exact library versions including versions that contain severe bugs or security issues.<br>
+LibScout is a light-weight and effective static analysis tool to detect third-party libraries in Android/Java apps. The detection is resilient against common bytecode obfuscation techniques such as identifier renaming or code-based obfuscations such as reflection-based API hiding or control-flow randomization. Further, LibScout is capable of pinpointing exact library versions including versions that contain severe bugs or security issues.<br>
 
 LibScout requires the original library SDKs (compiled .jar/.aar files) to extract library profiles that can be used for detection on Android apps. Pre-generated library profiles are hosted at the repository [LibScout-Profiles](https://github.com/reddr/LibScout-Profiles).
 
@@ -16,7 +16,7 @@ The resulting data has recently been used to build the Android Studio extension 
 
 ## Library History Scraper (./scripts)
 
-The scripts directory contains a [library-scraper](scripts/library-scraper.py) python script to automatically download original library SDKs including complete version histories from *Maven Central*, *JCenter* and *custom mvn repositories*. The original library SDKs can be used to generate profiles and to conduct library API analyses (see modules below). Use the [library-profile-generator](scripts/library-profile-generator.sh) script to conveniently generate profiles at scale.
+The scripts directory contains a [library-scraper](scripts/library-scraper.py) python script to automatically download original library SDKs including complete version histories from *Maven Central*, *JCenter* and *custom mvn repositories*. The original library SDKs can be used to generate profiles and to conduct library API compatibility analyses (see modules below). Use the [library-profile-generator](scripts/library-profile-generator.sh) script to conveniently generate profiles at scale.
 
 The scrapers need to be configured with a json config that includes metadata of the libraries to be fetched (name, repo, groupid, artefactid). The *scripts/library-specs* directory contains config files to retrieve over 100 libraries from maven central and a config to download Amazon libraries and Android libraries from Google's maven repository (350 libraries, including support, gms, ktx, jetpack, ..).
 
@@ -43,8 +43,11 @@ We try to update the list/profiles whenever we encounter new security issues. If
 | Vungle     |    < 3.3.0      |  3.3.0        |  MitM attack vulnerability             |  [Link](https://support.google.com/faqs/answer/6313713)  |
 | ZeroTurnaround | < 1.13      | 1.13          |  Zip Slip vulnerability                | [Link](https://github.com/snyk/zip-slip-vulnerability)
 
-On our last scan of free apps on Google Play (05/25/2017), LibScout detected >20k apps containing one of these vulnerable lib versions.
-These results have been reported to Google's [ASI program](https://developer.android.com/google/play/asi.html) (still under investigation).
+### Identified Issues
+On our last scan of free apps on Google Play (05/25/2017), LibScout detected >20k apps still containing one of these vulnerable lib versions. The findings have been reported to Google's [ASI program](https://developer.android.com/google/play/asi.html). Unfortunately, the report seemed to be ignored.
+In consequence, we manually notified many app developers.
+
+Among others, McAfee published a [Security Advisory](http://service.mcafee.com/FAQDocument.aspx?&id=TS102785) for one of their apps.
 
 
 ##  LibScout 101
@@ -52,7 +55,7 @@ These results have been reported to Google's [ASI program](https://developer.and
  * LibScout requires Java 1.8 or higher and can be build with Gradle.
  * Generate a runnable jar with the gradle wrapper <i>gradlew</i> (Linux/MacOS) or <i>gradlew.bat</i> (Windows), by invoking it with the <i>build</i> task, e.g. <i>./gradlew build</i><br>
    The <i>LibScout.jar</i> is output to the <i>build/libs</i> directory.
- * Most LibScout modules require an Android SDK (jar) to distinguish app code from framework code (via the -a switch).<br>
+ * Most LibScout modules require an Android SDK (jar) to distinguish app code from framework code (via the -a switch).
 Refer to <a href="https://developer.android.com/studio/">https://developer.android.com/studio/</a> for download instructions.
  * By default, LibScout logs to stdout. Use the -d switch to redirect output to files. The -m switch disables any text output. Depending on the operation mode (see below), LibScout's results can be written to disk in JSON format or JAVA serialization.
  * LibScout repo structure in a nutshell:<br>
@@ -82,7 +85,7 @@ This module generates unique library fingerprints from original lib SDKs (.jar a
 versions are included in apps. Each library file additionally requires a <i>library.xml</i> that contains meta data (e.g. name, version,..). A template can be found in the assets directory.
 For your convenience, you can use the library scraper (./scripts) to download full library histories from Maven repositories.
 By default, LibScout generates hashtree-based profiles with Package and Class information (omitting methods).<br>
-<pre>java -jar LibScout.jar -o profile -a <i>android_sdk</i> -x <i>path_to_library_xml</i> <i>path_to_library_file</i> </pre>
+<pre>java -jar LibScout.jar -o profile -a <i>android_sdk_jar</i> -x <i>path_to_library_xml</i> <i>path_to_library_file</i> </pre>
 
 ### Library Detection (-o match)
 
@@ -94,14 +97,14 @@ Analysis results can be written in different formats.
     <li> the <b>serialization</b> option (-s switch) writes stat files per app to disk that can be used with the database module to create a SQLite database (the DB structure can be found in class
     <b>de.infsec.tpl.stats.SQLStats</b></li>
 </ol>
-<pre>java -jar LibScout.jar -o match -a <i>android_sdk</i> -p <i>path_to_profiles</i> [-u] [-j <i>json_dir</i>] [-s <i>stats_dir</i>] [-m] [-d <i>log_dir</i>] <i>path_to_app(s)</i>  </pre>
+<pre>java -jar LibScout.jar -o match -a <i>android_sdk_jar</i> -p <i>path_to_profiles</i> [-u] [-j <i>json_dir</i>] [-s <i>stats_dir</i>] [-m] [-d <i>log_dir</i>] <i>path_to_app(s)</i>  </pre>
 
 ### Database Generator (-o db)
 
 Generates a SQLite database from library profiles and serialized app stats:<br>
 <pre>java -jar LibScout.jar -o db -p <i>path_to_profiles</i> -s <i>path_to_app_stats</i> </pre>
 
-### Library API analysis (-o lib_api_analysis)
+### Library API compatibility analysis (-o lib_api_analysis)
 
 Analyzes changes in the documented (public) API sets of library versions.<br>
 The analysis results currently include the following information:
@@ -112,7 +115,7 @@ LibScout additionally tries to infer alternative APIs (based on different featur
 
 For the analysis, you have to provide a path to the original library SDKs. LibScout recursively searches for library jars|aars (leaf directories are expected to have at most one jar|aar file and one library.xml file).
 For your convenience use the library scraper. Analysis results are written to disk in JSON format (-j switch).<br>
-<pre>java -jar LibScout.jar -o lib_api_analysis -a <i>android_sdk</i> [-j <i>json_dir</i>] <i>path_to_lib_sdks</i></pre>
+<pre>java -jar LibScout.jar -o lib_api_analysis -a <i>android_sdk_jar</i> [-j <i>json_dir</i>] <i>path_to_lib_sdks</i></pre>
 
 ## Scientific Publications
 
