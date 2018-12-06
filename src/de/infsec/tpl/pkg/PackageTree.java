@@ -72,13 +72,13 @@ public class PackageTree implements Serializable {
 		    print("", true, includeClazzCount);
 		}
 		
-	    private void print(String prefix, boolean isTail, boolean includeClazzCount) {
-	        logger.info(prefix + (isTail ? "└── " : "├── ") + name + (includeClazzCount && clazzCount > 0? " (" + clazzCount + ")" : ""));
+		private void print(String prefix, boolean isTail, boolean includeClazzCount) {
+		  logger.info(prefix + (isTail ? "|___ " : "|--- ") + name + (includeClazzCount && clazzCount > 0? " (" + clazzCount + ")" : ""));
 
-	        for (int i = 0; i < childs.size(); i++) {
-	            childs.get(i).print(prefix + (isTail ? "    " : "│   "), i == childs.size()-1, includeClazzCount);
-	        }
-	    }
+		  for (int i = 0; i < childs.size(); i++) {
+			childs.get(i).print(prefix + (isTail ? "    " : "|   "), i == childs.size()-1, includeClazzCount);
+		  }
+		}
 	    
 	    @Override
 	    public String toString() {
