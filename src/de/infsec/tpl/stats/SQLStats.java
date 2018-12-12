@@ -28,10 +28,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import de.infsec.tpl.config.LibScoutConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.infsec.tpl.TplCLI.CliOptions;
 import de.infsec.tpl.hash.HashTree;
 import de.infsec.tpl.profile.LibProfile;
 import de.infsec.tpl.profile.SerializableProfileMatch;
@@ -97,7 +97,7 @@ public class SQLStats {
 	    		return;
 	    	}
 			
-			List<SerializableAppStats> appStats = loadAppStats(CliOptions.statsDir);
+			List<SerializableAppStats> appStats = loadAppStats(LibScoutConfig.statsDir);
 			generateDB(profiles, appStats);
 		} catch (Exception e) {
 			logger.error(Utils.stacktrace2Str(e));

@@ -29,6 +29,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import de.infsec.tpl.config.LibScoutConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -40,7 +41,6 @@ import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 
 import de.infsec.tpl.manifest.ProcessManifest;
-import de.infsec.tpl.TplCLI.CliOptions;
 import de.infsec.tpl.hash.Hash;
 import de.infsec.tpl.hash.HashTree;
 import de.infsec.tpl.hash.HashTree.Node;
@@ -83,7 +83,7 @@ public class LibraryIdentifier {
 		this.stats = new AppStats(appFile);
 		
 		// set identifier for logging
-		String logIdentifier = CliOptions.logDir.getAbsolutePath() + File.separator;
+		String logIdentifier = LibScoutConfig.logDir.getAbsolutePath() + File.separator;
 		logIdentifier +=  appFile.getName().replaceAll("\\.jar", "").replaceAll("\\.apk", "").replaceAll("\\.aar", "");
 		
 		MDC.put("appPath", logIdentifier);
@@ -101,7 +101,7 @@ public class LibraryIdentifier {
 		// create analysis scope and generate class hierarchy
 		// we do not need additional libraries like support libraries,
 		// as they are statically linked in the app code.
-		final AnalysisScope scope = AndroidAnalysisScope.setUpAndroidAnalysisScope(new File(stats.appFile.getAbsolutePath()).toURI(), null /* no exclusions */, null /* we always pass an android lib */, CliOptions.pathToAndroidJar.toURI());
+		final AnalysisScope scope = AndroidAnalysisScope.setUpAndroidAnalysisScope(new File(stats.appFile.getAbsolutePath()).toURI(), null /* no exclusions */, null /* we always pass an android lib */, LibScoutConfig.pathToAndroidJar.toURI());
 
 		cha = ClassHierarchy.make(scope);
 		logger.info("generated class hierarchy (in " + Utils.millisecondsToFormattedTime(System.currentTimeMillis() - s) + ")");
@@ -121,10 +121,10 @@ public class LibraryIdentifier {
 		String statsFileName = stats.appFile.getName().replaceAll("\\.jar", "").replaceAll("\\.apk", "").replaceAll("\\.aar", "") + "_" + stats.manifest.getVersionCode();  // without file suffix
 
 		File statsSubDir = PackageUtils.packageToPath(stats.manifest.getPackageName());
-		File statsFile = new File(CliOptions.statsDir + File.separator + statsSubDir + File.separator + statsFileName  + FILE_EXT_SERIALIZED);
+		File statsFile = new File(LibScoutConfig.statsDir + File.separator + statsSubDir + File.separator + statsFileName  + FILE_EXT_SERIALIZED);
 
 		// if stat file already exists for this app, return
-		if (CliOptions.generateStats && statsFile.exists()) {
+		if (LibScoutConfig.generateStats && statsFile.exists()) {
 			logger.info(Utils.INDENT + "Stat file " + statsFile + " already exists - ABORT!");
 			return;
 		}
@@ -195,23 +195,23 @@ public class LibraryIdentifier {
 		printResults(results);
 
 		// run library API usage analysis for full matches only
-		if (CliOptions.runLibUsageAnalysis)
+		if (LibScoutConfig.runLibUsageAnalysis)
 			LibCodeUsage.checkUsage(cha, results);
 		
 		logger.info("");
 		stats.processingTime = System.currentTimeMillis() - starttime;
 
 		// write app results to json
-		if (CliOptions.generateJSON) {
-			File jsonFile = new File(CliOptions.jsonDir + File.separator + statsSubDir + File.separator + statsFileName  + FILE_EXT_JSON);
+		if (LibScoutConfig.generateJSON) {
+			File jsonFile = new File(LibScoutConfig.jsonDir + File.separator + statsSubDir + File.separator + statsFileName  + FILE_EXT_JSON);
 			Utils.obj2JsonFile(jsonFile, stats);
-			logger.info("Write app stats to JSON (dir: " + CliOptions.jsonDir + ")");
+			logger.info("Write app stats to JSON (dir: " + LibScoutConfig.jsonDir + ")");
 		}
 		
 		// serialize appstats to disk
-		if (CliOptions.generateStats) {
+		if (LibScoutConfig.generateStats) {
 			if (!stats.pMatches.isEmpty()) {
-				logger.info("Serialize app stats to disk (dir: " + CliOptions.statsDir + ")");
+				logger.info("Serialize app stats to disk (dir: " + LibScoutConfig.statsDir + ")");
 				Utils.object2Disk(statsFile, new SerializableAppStats(stats));  // TODO mv from java serialization to protobufs or remove w/o replacement
 			}
 		}
@@ -297,7 +297,7 @@ public class LibraryIdentifier {
 		}
 
 		// abort if partial matching has been disabled via cli-option 
-		if (TplCLI.CliOptions.noPartialMatching) {
+		if (LibScoutConfig.noPartialMatching) {
 			logger.debug(Utils.INDENT2 + "Partial matching disabled - [SKIP]");
 			match.simScore = ProfileMatch.MATCH_HTREE_NONE;
 			pMatch.addResult(match);
@@ -724,7 +724,7 @@ public class LibraryIdentifier {
 		logger.info("");
 		logger.info("- Partial library matches:");
 		
-		if (CliOptions.noPartialMatching) {
+		if (LibScoutConfig.noPartialMatching) {
 			logger.info(Utils.INDENT + "## Partial matching disabled ##");
 			logger.info("");
 		} else {

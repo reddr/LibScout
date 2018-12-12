@@ -26,6 +26,7 @@ import java.util.jar.JarFile;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import de.infsec.tpl.config.LibScoutConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -39,7 +40,6 @@ import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.types.ClassLoaderReference;
 
-import de.infsec.tpl.TplCLI.CliOptions;
 import de.infsec.tpl.hash.HashTree;
 import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.profile.LibProfile;
@@ -68,7 +68,7 @@ public class LibraryProfiler {
 		libDesc = XMLParser.readLibraryXML(libDescriptionFile);
 		
 		// set identifier for logging
-		String logIdentifier = CliOptions.logDir.getAbsolutePath() + File.separator;
+		String logIdentifier = LibScoutConfig.logDir.getAbsolutePath() + File.separator;
 		logIdentifier += libDesc.name.replaceAll(" ", "-") + "_" + libDesc.version;
 		
 		MDC.put("appPath", logIdentifier);
@@ -88,7 +88,7 @@ public class LibraryProfiler {
 		
 		JarFile jf = libraryFile.getName().endsWith(".aar")? new AarFile(libraryFile).getJarFile() : new JarFile(libraryFile); 
 		scope.addToScope(ClassLoaderReference.Application, jf);
-		scope.addToScope(ClassLoaderReference.Primordial, new JarFile(CliOptions.pathToAndroidJar));
+		scope.addToScope(ClassLoaderReference.Primordial, new JarFile(LibScoutConfig.pathToAndroidJar));
 
 		IClassHierarchy cha = ClassHierarchy.make(scope);
 		getChaStats(cha);
@@ -115,7 +115,7 @@ public class LibraryProfiler {
 			
 		// serialize lib profiles to disk (<profilesDir>/<lib-category>/libName_libVersion.lib)
 		logger.info("");
-		File targetDir = new File(CliOptions.profilesDir + File.separator + libDesc.category.toString());
+		File targetDir = new File(LibScoutConfig.profilesDir + File.separator + libDesc.category.toString());
 		logger.info("Serialize library fingerprint to disk (dir: " + targetDir + ")");
 		String proFileName = libDesc.name.replaceAll(" ", "-") + "_" + libDesc.version + "." + FILE_EXT_LIB_PROFILE;
 		LibProfile lp = new LibProfile(libDesc, pTree, hTrees);

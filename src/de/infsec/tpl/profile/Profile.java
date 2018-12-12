@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.infsec.tpl.TplCLI;
+import de.infsec.tpl.config.LibScoutConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -81,7 +82,7 @@ public abstract class Profile implements Serializable {
 			
 			HashTree hashTree = new HashTree(filterDups, filterInnerClasses, algorithm);
 
-			if (TplCLI.CliOptions.genVerboseProfiles) {
+			if (LibScoutConfig.genVerboseProfiles) {
 				hashTree.setBuildVerboseness(HashTree.HTREE_BUILD_VERBOSENESS.TRACE);
 				hashTree.setPublicOnlyFilter();
 			}

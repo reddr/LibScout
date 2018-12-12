@@ -1,23 +1,18 @@
 package de.infsec.tpl.modules.libapi;
 
 
-import com.ibm.wala.classLoader.CallSiteReference;
-import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.classLoader.IMethod;
 
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.ipa.cha.ClassHierarchy;
 import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
-import com.ibm.wala.shrikeCT.InvalidClassFileException;
 import com.ibm.wala.types.ClassLoaderReference;
 import de.infsec.tpl.TplCLI;
-import de.infsec.tpl.pkg.PackageTree;
-import de.infsec.tpl.pkg.PackageUtils;
+import de.infsec.tpl.config.LibScoutConfig;
 import de.infsec.tpl.profile.LibraryDescription;
 import de.infsec.tpl.utils.AarFile;
 import de.infsec.tpl.utils.Utils;
-import de.infsec.tpl.utils.WalaUtils;
 import de.infsec.tpl.xml.XMLParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +45,7 @@ public class LibraryApiAnalysis {
         locateLibrarySDKs(libDir);
         parseLibrarySDKs(true);
 
-        if (TplCLI.CliOptions.libDependencyAnalysis)
+        if (LibScoutConfig.libDependencyAnalysis)
             analyzeSecondaryDependencies();
 
         analyzeLibraryAPIs();
@@ -81,7 +76,7 @@ public class LibraryApiAnalysis {
 
     private void writeLibData(LibApiStats stats) {
         // output results in json format
-        File jsonOutputFile = new File(TplCLI.CliOptions.jsonDir + File.separator + "libApis" + File.separator + stats.libName + ".json");
+        File jsonOutputFile = new File(LibScoutConfig.jsonDir + File.separator + "libApis" + File.separator + stats.libName + ".json");
 
         try {
             Utils.obj2JsonFile(jsonOutputFile, stats.export());
@@ -128,7 +123,7 @@ public class LibraryApiAnalysis {
 
         JarFile jf = libCodeFile.getName().endsWith(".aar")? new AarFile(libCodeFile).getJarFile() : new JarFile((libCodeFile));
         scope.addToScope(ClassLoaderReference.Application, jf);
-        scope.addToScope(ClassLoaderReference.Primordial, new JarFile(TplCLI.CliOptions.pathToAndroidJar));
+        scope.addToScope(ClassLoaderReference.Primordial, new JarFile(LibScoutConfig.pathToAndroidJar));
         IClassHierarchy cha = ClassHierarchy.make(scope);
 
         // cleanup tmp files if library input was an .aar file

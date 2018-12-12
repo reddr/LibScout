@@ -2,10 +2,8 @@ package de.infsec.tpl.modules.libapi;
 
 import com.github.zafarkhaja.semver.Version;
 import com.ibm.wala.classLoader.IMethod;
-import de.infsec.tpl.TplCLI;
+import de.infsec.tpl.config.LibScoutConfig;
 import de.infsec.tpl.stats.Exportable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -43,7 +41,7 @@ public class LibApiStats implements Exportable {
 
             this.apiDiffs = stats.version2Diff.values().stream().map(LibApiComparator.ApiDiff::export).collect(Collectors.toList());
 
-            if (TplCLI.CliOptions.libDependencyAnalysis)
+            if (LibScoutConfig.libDependencyAnalysis)
                 this.libDeps = stats.version2Deps.values().stream().map(DependencyAnalysis.LibDependencies::export).collect(Collectors.toList());
 
             this.api2Versions = new HashMap<String, Set<String>>();

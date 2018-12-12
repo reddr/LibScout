@@ -52,8 +52,6 @@ public class Utils {
 	public static final String INDENT2 = INDENT + INDENT;
 	public static final String[] INDENTATION;
 	
-	public enum LOGTYPE { NONE, CONSOLE, FILE };
-	
 	static {
 		INDENTATION = new String[11];
 		String curIndent = "";

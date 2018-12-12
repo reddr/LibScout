@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import de.infsec.tpl.TplCLI;
+import de.infsec.tpl.config.LibScoutConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -76,7 +76,7 @@ public class LibraryApiAnalysis {
 
 	public LibraryApiAnalysis() {
 		// set identifier for logging
-		String logIdentifier = TplCLI.CliOptions.logDir.getAbsolutePath() + File.separator + "libApiAnalysis";
+		String logIdentifier = LibScoutConfig.logDir.getAbsolutePath() + File.separator + "libApiAnalysis";
 		MDC.put("appPath", logIdentifier);
 	}
 
@@ -131,7 +131,7 @@ public class LibraryApiAnalysis {
 
 		// output results in json format
 		for (LibApiRobustnessStats stats: libStats) {
-			File jsonOutputFile = new File(TplCLI.CliOptions.jsonDir + File.separator + "lib-api-analysis" + File.separator + stats.libName + ".json");
+			File jsonOutputFile = new File(LibScoutConfig.jsonDir + File.separator + "lib-api-analysis" + File.separator + stats.libName + ".json");
 			try {
 				Utils.obj2JsonFile(jsonOutputFile, stats);
 			} catch (IOException e) {

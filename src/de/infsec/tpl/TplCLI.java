@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import de.infsec.tpl.config.LibScoutConfig;
 import de.infsec.tpl.modules.libapi.LibraryApiAnalysis;
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -44,15 +45,6 @@ public class TplCLI {
 	private static final Logger logger = LoggerFactory.getLogger(de.infsec.tpl.TplCLI.class);
 	private static Options options;
 	
-    /*
-     *  mode of operations
-     *    -          PROFILE:  generate library profiles from original lib SDKs and descriptions
-     *    -            MATCH:  match lib profiles in provided apps
-     *    -               DB:  build sqlite database from app stat files
-     *    - LIB_API_ANALYSIS:  analyzes library api stability (api additions, removals, changes)
-     */
-	public static  enum OpMode {PROFILE, MATCH, DB, LIB_API_ANALYSIS};
-
 	public static class CliArgs {
 		static final String ARG_OPMODE = "o";
 		static final String ARGL_OPMODE = "opmode";
@@ -91,24 +83,6 @@ public class TplCLI {
 		static final String ARGL_LIB_DEPENDENCY_ANALYSIS = "lib-dependency-analysis";
 	}
 	
-	public static class CliOptions {
-		public static File pathToAndroidJar;		
-		public static Utils.LOGTYPE logType = Utils.LOGTYPE.CONSOLE;
-		public static File logDir = new File("./logs");
-		public static File statsDir = new File("./stats");
-		public static File jsonDir = new File("./json");
-		public static File profilesDir = new File("./profiles");
-		public static OpMode opmode = null;
-		
-		public static boolean noPartialMatching = false;
-		public static boolean runLibUsageAnalysis = false;
-		public static boolean genVerboseProfiles = false;   // generate lib profiles with TRACE + PubOnly
-		public static boolean generateStats = false;
-		public static boolean generateJSON = false;
-		public static boolean libDependencyAnalysis = false;
-	}
-	
-
 	private static final String TOOLNAME = "LibScout";
 	private static final String USAGE = TOOLNAME + " --opmode <profile|match|db|lib_api_analysis> [options]";
 	private static final String USAGE_PROFILE = TOOLNAME + " --opmode profile -a path_to_android_sdk -x path_to_lib_desc [options] path_to_lib(jar|aar)";
@@ -133,7 +107,7 @@ public class TplCLI {
 		// TODO MODE = LIB_UPDATABILITY
 		//new LibraryUpdatability().run(new File("./libApiEval-libsecNEW.lstats"), new File("./appStats_libsec_usage.sqlite"));
 
-		switch (CliOptions.opmode) {
+		switch (LibScoutConfig.opmode) {
 			// generate SQLite DB from app stats only
 			case DB:
 			    profiles = loadLibraryProfiles();
@@ -151,13 +125,13 @@ public class TplCLI {
 		// process input files, either library files or apps
 		for (File inputFile: inputFiles) {
 			try {
-				if (CliOptions.opmode.equals(OpMode.MATCH)) {
+				if (LibScoutConfig.opMatch()) {
 					new LibraryIdentifier(inputFile).identifyLibraries(profiles);
 		
-				} else if (CliOptions.opmode.equals(OpMode.PROFILE)) {
+				} else if (LibScoutConfig.opProfile()) {
 					new LibraryProfiler(inputFile, libraryDescription).extractFingerPrints();
 
-				} else if (CliOptions.opmode.equals(OpMode.LIB_API_ANALYSIS)) {
+				} else if (LibScoutConfig.opLibApiAnalysis()) {
 					new LibraryApiAnalysis(inputFile);
 				}
 			} catch (Throwable t) {
@@ -174,7 +148,7 @@ public class TplCLI {
 
 		try {
 			// de-serialize library profiles
-			for (File f : Utils.collectFiles(CliOptions.profilesDir, new String[]{LibraryProfiler.FILE_EXT_LIB_PROFILE})) {
+			for (File f : Utils.collectFiles(LibScoutConfig.profilesDir, new String[]{LibraryProfiler.FILE_EXT_LIB_PROFILE})) {
 				LibProfile lp = (LibProfile) Utils.disk2Object(f);
 				profiles.add(lp);
 			}
@@ -187,7 +161,7 @@ public class TplCLI {
 		}
 
 		if (profiles.isEmpty()) {
-			System.err.println("No profiles found in " + CliOptions.profilesDir + ". Check your settings!");
+			System.err.println("No profiles found in " + LibScoutConfig.profilesDir + ". Check your settings!");
 			System.exit(1);
 		}
 
@@ -203,7 +177,7 @@ public class TplCLI {
 			// parse mode of operation
 			if (cmd.hasOption(CliArgs.ARG_OPMODE)) {
 				try {
-					CliOptions.opmode = OpMode.valueOf(cmd.getOptionValue(CliArgs.ARG_OPMODE).toUpperCase());
+					LibScoutConfig.opmode = LibScoutConfig.OpMode.valueOf(cmd.getOptionValue(CliArgs.ARG_OPMODE).toUpperCase());
 				} catch (IllegalArgumentException e) {
 					throw new ParseException(Utils.stacktrace2Str(e));
 				}
@@ -216,48 +190,48 @@ public class TplCLI {
 			 *  -d [logdir], if provided without argument output is logged to default dir, otherwise to the provided dir
 			 */
 			if (cmd.hasOption(CliArgs.ARG_MUTE)) {
-				CliOptions.logType = Utils.LOGTYPE.NONE;
+				LibScoutConfig.logType = LibScoutConfig.LogType.NONE;
 			} 
 			else if (cmd.hasOption(CliArgs.ARG_LOG_DIR)) {
-				CliOptions.logType = Utils.LOGTYPE.FILE;
+				LibScoutConfig.logType = LibScoutConfig.LogType.FILE;
 
 				if (cmd.getOptionValue(CliArgs.ARG_LOG_DIR) != null) {   // we have a log dir
 					File logDir = new File(cmd.getOptionValue(CliArgs.ARG_LOG_DIR));
 					if (logDir.exists() && !logDir.isDirectory())
 						throw new ParseException("Log directory " + logDir + " already exists and is not a directory");
 					
-					CliOptions.logDir = logDir;
+					LibScoutConfig.logDir = logDir;
 				}
 			}
 
 			// path to Android SDK jar
-			if (checkRequiredUse(cmd, CliArgs.ARG_ANDROID_LIB, OpMode.PROFILE, OpMode.MATCH, OpMode.LIB_API_ANALYSIS)) {
-				CliOptions.pathToAndroidJar = new File(cmd.getOptionValue(CliArgs.ARG_ANDROID_LIB));
+			if (checkRequiredUse(cmd, CliArgs.ARG_ANDROID_LIB, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.LIB_API_ANALYSIS)) {
+				LibScoutConfig.pathToAndroidJar = new File(cmd.getOptionValue(CliArgs.ARG_ANDROID_LIB));
 			}
 			
 			
 			// profiles dir option, if provided without argument output is written to default dir
-			if (checkOptionalUse(cmd, CliArgs.ARG_PROFILES_DIR, OpMode.PROFILE, OpMode.MATCH, OpMode.DB)) {
+			if (checkOptionalUse(cmd, CliArgs.ARG_PROFILES_DIR, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.DB)) {
 				File profilesDir = new File(cmd.getOptionValue(CliArgs.ARG_PROFILES_DIR));
 				if (profilesDir.exists() && !profilesDir.isDirectory())
 					throw new ParseException("Profiles directory " + profilesDir + " already exists and is not a directory");
 					
-				CliOptions.profilesDir = profilesDir;
+				LibScoutConfig.profilesDir = profilesDir;
 			}
 			
 			
 			// disable partial matching (full lib matching only)
-			if (checkOptionalUse(cmd, CliArgs.ARG_NO_PARTIAL_MATCHING, OpMode.MATCH)) {
-				CliOptions.noPartialMatching = true;
+			if (checkOptionalUse(cmd, CliArgs.ARG_NO_PARTIAL_MATCHING, LibScoutConfig.OpMode.MATCH)) {
+				LibScoutConfig.noPartialMatching = true;
 			}
 			
 			// run library usage analysis (for full matches only)
-			if (checkOptionalUse(cmd, CliArgs.ARG_LIB_USAGE_ANALYSIS, OpMode.MATCH)) {
-				CliOptions.runLibUsageAnalysis = true;
+			if (checkOptionalUse(cmd, CliArgs.ARG_LIB_USAGE_ANALYSIS, LibScoutConfig.OpMode.MATCH)) {
+				LibScoutConfig.runLibUsageAnalysis = true;
 			}
 			
 			// provide library description file
-			if (checkRequiredUse(cmd, CliArgs.ARG_LIB_DESCRIPTION, OpMode.PROFILE)) {
+			if (checkRequiredUse(cmd, CliArgs.ARG_LIB_DESCRIPTION, LibScoutConfig.OpMode.PROFILE)) {
 				File libraryDescriptionFile = new File(cmd.getOptionValue(CliArgs.ARG_LIB_DESCRIPTION));
 				if (libraryDescriptionFile.exists() && libraryDescriptionFile.isDirectory())
 					throw new ParseException("Library description (" + libraryDescriptionFile + ") must not be a directory");
@@ -266,38 +240,38 @@ public class TplCLI {
 			}
 
 			// generate verbose library profiles?
-			if (checkOptionalUse(cmd, CliArgs.ARG_LIB_VERBOSE_PROFILES, OpMode.PROFILE)) {
-				CliOptions.genVerboseProfiles = true;
+			if (checkOptionalUse(cmd, CliArgs.ARG_LIB_VERBOSE_PROFILES, LibScoutConfig.OpMode.PROFILE)) {
+				LibScoutConfig.genVerboseProfiles = true;
 			}
 
 			// generate verbose library profiles?
-			if (checkOptionalUse(cmd, CliArgs.ARG_LIB_DEPENDENCY_ANALYSIS, OpMode.LIB_API_ANALYSIS)) {
-				CliOptions.libDependencyAnalysis = true;
+			if (checkOptionalUse(cmd, CliArgs.ARG_LIB_DEPENDENCY_ANALYSIS, LibScoutConfig.OpMode.LIB_API_ANALYSIS)) {
+				LibScoutConfig.libDependencyAnalysis = true;
 			}
 
 			// enable/disable generation of stats with optional stats directory
-			if (checkOptionalUse(cmd, CliArgs.ARG_STATS_DIR, OpMode.MATCH, OpMode.DB)) {
-				CliOptions.generateStats = true;
+			if (checkOptionalUse(cmd, CliArgs.ARG_STATS_DIR, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.DB)) {
+				LibScoutConfig.generateStats = true;
 
 				if (cmd.getOptionValue(CliArgs.ARG_STATS_DIR) != null) {   // stats dir provided?
 					File statsDir = new File(cmd.getOptionValue(CliArgs.ARG_STATS_DIR));
 					if (statsDir.exists() && !statsDir.isDirectory())
 						throw new ParseException("Stats directory " + statsDir + " already exists and is not a directory");
 					
-					CliOptions.statsDir = statsDir;
+					LibScoutConfig.statsDir = statsDir;
 				}
 			}
 			
 			// enable/disable generation of json output
-			if (checkOptionalUse(cmd, CliArgs.ARG_JSON_DIR, OpMode.MATCH, OpMode.LIB_API_ANALYSIS)) {
-				CliOptions.generateJSON = true;
+			if (checkOptionalUse(cmd, CliArgs.ARG_JSON_DIR, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.LIB_API_ANALYSIS)) {
+				LibScoutConfig.generateJSON = true;
 
 				if (cmd.getOptionValue(CliArgs.ARG_JSON_DIR) != null) {   // json dir provided?
 					File jsonDir = new File(cmd.getOptionValue(CliArgs.ARG_JSON_DIR));
 					if (jsonDir.exists() && !jsonDir.isDirectory())
 						throw new ParseException("JSON directory " + jsonDir + " already exists and is not a directory");
 					
-					CliOptions.jsonDir = jsonDir;
+					LibScoutConfig.jsonDir = jsonDir;
 				}
 			}
 			
@@ -307,10 +281,10 @@ public class TplCLI {
 			 *  - in profile mode pass *one* library (since it is linked to lib description file)
 			 *  - in match mode pass one application file or one directory (including apks)
 			 */
-			if (!(CliOptions.opmode.equals(OpMode.DB))) {
+			if (!(LibScoutConfig.opDB())) {
 				inputFiles = new ArrayList<File>();
 
-				if (CliOptions.opmode.equals(OpMode.LIB_API_ANALYSIS)) {
+				if (LibScoutConfig.opLibApiAnalysis()) {
 					// we require a directory including library packages/descriptions
 					for (String path: cmd.getArgs()) {
 						File dir = new File(path);
@@ -323,7 +297,7 @@ public class TplCLI {
 						throw new ParseException("You have to provide at least one directory that includes a library package and description");
 					}
 				} else {
-					String[] fileExts = CliOptions.opmode.equals(OpMode.MATCH) ? new String[]{"apk"} : new String[]{"jar", "aar"};
+					String[] fileExts = LibScoutConfig.opMatch() ? new String[]{"apk"} : new String[]{"jar", "aar"};
 
 					for (String inputFile : cmd.getArgs()) {
 						File arg = new File(inputFile);
@@ -343,11 +317,11 @@ public class TplCLI {
 					}
 
 					if (inputFiles.isEmpty()) {
-						if (CliOptions.opmode.equals(OpMode.PROFILE))
+						if (LibScoutConfig.opProfile())
 							throw new ParseException("No libraries (jar|aar files) found to profile in "  + cmd.getArgList());
 						else
 							throw new ParseException("No apk files found in " + cmd.getArgList());
-					} else if (inputFiles.size() > 1 && CliOptions.opmode.equals(OpMode.PROFILE))
+					} else if (inputFiles.size() > 1 && LibScoutConfig.opProfile())
 						throw new ParseException("You have to provide a path to a single library file or a directory incl. a single lib file");
 				}
 			}
@@ -362,19 +336,19 @@ public class TplCLI {
 	
 	
 
-	private static boolean checkRequiredUse(CommandLine cmd, String option, OpMode... modes) throws ParseException {
-		if (!Arrays.asList(modes).contains(CliOptions.opmode))
+	private static boolean checkRequiredUse(CommandLine cmd, String option, LibScoutConfig.OpMode... modes) throws ParseException {
+		if (!Arrays.asList(modes).contains(LibScoutConfig.opmode))
 			return false;
 		
 		if (!cmd.hasOption(option))
-			throw new ParseException("Required CLI Option " + option + " is missing in mode " + CliOptions.opmode);
+			throw new ParseException("Required CLI Option " + option + " is missing in mode " + LibScoutConfig.opmode);
 		
 		return true;
 	}
 	
 	
-	private static boolean checkOptionalUse(CommandLine cmd, String option, OpMode... modes) throws ParseException {
-		if (!Arrays.asList(modes).contains(CliOptions.opmode))
+	private static boolean checkOptionalUse(CommandLine cmd, String option, LibScoutConfig.OpMode... modes) throws ParseException {
+		if (!Arrays.asList(modes).contains(LibScoutConfig.opmode))
 			return false;
 
 		return cmd.hasOption(option);
@@ -475,13 +449,13 @@ public class TplCLI {
 		HelpFormatter formatter = new HelpFormatter();
 		String helpMsg = USAGE;
 		
-		if (OpMode.PROFILE.equals(CliOptions.opmode))
+		if (LibScoutConfig.opProfile())
 			helpMsg = USAGE_PROFILE;
-		else if (OpMode.MATCH.equals(CliOptions.opmode))
+		else if (LibScoutConfig.opMatch())
 			helpMsg = USAGE_MATCH;
-		else if (OpMode.DB.equals(CliOptions.opmode))
+		else if (LibScoutConfig.opDB())
 			helpMsg = USAGE_DB;
-		else if (OpMode.LIB_API_ANALYSIS.equals(CliOptions.opmode))
+		else if (LibScoutConfig.opLibApiAnalysis())
 			helpMsg = USAGE_LIB_API_ANALYSIS;
 
 		formatter.printHelp(helpMsg, options);
@@ -499,7 +473,7 @@ public class TplCLI {
 		    configurator.doConfigure("./logging/logback.xml");   
 		    
 	    	ch.qos.logback.classic.Logger rootLogger = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-	    	switch (CliOptions.logType) {
+	    	switch (LibScoutConfig.logType) {
 				case CONSOLE:
 					rootLogger.detachAppender("FILE");
 					break;
