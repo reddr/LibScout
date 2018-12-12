@@ -1,0 +1,24 @@
+#
+# This is the LibScout configuration file in TOML format
+#
+
+[ sdk ]
+
+# path to Android SDK jar file
+# (recommended to use an absolute path)
+## android_sdk_jar = "/path/to/sdk/android.jar"
+
+
+[ logging ]
+
+# path to log4j config file
+# (recommended to use an absolute path)
+log4j_config_file = "./config/logback.xml"
+
+
+[ packageTree ]
+
+# if set to true, the packageTree rendering uses ASCII characters
+# instead of box-drawing unicode characters
+ascii_rendering = false
+

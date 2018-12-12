@@ -49,6 +49,9 @@ public class TplCLI {
 		static final String ARG_OPMODE = "o";
 		static final String ARGL_OPMODE = "opmode";
 
+		static final String ARG_CONFIG = "c";
+		public static final String ARGL_CONFIG = "libscout-conf";
+
 		static final String ARG_ANDROID_LIB = "a";
 		static final String ARGL_ANDROID_LIB = "android-sdk";
 
@@ -85,10 +88,10 @@ public class TplCLI {
 	
 	private static final String TOOLNAME = "LibScout";
 	private static final String USAGE = TOOLNAME + " --opmode <profile|match|db|lib_api_analysis> [options]";
-	private static final String USAGE_PROFILE = TOOLNAME + " --opmode profile -a path_to_android_sdk -x path_to_lib_desc [options] path_to_lib(jar|aar)";
-	private static final String USAGE_MATCH = TOOLNAME + " --opmode match -a path_to_android_sdk [options] path_to_app(dir)";
+	private static final String USAGE_PROFILE = TOOLNAME + " --opmode profile -x path_to_lib_desc [options] path_to_lib(jar|aar)";
+	private static final String USAGE_MATCH = TOOLNAME + " --opmode match [options] path_to_app(dir)";
 	private static final String USAGE_DB = TOOLNAME + " --opmode db -p path_to_profiles -s path_to_stats";
-	private static final String USAGE_LIB_API_ANALYSIS = TOOLNAME + " --opmode lib_api_analysis -a path_to_android_sdk path_to_lib_sdks";
+	private static final String USAGE_LIB_API_ANALYSIS = TOOLNAME + " --opmode lib_api_analysis path_to_lib_sdks";
 
 	private static ArrayList<File> inputFiles;
 	private static File libraryDescription = null;
@@ -98,6 +101,17 @@ public class TplCLI {
 	public static void main(String[] args) {
 		// parse command line arguments
 		parseCL(args);
+
+		try {
+			// parse LibScout.toml (already set args from CLI take precedence)
+			LibScoutConfig.loadConfig();
+
+			// sanity check for required options that can be set from both CLI/config file
+			checkRequiredOptions();
+		} catch (ParseException e) {
+			logger.error("Error: " + e.getMessage());
+			usage();
+		}
 
 		// initialize logback
 		initLogging();
@@ -205,11 +219,17 @@ public class TplCLI {
 			}
 
 			// path to Android SDK jar
-			if (checkRequiredUse(cmd, CliArgs.ARG_ANDROID_LIB, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.LIB_API_ANALYSIS)) {
+			if (checkOptionalUse(cmd, CliArgs.ARG_ANDROID_LIB, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.LIB_API_ANALYSIS)) {
 				LibScoutConfig.pathToAndroidJar = new File(cmd.getOptionValue(CliArgs.ARG_ANDROID_LIB));
+				LibScoutConfig.checkIfValidFile(cmd.getOptionValue(CliArgs.ARG_ANDROID_LIB));
 			}
-			
-			
+
+			// path to LibScout.toml
+			if (checkOptionalUse(cmd, CliArgs.ARG_CONFIG, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.LIB_API_ANALYSIS, LibScoutConfig.OpMode.DB)) {
+				LibScoutConfig.libScoutConfigFileName = cmd.getOptionValue(CliArgs.ARG_CONFIG);
+				LibScoutConfig.checkIfValidFile(LibScoutConfig.libScoutConfigFileName);
+			}
+
 			// profiles dir option, if provided without argument output is written to default dir
 			if (checkOptionalUse(cmd, CliArgs.ARG_PROFILES_DIR, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.DB)) {
 				File profilesDir = new File(cmd.getOptionValue(CliArgs.ARG_PROFILES_DIR));
@@ -312,7 +332,7 @@ public class TplCLI {
 							else
 								throw new ParseException("File " + arg.getName() + " is no valid ." + Utils.join(Arrays.asList(fileExts), "/") + " file");
 						} else {
-							throw new ParseException("Argument is no valid file or directory!");
+							throw new ParseException("Argument " + inputFile + " is no valid file or directory!");
 						}
 					}
 
@@ -347,14 +367,30 @@ public class TplCLI {
 	}
 	
 	
-	private static boolean checkOptionalUse(CommandLine cmd, String option, LibScoutConfig.OpMode... modes) throws ParseException {
+	private static boolean checkOptionalUse(CommandLine cmd, String option, LibScoutConfig.OpMode... modes) {
 		if (!Arrays.asList(modes).contains(LibScoutConfig.opmode))
 			return false;
 
 		return cmd.hasOption(option);
 	}
 
-	
+	/**
+	  * Checks whether required option (for current mode) is either provided via CLI or config file
+	  */
+	private static void checkRequiredOptions() throws ParseException {
+		try {
+			LibScoutConfig.checkIfValidFile(LibScoutConfig.log4jConfigFileName);
+		} catch (ParseException e) {
+			throw new ParseException("Could not find the log4j config file logback.xml . Please add the path in the LibScout.toml config");
+		}
+
+		// android-sdk.jar
+		if (Arrays.asList(LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.LIB_API_ANALYSIS).contains(LibScoutConfig.opmode) &&
+			LibScoutConfig.pathToAndroidJar == null) {
+			throw new ParseException("Required option " + CliArgs.ARGL_ANDROID_LIB + " is neither provided via command line nor config file");
+		}
+	}
+
 	
 	@SuppressWarnings("static-access")
 	private static Options setupOptions() {
@@ -364,9 +400,16 @@ public class TplCLI {
 			.hasArgs(1)
             .isRequired(true)
             .withLongOpt(CliArgs.ARGL_OPMODE)
-            .withDescription("mode of operation, one of [profile|match|db]")
+            .withDescription("mode of operation, one of [profile|match|db|lib_api_analysis]")
             .create(CliArgs.ARG_OPMODE));
-		
+
+		options.addOption(OptionBuilder.withArgName("file")
+			.hasArgs(1)
+			.isRequired(false)
+			.withLongOpt(CliArgs.ARGL_CONFIG)
+			.withDescription("path to LibScout's config file, defaults to \"" + LibScoutConfig.libScoutConfigFileName + "\"")
+			.create(CliArgs.ARG_CONFIG));
+
 		options.addOption(OptionBuilder.withArgName("file")
 			.hasArgs(1)
             .isRequired(false)
@@ -378,21 +421,21 @@ public class TplCLI {
 			.hasOptionalArgs(1)
 	        .isRequired(false)
 	        .withLongOpt(CliArgs.ARGL_LOG_DIR)
-	        .withDescription("path to store the logfile(s), defaults to \"./logs\"")
+	        .withDescription("path to store the logfile(s), defaults to \"" + LibScoutConfig.logDir + "\"")
 	        .create(CliArgs.ARG_LOG_DIR));
 
 		options.addOption(OptionBuilder.withArgName("directory")
 			.hasOptionalArgs(1)
 	        .isRequired(false)
 	        .withLongOpt(CliArgs.ARGL_STATS_DIR)
-	        .withDescription("path to app stat(s), defaults to \"./stats\"")
+	        .withDescription("path to app stat(s), defaults to \"" + LibScoutConfig.statsDir + "\"")
 	        .create(CliArgs.ARG_STATS_DIR));
 
 		options.addOption(OptionBuilder.withArgName("directory")
 			.hasOptionalArgs(1)
 	        .isRequired(false)
 	        .withLongOpt(CliArgs.ARGL_JSON_DIR)
-	        .withDescription("path to json output directory, defaults to \"./json\"")
+	        .withDescription("path to json output directory, defaults to \"" + LibScoutConfig.jsonDir + "\"")
 	        .create(CliArgs.ARG_JSON_DIR));
 		
 		options.addOption(OptionBuilder.withArgName("value")
@@ -405,13 +448,13 @@ public class TplCLI {
 			.hasArgs(1)
 	        .isRequired(false)
 	        .withLongOpt(CliArgs.ARGL_PROFILES_DIR)
-	        .withDescription("path to library profiles, defaults to \"./profiles\"")
+	        .withDescription("path to library profiles, defaults to \"" + LibScoutConfig.profilesDir + "\"")
 	        .create(CliArgs.ARG_PROFILES_DIR));
 
 		options.addOption(OptionBuilder.withArgName("value")
 			.isRequired(false)
 			.withLongOpt(CliArgs.ARGL_LIB_VERBOSE_PROFILES)
-			.withDescription("enable verbose profiling (trace+pubonly)")
+			.withDescription("enable verbose profiling (trace + pubonly)")
 			.create(CliArgs.ARG_LIB_VERBOSE_PROFILES));
 
 		options.addOption(OptionBuilder.withArgName("value")
@@ -470,7 +513,7 @@ public class TplCLI {
 			JoranConfigurator configurator = new JoranConfigurator();
 		    configurator.setContext(context);
 		    context.reset();  // clear any previous configuration 
-		    configurator.doConfigure("./logging/logback.xml");   
+		    configurator.doConfigure(LibScoutConfig.log4jConfigFileName);
 		    
 	    	ch.qos.logback.classic.Logger rootLogger = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
 	    	switch (LibScoutConfig.logType) {
