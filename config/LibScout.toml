@@ -19,6 +19,7 @@ log4j_config_file = "./config/logback.xml"
 [ packageTree ]
 
 # if set to true, the packageTree rendering uses ASCII characters
-# instead of box-drawing unicode characters
+# instead of box-drawing unicode characters (e.g. if the console
+# cannot correctly render unicode chars)
 ascii_rendering = false
 

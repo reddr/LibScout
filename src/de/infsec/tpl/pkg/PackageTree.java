@@ -15,15 +15,9 @@
 package de.infsec.tpl.pkg;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
+import de.infsec.tpl.config.LibScoutConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -69,17 +63,25 @@ public class PackageTree implements Serializable {
 		}
 		
 		public void print(boolean includeClazzCount) {
-		    print("", true, includeClazzCount);
+			print("", true, includeClazzCount, drawingCharacters.get(LibScoutConfig.PckgTree.useAsciiRendering));
 		}
-		
-	    private void print(String prefix, boolean isTail, boolean includeClazzCount) {
-	        logger.info(prefix + (isTail ? "└── " : "├── ") + name + (includeClazzCount && clazzCount > 0? " (" + clazzCount + ")" : ""));
 
-	        for (int i = 0; i < childs.size(); i++) {
-	            childs.get(i).print(prefix + (isTail ? "    " : "│   "), i == childs.size()-1, includeClazzCount);
-	        }
-	    }
-	    
+		final Map<Boolean, String[]> drawingCharacters = new HashMap<Boolean, String[]>() {{
+			// unicode box-drawing characters ("└── ",  "├── ", "│   ")
+			put(false, new String[]{"\u2514\u2500\u2500 ", "\u251C\u2500\u2500 ", "\u2502   "});
+
+			// ascii characters
+			put(true , new String[]{"|___ ", "|--- ", "|   "});
+		}};
+
+		private void print(String prefix, boolean isTail, boolean includeClazzCount, final String[] charset) {
+			logger.info(prefix + (isTail ? charset[0] : charset[1]) + name + (includeClazzCount && clazzCount > 0? " (" + clazzCount + ")" : ""));
+
+			for (int i = 0; i < childs.size(); i++) {
+				childs.get(i).print(prefix + (isTail ? "    " : charset[2]), i == childs.size()-1, includeClazzCount, charset);
+			}
+		}
+
 	    @Override
 	    public String toString() {
 	    	return this.name;

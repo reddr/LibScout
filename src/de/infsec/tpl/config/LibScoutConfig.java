@@ -107,7 +107,7 @@ public class LibScoutConfig {
                     pathToAndroidJar = checkIfValidFile((String) value);
 
             } else if ("packageTree.ascii_rendering".equals(key)) {
-                PckgTree.useAsciiRendering = Boolean.parseBoolean(key);
+                PckgTree.useAsciiRendering = (Boolean) value;
 
             } else
                 logger.warn("Found unknown config key: " + key);
