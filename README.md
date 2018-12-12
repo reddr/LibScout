@@ -55,6 +55,7 @@ Among others, McAfee published a [Security Advisory](http://service.mcafee.com/F
  * LibScout requires Java 1.8 or higher and can be build with Gradle.
  * Generate a runnable jar with the gradle wrapper <i>gradlew</i> (Linux/MacOS) or <i>gradlew.bat</i> (Windows), by invoking it with the <i>build</i> task, e.g. <i>./gradlew build</i><br>
    The <i>LibScout.jar</i> is output to the <i>build/libs</i> directory.
+ * Some less frequently changing options can be configured via LibScout's config file [LibScout.toml](config/LibScout.toml).
  * Most LibScout modules require an Android SDK (jar) to distinguish app code from framework code (via the -a switch).
 Refer to <a href="https://developer.android.com/studio/">https://developer.android.com/studio/</a> for download instructions.
  * By default, LibScout logs to stdout. Use the -d switch to redirect output to files. The -m switch disables any text output. Depending on the operation mode (see below), LibScout's results can be written to disk in JSON format or JAVA serialization.
@@ -63,12 +64,13 @@ Refer to <a href="https://developer.android.com/studio/">https://developer.andro
 |_ gradlew / gradlew.bat (gradle wrappers to generate runnable LibScout.jar)
 |_ assets
 |    |_ library.xml (Library meta-data template)
+|_ config
+|    |_ LibScout.toml (LibScout's config file)
+|    |_ logback.xml (log4j configuration file)
 |_ data
 |    |_ app-version-codes.csv (Google Play app packages with valid version codes)
 |_ lib
 |    pre-compiled WALA libs, Android axml
-|_ logging
-|    |_ logback.xml (log4j configuration file)
 |_ scripts
 |    |_ library-specs (pre-defined library specs)
 |    |_ library-scraper.py   (scraper for mvn-central, jcenter, custom mvn)
@@ -85,7 +87,7 @@ This module generates unique library fingerprints from original lib SDKs (.jar a
 versions are included in apps. Each library file additionally requires a <i>library.xml</i> that contains meta data (e.g. name, version,..). A template can be found in the assets directory.
 For your convenience, you can use the library scraper (./scripts) to download full library histories from Maven repositories.
 By default, LibScout generates hashtree-based profiles with Package and Class information (omitting methods).<br>
-<pre>java -jar LibScout.jar -o profile -a <i>android_sdk_jar</i> -x <i>path_to_library_xml</i> <i>path_to_library_file</i> </pre>
+<pre>java -jar LibScout.jar -o profile [-a <i>android_sdk_jar</i>] -x <i>path_to_library_xml</i> <i>path_to_library_file</i></pre>
 
 ### Library Detection (-o match)
 
@@ -97,7 +99,7 @@ Analysis results can be written in different formats.
     <li> the <b>serialization</b> option (-s switch) writes stat files per app to disk that can be used with the database module to create a SQLite database (the DB structure can be found in class
     <b>de.infsec.tpl.stats.SQLStats</b></li>
 </ol>
-<pre>java -jar LibScout.jar -o match -a <i>android_sdk_jar</i> -p <i>path_to_profiles</i> [-u] [-j <i>json_dir</i>] [-s <i>stats_dir</i>] [-m] [-d <i>log_dir</i>] <i>path_to_app(s)</i>  </pre>
+<pre>java -jar LibScout.jar -o match -p <i>path_to_profiles</i> [-a <i>android_sdk_jar</i>] [-u] [-j <i>json_dir</i>] [-s <i>stats_dir</i>] [-m] [-d <i>log_dir</i>] <i>path_to_app(s)</i>  </pre>
 
 ### Database Generator (-o db)
 
@@ -115,7 +117,7 @@ LibScout additionally tries to infer alternative APIs (based on different featur
 
 For the analysis, you have to provide a path to the original library SDKs. LibScout recursively searches for library jars|aars (leaf directories are expected to have at most one jar|aar file and one library.xml file).
 For your convenience use the library scraper. Analysis results are written to disk in JSON format (-j switch).<br>
-<pre>java -jar LibScout.jar -o lib_api_analysis -a <i>android_sdk_jar</i> [-j <i>json_dir</i>] <i>path_to_lib_sdks</i></pre>
+<pre>java -jar LibScout.jar -o lib_api_analysis [-a <i>android_sdk_jar</i>] [-j <i>json_dir</i>] <i>path_to_lib_sdks</i></pre>
 
 ## Scientific Publications
 
@@ -128,5 +130,4 @@ For technical details and large-scale evaluation results, please refer to our pu
 
 If you use LibScout in a scientific publication, we would appreciate citations using these Bibtex entries: [[bib-ccs16]](https://www.infsec.cs.uni-saarland.de/~derr/publications/bib/derr_ccs16.bib)
 [[bib-ccs17]](https://www.infsec.cs.uni-saarland.de/~derr/publications/bib/derr_ccs17.bib)<br>
-
 
