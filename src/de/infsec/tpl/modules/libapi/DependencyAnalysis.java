@@ -1,5 +1,6 @@
 package de.infsec.tpl.modules.libapi;
 
+import com.github.zafarkhaja.semver.Version;
 import com.ibm.wala.classLoader.CallSiteReference;
 import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.classLoader.IMethod;
@@ -27,12 +28,12 @@ public class DependencyAnalysis {
      * Secondary lib dependencies for every version and documented API
      */
     class LibDependencies implements Exportable {
-        String version;
+        Version version;
 
         // documented APIs to set of APIs from dependencies
         Map<IMethod, Set<CallSiteReference>> api2Dependencies;
 
-        LibDependencies(String version, Map<IMethod, Set<CallSiteReference>> api2Dependencies) {
+        LibDependencies(Version version, Map<IMethod, Set<CallSiteReference>> api2Dependencies) {
             this.version = version;
             this.api2Dependencies = api2Dependencies;
         }
@@ -48,10 +49,10 @@ public class DependencyAnalysis {
             Map<String, Set<String>> api2Dependencies = new HashMap<String, Set<String>>();
 
             public Export(LibDependencies deps) {
-                this.version = deps.version;
+                this.version = deps.version.toString();
 
                 for (IMethod m: deps.api2Dependencies.keySet())
-                    this.api2Dependencies.put(m.getSignature(), deps.api2Dependencies.get(m).stream().map(c -> c.getDeclaredTarget().getSignature()).sorted().collect(Collectors.toSet()));
+                    this.api2Dependencies.put(m.getSignature(), deps.api2Dependencies.get(m).stream().map(c -> c.getDeclaredTarget().getSignature()).collect(Collectors.toSet()));
             }
         }
     }
@@ -60,10 +61,10 @@ public class DependencyAnalysis {
 
 
     // need to infer expected and actual semver
-    protected Map<String, DependencyAnalysis.LibDependencies> run(LibApiStats stats) {
-        Map<String, LibDependencies> version2Deps = new TreeMap<String, LibDependencies>();
+    protected Map<Version, DependencyAnalysis.LibDependencies> run(LibApiStats stats) {
+        Map<Version, LibDependencies> version2Deps = new TreeMap<Version, LibDependencies>();
 
-        for (String version: stats.versions) {
+        for (Version version: stats.getVersions()) {
             logger.info(Utils.INDENT + "- version: " + version);
             Map<IMethod, Set<CallSiteReference>> api2Dependencies = analyzeDependencies(stats.getDocumentedAPIs(version));
             version2Deps.put(version, new LibDependencies(version, api2Dependencies));

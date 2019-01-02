@@ -4,6 +4,7 @@ import com.github.zafarkhaja.semver.Version;
 import com.ibm.wala.classLoader.IMethod;
 import de.infsec.tpl.config.LibScoutConfig;
 import de.infsec.tpl.stats.Exportable;
+import de.infsec.tpl.utils.VersionWrapper;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -15,17 +16,17 @@ public class LibApiStats implements Exportable {
     public String libName;
 
     // set of version strings
-    public Set<String> versions;
+    private Set<Version> versions;
 
     // maps documented API signatures to list of library versions including them
-    public Map<IMethod, Set<String>> api2Versions;
+    public Map<IMethod, Set<Version>> api2Versions;
 
     public Map<Version, LibApiComparator.ApiDiff> version2Diff;
 
-    public Map<String, DependencyAnalysis.LibDependencies> version2Deps;
+    public Map<Version, DependencyAnalysis.LibDependencies> version2Deps;
 
 
-    private class Export {
+    public class Export {
         public String libName;
 
         public List<LibApiComparator.ApiDiff.Export> apiDiffs;
@@ -33,7 +34,7 @@ public class LibApiStats implements Exportable {
         public List<DependencyAnalysis.LibDependencies.Export> libDeps;
 
         // maps documented API signatures to list of library versions including them
-        public Map<String, Set<String>> api2Versions;
+        public Map<String, List<String>> api2Versions;
 
 
         public Export(LibApiStats stats) {
@@ -44,9 +45,9 @@ public class LibApiStats implements Exportable {
             if (LibScoutConfig.libDependencyAnalysis)
                 this.libDeps = stats.version2Deps.values().stream().map(DependencyAnalysis.LibDependencies::export).collect(Collectors.toList());
 
-            this.api2Versions = new HashMap<String, Set<String>>();
+            this.api2Versions = new HashMap<>();
             for (IMethod m: stats.api2Versions.keySet()) {
-                this.api2Versions.put(m.getSignature(), stats.api2Versions.get(m));
+                this.api2Versions.put(m.getSignature(), stats.api2Versions.get(m).stream().map(Version::toString).collect(Collectors.toList()));
             }
         }
     }
@@ -60,8 +61,8 @@ public class LibApiStats implements Exportable {
 
     public LibApiStats(String libName) {
         this.libName = libName;
-        this.api2Versions = new HashMap<IMethod, Set<String>>();
-        this.versions = new TreeSet<String>();
+        this.api2Versions = new HashMap<>();
+        this.versions = new TreeSet<>();
     }
 
 
@@ -69,16 +70,24 @@ public class LibApiStats implements Exportable {
 	 * Update functions
 	 */
 
+	public void addVersion(String version) {
+        versions.add(VersionWrapper.valueOf(version));
+    }
+
+    public Set<Version> getVersions() {
+	    return versions;
+    }
+
     void setDocumentedAPIs(String version, Set<IMethod> docAPIs) {
         for (IMethod api: docAPIs) {
             if (!api2Versions.containsKey(api))
-                api2Versions.put(api, new TreeSet<String>());
+                api2Versions.put(api, new TreeSet<Version>());
 
-            api2Versions.get(api).add(version);
+            api2Versions.get(api).add(VersionWrapper.valueOf(version));
         }
     }
 
-    Set<IMethod> getDocumentedAPIs(String version) {
+    Set<IMethod> getDocumentedAPIs(Version version) {
         return api2Versions.keySet().stream().filter(m -> api2Versions.get(m).contains(version)).collect(Collectors.toSet());
     }
 

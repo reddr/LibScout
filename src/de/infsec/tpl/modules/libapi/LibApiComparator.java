@@ -168,7 +168,7 @@ public class LibApiComparator {
     Map<Version, Set<IMethod>> generatePerVersionApiSet(LibApiStats stats) {
         Map<Version, Set<IMethod>> version2Api = new TreeMap<Version, Set<IMethod>>();
 
-        for (String v: stats.versions) {
+        for (Version v: stats.getVersions()) {
             Set<IMethod> apis = new HashSet<IMethod>();
 
             for (IMethod api: stats.api2Versions.keySet()) {
@@ -176,7 +176,7 @@ public class LibApiComparator {
                     apis.add(api);
             }
 
-            version2Api.put(VersionWrapper.valueOf(v), apis);
+            version2Api.put(v, apis);
         }
 
         return version2Api;

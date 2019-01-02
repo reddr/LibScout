@@ -56,6 +56,7 @@ public class LibCodeUsage {
 
 
 	public static void checkUsage(final IClassHierarchy cha, final List<ProfileMatch> results) {
+		logger.info("");
 		logger.info("== Check lib usage ==");
 		long starttime = System.currentTimeMillis();
 

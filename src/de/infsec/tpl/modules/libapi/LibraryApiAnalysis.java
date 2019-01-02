@@ -13,6 +13,7 @@ import de.infsec.tpl.config.LibScoutConfig;
 import de.infsec.tpl.profile.LibraryDescription;
 import de.infsec.tpl.utils.AarFile;
 import de.infsec.tpl.utils.Utils;
+import de.infsec.tpl.utils.VersionWrapper;
 import de.infsec.tpl.xml.XMLParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -108,7 +109,7 @@ public class LibraryApiAnalysis {
                 if (!libName2Stats.containsKey(ld.name))
                     libName2Stats.put(ld.name, new LibApiStats(ld.name));
 
-                libName2Stats.get(ld.name).versions.add(ld.version);
+                libName2Stats.get(ld.name).addVersion(ld.version);
 
                 // extract public documented API
                 IClassHierarchy cha = createClassHierarchy(meta2Code.get(libXML));
