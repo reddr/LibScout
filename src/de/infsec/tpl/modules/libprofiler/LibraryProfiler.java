@@ -12,16 +12,12 @@
  * permissions and limitations under the License.
  */
 
-package de.infsec.tpl;
+package de.infsec.tpl.modules.libprofiler;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.jar.JarFile;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -32,8 +28,6 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.xml.sax.SAXException;
 
-import com.ibm.wala.classLoader.IClass;
-import com.ibm.wala.classLoader.IMethod;
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.ipa.cha.ClassHierarchy;
 import com.ibm.wala.ipa.cha.ClassHierarchyException;
@@ -46,22 +40,26 @@ import de.infsec.tpl.profile.LibProfile;
 import de.infsec.tpl.profile.LibraryDescription;
 import de.infsec.tpl.profile.Profile;
 import de.infsec.tpl.utils.AarFile;
-import de.infsec.tpl.utils.AndroidClassType;
 import de.infsec.tpl.utils.Utils;
 import de.infsec.tpl.utils.WalaUtils;
 import de.infsec.tpl.xml.XMLParser;
 
 
 public class LibraryProfiler {
-	private static final Logger logger = LoggerFactory.getLogger(de.infsec.tpl.LibraryProfiler.class);
+	private static final Logger logger = LoggerFactory.getLogger(LibraryProfiler.class);
 	
 	public static String FILE_EXT_LIB_PROFILE = "lib";
 	
 	private File libraryFile;             // library.jar || library.aar
 	private LibraryDescription libDesc;   // library description parsed from an XML file
 
-	
-	public LibraryProfiler(File libraryFile, File libDescriptionFile) throws ParserConfigurationException, SAXException, IOException, ParseException {
+
+	public static void extractFingerPrints(File libraryFile, File libDescriptionFile) throws ParserConfigurationException, SAXException, IOException, ParseException, ClassHierarchyException, ClassNotFoundException {
+		new LibraryProfiler(libraryFile,libDescriptionFile).extractFingerPrints();
+	}
+
+
+	private LibraryProfiler(File libraryFile, File libDescriptionFile) throws ParserConfigurationException, SAXException, IOException, ParseException {
 		this.libraryFile = libraryFile;
 		
 		// read library description
@@ -75,7 +73,7 @@ public class LibraryProfiler {
 	}
 
 		
-	public void extractFingerPrints() throws IOException, ClassHierarchyException, ClassNotFoundException {
+	private void extractFingerPrints() throws IOException, ClassHierarchyException, ClassNotFoundException {
 		long starttime = System.currentTimeMillis();
 		
 		logger.info("Process library: " + libraryFile.getName());
@@ -91,7 +89,7 @@ public class LibraryProfiler {
 		scope.addToScope(ClassLoaderReference.Primordial, new JarFile(LibScoutConfig.pathToAndroidJar));
 
 		IClassHierarchy cha = ClassHierarchy.make(scope);
-		getChaStats(cha);
+		WalaUtils.getChaStats(cha);
 		
 		// cleanup tmp files if library input was an .aar file
 		if (libraryFile.getName().endsWith(".aar")) {
@@ -125,58 +123,5 @@ public class LibraryProfiler {
 		logger.info("");
 		logger.info("Processing time: " + Utils.millisecondsToFormattedTime(System.currentTimeMillis() - starttime));
 	}
-
-	
-	public static Set<String> getChaStats(IClassHierarchy cha) {
-		TreeSet<String> publicMethods = new TreeSet<String>();
-		int clCount = 0;
-		int innerClCount = 0;
-		int publicClCount = 0;
-		int miscMethodCount = 0;
-		
-		HashMap<de.infsec.tpl.utils.AndroidClassType, Integer> clazzTypes = new HashMap<AndroidClassType, Integer>();
-		for (AndroidClassType t: AndroidClassType.values())
-			clazzTypes.put(t, 0);
-
-		// collect basic cha information
-		for (Iterator<IClass> it = cha.iterator(); it.hasNext(); ) {
-			IClass clazz = it.next();
-
-			if (WalaUtils.isAppClass(clazz)) {
-				AndroidClassType type = WalaUtils.classifyClazz(clazz);
-				clazzTypes.put(type, clazzTypes.get(type)+1);
-				logger.trace("App Class: " + WalaUtils.simpleName(clazz) + "  (" + type + ")");
-
-				clCount++;
-				if (WalaUtils.isInnerClass(clazz)) innerClCount++;
-				if (clazz.isPublic()) publicClCount++;
-				
-				for (IMethod im: clazz.getDeclaredMethods()) {
-					if (im.isBridge() || im.isMethodSynthetic()) continue;
-					
-					if (im.isPublic()) {
-						publicMethods.add(im.getSignature());
-					} else {
-						miscMethodCount++;
-					}
-				}
-			}
-		}
-
-		logger.info("");
-		logger.info("= ClassHierarchy Stats =");
-		logger.info(Utils.INDENT + "# of classes: " + clCount);
-		logger.info(Utils.INDENT + "# thereof inner classes: " + innerClCount);
-		logger.info(Utils.INDENT + "# thereof public classes: " + publicClCount);
-		for (AndroidClassType t: AndroidClassType.values())
-			logger.info(Utils.INDENT2 + t + " : " + clazzTypes.get(t));
-		logger.info(Utils.INDENT + "# methods: " + (publicMethods.size() + miscMethodCount));
-		logger.info(Utils.INDENT2 + "# of publicly accessible methods: " + publicMethods.size());
-		logger.info(Utils.INDENT2 + "# of non-accessible methods: " + miscMethodCount);
-		logger.info("");
-		
-		return publicMethods;
-	}
-	
 
 }

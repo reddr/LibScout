@@ -12,7 +12,7 @@
  * permissions and limitations under the License.
  */
 
-package de.infsec.tpl;
+package de.infsec.tpl.modules.libmatch;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +29,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import de.infsec.tpl.TplCLI;
 import de.infsec.tpl.config.LibScoutConfig;
+import de.infsec.tpl.utils.WalaUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -61,7 +63,7 @@ import de.infsec.tpl.utils.Utils;
 
 
 public class LibraryIdentifier {
-	private static final Logger logger = LoggerFactory.getLogger(de.infsec.tpl.LibraryIdentifier.class);
+	private static final Logger logger = LoggerFactory.getLogger(LibraryIdentifier.class);
 	
 	private IClassHierarchy cha;
 	private Map<String,String> uniqueLibraries;   // unique library name -> highest version 
@@ -77,9 +79,14 @@ public class LibraryIdentifier {
 		add("com.google.android.gms");  add("android.support");
 	}};
 	
+
+	public static AppStats run(File appFile, List<LibProfile> profiles, boolean libUsageAnalysis) throws ClassHierarchyException, NoSuchAlgorithmException, IOException {
+	    LibraryIdentifier libid = new LibraryIdentifier(appFile);
+	    return libid.identifyLibraries(profiles, libUsageAnalysis);
+    }
+
 	
-	
-	public LibraryIdentifier(File appFile) {
+	private LibraryIdentifier(File appFile) {
 		this.stats = new AppStats(appFile);
 		
 		// set identifier for logging
@@ -104,12 +111,12 @@ public class LibraryIdentifier {
 		final AnalysisScope scope = AndroidAnalysisScope.setUpAndroidAnalysisScope(new File(stats.appFile.getAbsolutePath()).toURI(), null /* no exclusions */, null /* we always pass an android lib */, LibScoutConfig.pathToAndroidJar.toURI());
 
 		cha = ClassHierarchy.make(scope);
-		logger.info("generated class hierarchy (in " + Utils.millisecondsToFormattedTime(System.currentTimeMillis() - s) + ")");
-		LibraryProfiler.getChaStats(cha);
+		logger.info("Generated class hierarchy (in " + Utils.millisecondsToFormattedTime(System.currentTimeMillis() - s) + ")");
+		WalaUtils.getChaStats(cha);
 	}
 	
 
-	public void identifyLibraries(List<LibProfile> profiles) throws NoSuchAlgorithmException, ClassNotFoundException, IOException, ClassHierarchyException {
+	private AppStats identifyLibraries(List<LibProfile> profiles, boolean libUsageAnalysis) throws NoSuchAlgorithmException, IOException, ClassHierarchyException {
 		long starttime = System.currentTimeMillis();
 		
 		logger.info("Process app: " + stats.appFile.getName());
@@ -126,14 +133,13 @@ public class LibraryIdentifier {
 		// if stat file already exists for this app, return
 		if (LibScoutConfig.generateStats && statsFile.exists()) {
 			logger.info(Utils.INDENT + "Stat file " + statsFile + " already exists - ABORT!");
-			return;
+			return null;
 		}
 		
 		stats.profiles = profiles;
 		uniqueLibraries = LibProfile.getUniqueLibraries(profiles);
-		logger.info(Utils.INDENT + "Loaded " + uniqueLibraries.size() + " unique libraries with " + profiles.size() + " library profiles (in " + Utils.millisecondsToFormattedTime(TplCLI.libProfileLoadingTime) + ")");
-		logger.info("");
-		
+		logger.info("Found " + uniqueLibraries.size() + " unique libraries in " + profiles.size() + " library profiles");
+
 		// create CHA
 		createClassHierarchy();
 		
@@ -195,7 +201,7 @@ public class LibraryIdentifier {
 		printResults(results);
 
 		// run library API usage analysis for full matches only
-		if (LibScoutConfig.runLibUsageAnalysis)
+		if (libUsageAnalysis)
 			LibCodeUsage.checkUsage(cha, results);
 		
 		logger.info("");
@@ -217,7 +223,7 @@ public class LibraryIdentifier {
 		}
 		
 		logger.info("App processing time: " + Utils.millisecondsToFormattedTime(stats.processingTime));
-		
+		return stats;
 	}
 
 	

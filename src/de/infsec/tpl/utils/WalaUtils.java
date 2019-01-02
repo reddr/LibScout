@@ -14,13 +14,7 @@
 
 package de.infsec.tpl.utils;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -528,4 +522,56 @@ public class WalaUtils {
 
 		return AndroidClassType.Plain;
 	}
+
+
+	public static Set<String> getChaStats(IClassHierarchy cha) {
+		TreeSet<String> publicMethods = new TreeSet<String>();
+		int clCount = 0;
+		int innerClCount = 0;
+		int publicClCount = 0;
+		int miscMethodCount = 0;
+
+		HashMap<de.infsec.tpl.utils.AndroidClassType, Integer> clazzTypes = new HashMap<>();
+		for (AndroidClassType t: AndroidClassType.values())
+			clazzTypes.put(t, 0);
+
+		// collect basic cha information
+		for (IClass clazz: cha) {
+			if (WalaUtils.isAppClass(clazz)) {
+				AndroidClassType type = WalaUtils.classifyClazz(clazz);
+				clazzTypes.put(type, clazzTypes.get(type)+1);
+				logger.trace("App Class: " + WalaUtils.simpleName(clazz) + "  (" + type + ")");
+
+				clCount++;
+				if (WalaUtils.isInnerClass(clazz)) innerClCount++;
+				if (clazz.isPublic()) publicClCount++;
+
+				for (IMethod im: clazz.getDeclaredMethods()) {
+					if (im.isBridge() || im.isMethodSynthetic()) continue;
+
+					if (im.isPublic()) {
+						publicMethods.add(im.getSignature());
+					} else {
+						miscMethodCount++;
+					}
+				}
+			}
+		}
+
+		logger.info("");
+		logger.info("= ClassHierarchy Stats =");
+		logger.info(Utils.INDENT + "# of classes: " + clCount);
+		logger.info(Utils.INDENT + "# thereof inner classes: " + innerClCount);
+		logger.info(Utils.INDENT + "# thereof public classes: " + publicClCount);
+		for (AndroidClassType t: AndroidClassType.values())
+			logger.info(Utils.INDENT2 + t + " : " + clazzTypes.get(t));
+		logger.info(Utils.INDENT + "# methods: " + (publicMethods.size() + miscMethodCount));
+		logger.info(Utils.INDENT2 + "# of publicly accessible methods: " + publicMethods.size());
+		logger.info(Utils.INDENT2 + "# of non-accessible methods: " + miscMethodCount);
+		logger.info("");
+
+		return publicMethods;
+	}
+
+
 }

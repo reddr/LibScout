@@ -14,14 +14,17 @@
 
 package de.infsec.tpl.profile;
 
+import java.io.File;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import de.infsec.tpl.TplCLI;
 import de.infsec.tpl.config.LibScoutConfig;
+import de.infsec.tpl.modules.libprofiler.LibraryProfiler;
+import org.apache.commons.cli.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -94,4 +97,31 @@ public abstract class Profile implements Serializable {
 		
 		return hTrees;
 	}
+
+
+	public static List<LibProfile> loadLibraryProfiles(File profilesDir) throws ParseException {
+		long s = System.currentTimeMillis();
+		List<LibProfile> profiles = new ArrayList<LibProfile>();
+
+		try {
+			// de-serialize library profiles
+			for (File f : Utils.collectFiles(profilesDir, new String[]{LibraryProfiler.FILE_EXT_LIB_PROFILE})) {
+				LibProfile lp = (LibProfile) Utils.disk2Object(f);
+				profiles.add(lp);
+			}
+
+			Collections.sort(profiles, LibProfile.comp);
+			logger.info("Loaded " + profiles.size() + " library profiles in " + Utils.millisecondsToFormattedTime(System.currentTimeMillis() - s));
+			logger.info("");
+		} catch (ClassNotFoundException e) {
+			throw new ParseException("Could not load profiles: " + Utils.stacktrace2Str(e));
+		}
+
+		if (profiles.isEmpty()) {
+			throw new ParseException("No profiles found in " + profilesDir + ". Check your settings!");
+		}
+
+		return profiles;
+	}
+
 }

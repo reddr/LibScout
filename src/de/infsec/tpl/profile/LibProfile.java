@@ -86,7 +86,7 @@ public class LibProfile extends Profile implements Serializable {
 	
 	
 	/**
-	 * Given a number of profiles, return distinct libraries with their highest version
+	 * Given a collection of profiles, return distinct libraries with their highest version
 	 * @param profiles
 	 * @return a {@link Map} containing unique library names -> highest version
 	 */

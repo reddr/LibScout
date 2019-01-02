@@ -17,11 +17,13 @@ package de.infsec.tpl;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import de.infsec.tpl.config.LibScoutConfig;
 import de.infsec.tpl.modules.libapi.LibraryApiAnalysis;
+import de.infsec.tpl.modules.libmatch.LibraryIdentifier;
+import de.infsec.tpl.modules.libprofiler.LibraryProfiler;
+import de.infsec.tpl.profile.Profile;
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -87,6 +89,7 @@ public class TplCLI {
 	}
 	
 	private static final String TOOLNAME = "LibScout";
+	private static final String TOOLVERSION = "2.1.0";
 	private static final String USAGE = TOOLNAME + " --opmode <profile|match|db|lib_api_analysis> [options]";
 	private static final String USAGE_PROFILE = TOOLNAME + " --opmode profile -x path_to_lib_desc [options] path_to_lib(jar|aar)";
 	private static final String USAGE_MATCH = TOOLNAME + " --opmode match [options] path_to_app(dir)";
@@ -95,91 +98,64 @@ public class TplCLI {
 
 	private static ArrayList<File> inputFiles;
 	private static File libraryDescription = null;
-	protected static long libProfileLoadingTime = 0l;
 
 	
 	public static void main(String[] args) {
 		// parse command line arguments
 		parseCL(args);
 
+		List<LibProfile> profiles = null;
 		try {
 			// parse LibScout.toml (already set args from CLI take precedence)
 			LibScoutConfig.loadConfig();
 
 			// sanity check for required options that can be set from both CLI/config file
 			checkRequiredOptions();
+
+			// initialize logback
+			initLogging();
+			whoAmI();
+
+			if (LibScoutConfig.opMatch() || LibScoutConfig.opDB())
+				profiles = Profile.loadLibraryProfiles(LibScoutConfig.profilesDir);
 		} catch (ParseException e) {
 			logger.error("Error: " + e.getMessage());
 			usage();
 		}
 
-		// initialize logback
-		initLogging();
 
-		List<LibProfile> profiles = null;
+		/*
+		 * choose mode of operation
+		 */
 
-		// TODO MODE = LIB_UPDATABILITY
-		//new LibraryUpdatability().run(new File("./libApiEval-libsecNEW.lstats"), new File("./appStats_libsec_usage.sqlite"));
-
-		switch (LibScoutConfig.opmode) {
-			// generate SQLite DB from app stats only
-			case DB:
-			    profiles = loadLibraryProfiles();
-			    SQLStats.stats2DB(profiles);
-				System.exit(0);
-
-			case MATCH:
-				profiles = loadLibraryProfiles();
-				break;
-
-			case LIB_API_ANALYSIS:
-			case PROFILE:
+		if (LibScoutConfig.opDB()) {
+			// generate SQLite DB from app stats
+			SQLStats.stats2DB(profiles);
+			System.exit(0);
 		}
+
 
 		// process input files, either library files or apps
 		for (File inputFile: inputFiles) {
 			try {
 				if (LibScoutConfig.opMatch()) {
-					new LibraryIdentifier(inputFile).identifyLibraries(profiles);
-		
+					LibraryIdentifier.run(inputFile, profiles, LibScoutConfig.runLibUsageAnalysis);
+
+//				} else if (LibScoutConfig.opUpdate()) {
+//					AppStats stats = LibraryIdentifier.run(inputFile, profiles, true);
+//					LibraryUpdatability.run(stats, compatInfo);
+
 				} else if (LibScoutConfig.opProfile()) {
-					new LibraryProfiler(inputFile, libraryDescription).extractFingerPrints();
+					LibraryProfiler.extractFingerPrints(inputFile, libraryDescription);
 
 				} else if (LibScoutConfig.opLibApiAnalysis()) {
-					new LibraryApiAnalysis(inputFile);
+					LibraryApiAnalysis.run(inputFile);
 				}
 			} catch (Throwable t) {
 				logger.error("[FATAL " + (t instanceof Exception? "EXCEPTION" : "ERROR") + "] analysis aborted: " + t.getMessage());
 				logger.error(Utils.stacktrace2Str(t));
 			}
 		}
-	}
-
-
-	public static List<LibProfile> loadLibraryProfiles() {
-		long s = System.currentTimeMillis();
-		List<LibProfile> profiles = new ArrayList<LibProfile>();
-
-		try {
-			// de-serialize library profiles
-			for (File f : Utils.collectFiles(LibScoutConfig.profilesDir, new String[]{LibraryProfiler.FILE_EXT_LIB_PROFILE})) {
-				LibProfile lp = (LibProfile) Utils.disk2Object(f);
-				profiles.add(lp);
-			}
-
-			Collections.sort(profiles, LibProfile.comp);
-			libProfileLoadingTime = System.currentTimeMillis() - s;
-		} catch (ClassNotFoundException e) {
-			logger.error(Utils.stacktrace2Str(e));
-			System.exit(1);
-		}
-
-		if (profiles.isEmpty()) {
-			System.err.println("No profiles found in " + LibScoutConfig.profilesDir + ". Check your settings!");
-			System.exit(1);
-		}
-
-		return profiles;
 	}
 
 
@@ -504,7 +480,10 @@ public class TplCLI {
 		formatter.printHelp(helpMsg, options);
 		System.exit(1);
 	}
-	
+
+	private static void whoAmI() {
+		logger.info("This is " + TOOLNAME + " " + TOOLVERSION);
+	}
 	
 	private static void initLogging() {
 		LoggerContext context = (LoggerContext) org.slf4j.LoggerFactory.getILoggerFactory();

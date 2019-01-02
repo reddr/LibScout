@@ -13,7 +13,7 @@
  */
 
 
-package de.infsec.tpl;
+package de.infsec.tpl.modules.libmatch;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -47,7 +47,7 @@ import de.infsec.tpl.utils.WalaUtils;
  *  the code base that does not belong the identified library root package name.
  */
 public class LibCodeUsage {
-	private static final Logger logger = LoggerFactory.getLogger(de.infsec.tpl.LibCodeUsage.class);
+	private static final Logger logger = LoggerFactory.getLogger(LibCodeUsage.class);
 	
 	
 	// TODO

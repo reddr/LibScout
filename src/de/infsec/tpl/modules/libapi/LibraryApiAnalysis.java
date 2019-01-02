@@ -41,7 +41,12 @@ public class LibraryApiAnalysis {
     private Map<String, LibApiStats> libName2Stats = new HashMap<String, LibApiStats>();
 
 
-    public LibraryApiAnalysis(File libDir) {
+    public static void run(File libDir) {
+        new LibraryApiAnalysis(libDir);
+    }
+
+
+    private LibraryApiAnalysis(File libDir) {
         locateLibrarySDKs(libDir);
         parseLibrarySDKs(true);
 

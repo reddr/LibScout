@@ -4,13 +4,13 @@
 
 	<!-- LibScout log config -->
 	<logger name="de.infsec.tpl.LibraryHandler" level="info"/> 
-	<logger name="de.infsec.tpl.LibraryIdentifier" level="info"/> 
+	<logger name="de.infsec.tpl.modules.libmatch.LibraryIdentifier" level="info"/>
 	<logger name="de.infsec.tpl.profile.ProfileMatch" level="info"/> 
 	<logger name="de.infsec.tpl.hash.HashTree" level="debug"/> 
 	<logger name="de.infsec.tpl.utils.WalaUtils" level="info"/>
 	<logger name="de.infsec.tpl.TplCLI" level="info"/>
 
-	<logger name="de.infsec.tpl.LibCodeUsage" level="debug"/> 
+	<logger name="de.infsec.tpl.modules.libmatch.LibCodeUsage" level="debug"/>
 	<logger name="de.infsec.tpl.eval.LibraryApiAnalysis" level="info"/>
 
 	<logger name="de.infsec.tpl.modules.libapi" level="info"/>
