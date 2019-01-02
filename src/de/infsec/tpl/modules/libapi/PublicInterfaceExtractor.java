@@ -32,8 +32,7 @@ public class PublicInterfaceExtractor {
         int classCount = 0;   // how many distinct classes have public methods
         HashSet<IMethod> pubMethods = new HashSet<IMethod>();
 
-        for (Iterator<IClass> it = cha.iterator(); it.hasNext(); ) {
-            IClass clazz = it.next();
+        for (IClass clazz: cha) {
             if (!WalaUtils.isAppClass(clazz)) continue;
 
             Collection<IMethod> methods = clazz.getDeclaredMethods();

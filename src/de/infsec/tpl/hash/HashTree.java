@@ -511,9 +511,7 @@ public class HashTree implements Serializable {
 		// create map package name -> list of clazzNodes
 		HashMap<String, Collection<ClassNode>> packageMap = new HashMap<String, Collection<ClassNode>>();
 		
-		for (Iterator<IClass> it = cha.iterator(); it.hasNext(); ) {
-			IClass clazz = it.next();
-
+		for (IClass clazz: cha) {
 			if (WalaUtils.isAppClass(clazz)){
 				// inner class filter
 				if (config.filterInnerClasses && WalaUtils.isInnerClass(clazz)) {

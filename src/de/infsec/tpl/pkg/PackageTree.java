@@ -118,8 +118,7 @@ public class PackageTree implements Serializable {
 	
 	public static PackageTree make(IClassHierarchy cha, boolean appClassesOnly, Set<String> filteredPackages) {
 		PackageTree tree = new PackageTree();
-		for (Iterator<IClass> it = cha.iterator(); it.hasNext(); ) {
-			IClass clazz = it.next();
+		for (IClass clazz: cha) {
 			if (!appClassesOnly || (appClassesOnly && WalaUtils.isAppClass(clazz))) {
 				if (filteredPackages == null || !filteredPackages.contains(PackageUtils.getPackageName(clazz)))
 					tree.update(clazz);
@@ -389,8 +388,7 @@ public class PackageTree implements Serializable {
 	public void updateTreeClazzCount(IClassHierarchy cha) {
 		Set<String> packages = this.getAllPackages();
 		
-		for (Iterator<IClass> it = cha.iterator(); it.hasNext(); ) {
-			IClass clazz = it.next();
+		for (IClass clazz: cha) {
 			if (WalaUtils.isAppClass(clazz)) {
 				if (packages.contains(PackageUtils.getPackageName(clazz))) {
 					updateClazzCount(clazz);

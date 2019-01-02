@@ -92,9 +92,7 @@ public class LibCodeUsage {
 		Map<String, Set<String>> unresolvableMethods = new TreeMap<String, Set<String>>();
 		
 		// iterate all classes
-		for (Iterator<IClass> it = cha.iterator(); it.hasNext(); ) {
-			IClass clazz = it.next();
-			
+		for (IClass clazz: cha) {
 			if (!WalaUtils.isAppClass(clazz)) continue;
 			
 			// iterate all methods
