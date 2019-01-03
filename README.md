@@ -10,8 +10,11 @@ Unique detection features:
  * Capability of handling dead-code elimination, by computing a similarity score against baseline SDKs
  * Library API usage analysis upon detection
 
-Besides detecting libraries in apps, LibScout conducts API analyses on the library SDKs to determine API compatibility across versions and adherence to semantic versioning.
-The resulting data has recently been used to build the Android Studio extension [up2dep](https://github.com/ngcuongst/up2dep) to help developers keeping their dependencies up-to-date.
+Over time LibScout has been extended to perform additional analyses both on library SDKs and detected libraries in apps:
+ * <i>API compatibility analysis</i> across library versions and lib developers adherence to <i>semantic versioning</i>.
+ * <i>Library updatability analysis</i> to infer if and to which extent detected libraries in apps can be updated without code changes based on their API usage.
+
+In addition, there is an Android Studio extension [up2dep](https://github.com/ngcuongst/up2dep) that integrates the API compatibility information into the IDE to help developers keeping their dependencies up-to-date (and more).
 
 
 ## Library History Scraper (./scripts)
@@ -101,11 +104,6 @@ Analysis results can be written in different formats.
 </ol>
 <pre>java -jar LibScout.jar -o match -p <i>path_to_profiles</i> [-a <i>android_sdk_jar</i>] [-u] [-j <i>json_dir</i>] [-s <i>stats_dir</i>] [-m] [-d <i>log_dir</i>] <i>path_to_app(s)</i>  </pre>
 
-### Database Generator (-o db)
-
-Generates a SQLite database from library profiles and serialized app stats:<br>
-<pre>java -jar LibScout.jar -o db -p <i>path_to_profiles</i> -s <i>path_to_app_stats</i> </pre>
-
 ### Library API compatibility analysis (-o lib_api_analysis)
 
 Analyzes changes in the documented (public) API sets of library versions.<br>
@@ -118,6 +116,19 @@ LibScout additionally tries to infer alternative APIs (based on different featur
 For the analysis, you have to provide a path to the original library SDKs. LibScout recursively searches for library jars|aars (leaf directories are expected to have at most one jar|aar file and one library.xml file).
 For your convenience use the library scraper. Analysis results are written to disk in JSON format (-j switch).<br>
 <pre>java -jar LibScout.jar -o lib_api_analysis [-a <i>android_sdk_jar</i>] [-j <i>json_dir</i>] <i>path_to_lib_sdks</i></pre>
+
+### Library Updatability analysis (-o updatability)
+
+This mode is an extension to the match mode. It first detects library versions in the provided apps and conducts a library usage analysis (-u is implied). In addition, it requires library API compat data (via the -l switch) as generated in the <i>lib_api_analysis</i> mode . Based on the lib API usage in the app and the compat info, LibScout determines the highest version that is still compatible to the set of used lib APIs.<br>
+<b>Note:</b> The new implementation still lacks some features, e.g. the results are currently logged but not yet written to json. See the code comments for more information.
+
+<pre>java -jar LibScout.jar -o updatability [-a <i>android_sdk_jar</i>] [-j <i>json_dir</i>] -l <i>lib_api_data_dir</i> <i>path_to_app(s)<i></pre>
+
+### Database Generator (-o db)
+
+Generates a SQLite database from library profiles and serialized app stats:<br>
+<pre>java -jar LibScout.jar -o db -p <i>path_to_profiles</i> -s <i>path_to_app_stats</i> </pre>
+
 
 ## Scientific Publications
 
