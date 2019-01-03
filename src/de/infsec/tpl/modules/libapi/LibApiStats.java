@@ -29,6 +29,8 @@ public class LibApiStats implements Exportable {
     public class Export {
         public String libName;
 
+        public List<String> versions;
+
         public List<LibApiComparator.ApiDiff.Export> apiDiffs;
 
         public List<DependencyAnalysis.LibDependencies.Export> libDeps;
@@ -39,6 +41,7 @@ public class LibApiStats implements Exportable {
 
         public Export(LibApiStats stats) {
             this.libName = stats.libName;
+            this.versions = stats.versions.stream().map(Version::toString).collect(Collectors.toList());
 
             this.apiDiffs = stats.version2Diff.values().stream().map(LibApiComparator.ApiDiff::export).collect(Collectors.toList());
 

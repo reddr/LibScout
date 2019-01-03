@@ -34,10 +34,10 @@ public class LibScoutConfig {
         DB("db", "-p path_to_profiles -s path_to_stats"),
 
         // analyzes library api stability (api additions, removals, changes)
-        LIB_API_ANALYSIS("lib_api_analysis", "path_to_lib_sdks");
+        LIB_API_ANALYSIS("lib_api_analysis", "path_to_lib_sdks"),
 
         // infer library usage in apps and check to which extent detected libs can be updated
-      //  UPDATABILITY( "updatability",  "[options] -l path_to_lib_api_compat path_to_app(dir)");
+        UPDATABILITY( "updatability",  "[options] -l path_to_lib_api_compat path_to_app(dir)");
 
         public String name;
         public String usageMsg;
@@ -65,6 +65,7 @@ public class LibScoutConfig {
     public static boolean opProfile() { return OpMode.PROFILE.equals(opmode); }
     public static boolean opDB() { return OpMode.DB.equals(opmode); }
     public static boolean opLibApiAnalysis() { return OpMode.LIB_API_ANALYSIS.equals(opmode); }
+    public static boolean opUpdatability() { return OpMode.UPDATABILITY.equals(opmode); }
 
 
     // config files
@@ -91,6 +92,8 @@ public class LibScoutConfig {
     public static File jsonDir = new File("./json");
 
     public static File profilesDir = new File("./profiles");
+
+    public static File libApiCompatDir = null;
 
     // package tree
     public static class PckgTree {

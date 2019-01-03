@@ -10,7 +10,8 @@
 	<logger name="de.infsec.tpl.utils.WalaUtils" level="info"/>
 	<logger name="de.infsec.tpl.TplCLI" level="info"/>
 
-	<logger name="de.infsec.tpl.modules.libmatch.LibCodeUsage" level="debug"/>
+	<logger name="de.infsec.tpl.modules.libmatch.LibCodeUsage" level="info"/>
+	<logger name="de.infsec.tpl.modules.updatability.LibraryUpdatability" level="debug"/>
 	<logger name="de.infsec.tpl.eval.LibraryApiAnalysis" level="info"/>
 
 	<logger name="de.infsec.tpl.modules.libapi" level="info"/>

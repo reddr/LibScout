@@ -18,7 +18,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import de.infsec.tpl.config.LibScoutConfig;
 import de.infsec.tpl.modules.libapi.LibraryApiAnalysis;
@@ -89,6 +88,9 @@ public class TplCLI {
 
 		static final String ARG_LIB_DEPENDENCY_ANALYSIS = "da";
 		static final String ARGL_LIB_DEPENDENCY_ANALYSIS = "lib-dependency-analysis";
+
+		static final String ARG_LIB_API_COMPAT_DIR = "l";
+		static final String ARGL_LIB_API_COMPAT_DIR = "lib-api-compat-dir";
 	}
 	
 	private static ArrayList<File> inputFiles;
@@ -100,8 +102,10 @@ public class TplCLI {
 		parseCL(args);
 
 		List<LibProfile> profiles = null;
+		LibraryUpdatability libUp = null;
+
 		try {
-			// parse LibScout.toml (already set args from CLI take precedence)
+			// parse LibScout.toml (args from CLI take precedence)
 			LibScoutConfig.loadConfig();
 
 			// sanity check for required options that can be set from both CLI/config file
@@ -111,8 +115,16 @@ public class TplCLI {
 			initLogging();
 			LibScoutConfig.whoAmI();
 
-			if (LibScoutConfig.opMatch() || LibScoutConfig.opDB())
+			/*
+			 * one time data loading
+			 */
+
+			if (LibScoutConfig.opMatch() || LibScoutConfig.opDB() || LibScoutConfig.opUpdatability())
 				profiles = Profile.loadLibraryProfiles(LibScoutConfig.profilesDir);
+
+			if (LibScoutConfig.opUpdatability())
+				libUp = new LibraryUpdatability(LibScoutConfig.libApiCompatDir);
+
 		} catch (ParseException e) {
 			logger.error("Error: " + e.getMessage());
 			usage();
@@ -129,16 +141,15 @@ public class TplCLI {
 			System.exit(0);
 		}
 
-
 		// process input files, either library files or apps
 		for (File inputFile: inputFiles) {
 			try {
 				if (LibScoutConfig.opMatch()) {
 					LibraryIdentifier.run(inputFile, profiles, LibScoutConfig.runLibUsageAnalysis);
 
-//				} else if (LibScoutConfig.opUpdate()) {
-//					AppStats stats = LibraryIdentifier.run(inputFile, profiles, true);
-//					LibraryUpdatability.run(stats, compatInfo);
+				} else if (LibScoutConfig.opUpdatability()) {
+					AppStats stats = LibraryIdentifier.run(inputFile, profiles, true);
+					libUp.checkUpdatability(stats);
 
 				} else if (LibScoutConfig.opProfile()) {
 					LibraryProfiler.extractFingerPrints(inputFile, libraryDescription);
@@ -190,19 +201,19 @@ public class TplCLI {
 			}
 
 			// path to Android SDK jar
-			if (checkOptionalUse(cmd, CliArgs.ARG_ANDROID_LIB, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.LIB_API_ANALYSIS)) {
+			if (checkOptionalUse(cmd, CliArgs.ARG_ANDROID_LIB, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.LIB_API_ANALYSIS, LibScoutConfig.OpMode.UPDATABILITY)) {
 				LibScoutConfig.pathToAndroidJar = new File(cmd.getOptionValue(CliArgs.ARG_ANDROID_LIB));
 				LibScoutConfig.checkIfValidFile(cmd.getOptionValue(CliArgs.ARG_ANDROID_LIB));
 			}
 
 			// path to LibScout.toml
-			if (checkOptionalUse(cmd, CliArgs.ARG_CONFIG, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.LIB_API_ANALYSIS, LibScoutConfig.OpMode.DB)) {
+			if (checkOptionalUse(cmd, CliArgs.ARG_CONFIG, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.LIB_API_ANALYSIS, LibScoutConfig.OpMode.DB, LibScoutConfig.OpMode.UPDATABILITY)) {
 				LibScoutConfig.libScoutConfigFileName = cmd.getOptionValue(CliArgs.ARG_CONFIG);
 				LibScoutConfig.checkIfValidFile(LibScoutConfig.libScoutConfigFileName);
 			}
 
 			// profiles dir option, if provided without argument output is written to default dir
-			if (checkOptionalUse(cmd, CliArgs.ARG_PROFILES_DIR, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.DB)) {
+			if (checkOptionalUse(cmd, CliArgs.ARG_PROFILES_DIR, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.DB, LibScoutConfig.OpMode.UPDATABILITY)) {
 				File profilesDir = new File(cmd.getOptionValue(CliArgs.ARG_PROFILES_DIR));
 				if (profilesDir.exists() && !profilesDir.isDirectory())
 					throw new ParseException("Profiles directory " + profilesDir + " already exists and is not a directory");
@@ -212,7 +223,7 @@ public class TplCLI {
 			
 			
 			// disable partial matching (full lib matching only)
-			if (checkOptionalUse(cmd, CliArgs.ARG_NO_PARTIAL_MATCHING, LibScoutConfig.OpMode.MATCH)) {
+			if (checkOptionalUse(cmd, CliArgs.ARG_NO_PARTIAL_MATCHING, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.UPDATABILITY)) {
 				LibScoutConfig.noPartialMatching = true;
 			}
 			
@@ -235,7 +246,7 @@ public class TplCLI {
 				LibScoutConfig.genVerboseProfiles = true;
 			}
 
-			// generate verbose library profiles?
+			// enable library dependency analysis
 			if (checkOptionalUse(cmd, CliArgs.ARG_LIB_DEPENDENCY_ANALYSIS, LibScoutConfig.OpMode.LIB_API_ANALYSIS)) {
 				LibScoutConfig.libDependencyAnalysis = true;
 			}
@@ -254,7 +265,7 @@ public class TplCLI {
 			}
 			
 			// enable/disable generation of json output
-			if (checkOptionalUse(cmd, CliArgs.ARG_JSON_DIR, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.LIB_API_ANALYSIS)) {
+			if (checkOptionalUse(cmd, CliArgs.ARG_JSON_DIR, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.LIB_API_ANALYSIS, LibScoutConfig.OpMode.UPDATABILITY)) {
 				LibScoutConfig.generateJSON = true;
 
 				if (cmd.getOptionValue(CliArgs.ARG_JSON_DIR) != null) {   // json dir provided?
@@ -265,8 +276,17 @@ public class TplCLI {
 					LibScoutConfig.jsonDir = jsonDir;
 				}
 			}
-			
-			
+
+			// provide directory to lib api compat files (generated with api-analysis mode)
+			if (checkRequiredUse(cmd, CliArgs.ARG_LIB_API_COMPAT_DIR, LibScoutConfig.OpMode.UPDATABILITY)) {
+				File apiCompatDir = new File(cmd.getOptionValue(CliArgs.ARG_LIB_API_COMPAT_DIR));
+				if (!apiCompatDir.isDirectory())
+					throw new ParseException(apiCompatDir + " is not a directory");
+
+				LibScoutConfig.libApiCompatDir = apiCompatDir;
+			}
+
+
 			/*
 			 * process lib|app arguments
 			 *  - in profile mode pass *one* library (since it is linked to lib description file)
@@ -288,7 +308,7 @@ public class TplCLI {
 						throw new ParseException("You have to provide at least one directory that includes a library package and description");
 					}
 				} else {
-					String[] fileExts = LibScoutConfig.opMatch() ? new String[]{"apk"} : new String[]{"jar", "aar"};
+					String[] fileExts = LibScoutConfig.opMatch() || LibScoutConfig.opUpdatability() ? new String[]{"apk"} : new String[]{"jar", "aar"};
 
 					for (String inputFile : cmd.getArgs()) {
 						File arg = new File(inputFile);
@@ -453,6 +473,12 @@ public class TplCLI {
 			.withDescription("enable analysis of secondary library dependencies")
 			.create(CliArgs.ARG_LIB_DEPENDENCY_ANALYSIS));
 
+		options.addOption(OptionBuilder.withArgName("directory")
+			.hasArgs(1)
+			.isRequired(false)
+			.withLongOpt(CliArgs.ARGL_LIB_API_COMPAT_DIR)
+			.withDescription("path to library api compatibility data files")
+			.create(CliArgs.ARG_LIB_API_COMPAT_DIR));
 
 		return options;
 	}

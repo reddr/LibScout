@@ -13,7 +13,6 @@ import de.infsec.tpl.config.LibScoutConfig;
 import de.infsec.tpl.profile.LibraryDescription;
 import de.infsec.tpl.utils.AarFile;
 import de.infsec.tpl.utils.Utils;
-import de.infsec.tpl.utils.VersionWrapper;
 import de.infsec.tpl.xml.XMLParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
