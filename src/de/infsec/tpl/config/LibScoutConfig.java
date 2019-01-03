@@ -12,28 +12,66 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 
 public class LibScoutConfig {
     private static final Logger logger = LoggerFactory.getLogger(de.infsec.tpl.config.LibScoutConfig.class);
 
-    public enum LogType { NONE, CONSOLE, FILE };
+    public static final String TOOLNAME = "LibScout";
+    public static final String TOOLVERSION = "2.1.0";
 
-    /*
-     *  mode of operations
-     *    -          PROFILE:  generate library profiles from original lib SDKs and descriptions
-     *    -            MATCH:  match lib profiles in provided apps
-     *    -               DB:  build sqlite database from app stat files
-     *    - LIB_API_ANALYSIS:  analyzes library api stability (api additions, removals, changes)
-     */
-    public enum OpMode {PROFILE, MATCH, DB, LIB_API_ANALYSIS};
+    // modes of operations
+    public enum OpMode {
+        // generate library profiles from original lib SDKs and descriptions
+        PROFILE("profile", "-x path_to_lib_desc [options] path_to_lib(jar|aar)"),
+
+        // match lib profiles in provided apps
+        MATCH("match", "[options] path_to_app(dir)"),
+
+        // build sqlite database from app stat files
+        DB("db", "-p path_to_profiles -s path_to_stats"),
+
+        // analyzes library api stability (api additions, removals, changes)
+        LIB_API_ANALYSIS("lib_api_analysis", "path_to_lib_sdks");
+
+        // infer library usage in apps and check to which extent detected libs can be updated
+      //  UPDATABILITY( "updatability",  "[options] -l path_to_lib_api_compat path_to_app(dir)");
+
+        public String name;
+        public String usageMsg;
+
+        OpMode(String name, String usageMsg) {
+            this.name = name;
+            this.usageMsg = usageMsg;
+        }
+
+        public static String getUsageMessage(OpMode op) {
+            return op == null? getToolUsageMsg() : TOOLNAME + " --opmode " + op.name + " " + op.usageMsg;
+        }
+
+        public static String getToolUsageMsg() {
+            return TOOLNAME + " --opmode <" + getOpModeString() + "> [options]";
+        }
+
+        public static String getOpModeString() {
+            return Utils.join(Arrays.stream(OpMode.values()).map(op -> op.name.toLowerCase()).collect(Collectors.toList()), "|");
+        }
+    }
+
+    public static OpMode opmode = null;
+    public static boolean opMatch() { return OpMode.MATCH.equals(opmode); }
+    public static boolean opProfile() { return OpMode.PROFILE.equals(opmode); }
+    public static boolean opDB() { return OpMode.DB.equals(opmode); }
+    public static boolean opLibApiAnalysis() { return OpMode.LIB_API_ANALYSIS.equals(opmode); }
+
 
     // config files
     public static String libScoutConfigFileName = "./config/LibScout.toml";
     public static String log4jConfigFileName = "./config/logback.xml";
 
     public static File pathToAndroidJar;
-    public static OpMode opmode = null;
 
     public static boolean noPartialMatching = false;
     public static boolean runLibUsageAnalysis = false;
@@ -41,6 +79,8 @@ public class LibScoutConfig {
 
     public static boolean libDependencyAnalysis = false;
 
+
+    public enum LogType { NONE, CONSOLE, FILE }
     public static LogType logType = LogType.CONSOLE;
     public static File logDir = new File("./logs");
 
@@ -58,11 +98,9 @@ public class LibScoutConfig {
     }
 
 
-    public static boolean opMatch() { return OpMode.MATCH.equals(opmode); }
-    public static boolean opProfile() { return OpMode.PROFILE.equals(opmode); }
-    public static boolean opDB() { return OpMode.DB.equals(opmode); }
-    public static boolean opLibApiAnalysis() { return OpMode.LIB_API_ANALYSIS.equals(opmode); }
-
+    public static void whoAmI() {
+        logger.info("This is " + TOOLNAME + " " + TOOLVERSION);
+    }
 
     public static boolean loadConfig() throws ParseException {
         File libScoutConfigFile;

@@ -18,12 +18,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import de.infsec.tpl.config.LibScoutConfig;
 import de.infsec.tpl.modules.libapi.LibraryApiAnalysis;
 import de.infsec.tpl.modules.libmatch.LibraryIdentifier;
 import de.infsec.tpl.modules.libprofiler.LibraryProfiler;
+import de.infsec.tpl.modules.updatability.LibraryUpdatability;
 import de.infsec.tpl.profile.Profile;
+import de.infsec.tpl.stats.AppStats;
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -88,14 +91,6 @@ public class TplCLI {
 		static final String ARGL_LIB_DEPENDENCY_ANALYSIS = "lib-dependency-analysis";
 	}
 	
-	private static final String TOOLNAME = "LibScout";
-	private static final String TOOLVERSION = "2.1.0";
-	private static final String USAGE = TOOLNAME + " --opmode <profile|match|db|lib_api_analysis> [options]";
-	private static final String USAGE_PROFILE = TOOLNAME + " --opmode profile -x path_to_lib_desc [options] path_to_lib(jar|aar)";
-	private static final String USAGE_MATCH = TOOLNAME + " --opmode match [options] path_to_app(dir)";
-	private static final String USAGE_DB = TOOLNAME + " --opmode db -p path_to_profiles -s path_to_stats";
-	private static final String USAGE_LIB_API_ANALYSIS = TOOLNAME + " --opmode lib_api_analysis path_to_lib_sdks";
-
 	private static ArrayList<File> inputFiles;
 	private static File libraryDescription = null;
 
@@ -114,7 +109,7 @@ public class TplCLI {
 
 			// initialize logback
 			initLogging();
-			whoAmI();
+			LibScoutConfig.whoAmI();
 
 			if (LibScoutConfig.opMatch() || LibScoutConfig.opDB())
 				profiles = Profile.loadLibraryProfiles(LibScoutConfig.profilesDir);
@@ -326,7 +321,7 @@ public class TplCLI {
 			System.err.println("Command line parsing failed:\n  " + e.getMessage() + "\n");
 			usage();
 		} catch (Exception e) {
-			System.err.println("Error occured during argument processing:\n" + e.getMessage());
+			System.err.println("Error occurred during argument processing:\n" + e.getMessage());
 		}
 	}
 	
@@ -376,7 +371,7 @@ public class TplCLI {
 			.hasArgs(1)
             .isRequired(true)
             .withLongOpt(CliArgs.ARGL_OPMODE)
-            .withDescription("mode of operation, one of [profile|match|db|lib_api_analysis]")
+            .withDescription("mode of operation, one of [" + LibScoutConfig.OpMode.getOpModeString() + "]")
             .create(CliArgs.ARG_OPMODE));
 
 		options.addOption(OptionBuilder.withArgName("file")
@@ -466,25 +461,11 @@ public class TplCLI {
 	private static void usage() {
 		// automatically generate the help statement
 		HelpFormatter formatter = new HelpFormatter();
-		String helpMsg = USAGE;
-		
-		if (LibScoutConfig.opProfile())
-			helpMsg = USAGE_PROFILE;
-		else if (LibScoutConfig.opMatch())
-			helpMsg = USAGE_MATCH;
-		else if (LibScoutConfig.opDB())
-			helpMsg = USAGE_DB;
-		else if (LibScoutConfig.opLibApiAnalysis())
-			helpMsg = USAGE_LIB_API_ANALYSIS;
-
+		String helpMsg = LibScoutConfig.OpMode.getUsageMessage(LibScoutConfig.opmode);
 		formatter.printHelp(helpMsg, options);
 		System.exit(1);
 	}
 
-	private static void whoAmI() {
-		logger.info("This is " + TOOLNAME + " " + TOOLVERSION);
-	}
-	
 	private static void initLogging() {
 		LoggerContext context = (LoggerContext) org.slf4j.LoggerFactory.getILoggerFactory();
 		    
