@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import de.infsec.tpl.config.LibScoutConfig;
 import de.infsec.tpl.stats.Exportable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -109,6 +110,7 @@ public class ProfileMatch implements Exportable, Serializable {
 		public final boolean includesSecurityVulnerability;
 		public final boolean includesSecurityVulnerabilityFix;
 		public float simScore = 0f;  // 1f if exact match
+		public final String comment;
 
 		// if lib code usage analysis is enabled, store normalized (i.e. if matched root packages differs from original root package) lib method signatures used
 		public Set<String> usedLibMethods = new TreeSet<String>();
@@ -121,6 +123,7 @@ public class ProfileMatch implements Exportable, Serializable {
 			this.includesSecurityVulnerability = pm.lib.description.comment.contains("[SECURITY]");
 			this.includesSecurityVulnerabilityFix = pm.lib.description.comment.contains("[SECURITY-FIX]");
 			this.simScore = pm.getHighestSimScore().simScore;
+			this.comment = LibScoutConfig.Reporting.showComments? pm.lib.description.comment : "";
 
 			if (!pm.usedLibMethods.isEmpty())
 				this.usedLibMethods = pm.usedLibMethods;
@@ -175,7 +178,8 @@ public class ProfileMatch implements Exportable, Serializable {
 		final String VULN_FIX_INDICATOR = "[SECURITY-FIX]";   // indicates that this version includes a fix for a security vulnerability
 
  		for (String str: lib.description.getDescription()) {
-			if (str.contains("comment:") && !(str.contains(VULN_INDICATOR) || str.contains(VULN_FIX_INDICATOR))) continue;
+			if (str.contains("comment:") &&
+			   (!LibScoutConfig.Reporting.showComments && !(str.contains(VULN_INDICATOR) || str.contains(VULN_FIX_INDICATOR)))) continue;
 
 			if (str.contains("version") && lib.isDeprecatedLib())
 				str += "  [OLD VERSION]";    // TODO store in db?

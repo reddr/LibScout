@@ -100,6 +100,12 @@ public class LibScoutConfig {
         public static boolean useAsciiRendering = false;
     }
 
+    // reporting (logs, json)
+    public static class Reporting {
+        // upon detection, print/hide comments from library description
+        public static boolean showComments = false;
+    }
+
 
     public static void whoAmI() {
         logger.info("This is " + TOOLNAME + " " + TOOLVERSION);
@@ -149,6 +155,9 @@ public class LibScoutConfig {
 
             } else if ("packageTree.ascii_rendering".equals(key)) {
                 PckgTree.useAsciiRendering = (Boolean) value;
+
+            } else if ("reporting.show_comments".equals(key)) {
+                Reporting.showComments = (Boolean) value;
 
             } else
                 logger.warn("Found unknown config key: " + key);

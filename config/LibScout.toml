@@ -2,6 +2,12 @@
 # This is the LibScout configuration file in TOML format
 #
 
+[ reporting ]
+
+# if true, shows comment from library.xml in logs/json
+# upon lib detection
+show_comments = false
+
 [ sdk ]
 
 # path to Android SDK jar file
