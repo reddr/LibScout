@@ -17,6 +17,7 @@ package de.infsec.tpl.hash;
 import java.util.Arrays;
 import java.util.Comparator;
 
+@Deprecated
 public abstract class Hash implements IHash {
 	public static boolean equals(byte[] hash1, byte[] hash2) {
 		return Arrays.equals(hash1, hash2);

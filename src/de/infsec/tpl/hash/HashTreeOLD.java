@@ -52,6 +52,7 @@ import de.infsec.tpl.utils.WalaUtils;
  * @author ederr
  *
  */
+@Deprecated
 public class HashTreeOLD implements Serializable {
 	private static final long serialVersionUID = 8890771073564530924L;
 
