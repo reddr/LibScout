@@ -1,7 +1,5 @@
 package de.infsec.tpl.hashtree.node;
 
-import de.infsec.tpl.hashtree.HashUtils;
-
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
