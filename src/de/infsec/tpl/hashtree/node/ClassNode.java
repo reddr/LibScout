@@ -1,15 +1,19 @@
 package de.infsec.tpl.hashtree.node;
 
-import com.google.common.hash.HashCode;
+import de.infsec.tpl.hashtree.HashUtils;
 
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class ClassNode extends Node {
+public class ClassNode extends Node implements Serializable {
+    private static final long serialVersionUID = 7790771073564531337L;
+
     public String clazzName;
 
-    public ClassNode(HashCode hash, String clazzName) {
+    public ClassNode(byte[] hash, String clazzName) {
         super(hash);
         this.clazzName = clazzName;
     }
@@ -33,7 +37,7 @@ public class ClassNode extends Node {
         if (!(obj instanceof ClassNode))
             return false;
 
-        return ((Node) obj).hash.equals(this.hash);
+        return Arrays.equals(((Node) obj).hash, this.hash);
     }
 
     @Override

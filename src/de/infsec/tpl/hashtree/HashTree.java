@@ -15,7 +15,7 @@
 package de.infsec.tpl.hashtree;
 
 
-import com.google.common.hash.HashCode;
+import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hasher;
 import com.google.common.hash.Hashing;
 import com.ibm.wala.classLoader.IClass;
@@ -32,12 +32,10 @@ import de.infsec.tpl.hashtree.node.*;
 import de.infsec.tpl.pkg.PackageUtils;
 import de.infsec.tpl.utils.Utils;
 import de.infsec.tpl.utils.WalaUtils;
-//import org.msgpack.core.MessagePack;
-//import org.msgpack.core.MessagePacker;
-//import org.msgpack.jackson.dataformat.MessagePackFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -71,11 +69,13 @@ import java.util.stream.Collectors;
  * TODO
  *
  */
-public class HashTree {
-	private static final Logger logger = LoggerFactory.getLogger(HashTree.class);
-	public static final NodeComparator comp = new NodeComparator();
+public class HashTree implements Serializable {
+	private static final long serialVersionUID = 8890771073564531337L;
 
-	//public static HashFunction hf = Hashing.md5();  // TODO configurable
+	private static final Logger logger = LoggerFactory.getLogger(HashTree.class);
+
+
+	public static HashFunction hf = Hashing.md5();  // TODO configurable
 
 	AccessFlags accessFlagsFilter = AccessFlags.NO_FLAG;
 	boolean verbose = false;  // TODO
@@ -86,43 +86,22 @@ public class HashTree {
 
 //TODO	public void generateMultiVersionTree(IClassHierarchy cha, String version) {};
 
-	// serialize with messagePack
-/*	public static void serialize(File targetFile, HashTree ht) {
-
-//
-try {
-	ObjectMapper objectMapper = new ObjectMapper(new MessagePackFactory());
-//	objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-	//byte[] data = objectMapper.writeValue(, );eAsBytes(xya);
-	objectMapper.writeValue(new FileOutputStream(new File("./abcde.libv")), ht);
-} catch (Exception e) {
-	e.printStackTrace();
-}
-	}
-*/
 
 	public static Hasher getHasher() {
-		return Hashing.md5().newHasher();//hf.newHasher();
+		return hf.newHasher();
 	}
 
 	public static Node compNode(Collection<? extends Node> nodes, boolean prune) {
 		Hasher hasher = getHasher();
-		nodes.stream().sorted(comp).forEach(n -> hasher.putBytes(n.hash.asBytes()));
+		nodes.stream().sorted(HashUtils.comp).forEach(n -> hasher.putBytes(n.hash));
 
-		Node n = new Node(hasher.hash());
+		Node n = new Node(hasher.hash().asBytes());
 		if (!prune)
 			n.childs.addAll(nodes);
 		return n;
 	}
 
-	public static class NodeComparator implements Comparator<Node> {
-		public NodeComparator() {}
 
-		@Override
-		public int compare(Node n0, Node n1) {
-			return n0.hash.toString().compareTo(n1.hash.toString());
-		}
-	}
 
 
 	@Override
@@ -130,7 +109,7 @@ try {
 		if (!(obj instanceof HashTree))
 			return false;
 
-		return this.getRootHash().equals(((HashTree) obj).getRootHash());
+		return Arrays.equals(this.getRootHash(), ((HashTree) obj).getRootHash());
 	}
 
 	public void generate(IClassHierarchy cha) {
@@ -142,9 +121,9 @@ try {
 		logger.debug("Generate hash tree..");
 
 		// TODO to be removed
+		boolean pruneSubMethod = true;
 		boolean pruneMethods = true;
 		boolean pruneClasses = false;
-		boolean prunePackages = false;
 
 		int classHashCount = 0;
 		int methodHashCount = 0;
@@ -166,8 +145,8 @@ try {
 
 				List<MethodNode> methodNodes = methods.stream()
 					 .filter(m -> !(m.isBridge() || m.isMethodSynthetic()))  // normalize java|dex bytecode by skipping compiler-generated methods
-					 .map(m -> mnComp.comp(m, pruneMethods))
-					 .sorted(comp)  // sort but do not filter dups
+					 .map(m -> mnComp.comp(m, pruneSubMethod))
+					 .sorted(HashUtils.comp)  // sort but do not filter dups
 					 .collect(Collectors.toList());
 
 				// normalize - skip classes with no methods
@@ -180,12 +159,12 @@ try {
 				methodHashCount += methodNodes.size();
 				classHashCount++;
 
-				ClassNode clazzNode = cnComp.comp(methodNodes, clazz, pruneClasses);
+				ClassNode clazzNode = cnComp.comp(methodNodes, clazz, pruneMethods);
 
 				// keep track on classes per package
 				String pckgName = PackageUtils.getPackageName(clazz);
 				if (!packageMap.containsKey(pckgName)) {
-					packageMap.put(pckgName, new TreeSet<>(comp));
+					packageMap.put(pckgName, new TreeSet<>(HashUtils.comp));
 				}
 				packageMap.get(pckgName).add(clazzNode);
 			}
@@ -193,8 +172,8 @@ try {
 
 
 		List<PackageNode> packageNodes = packageMap.keySet().stream()
-			.map(p -> pnComp.comp(packageMap.get(p), p, cha, prunePackages))
-			.sorted(comp)
+			.map(p -> pnComp.comp(packageMap.get(p), p, cha, pruneClasses))
+			.sorted(HashUtils.comp)
 			.collect(Collectors.toList());
 
 		logger.debug(Utils.INDENT + "- generated " + methodHashCount   + " method hashes.");
@@ -204,8 +183,7 @@ try {
 
 		// generate root
 		rootNode = compNode(packageNodes, false);
-		logger.debug(Utils.INDENT + "=> Library Hash: " + rootNode.hash.toString());
-
+		logger.debug(Utils.INDENT + "=> Library Hash: " + HashUtils.hash2Str(rootNode.hash));
 	}
 
 
@@ -216,7 +194,7 @@ try {
 		return this.rootNode;
 	}
 
-	public HashCode getRootHash() {
+	public byte[] getRootHash() {
 		return this.rootNode.hash;
 	}
 
