@@ -74,21 +74,28 @@ public class HashTree implements Serializable {
 
 	private static final Logger logger = LoggerFactory.getLogger(HashTree.class);
 
+	public static class Config {
+		public static HashFunction hf = Hashing.md5();
+		public static AccessFlags accessFlagsFilter = AccessFlags.NO_FLAG;
 
-	public static HashFunction hf = Hashing.md5();  // TODO configurable
+		public static boolean pruneClasses = false;
+		public static boolean keepClassNames = false;
 
-	AccessFlags accessFlagsFilter = AccessFlags.NO_FLAG;
-	boolean verbose = false;  // TODO
+		public static boolean keepMethodSignatures = false;
+		public static boolean pruneMethods = true;
+
+		public static boolean keepPackageNames = true;
+	}
 
 	Map<Short,String> id2VersionStr;  // null for single version tree
 
 	private Node rootNode;
 
+
 //TODO	public void generateMultiVersionTree(IClassHierarchy cha, String version) {};
 
-
 	public static Hasher getHasher() {
-		return hf.newHasher();
+		return Config.hf.newHasher();
 	}
 
 	public static Node compNode(Collection<? extends Node> nodes, boolean prune) {
@@ -101,9 +108,6 @@ public class HashTree implements Serializable {
 		return n;
 	}
 
-
-
-
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof HashTree))
@@ -112,6 +116,8 @@ public class HashTree implements Serializable {
 		return Arrays.equals(this.getRootHash(), ((HashTree) obj).getRootHash());
 	}
 
+
+
 	public void generate(IClassHierarchy cha) {
 		generate(cha, new DefaultPackageNodeComp(), new DefaultClassNodeComp(), new SignatureMethodNodeComp());
 	}
@@ -119,11 +125,6 @@ public class HashTree implements Serializable {
 
 	public void generate(IClassHierarchy cha, IPackageNodeComp pnComp, IClassNodeComp cnComp, IMethodNodeComp mnComp) {
 		logger.debug("Generate hash tree..");
-
-		// TODO to be removed
-		boolean pruneSubMethod = true;
-		boolean pruneMethods = true;
-		boolean pruneClasses = false;
 
 		int classHashCount = 0;
 		int methodHashCount = 0;
@@ -137,15 +138,15 @@ public class HashTree implements Serializable {
 				Collection<IMethod> methods = clazz.getDeclaredMethods();
 
 				// filter methods by access flag
-				if (accessFlagsFilter != AccessFlags.NO_FLAG) {
+				if (Config.accessFlagsFilter != AccessFlags.NO_FLAG) {
 					methods = methods.stream()
-						.filter(m -> { int code = AccessFlags.getMethodAccessCode(m);  return code > 0 && (code & accessFlagsFilter.getValue()) == 0x0; })  // if predicate is true, keep in list
+						.filter(m -> { int code = AccessFlags.getMethodAccessCode(m);  return code > 0 && (code & Config.accessFlagsFilter.getValue()) == 0x0; })  // if predicate is true, keep in list
 						.collect(Collectors.toCollection(ArrayList::new));
 				}
 
 				List<MethodNode> methodNodes = methods.stream()
 					 .filter(m -> !(m.isBridge() || m.isMethodSynthetic()))  // normalize java|dex bytecode by skipping compiler-generated methods
-					 .map(m -> mnComp.comp(m, pruneSubMethod))
+					 .map(m -> mnComp.comp(m, true /* TODO to be changed */))
 					 .sorted(HashUtils.comp)  // sort but do not filter dups
 					 .collect(Collectors.toList());
 
@@ -159,7 +160,7 @@ public class HashTree implements Serializable {
 				methodHashCount += methodNodes.size();
 				classHashCount++;
 
-				ClassNode clazzNode = cnComp.comp(methodNodes, clazz, pruneMethods);
+				ClassNode clazzNode = cnComp.comp(methodNodes, clazz, Config.pruneMethods);
 
 				// keep track on classes per package
 				String pckgName = PackageUtils.getPackageName(clazz);
@@ -172,7 +173,7 @@ public class HashTree implements Serializable {
 
 
 		List<PackageNode> packageNodes = packageMap.keySet().stream()
-			.map(p -> pnComp.comp(packageMap.get(p), p, cha, pruneClasses))
+			.map(p -> pnComp.comp(packageMap.get(p), p, cha, Config.pruneClasses))
 			.sorted(HashUtils.comp)
 			.collect(Collectors.toList());
 

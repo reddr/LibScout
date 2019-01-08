@@ -16,12 +16,8 @@ public class DefaultPackageNodeComp implements IPackageNodeComp {
     @Override
     public PackageNode comp(Collection<? extends Node> classNodes, String packageName, IClassHierarchy cha, boolean prune) {
 
-        // TODO verboseness (store pckgname)
-        boolean verbose = false;
-        //(verbose? packageName : "")
-
         // default behaviour, just create hash from child nodes
-        PackageNode pn = new PackageNode(HashTree.compNode(classNodes, false).hash, "");
+        PackageNode pn = new PackageNode(HashTree.compNode(classNodes, false).hash, (HashTree.Config.keepPackageNames? packageName : ""));
         if (!prune) pn.childs = new ArrayList<>(classNodes);
 
         return pn;

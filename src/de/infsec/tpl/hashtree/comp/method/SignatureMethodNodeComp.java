@@ -22,10 +22,8 @@ public class SignatureMethodNodeComp implements IMethodNodeComp {
         if (desc == null)
             desc = getFuzzyDescriptor(m);
 
-        boolean verbose = false;
-        String sig = verbose? m.getSignature() : "";
-
-        return new MethodNode(HashTree.getHasher().putBytes(desc.getBytes()).hash().asBytes(), "");
+        String signature = HashTree.Config.keepMethodSignatures? m.getSignature() : "";
+        return new MethodNode(HashTree.getHasher().putBytes(desc.getBytes()).hash().asBytes(), signature);
     }
 
 

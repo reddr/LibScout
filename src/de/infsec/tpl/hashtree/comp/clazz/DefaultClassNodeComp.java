@@ -16,13 +16,10 @@ public class DefaultClassNodeComp implements IClassNodeComp {
 
     @Override
     public ClassNode comp(Collection<? extends Node> methodNodes, IClass clazz, boolean prune) {
-
-        // TODO verboseness (store classnames)
-        boolean verbose = false;
-        //String className = verbose ? WalaUtils.simpleName(clazz) : "";
+        String className = HashTree.Config.keepClassNames ? WalaUtils.simpleName(clazz) : "";
 
         // default behaviour, just create hash from child nodes
-        ClassNode cn = new ClassNode(HashTree.compNode(methodNodes, true).hash, "");
+        ClassNode cn = new ClassNode(HashTree.compNode(methodNodes, true).hash, className);
         if (!prune) cn.childs = new ArrayList<>(methodNodes);
 
         return cn;
