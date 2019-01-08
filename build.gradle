@@ -28,7 +28,9 @@ dependencies {
     provided 'org.slf4j:slf4j-api:1.7.7'
     provided 'net.consensys.cava:cava-toml:0.5.0'
 
-    compileOnly 'com.google.guava:guava:26.0-jre'
+    provided 'com.google.guava:guava:27.0.1-jre'
+//    provided 'org.msgpack:msgpack-core:0.8.16'
+// provided 'org.msgpack:jackson-dataformat-msgpack:0.8.16'
 
     // local deps
     provided files('lib/wala.jar')         // pre-compiled custom WALA framework

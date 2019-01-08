@@ -52,10 +52,10 @@ import de.infsec.tpl.utils.WalaUtils;
  * @author ederr
  *
  */
-public class HashTree implements Serializable {
+public class HashTreeOLD implements Serializable {
 	private static final long serialVersionUID = 8890771073564530924L;
 
-	private static final Logger logger = LoggerFactory.getLogger(de.infsec.tpl.hash.HashTree.class);
+	private static final Logger logger = LoggerFactory.getLogger(HashTreeOLD.class);
 	
 	private Config config = new Config();
 	
@@ -67,7 +67,7 @@ public class HashTree implements Serializable {
 	}
 
 	/**
-	 * Build config for HashTree
+	 * Build config for HashTreeOLD
 	 */
 	public class Config implements Serializable {
 		private static final long serialVersionUID = -8693957635226365553L;
@@ -343,11 +343,11 @@ public class HashTree implements Serializable {
 	};
 
 	
-	public HashTree() {
+	public HashTreeOLD() {
 		this.config = new Config();
 	}
 		
-	public HashTree(boolean filterDups, boolean filterInnerClasses, HashAlgorithm algorithm) throws NoSuchAlgorithmException {
+	public HashTreeOLD(boolean filterDups, boolean filterInnerClasses, HashAlgorithm algorithm) throws NoSuchAlgorithmException {
 		this.config = new Config(filterDups, filterInnerClasses, algorithm);
 	}
 
@@ -476,16 +476,16 @@ public class HashTree implements Serializable {
 		logger.info(config.toString());
 	}
 	
-	public boolean matchesConfig(HashTree hTree) {
+	public boolean matchesConfig(HashTreeOLD hTree) {
 		return this.config.equals(hTree.getConfig());
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof HashTree))
+		if (!(obj instanceof HashTreeOLD))
 			return false;
 		
-		HashTree ht = (HashTree) obj;
+		HashTreeOLD ht = (HashTreeOLD) obj;
 		if (!ht.config.equals(this.config))
 			return false;
 		
@@ -494,7 +494,7 @@ public class HashTree implements Serializable {
 
 	
 	/**
-	 * Generates a HashTree for every class loaded via application classLoader
+	 * Generates a HashTreeOLD for every class loaded via application classLoader
 	 * @throws NoSuchAlgorithmException
 	 */
 	public void generate(IClassHierarchy cha) throws NoSuchAlgorithmException {
@@ -815,15 +815,15 @@ public class HashTree implements Serializable {
 	}
 	
 	
-	public static HashTree getTreeByConfig(Collection<HashTree> treeList, Config config) {
-		for (HashTree lht: treeList)
+	public static HashTreeOLD getTreeByConfig(Collection<HashTreeOLD> treeList, Config config) {
+		for (HashTreeOLD lht: treeList)
 			if (lht.getConfig().equals(config))
 				return lht;
 		return null;
 	}
 
-	public static HashTree getTreeByConfig(Collection<HashTree> treeList, boolean filterDups, int accessFlagFilter, boolean filterInnerClasses) {
-		for (HashTree lht: treeList) {
+	public static HashTreeOLD getTreeByConfig(Collection<HashTreeOLD> treeList, boolean filterDups, int accessFlagFilter, boolean filterInnerClasses) {
+		for (HashTreeOLD lht: treeList) {
 			Config cfg = lht.getConfig();
 			if (cfg.filterDups == filterDups && cfg.accessFlagsFilter == accessFlagFilter && cfg.filterInnerClasses == filterInnerClasses)
 				return lht;

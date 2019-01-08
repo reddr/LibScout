@@ -27,12 +27,12 @@ import de.infsec.tpl.stats.Exportable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.infsec.tpl.hash.HashTree;
-import de.infsec.tpl.hash.HashTree.ClassNode;
-import de.infsec.tpl.hash.HashTree.Config;
-import de.infsec.tpl.hash.HashTree.MethodNode;
-import de.infsec.tpl.hash.HashTree.Node;
-import de.infsec.tpl.hash.HashTree.PackageNode;
+import de.infsec.tpl.hash.HashTreeOLD;
+import de.infsec.tpl.hash.HashTreeOLD.ClassNode;
+import de.infsec.tpl.hash.HashTreeOLD.Config;
+import de.infsec.tpl.hash.HashTreeOLD.MethodNode;
+import de.infsec.tpl.hash.HashTreeOLD.Node;
+import de.infsec.tpl.hash.HashTreeOLD.PackageNode;
 import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.utils.Utils;
 import de.infsec.tpl.utils.Utils.IPredicate;
@@ -63,11 +63,11 @@ public class ProfileMatch implements Exportable, Serializable {
 	public static final float MATCH_HTREE_NONE = 0f;
 	public static final float MATCH_HTREE_NO_ROOT_PCKG = -1f;
 	
-	// stores the results for each HashTree comparison
+	// stores the results for each HashTreeOLD comparison
 	private List<HTreeMatch> results;
 	
 	public class HTreeMatch {
-		public Config config;  // HashTree identifier - config        
+		public Config config;  // HashTreeOLD identifier - config
 
 		public List<PackageNode> matchingNodes;   // list of package nodes that matched (partially)
 		public Float simScore = MATCH_HTREE_NONE;  // between 0f..1f for partial match 
@@ -281,7 +281,7 @@ public class ProfileMatch implements Exportable, Serializable {
 	
 
 	/**
-	 * Does a certain HashTree config match (this requires a full match!)
+	 * Does a certain HashTreeOLD config match (this requires a full match!)
 	 * @param filterDups
 	 * @param filterInnerClasses
 	 * @param accessFlagFilter
@@ -307,7 +307,7 @@ public class ProfileMatch implements Exportable, Serializable {
 	public boolean isLibObfuscated() {
 		for (HTreeMatch htm: results) {
 			if (htm.isFullMatch()) {  // take first exact match 
-				HashTree libHTree = HashTree.getTreeByConfig(lib.hashTrees, htm.config);
+				HashTreeOLD libHTree = HashTreeOLD.getTreeByConfig(lib.hashTreeOLDS, htm.config);
 				
 				// cast list objects from Node to PackageNode
 				ArrayList<PackageNode> libNodes = new ArrayList<PackageNode>();

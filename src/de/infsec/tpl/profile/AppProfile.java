@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 
-import de.infsec.tpl.hash.HashTree;
+import de.infsec.tpl.hash.HashTreeOLD;
 import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.utils.Utils;
 
@@ -32,8 +32,8 @@ public class AppProfile extends Profile implements Serializable {
 	private static final long serialVersionUID = -1667876249936640164L;
 	private static final Logger logger = LoggerFactory.getLogger(de.infsec.tpl.profile.AppProfile.class);
 
-	public AppProfile(PackageTree pTree, List<HashTree> hashTrees) {
-		super(pTree, hashTrees);
+	public AppProfile(PackageTree pTree, List<HashTreeOLD> hashTreeOLDS) {
+		super(pTree, hashTreeOLDS);
 	}
 
 	public static AppProfile create(IClassHierarchy cha) {
@@ -46,10 +46,10 @@ public class AppProfile extends Profile implements Serializable {
 		
 		// generate app hash trees
 		startTime = System.currentTimeMillis();
-		List<HashTree> hashTrees = Profile.generateHashTrees(cha);
+		List<HashTreeOLD> hashTreeOLDS = Profile.generateHashTrees(cha);
 		logger.info("- generated app hash trees (in " + Utils.millisecondsToFormattedTime(System.currentTimeMillis() - startTime) + ")");
 		logger.info("");
 		
-		return new AppProfile(ptree, hashTrees);
+		return new AppProfile(ptree, hashTreeOLDS);
 	}
 }

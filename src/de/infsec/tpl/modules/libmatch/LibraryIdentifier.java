@@ -29,8 +29,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import de.infsec.tpl.TplCLI;
 import de.infsec.tpl.config.LibScoutConfig;
+import de.infsec.tpl.hash.HashTreeOLD;
 import de.infsec.tpl.utils.WalaUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,9 +44,8 @@ import com.ibm.wala.ipa.cha.IClassHierarchy;
 
 import de.infsec.tpl.manifest.ProcessManifest;
 import de.infsec.tpl.hash.Hash;
-import de.infsec.tpl.hash.HashTree;
-import de.infsec.tpl.hash.HashTree.Node;
-import de.infsec.tpl.hash.HashTree.PackageNode;
+import de.infsec.tpl.hash.HashTreeOLD.Node;
+import de.infsec.tpl.hash.HashTreeOLD.PackageNode;
 import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.pkg.PackageUtils;
 import de.infsec.tpl.pkg.PackageUtils.RELATIONSHIP;
@@ -146,7 +145,7 @@ public class LibraryIdentifier {
 		// generate app package tree and hash trees
 		AppProfile appProfile = AppProfile.create(cha);
 		stats.pTree = appProfile.packageTree;
-		stats.appHashTrees = appProfile.hashTrees;
+		stats.appHashTreeOLDS = appProfile.hashTreeOLDS;
 
 		// fast scan (heuristic) - check if lib root package is in app
 		logger.info("= Scan for library root packages (heuristic) =");
@@ -229,7 +228,7 @@ public class LibraryIdentifier {
 	
 
 	/**
-	 * Compute similarity scores for all provided {@link HashTree}. 
+	 * Compute similarity scores for all provided {@link HashTreeOLD}.
 	 * @param cha the {@link IClassHierarchy}
 	 * @param appProfile  the {@link AppProfile}
 	 * @param libProfile  the {@link LibProfile}
@@ -247,8 +246,8 @@ public class LibraryIdentifier {
 		logger.trace(Utils.INDENT + "Library root package " + rootPackage + " is " + (pMatch.libRootPackagePresent? "" : "not ") + " present in app!");
 		 
 		// calculate scores for each hash tree
-		for (HashTree appHashTree: appProfile.hashTrees) {
-			partialMatch(cha, pMatch, appHashTree, appProfile.packageTree, libProfile, lvl);
+		for (HashTreeOLD appHashTreeOLD : appProfile.hashTreeOLDS) {
+			partialMatch(cha, pMatch, appHashTreeOLD, appProfile.packageTree, libProfile, lvl);
 		}	
 
 		if (logger.isTraceEnabled())
@@ -266,20 +265,20 @@ public class LibraryIdentifier {
 	 * 
 	 * @param cha  the {@IClassHierarchy}
 	 * @param pMatch   a {@ProfileMatch} in which the result is stored as side-effect
-	 * @param appHashTree  the generated {@link HashTree}
+	 * @param appHashTreeOLD  the generated {@link HashTreeOLD}
 	 * @param appTree  the application {@link PackageTree}
 	 * @param lib  the {@link LibProfile} to match against
 	 * @param lvl  the level of matching to be applied (currently either Package or Class level)
 	 * @throws NoSuchAlgorithmException
 	 */
-	public void partialMatch(final IClassHierarchy cha, final ProfileMatch pMatch, final HashTree appHashTree, final PackageTree appTree, final LibProfile lib, final MatchLevel lvl) throws NoSuchAlgorithmException {
+	public void partialMatch(final IClassHierarchy cha, final ProfileMatch pMatch, final HashTreeOLD appHashTreeOLD, final PackageTree appTree, final LibProfile lib, final MatchLevel lvl) throws NoSuchAlgorithmException {
 		// retrieve hash tree with same config from profile
-		HashTree libHashTree = HashTree.getTreeByConfig(pMatch.lib.hashTrees, appHashTree.getConfig());
-		HTreeMatch match = pMatch.createResult(appHashTree.getConfig());
-		logger.debug(Utils.INDENT + "- partial match for config: " + appHashTree.getConfig());
+		HashTreeOLD libHashTreeOLD = HashTreeOLD.getTreeByConfig(pMatch.lib.hashTreeOLDS, appHashTreeOLD.getConfig());
+		HTreeMatch match = pMatch.createResult(appHashTreeOLD.getConfig());
+		logger.debug(Utils.INDENT + "- partial match for config: " + appHashTreeOLD.getConfig());
 
-		if (libHashTree == null) {
-			logger.error("Could not find lib hash tree for config: " + appHashTree.getConfig());
+		if (libHashTreeOLD == null) {
+			logger.error("Could not find lib hash tree for config: " + appHashTreeOLD.getConfig());
 			return;
 		}
 
@@ -288,15 +287,15 @@ public class LibraryIdentifier {
 		 *  step 0. shortcut - check if library fully matches by comparing the package hashes
 		 */
 		logger.debug(Utils.INDENT2 + "# step 0: check if lib fully matches");		
-		if (appHashTree.getPackageNodes().containsAll(libHashTree.getPackageNodes())) {
-			logger.debug(Utils.indent(3) + "-> All package hashes (" + libHashTree.getPackageNodes().size() + ") of library match!");
+		if (appHashTreeOLD.getPackageNodes().containsAll(libHashTreeOLD.getPackageNodes())) {
+			logger.debug(Utils.indent(3) + "-> All package hashes (" + libHashTreeOLD.getPackageNodes().size() + ") of library match!");
 
 			// update results
 			match.simScore = ProfileMatch.MATCH_HTREE_FULL;
 			
-			List<Node> matchingNodes = new ArrayList<Node>(appHashTree.getPackageNodes());
-			matchingNodes.retainAll(libHashTree.getPackageNodes());
-			match.matchingNodes = HashTree.toPackageNode(matchingNodes);
+			List<Node> matchingNodes = new ArrayList<Node>(appHashTreeOLD.getPackageNodes());
+			matchingNodes.retainAll(libHashTreeOLD.getPackageNodes());
+			match.matchingNodes = HashTreeOLD.toPackageNode(matchingNodes);
 			
 			pMatch.addResult(match);
 			return;
@@ -332,10 +331,10 @@ public class LibraryIdentifier {
 		logger.debug(Utils.INDENT2 + "# step 1: compute candidate list");
 		long time = System.currentTimeMillis();
 		HashMap<Node, List<Pair<Node, Float>>> candidateList = new HashMap<Node, List<Pair<Node, Float>>>();
-		for (Node lp: libHashTree.getPackageNodes()) {
+		for (Node lp: libHashTreeOLD.getPackageNodes()) {
 			ArrayList<Pair<Node, Float>> clist = new ArrayList<Pair<Node, Float>>();  // candidate list for lp
 
-			for (Node ap: appHashTree.getPackageNodes()) {
+			for (Node ap: appHashTreeOLD.getPackageNodes()) {
 				// filter application packages that start with declared manifest app package name
 				// TODO: unfortunately most app packages do only partially match the manifest package name. This means to match more app packages
 				//       we would have to test partially (but: this could lead to false positives if we have libs from the same developer)
@@ -378,7 +377,7 @@ public class LibraryIdentifier {
 		
 		// retrieve potential app root packages of depth libPDepth
 		Set<String> appRootPackages = new TreeSet<String>();
-		for (Node ap: appHashTree.getPackageNodes()) {
+		for (Node ap: appHashTreeOLD.getPackageNodes()) {
 			PackageNode apn = (PackageNode) ap;
 			String pRootPackage = PackageUtils.getSubPackageOfDepth(apn.packageName, libPDepth);
 			if (pRootPackage != null)
@@ -426,7 +425,7 @@ public class LibraryIdentifier {
 			pMatch.addResult(match);
 			
 		} else {
-			logger.debug(Utils.indent(3) + scores.size() + " results for partial matching of lib " + pMatch.lib.getLibIdentifier() + "  (" + appHashTree.getConfig() + ")");
+			logger.debug(Utils.indent(3) + scores.size() + " results for partial matching of lib " + pMatch.lib.getLibIdentifier() + "  (" + appHashTreeOLD.getConfig() + ")");
 
 			// get best score over partitions
 			String rootPckg = "";
@@ -450,7 +449,7 @@ public class LibraryIdentifier {
 					matchingNodes.add(p.first());
 			}
 	
-			match.matchingNodes = HashTree.toPackageNode(matchingNodes);
+			match.matchingNodes = HashTreeOLD.toPackageNode(matchingNodes);
 			pMatch.addResult(match);
 		}
 	}

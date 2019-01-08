@@ -29,10 +29,10 @@ import java.util.Map;
 import java.util.Set;
 
 import de.infsec.tpl.config.LibScoutConfig;
+import de.infsec.tpl.hash.HashTreeOLD;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.infsec.tpl.hash.HashTree;
 import de.infsec.tpl.profile.LibProfile;
 import de.infsec.tpl.profile.SerializableProfileMatch;
 import de.infsec.tpl.utils.Pair;
@@ -233,7 +233,7 @@ public class SQLStats {
 			ps_library.setInt(6, lib.packageTree.getNumberOfNonEmptyPackages());
 			ps_library.setInt(7, lib.packageTree.getNumberOfAppClasses());
 			
-			for (HashTree htree: lib.hashTrees)
+			for (HashTreeOLD htree: lib.hashTreeOLDS)
 				if (htree.hasDefaultConfig())
 					ps_library.setInt(8, htree.getNumberOfMethods());
 			

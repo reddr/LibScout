@@ -25,11 +25,11 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import de.infsec.tpl.config.LibScoutConfig;
+import de.infsec.tpl.hash.HashTreeOLD;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.infsec.tpl.hash.AccessFlags;
-import de.infsec.tpl.hash.HashTree;
 import de.infsec.tpl.profile.LibProfile;
 import de.infsec.tpl.utils.MathUtils;
 import de.infsec.tpl.utils.Utils;
@@ -156,10 +156,10 @@ public class LibraryApiAnalysis {
 		
 		for (LibProfile lp: profiles) {
 			// version -> # of pub APIs
-			aStats.versions2pubApiCount.put(lp.description.version, lp.hashTrees.iterator().next().getAllMethodSignatures().size());
+			aStats.versions2pubApiCount.put(lp.description.version, lp.hashTreeOLDS.iterator().next().getAllMethodSignatures().size());
 			
 			// for each public API
-			for (String sig: lp.hashTrees.iterator().next().getAllMethodSignatures()) {
+			for (String sig: lp.hashTreeOLDS.iterator().next().getAllMethodSignatures()) {
 				aStats.updateApi(sig, lp.description.version);
 			}
 		}
@@ -181,12 +181,12 @@ public class LibraryApiAnalysis {
 //TODO: do advanced check whether and how changed api could still be stable (classhierarchy check for arg|ret types (super types?)
 //TODO: check candidates also by fixed selector but different name?
 
-				List<String> apiList = sucLibProfile.hashTrees.iterator().next().getAllMethodSignatures();
+				List<String> apiList = sucLibProfile.hashTreeOLDS.iterator().next().getAllMethodSignatures();
 				String methodName = api.substring(0, api.indexOf("("));
 
 				for (String alternativeApi: apiList) {
 					if (alternativeApi.startsWith(methodName) &&
-						!lastLibProfile.hashTrees.iterator().next().getAllMethodSignatures().contains(alternativeApi)) {  // print only if it's an API that was not in the former lib version
+						!lastLibProfile.hashTreeOLDS.iterator().next().getAllMethodSignatures().contains(alternativeApi)) {  // print only if it's an API that was not in the former lib version
 
 						aStats.updateCandidateApi(api, alternativeApi);
 					}
@@ -261,7 +261,7 @@ public class LibraryApiAnalysis {
 		
 		for (int i = 0; i < profiles.size(); i++) {
 			LibProfile lp1 = profiles.get(i);
-			HashTree pubTree1 = HashTree.getTreeByConfig(lp1.hashTrees, false, AccessFlags.getPublicOnlyFilter(), false);
+			HashTreeOLD pubTree1 = HashTreeOLD.getTreeByConfig(lp1.hashTreeOLDS, false, AccessFlags.getPublicOnlyFilter(), false);
 			List<String> pubAPI1all = pubTree1.getAllMethodSignatures();
 
 			// filter pub methods of anonymous inner classes
@@ -275,7 +275,7 @@ public class LibraryApiAnalysis {
 				logger.info(String.format("%s, %7s, %12s, %5d", lp1.description.name, lp1.description.version, lp1.description.getFormattedDate(), pubAPI1.size()));
 			} else {
 				LibProfile lp0 = profiles.get(i-1);
-				HashTree pubTree0 = HashTree.getTreeByConfig(lp0.hashTrees, false, AccessFlags.getPublicOnlyFilter(), false);
+				HashTreeOLD pubTree0 = HashTreeOLD.getTreeByConfig(lp0.hashTreeOLDS, false, AccessFlags.getPublicOnlyFilter(), false);
 				List<String> pubAPI0all = pubTree0.getAllMethodSignatures();
 
 				List<String> pubAPI0 = new ArrayList<String>();

@@ -23,6 +23,8 @@ import java.util.jar.JarFile;
 import javax.xml.parsers.ParserConfigurationException;
 
 import de.infsec.tpl.config.LibScoutConfig;
+import de.infsec.tpl.hash.HashTreeOLD;
+import de.infsec.tpl.hashtree.HashTree;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -34,7 +36,6 @@ import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.types.ClassLoaderReference;
 
-import de.infsec.tpl.hash.HashTree;
 import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.profile.LibProfile;
 import de.infsec.tpl.profile.LibraryDescription;
@@ -103,7 +104,12 @@ public class LibraryProfiler {
 			logger.warn(Utils.INDENT + "Library contains multiple root packages");
 		}
 
-		List<HashTree> hTrees = Profile.generateHashTrees(cha);
+		List<HashTreeOLD> hTrees = Profile.generateHashTrees(cha);
+
+		// TODO DEBUG
+		HashTree ht = Profile.generateHashTree(cha);
+		//HashTree.serialize(null,ht );
+// TODO DEBUG
 
 		// if hash tree is empty do not dump a profile
 		if (hTrees.isEmpty() || hTrees.get(0).getNumberOfClasses() == 0) {

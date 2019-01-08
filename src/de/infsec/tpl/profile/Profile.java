@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.Map;
 
 import de.infsec.tpl.config.LibScoutConfig;
+import de.infsec.tpl.hash.HashTreeOLD;
+import de.infsec.tpl.hashtree.HashTree;
 import de.infsec.tpl.modules.libprofiler.LibraryProfiler;
 import org.apache.commons.cli.ParseException;
 import org.slf4j.Logger;
@@ -30,8 +32,7 @@ import org.slf4j.LoggerFactory;
 
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 
-import de.infsec.tpl.hash.HashTree;
-import de.infsec.tpl.hash.HashTree.HashAlgorithm;
+import de.infsec.tpl.hash.HashTreeOLD.HashAlgorithm;
 import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.utils.Utils;
 
@@ -44,11 +45,11 @@ public abstract class Profile implements Serializable {
 	// Package structure of the library|app
 	public PackageTree packageTree;
 	
-	public List<HashTree> hashTrees;
+	public List<HashTreeOLD> hashTreeOLDS;
 
-	protected Profile(PackageTree pTree, List<HashTree> hashTrees) {
+	protected Profile(PackageTree pTree, List<HashTreeOLD> hashTreeOLDS) {
 		this.packageTree = pTree;
-		this.hashTrees = hashTrees;
+		this.hashTreeOLDS = hashTreeOLDS;
 	}
 	
 	public static PackageTree generatePackageTree(IClassHierarchy cha) {
@@ -71,31 +72,39 @@ public abstract class Profile implements Serializable {
 	/**
 	 * Generate hash trees for a certain {@link PackageTree} for all configurations
 	 * @param cha  the {@link IClassHierarchy} instance
-	 * @return  a List of {@link HashTree} for every configuration
+	 * @return  a List of {@link HashTreeOLD} for every configuration
 	 */
 	
 // TODO: option to set different modes (normal, trace+pubonly, normal+pubonly)	
-	public static List<HashTree> generateHashTrees(final IClassHierarchy cha) {
+	public static List<HashTreeOLD> generateHashTrees(final IClassHierarchy cha) {
 		final HashAlgorithm algorithm = HashAlgorithm.MD5;
 		
-		List<HashTree> hTrees = new ArrayList<HashTree>();
+		List<HashTreeOLD> hTrees = new ArrayList<HashTreeOLD>();
 		try {
 			boolean filterDups = false;
 			boolean filterInnerClasses = false;
 			
-			HashTree hashTree = new HashTree(filterDups, filterInnerClasses, algorithm);
+			HashTreeOLD hashTreeOLD = new HashTreeOLD(filterDups, filterInnerClasses, algorithm);
 
 			if (LibScoutConfig.genVerboseProfiles) {
-				hashTree.setBuildVerboseness(HashTree.HTREE_BUILD_VERBOSENESS.TRACE);
-				hashTree.setPublicOnlyFilter();
+				hashTreeOLD.setBuildVerboseness(HashTreeOLD.HTREE_BUILD_VERBOSENESS.TRACE);
+				hashTreeOLD.setPublicOnlyFilter();
 			}
-			hashTree.generate(cha);
-			hTrees.add(hashTree);
+			hashTreeOLD.generate(cha);
+			hTrees.add(hashTreeOLD);
 		} catch (NoSuchAlgorithmException e) {
 			logger.error(Utils.stacktrace2Str(e));
 		}	
 		
 		return hTrees;
+	}
+
+
+	// TODO TODO NEW
+	public static HashTree generateHashTree(final IClassHierarchy cha) {
+		HashTree ht = new HashTree();
+		ht.generate(cha);
+		return ht;
 	}
 
 

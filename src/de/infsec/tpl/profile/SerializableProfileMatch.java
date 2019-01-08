@@ -20,8 +20,8 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.io.Serializable;
 
-import de.infsec.tpl.hash.HashTree.Config;
-import de.infsec.tpl.hash.HashTree.HashAlgorithm;
+import de.infsec.tpl.hash.HashTreeOLD.Config;
+import de.infsec.tpl.hash.HashTreeOLD.HashAlgorithm;
 import de.infsec.tpl.utils.Pair;
 
 /* DEPRECATED - DO NOT USE ANY LONGER */

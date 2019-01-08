@@ -1,0 +1,56 @@
+package de.infsec.tpl.hashtree.node;
+
+import com.google.common.hash.HashCode;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
+public class PackageNode extends Node {
+    public String packageName;
+
+    public PackageNode(HashCode hash, String packageName) {
+        super(hash);
+        this.packageName = packageName;
+    }
+
+  /*  @Override
+    public void debug() {
+        logger.info("Debug PackageNode: " + packageName + " (childs: " + childs.size() + ",  " + Hash.hash2Str(hash) + ")");
+        for (Node n: this.childs) {
+            HashTreeOLD.ClassNode cn = (HashTreeOLD.ClassNode) n;
+            logger.info(Utils.INDENT + "- " + cn.clazzName + "  ::  " + cn.numberOfChilds() + "  ::  " + Hash.hash2Str(cn.hash));
+//				cn.debug();
+        }
+    }
+*/
+
+    public List<ClassNode> getClassNodes() {
+        return this.childs.stream()
+            .map(mn -> (ClassNode) mn)
+            .collect(Collectors.toList());
+    }
+
+    // TODO
+    public List<MethodNode> getMethodNodes() {
+        return this.childs.stream()
+            .map(cn -> cn.childs)
+            .flatMap(Collection::stream)
+            .map(mn -> ((MethodNode) mn))
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PackageNode))
+            return false;
+
+        return ((Node) obj).hash.equals(this.hash);
+    }
+
+    @Override
+    public String toString() {
+        return "PNode(" + packageName + ")";
+    }
+}
