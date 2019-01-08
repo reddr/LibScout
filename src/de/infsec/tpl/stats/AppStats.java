@@ -17,7 +17,7 @@ package de.infsec.tpl.stats;
 import java.io.File;
 import java.util.*;
 
-import de.infsec.tpl.hash.HashTreeOLD;
+import de.infsec.tpl.hashtree.HashTree;
 import de.infsec.tpl.manifest.ProcessManifest;
 import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.profile.LibProfile;
@@ -30,7 +30,7 @@ public class AppStats implements Exportable {
 	public boolean isMultiDex;
 	
 	public PackageTree pTree;
-	public List<HashTreeOLD> appHashTreeOLDS;
+	public List<HashTree> appHashTrees;
 		
 	public List<LibProfile> profiles;
 	public List<ProfileMatch> pMatches;

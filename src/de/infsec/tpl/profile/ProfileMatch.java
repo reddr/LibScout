@@ -23,20 +23,14 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import de.infsec.tpl.config.LibScoutConfig;
+import de.infsec.tpl.hashtree.HashTree;
+import de.infsec.tpl.hashtree.node.PackageNode;
 import de.infsec.tpl.stats.Exportable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.infsec.tpl.hash.HashTreeOLD;
-import de.infsec.tpl.hash.HashTreeOLD.ClassNode;
-import de.infsec.tpl.hash.HashTreeOLD.Config;
-import de.infsec.tpl.hash.HashTreeOLD.MethodNode;
-import de.infsec.tpl.hash.HashTreeOLD.Node;
-import de.infsec.tpl.hash.HashTreeOLD.PackageNode;
 import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.utils.Utils;
-import de.infsec.tpl.utils.Utils.IPredicate;
-
 
 
 public class ProfileMatch implements Exportable, Serializable {
@@ -48,7 +42,7 @@ public class ProfileMatch implements Exportable, Serializable {
 	public static final float MIN_CLAZZ_SCORE = .33f;
 	public static final float MIN_CLAZZ_APP_SCORE = .2f;
 
-	public static enum MatchLevel {PACKAGE, CLASS, METHOD};
+	public enum MatchLevel {PACKAGE, CLASS, METHOD};
 
 	public LibProfile lib;
 
@@ -67,7 +61,7 @@ public class ProfileMatch implements Exportable, Serializable {
 	private List<HTreeMatch> results;
 	
 	public class HTreeMatch {
-		public Config config;  // HashTreeOLD identifier - config
+		public HashTree.Config config;  // identifier - config
 
 		public List<PackageNode> matchingNodes;   // list of package nodes that matched (partially)
 		public Float simScore = MATCH_HTREE_NONE;  // between 0f..1f for partial match 
@@ -76,7 +70,7 @@ public class ProfileMatch implements Exportable, Serializable {
 		public String rootPackage;
  
 		
-		public HTreeMatch(Config config) {
+		public HTreeMatch(HashTree.Config config) {
 			this.config = config;
 		}
 		
@@ -140,7 +134,7 @@ public class ProfileMatch implements Exportable, Serializable {
 		Collections.sort(results, SIM_SCORE_COMPARATOR);  // ensure that results are sorted
 	}
 	
-	public HTreeMatch getResultByConfig(Config cfg) {
+	public HTreeMatch getResultByConfig(HashTree.Config cfg) {
 		for (HTreeMatch htm: results)
 			if (htm.config.equals(cfg))
 				return htm;
@@ -163,7 +157,7 @@ public class ProfileMatch implements Exportable, Serializable {
 	}
 	
 	
-	public HTreeMatch createResult(Config config) {
+	public HTreeMatch createResult(HashTree.Config config) {
 		return new HTreeMatch(config);
 	}
 	
@@ -234,8 +228,8 @@ public class ProfileMatch implements Exportable, Serializable {
 
 	
 
-	public List<Config> getMatchedConfigs() {
-		ArrayList<Config> result = new ArrayList<Config>();
+	public List<HashTree.Config> getMatchedConfigs() {
+		ArrayList<HashTree.Config> result = new ArrayList<>();
 		for (HTreeMatch htm: results) {
 			if (htm.isFullMatch())
 				result.add(htm.config);
@@ -244,8 +238,8 @@ public class ProfileMatch implements Exportable, Serializable {
 		return result;
 	}
 
-	public List<Config> getPartiallyMatchedConfigs() {
-		ArrayList<Config> result = new ArrayList<Config>();
+	public List<HashTree.Config> getPartiallyMatchedConfigs() {
+		ArrayList<HashTree.Config> result = new ArrayList<>();
 		for (HTreeMatch htm: results) {
 			if (htm.isPartialMatch())
 				result.add(htm.config);
@@ -281,25 +275,6 @@ public class ProfileMatch implements Exportable, Serializable {
 	
 
 	/**
-	 * Does a certain HashTreeOLD config match (this requires a full match!)
-	 * @param filterDups
-	 * @param filterInnerClasses
-	 * @param accessFlagFilter
-	 * @return
-	 */
-	public boolean matchesConfig(final boolean filterDups, final boolean filterInnerClasses, final int accessFlagFilter) {
-		for (HTreeMatch htm: results) {
-			if (htm.isFullMatch()) {
-				if (htm.config.filterDups == filterDups && htm.config.filterInnerClasses == filterInnerClasses && htm.config.accessFlagsFilter == accessFlagFilter)
-					return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	
-	/**
 	 * Compares the matched app package node identifier with the library package node identifier
 	 * If both (sorted) lists match, the library is not (re-)obfuscated
 	 * @return  false, if lib only matches partially or all package names match, true otherwise
@@ -307,14 +282,9 @@ public class ProfileMatch implements Exportable, Serializable {
 	public boolean isLibObfuscated() {
 		for (HTreeMatch htm: results) {
 			if (htm.isFullMatch()) {  // take first exact match 
-				HashTreeOLD libHTree = HashTreeOLD.getTreeByConfig(lib.hashTreeOLDS, htm.config);
-				
-				// cast list objects from Node to PackageNode
-				ArrayList<PackageNode> libNodes = new ArrayList<PackageNode>();
-				for (Node n: libHTree.getPackageNodes())
-					libNodes.add((PackageNode) n);
-				
-				return !comparePackageNodes(libNodes, htm.matchingNodes);
+				HashTree libHTree = lib.hashTrees.get(0);  // TODO multiple trees?
+
+				return !comparePackageNodes(new ArrayList<>(libHTree.getPackageNodes()), htm.matchingNodes);
 			}
 		}
 		
@@ -322,7 +292,7 @@ public class ProfileMatch implements Exportable, Serializable {
 	}
 	
 
-	public static boolean comparePackageNodes(List<PackageNode> c1, List<PackageNode> c2) {
+	static boolean comparePackageNodes(List<PackageNode> c1, List<PackageNode> c2) {
 		Comparator<PackageNode> pckgComp = new Comparator<PackageNode>() {
 
 			@Override
@@ -331,9 +301,9 @@ public class ProfileMatch implements Exportable, Serializable {
 			}
 		};
 
-		Collections.sort(c1, pckgComp);
-		Collections.sort(c2, pckgComp);
-	
+		c1.sort(pckgComp);
+		c2.sort(pckgComp);
+
 		int max = Math.min(c1.size(), c2.size());
 		for (int i = 0; i < max; i++) {
 			if (!c1.get(i).packageName.equals(c2.get(i).packageName))
@@ -344,27 +314,6 @@ public class ProfileMatch implements Exportable, Serializable {
 	}
 	
 
-	
-	/**
- 	 * Generates a {@link Node} filter
- 	 */
- 	public static final IPredicate<Node> getNodeFilter(final MatchLevel lvl) {
- 		return new IPredicate<Node>() {
- 			@Override
- 			public boolean apply(Node node) {
- 				switch (lvl) {
-					case CLASS:
-						return node instanceof ClassNode;
-					case METHOD:
-						return node instanceof MethodNode;
-					case PACKAGE:
-						return node instanceof PackageNode;
- 				}
- 				return false;
- 			}
- 		};
- 	}
- 
 	
 	private class SimScoreComparator implements Comparator<HTreeMatch> {
 		@Override

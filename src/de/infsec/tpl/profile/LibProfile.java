@@ -23,7 +23,7 @@ import java.util.Map;
 
 import com.github.zafarkhaja.semver.Version;
 
-import de.infsec.tpl.hash.HashTreeOLD;
+import de.infsec.tpl.hashtree.HashTree;
 import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.utils.Pair;
 import de.infsec.tpl.utils.VersionWrapper;
@@ -42,8 +42,8 @@ public class LibProfile extends Profile implements Serializable {
 	public LibraryDescription description;
 	private boolean isDeprecated = true;   // flag to indicate if this is the most current version of a library (according to our DB)
 	
-	public LibProfile(final LibraryDescription desc, final PackageTree packageTree, final List<HashTreeOLD> hashTreeOLDS) {
-		super(packageTree, hashTreeOLDS);
+	public LibProfile(final LibraryDescription desc, final PackageTree packageTree, final List<HashTree> hashTrees) {
+		super(packageTree, hashTrees);
 		this.description = desc;
 	}
 	

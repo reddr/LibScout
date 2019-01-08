@@ -39,26 +39,15 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
-
-// TODO prune function per node for verboseness?
-// TODO serializable via msgpack
-
-// single vs multi-version tree?
-// different nodes + multiAnnotation
-
 /*
- * abstract/interface HashTreeOLD
- *
  * props:
- *   - config: hashalgo, single/multi-version
+ *    single/multi-version
  *
  * common functionality::
  *   - stats
  *   - debug?
  *   - generate?? depends on data
- *   - export (what needs to be stored / serialized (e.g. layers)
- *
+  *
  * abstract/interface Node
  *   props::  single vs multi-version nodes
  *
@@ -66,33 +55,42 @@ import java.util.stream.Collectors;
 
 
 /**
- * TODO
- *
+ * A Merkle hash tree implementation used to efficiently
+ * identify code reuse in app through library code
  */
 public class HashTree implements Serializable {
 	private static final long serialVersionUID = 8890771073564531337L;
 
 	private static final Logger logger = LoggerFactory.getLogger(HashTree.class);
 
-	public static class Config {
+	private Config config = new Config();
+
+	public static class Config implements Serializable {
+		private static final long serialVersionUID = 1190771073564531337L;
+
 		public static HashFunction hf = Hashing.md5();
 		public static AccessFlags accessFlagsFilter = AccessFlags.NO_FLAG;
 
-		public static boolean pruneClasses = false;
-		public static boolean keepClassNames = false;
-
-		public static boolean keepMethodSignatures = false;
-		public static boolean pruneMethods = true;
-
+		// verboseness
 		public static boolean keepPackageNames = true;
+		public static boolean keepClassNames = false;
+		public static boolean keepMethodSignatures = false;
+
+		// node pruning
+		public static boolean pruneClasses = false;
+		public static boolean pruneMethods = true;
 	}
 
-	Map<Short,String> id2VersionStr;  // null for single version tree
+	//Map<Short,String> id2VersionStr;  // null for single version tree
+	//public void generateMultiVersionTree(IClassHierarchy cha, String version) {};
 
 	private Node rootNode;
 
 
-//TODO	public void generateMultiVersionTree(IClassHierarchy cha, String version) {};
+
+	public Config getConfig() {
+		return this.config;
+	}
 
 	public static Hasher getHasher() {
 		return Config.hf.newHasher();
@@ -138,9 +136,9 @@ public class HashTree implements Serializable {
 				Collection<IMethod> methods = clazz.getDeclaredMethods();
 
 				// filter methods by access flag
-				if (Config.accessFlagsFilter != AccessFlags.NO_FLAG) {
+				if (config.accessFlagsFilter != AccessFlags.NO_FLAG) {
 					methods = methods.stream()
-						.filter(m -> { int code = AccessFlags.getMethodAccessCode(m);  return code > 0 && (code & Config.accessFlagsFilter.getValue()) == 0x0; })  // if predicate is true, keep in list
+						.filter(m -> { int code = AccessFlags.getMethodAccessCode(m);  return code > 0 && (code & config.accessFlagsFilter.getValue()) == 0x0; })  // if predicate is true, keep in list
 						.collect(Collectors.toCollection(ArrayList::new));
 				}
 
@@ -200,44 +198,14 @@ public class HashTree implements Serializable {
 	}
 
 
-
-
-
-
-	///////////////////  TODO currently required  /////////////
-
 	public static List<PackageNode> toPackageNode(Collection<Node> col) {
 		return col.stream()
 			.filter(n -> n instanceof PackageNode)
 			.map(n -> (PackageNode) n).collect(Collectors.toList());
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	////////////////// TODO to be checked ////////////
-
-
-	
-	public Collection<Node> getPackageNodes() {
-		return this.getRootNode().childs;
+	public Collection<PackageNode> getPackageNodes() {
+		return this.getRootNode().childs.stream().map(pn -> (PackageNode) pn).collect(Collectors.toList());
 	}
 	
 	public int getNumberOfPackages() {
@@ -262,6 +230,4 @@ public class HashTree implements Serializable {
 			.flatMap(Collection::stream)
 			.mapToInt(cn -> cn.childs.size()).sum();
 	}
-
-
 }

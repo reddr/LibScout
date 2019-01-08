@@ -16,14 +16,11 @@ package de.infsec.tpl.profile;
 
 import java.io.File;
 import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import de.infsec.tpl.config.LibScoutConfig;
-import de.infsec.tpl.hash.HashTreeOLD;
 import de.infsec.tpl.hashtree.HashTree;
 import de.infsec.tpl.modules.libprofiler.LibraryProfiler;
 import org.apache.commons.cli.ParseException;
@@ -32,7 +29,6 @@ import org.slf4j.LoggerFactory;
 
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 
-import de.infsec.tpl.hash.HashTreeOLD.HashAlgorithm;
 import de.infsec.tpl.pkg.PackageTree;
 import de.infsec.tpl.utils.Utils;
 
@@ -45,11 +41,11 @@ public abstract class Profile implements Serializable {
 	// Package structure of the library|app
 	public PackageTree packageTree;
 	
-	public List<HashTreeOLD> hashTreeOLDS;
+	public List<HashTree> hashTrees;
 
-	protected Profile(PackageTree pTree, List<HashTreeOLD> hashTreeOLDS) {
+	protected Profile(PackageTree pTree, List<HashTree> hashTrees) {
 		this.packageTree = pTree;
-		this.hashTreeOLDS = hashTreeOLDS;
+		this.hashTrees = hashTrees;
 	}
 	
 	public static PackageTree generatePackageTree(IClassHierarchy cha) {
@@ -69,42 +65,10 @@ public abstract class Profile implements Serializable {
 	}
 		
 	
-	/**
-	 * Generate hash trees for a certain {@link PackageTree} for all configurations
-	 * @param cha  the {@link IClassHierarchy} instance
-	 * @return  a List of {@link HashTreeOLD} for every configuration
-	 */
-	
-// TODO: option to set different modes (normal, trace+pubonly, normal+pubonly)	
-	public static List<HashTreeOLD> generateHashTrees(final IClassHierarchy cha) {
-		final HashAlgorithm algorithm = HashAlgorithm.MD5;
-		
-		List<HashTreeOLD> hTrees = new ArrayList<HashTreeOLD>();
-		try {
-			boolean filterDups = false;
-			boolean filterInnerClasses = false;
-			
-			HashTreeOLD hashTreeOLD = new HashTreeOLD(filterDups, filterInnerClasses, algorithm);
-
-			if (LibScoutConfig.genVerboseProfiles) {
-				hashTreeOLD.setBuildVerboseness(HashTreeOLD.HTREE_BUILD_VERBOSENESS.TRACE);
-				hashTreeOLD.setPublicOnlyFilter();
-			}
-			hashTreeOLD.generate(cha);
-			hTrees.add(hashTreeOLD);
-		} catch (NoSuchAlgorithmException e) {
-			logger.error(Utils.stacktrace2Str(e));
-		}	
-		
-		return hTrees;
-	}
-
-
-	// TODO TODO NEW
-	public static HashTree generateHashTree(final IClassHierarchy cha) {
+	public static List<HashTree> generateHashTrees(final IClassHierarchy cha) {
 		HashTree ht = new HashTree();
 		ht.generate(cha);
-		return ht;
+		return Collections.singletonList(ht);
 	}
 
 
@@ -119,7 +83,7 @@ public abstract class Profile implements Serializable {
 				profiles.add(lp);
 			}
 
-			Collections.sort(profiles, LibProfile.comp);
+			profiles.sort(LibProfile.comp);
 			logger.info("Loaded " + profiles.size() + " library profiles in " + Utils.millisecondsToFormattedTime(System.currentTimeMillis() - s));
 			logger.info("");
 		} catch (ClassNotFoundException e) {

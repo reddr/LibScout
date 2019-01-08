@@ -23,7 +23,6 @@ import java.util.jar.JarFile;
 import javax.xml.parsers.ParserConfigurationException;
 
 import de.infsec.tpl.config.LibScoutConfig;
-import de.infsec.tpl.hash.HashTreeOLD;
 import de.infsec.tpl.hashtree.HashTree;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +48,7 @@ import de.infsec.tpl.xml.XMLParser;
 public class LibraryProfiler {
 	private static final Logger logger = LoggerFactory.getLogger(LibraryProfiler.class);
 	
-	public static String FILE_EXT_LIB_PROFILE = "lib";
+	public static String FILE_EXT_LIB_PROFILE = "libv";   // single library version profile
 	
 	private File libraryFile;             // library.jar || library.aar
 	private LibraryDescription libDesc;   // library description parsed from an XML file
@@ -104,12 +103,7 @@ public class LibraryProfiler {
 			logger.warn(Utils.INDENT + "Library contains multiple root packages");
 		}
 
-		List<HashTreeOLD> hTrees = Profile.generateHashTrees(cha);
-
-		// TODO DEBUG
-		HashTree ht = Profile.generateHashTree(cha);
-		//HashTree.serialize(null,ht );
-// TODO DEBUG
+		List<HashTree> hTrees = Profile.generateHashTrees(cha);
 
 		// if hash tree is empty do not dump a profile
 		if (hTrees.isEmpty() || hTrees.get(0).getNumberOfClasses() == 0) {
