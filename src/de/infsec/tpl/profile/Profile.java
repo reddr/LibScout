@@ -75,6 +75,7 @@ public abstract class Profile implements Serializable {
 	public static List<LibProfile> loadLibraryProfiles(File profilesDir) throws ParseException {
 		long s = System.currentTimeMillis();
 		List<LibProfile> profiles = new ArrayList<LibProfile>();
+		logger.info("Load library profiles:");
 
 		try {
 			// de-serialize library profiles
@@ -84,7 +85,7 @@ public abstract class Profile implements Serializable {
 			}
 
 			profiles.sort(LibProfile.comp);
-			logger.info("Loaded " + profiles.size() + " library profiles in " + Utils.millisecondsToFormattedTime(System.currentTimeMillis() - s));
+			logger.info(Utils.indent() + "Loaded " + profiles.size() + " profiles in " + Utils.millisecondsToFormattedTime(System.currentTimeMillis() - s));
 			logger.info("");
 		} catch (ClassNotFoundException e) {
 			throw new ParseException("Could not load profiles: " + Utils.stacktrace2Str(e));
