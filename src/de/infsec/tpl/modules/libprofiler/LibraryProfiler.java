@@ -63,7 +63,7 @@ public class LibraryProfiler {
 		this.libraryFile = libraryFile;
 		
 		// read library description
-		libDesc = XMLParser.readLibraryXML(libDescriptionFile);
+		this.libDesc = XMLParser.readLibraryXML(libDescriptionFile);
 		
 		// set identifier for logging
 		String logIdentifier = LibScoutConfig.logDir.getAbsolutePath() + File.separator;
@@ -109,19 +109,25 @@ public class LibraryProfiler {
 		if (hTrees.isEmpty() || hTrees.get(0).getNumberOfClasses() == 0) {
 			logger.error("Empty Hash Tree generated - SKIP");
 			return;
-		}		
-			
-		// serialize lib profiles to disk (<profilesDir>/<lib-category>/libName_libVersion.lib)
-		logger.info("");
-		File targetDir = new File(LibScoutConfig.profilesDir + File.separator + libDesc.category.toString());
-		logger.info("Serialize library fingerprint to disk (dir: " + targetDir + ")");
-		String proFileName = libDesc.name.replaceAll(" ", "-") + "_" + libDesc.version + "." + FILE_EXT_LIB_PROFILE;
-		LibProfile lp = new LibProfile(libDesc, pTree, hTrees);
-		
-		Utils.object2Disk(new File(targetDir + File.separator + proFileName), lp);
-		
+		}
+
+		// write profile to disk
+		serialize(pTree, hTrees);
+
 		logger.info("");
 		logger.info("Processing time: " + Utils.millisecondsToFormattedTime(System.currentTimeMillis() - starttime));
+	}
+
+	// serialize lib profiles to disk (<profilesDir>/<lib-category>/libName_libVersion.lib)
+	private void serialize(PackageTree pTree, List<HashTree> hTrees) {
+		File targetDir = new File(LibScoutConfig.profilesDir + File.separator + libDesc.category.toString());
+		File proFile = new File(targetDir + File.separator + libDesc.name.replaceAll(" ", "-") + "_" + libDesc.version + "." + FILE_EXT_LIB_PROFILE);
+
+		logger.info("");
+		logger.info("Serialize library fingerprint to disk (dir: " + targetDir + ")");
+
+		LibProfile lp = new LibProfile(libDesc, pTree, hTrees);
+		Utils.object2Disk(proFile, lp);
 	}
 
 }
