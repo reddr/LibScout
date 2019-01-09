@@ -14,7 +14,7 @@ public class Node implements Serializable {
 
     public byte[] hash;
     public List<Node> childs;
-    //public TreeSet<Short> versions;
+    public TreeSet<Short> versions;
 
     public Node(byte[] hash) {
         this.hash = hash;
@@ -47,4 +47,7 @@ public class Node implements Serializable {
         return childs.isEmpty();
     }
 
+    public boolean isMultiVersionNode() {
+        return versions != null && !versions.isEmpty();
+    }
 }
