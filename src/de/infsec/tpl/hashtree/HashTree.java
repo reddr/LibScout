@@ -15,9 +15,7 @@
 package de.infsec.tpl.hashtree;
 
 
-import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hasher;
-import com.google.common.hash.Hashing;
 import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.classLoader.IMethod;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
@@ -69,24 +67,7 @@ public class HashTree implements Serializable {
 
 	private Node rootNode;
 
-	protected Config config = new Config();
-
-	public static class Config implements Serializable {
-		private static final long serialVersionUID = 1190771073564531337L;
-
-		public static HashFunction hf = Hashing.md5();
-		public static AccessFlags accessFlagsFilter = AccessFlags.NO_FLAG;
-
-		// verboseness
-		public static boolean keepPackageNames = true;
-		public static boolean keepClassNames = false;
-		public static boolean keepMethodSignatures = false;
-
-		// node pruning
-		public static boolean pruneClasses = false;
-		public static boolean pruneMethods = true;
-	}
-
+	protected TreeConfig config = new TreeConfig();
 
 	public HashTree() {
 		this(new DefaultPackageNodeComp(), new DefaultClassNodeComp(), new SignatureMethodNodeComp());
@@ -107,8 +88,7 @@ public class HashTree implements Serializable {
 	}
 
 
-	public static Node compNode(Collection<? extends Node> nodes, boolean prune) {
-		Hasher hasher = getHasher();
+	public static Node compNode(Collection<? extends Node> nodes, boolean prune, Hasher hasher) {
 		nodes.stream().sorted(HashUtils.comp).forEach(n -> hasher.putBytes(n.hash));
 
 		Node n = new Node(hasher.hash().asBytes());
@@ -118,10 +98,6 @@ public class HashTree implements Serializable {
 	}
 
 	public void generate(IClassHierarchy cha) {
-		generate(cha, Short.MIN_VALUE);
-	}
-
-	protected void generate(IClassHierarchy cha, Short nodeId) {
 		logger.debug("Generate hash tree..");
 
 		int classHashCount = 0;
@@ -136,15 +112,15 @@ public class HashTree implements Serializable {
 				Collection<IMethod> methods = clazz.getDeclaredMethods();
 
 				// filter methods by access flag
-				if (Config.accessFlagsFilter != AccessFlags.NO_FLAG) {
+				if (config.accessFlagsFilter != AccessFlags.NO_FLAG) {
 					methods = methods.stream()
-						.filter(m -> { int code = AccessFlags.getMethodAccessCode(m);  return code > 0 && (code & Config.accessFlagsFilter.getValue()) == 0x0; })  // if predicate is true, keep in list
+						.filter(m -> { int code = AccessFlags.getMethodAccessCode(m);  return code > 0 && (code & config.accessFlagsFilter.getValue()) == 0x0; })  // if predicate is true, keep in list
 						.collect(Collectors.toCollection(ArrayList::new));
 				}
 
 				List<MethodNode> methodNodes = methods.stream()
 					 .filter(m -> !(m.isBridge() || m.isMethodSynthetic()))  // normalize java|dex bytecode by skipping compiler-generated methods
-					 .map(m -> mnComp.comp(m, true /* TODO to be changed */))
+					 .map(m -> mnComp.comp(m, config))
 					 .sorted(HashUtils.comp)  // sort but do not filter dups
 					 .collect(Collectors.toList());
 
@@ -158,11 +134,7 @@ public class HashTree implements Serializable {
 				methodHashCount += methodNodes.size();
 				classHashCount++;
 
-				ClassNode clazzNode = cnComp.comp(methodNodes, clazz, Config.pruneMethods);
-
-				// annotate class and method nodes
-				if (nodeId > 0)
-					annotate(clazzNode, nodeId, true);
+				ClassNode clazzNode = cnComp.comp(methodNodes, clazz, config);
 
 				// keep track on classes per package
 				String pckgName = PackageUtils.getPackageName(clazz);
@@ -175,31 +147,17 @@ public class HashTree implements Serializable {
 
 		packageMap.values().forEach(l -> l.sort(HashUtils.comp));  // sort class nodes
 		List<PackageNode> packageNodes = packageMap.keySet().stream()
-			.map(p -> pnComp.comp(packageMap.get(p), p, cha, Config.pruneClasses))
+			.map(p -> pnComp.comp(packageMap.get(p), p, cha, config))
 			.sorted(HashUtils.comp)
 			.collect(Collectors.toList());
 
 		// generate root
-		rootNode = compNode(packageNodes, false);
-
-		// annotate root and package nodes
-		if (nodeId > 0) {
-			packageNodes.forEach(pn -> annotate(pn, nodeId, false));
-			annotate(rootNode, nodeId, false);
-		}
+		rootNode = compNode(packageNodes, false, config.getHasher());
 
 		logger.debug(Utils.INDENT + "- generated " + packageNodes.size() + " package hashes.");
 		logger.debug(Utils.INDENT + "- generated " + classHashCount    + " clazz hashes.");
 		logger.debug(Utils.INDENT + "- generated " + methodHashCount   + " method hashes.");
 		logger.debug(Utils.INDENT + "=> Library Hash: " + HashUtils.hash2Str(rootNode.hash));
-	}
-
-
-	private void annotate(Node n, Short id, boolean inclChilds) {
-		n.versions.add(id);
-
-		if (inclChilds)
-			n.childs.forEach(c -> c.versions.add(id));
 	}
 
 
@@ -214,15 +172,13 @@ public class HashTree implements Serializable {
 		return this.rootNode.hash;
 	}
 
-	public Config getConfig() {
+	public TreeConfig getConfig() {
 		return this.config;
 	}
 
-	public static Hasher getHasher() {
-		return Config.hf.newHasher();
+	public void setConfig(TreeConfig config) {
+		this.config = config;
 	}
-
-
 
 	public static List<PackageNode> toPackageNode(Collection<Node> col) {
 		return col.stream()

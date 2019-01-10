@@ -24,6 +24,7 @@ import java.util.TreeSet;
 
 import de.infsec.tpl.config.LibScoutConfig;
 import de.infsec.tpl.hashtree.HashTree;
+import de.infsec.tpl.hashtree.TreeConfig;
 import de.infsec.tpl.hashtree.node.PackageNode;
 import de.infsec.tpl.stats.Exportable;
 import org.slf4j.Logger;
@@ -61,7 +62,7 @@ public class ProfileMatch implements Exportable, Serializable {
 	private List<HTreeMatch> results;
 	
 	public class HTreeMatch {
-		public HashTree.Config config;  // identifier - config
+		public TreeConfig config;  // identifier - config
 
 		public List<PackageNode> matchingNodes;   // list of package nodes that matched (partially)
 		public Float simScore = MATCH_HTREE_NONE;  // between 0f..1f for partial match 
@@ -70,7 +71,7 @@ public class ProfileMatch implements Exportable, Serializable {
 		public String rootPackage;
  
 		
-		public HTreeMatch(HashTree.Config config) {
+		public HTreeMatch(TreeConfig config) {
 			this.config = config;
 		}
 		
@@ -134,7 +135,7 @@ public class ProfileMatch implements Exportable, Serializable {
 		Collections.sort(results, SIM_SCORE_COMPARATOR);  // ensure that results are sorted
 	}
 	
-	public HTreeMatch getResultByConfig(HashTree.Config cfg) {
+	public HTreeMatch getResultByConfig(TreeConfig cfg) {
 		for (HTreeMatch htm: results)
 			if (htm.config.equals(cfg))
 				return htm;
@@ -157,7 +158,7 @@ public class ProfileMatch implements Exportable, Serializable {
 	}
 	
 	
-	public HTreeMatch createResult(HashTree.Config config) {
+	public HTreeMatch createResult(TreeConfig config) {
 		return new HTreeMatch(config);
 	}
 	
@@ -228,8 +229,8 @@ public class ProfileMatch implements Exportable, Serializable {
 
 	
 
-	public List<HashTree.Config> getMatchedConfigs() {
-		ArrayList<HashTree.Config> result = new ArrayList<>();
+	public List<TreeConfig> getMatchedConfigs() {
+		ArrayList<TreeConfig> result = new ArrayList<>();
 		for (HTreeMatch htm: results) {
 			if (htm.isFullMatch())
 				result.add(htm.config);
@@ -238,8 +239,8 @@ public class ProfileMatch implements Exportable, Serializable {
 		return result;
 	}
 
-	public List<HashTree.Config> getPartiallyMatchedConfigs() {
-		ArrayList<HashTree.Config> result = new ArrayList<>();
+	public List<TreeConfig> getPartiallyMatchedConfigs() {
+		ArrayList<TreeConfig> result = new ArrayList<>();
 		for (HTreeMatch htm: results) {
 			if (htm.isPartialMatch())
 				result.add(htm.config);

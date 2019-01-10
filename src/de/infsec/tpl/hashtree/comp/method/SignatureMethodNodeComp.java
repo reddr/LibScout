@@ -5,6 +5,7 @@ import com.ibm.wala.classLoader.IMethod;
 import com.ibm.wala.types.ClassLoaderReference;
 import com.ibm.wala.types.Descriptor;
 import de.infsec.tpl.hashtree.HashTree;
+import de.infsec.tpl.hashtree.TreeConfig;
 import de.infsec.tpl.hashtree.node.MethodNode;
 import de.infsec.tpl.utils.Utils;
 import de.infsec.tpl.utils.WalaUtils;
@@ -17,13 +18,13 @@ public class SignatureMethodNodeComp implements IMethodNodeComp {
 
 
     @Override
-    public MethodNode comp(IMethod m, boolean prune) {
+    public MethodNode comp(IMethod m, TreeConfig config) {
         String desc = normalizeAnonymousInnerClassConstructor(m);
         if (desc == null)
             desc = getFuzzyDescriptor(m);
 
-        String signature = HashTree.Config.keepMethodSignatures? m.getSignature() : "";
-        return new MethodNode(HashTree.getHasher().putBytes(desc.getBytes()).hash().asBytes(), signature);
+        String signature = config.keepMethodSignatures? m.getSignature() : "";
+        return new MethodNode(config.getHasher().putBytes(desc.getBytes()).hash().asBytes(), signature);
     }
 
 
