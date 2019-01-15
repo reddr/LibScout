@@ -6,6 +6,7 @@ import com.ibm.wala.classLoader.IMethod;
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.ipa.cha.ClassHierarchy;
 import com.ibm.wala.ipa.cha.ClassHierarchyException;
+import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.types.ClassLoaderReference;
 import de.infsec.tpl.TplCLI;
@@ -129,7 +130,7 @@ public class LibraryApiAnalysis {
         JarFile jf = libCodeFile.getName().endsWith(".aar")? new AarFile(libCodeFile).getJarFile() : new JarFile((libCodeFile));
         scope.addToScope(ClassLoaderReference.Application, jf);
         scope.addToScope(ClassLoaderReference.Primordial, new JarFile(LibScoutConfig.pathToAndroidJar));
-        IClassHierarchy cha = ClassHierarchy.make(scope);
+        IClassHierarchy cha = ClassHierarchyFactory.makeWithRoot(scope);
 
         // cleanup tmp files if library input was an .aar file
         if (libCodeFile.getName().endsWith(".aar")) {

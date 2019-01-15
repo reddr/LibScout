@@ -29,8 +29,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
 import de.infsec.tpl.config.LibScoutConfig;
-import de.infsec.tpl.hash.HashTreeOLD;
 import de.infsec.tpl.hashtree.HashTree;
 import de.infsec.tpl.hashtree.node.Node;
 import de.infsec.tpl.hashtree.node.PackageNode;
@@ -41,7 +41,6 @@ import org.slf4j.MDC;
 
 import com.ibm.wala.dalvik.util.AndroidAnalysisScope;
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
-import com.ibm.wala.ipa.cha.ClassHierarchy;
 import com.ibm.wala.ipa.cha.ClassHierarchyException;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 
@@ -110,7 +109,7 @@ public class LibraryIdentifier {
 		// as they are statically linked in the app code.
 		final AnalysisScope scope = AndroidAnalysisScope.setUpAndroidAnalysisScope(new File(stats.appFile.getAbsolutePath()).toURI(), null /* no exclusions */, null /* we always pass an android lib */, LibScoutConfig.pathToAndroidJar.toURI());
 
-		cha = ClassHierarchy.make(scope);
+		cha = ClassHierarchyFactory.makeWithRoot(scope);
 		logger.info("Generated class hierarchy (in " + Utils.millisecondsToFormattedTime(System.currentTimeMillis() - s) + ")");
 		WalaUtils.getChaStats(cha);
 	}
@@ -229,7 +228,7 @@ public class LibraryIdentifier {
 	
 
 	/**
-	 * Compute similarity scores for all provided {@link HashTreeOLD}.
+	 * Compute similarity scores for all provided {@link HashTree}.
 	 * @param cha the {@link IClassHierarchy}
 	 * @param appProfile  the {@link AppProfile}
 	 * @param libProfile  the {@link LibProfile}
@@ -266,7 +265,7 @@ public class LibraryIdentifier {
 	 * 
 	 * @param cha  the {@IClassHierarchy}
 	 * @param pMatch   a {@ProfileMatch} in which the result is stored as side-effect
-	 * @param appHashTree  the generated {@link HashTreeOLD}
+	 * @param appHashTree  the generated {@link HashTree}
 	 * @param appTree  the application {@link PackageTree}
 	 * @param lib  the {@link LibProfile} to match against
 	 * @param lvl  the level of matching to be applied (currently either Package or Class level)

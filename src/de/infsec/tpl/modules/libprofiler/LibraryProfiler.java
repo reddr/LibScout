@@ -22,6 +22,7 @@ import java.util.jar.JarFile;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import com.ibm.wala.ipa.cha.ClassHierarchyFactory;
 import de.infsec.tpl.config.LibScoutConfig;
 import de.infsec.tpl.hashtree.HashTree;
 import org.slf4j.Logger;
@@ -88,7 +89,7 @@ public class LibraryProfiler {
 		scope.addToScope(ClassLoaderReference.Application, jf);
 		scope.addToScope(ClassLoaderReference.Primordial, new JarFile(LibScoutConfig.pathToAndroidJar));
 
-		IClassHierarchy cha = ClassHierarchy.make(scope);
+		IClassHierarchy cha = ClassHierarchyFactory.makeWithRoot(scope);
 		WalaUtils.getChaStats(cha);
 		
 		// cleanup tmp files if library input was an .aar file

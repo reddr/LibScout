@@ -30,7 +30,12 @@ dependencies {
     provided 'com.google.guava:guava:27.0.1-jre'
 
     // local deps
-    provided files('lib/wala.jar')         // pre-compiled custom WALA framework
+    provided files('lib/com.ibm.wala.core-1.5.1-7f51c220-patched.jar')
+    provided files('lib/com.ibm.wala.dalvik-1.5.1-7f51c220-patched.jar')
+    provided files('lib/com.ibm.wala.shrike-1.5.1-7f51c220-patched.jar')
+    provided files('lib/com.ibm.wala.util-1.5.1-7f51c220-patched.jar')
+    provided files('lib/dexlib2-2.2.5-5935fe6e-patched.jar')
+
     provided files('lib/android-xml.jar')  // axml relevant classes from Android SDK
     provided files('lib/sqlite-jdbc-3.7.15-SNAPSHOT.jar')  // loaded via reflection, at that time, the only working version
 }
@@ -39,7 +44,7 @@ jar {
     manifest {
         attributes 'Main-Class': 'de.infsec.tpl.TplCLI',
                          'Tool': 'LibScout',
-                      'Version': '2.1.0'
+                      'Version': '2.3.0'
     }
 
     // build fat jar

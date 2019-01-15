@@ -547,7 +547,7 @@ public class WalaUtils {
 				if (clazz.isPublic()) publicClCount++;
 
 				for (IMethod im: clazz.getDeclaredMethods()) {
-					if (im.isBridge() || im.isMethodSynthetic()) continue;
+					if (im.isBridge() || im.isSynthetic()) continue;
 
 					if (im.isPublic()) {
 						publicMethods.add(im.getSignature());

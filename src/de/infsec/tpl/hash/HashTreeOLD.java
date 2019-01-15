@@ -522,7 +522,7 @@ public class HashTreeOLD implements Serializable {
 				// duplicate method filter
 				Collection<MethodNode> methodNodes = config.filterDups? new TreeSet<MethodNode>(comp) : new ArrayList<MethodNode>();
 				
-				Collection<IMethod> methods = clazz.getDeclaredMethods();
+				Collection<? extends IMethod> methods = clazz.getDeclaredMethods();
 				
 				// filter methods by access flag
 				if (config.accessFlagsFilter != AccessFlags.NO_FLAG.getValue()) {
@@ -533,7 +533,7 @@ public class HashTreeOLD implements Serializable {
 
 				for (IMethod m: methods) {
 					// normalize java|dex bytecode by skipping compiler-generated methods
-					if (m.isBridge() || m.isMethodSynthetic()) {
+					if (m.isBridge() || m.isSynthetic()) {
 						continue;
 					}
 

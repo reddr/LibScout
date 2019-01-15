@@ -58,7 +58,7 @@ public class ProfileMatch implements Exportable, Serializable {
 	public static final float MATCH_HTREE_NONE = 0f;
 	public static final float MATCH_HTREE_NO_ROOT_PCKG = -1f;
 	
-	// stores the results for each HashTreeOLD comparison
+	// stores the results for each HashTree comparison
 	private List<HTreeMatch> results;
 	
 	public class HTreeMatch {

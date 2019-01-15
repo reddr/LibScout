@@ -109,7 +109,7 @@ public class HashTree implements Serializable {
 		for (IClass clazz: cha) {
 			if (WalaUtils.isAppClass(clazz)) {
 
-				Collection<IMethod> methods = clazz.getDeclaredMethods();
+				Collection<? extends IMethod> methods = clazz.getDeclaredMethods();
 
 				// filter methods by access flag
 				if (config.accessFlagsFilter != AccessFlags.NO_FLAG) {
@@ -119,7 +119,7 @@ public class HashTree implements Serializable {
 				}
 
 				List<MethodNode> methodNodes = methods.stream()
-					 .filter(m -> !(m.isBridge() || m.isMethodSynthetic()))  // normalize java|dex bytecode by skipping compiler-generated methods
+					 .filter(m -> !(m.isBridge() || m.isSynthetic()))  // normalize java|dex bytecode by skipping compiler-generated methods
 					 .map(m -> mnComp.comp(m, config))
 					 .sorted(HashUtils.comp)  // sort but do not filter dups
 					 .collect(Collectors.toList());

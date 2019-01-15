@@ -35,7 +35,7 @@ public class PublicInterfaceExtractor {
         for (IClass clazz: cha) {
             if (!WalaUtils.isAppClass(clazz)) continue;
 
-            Collection<IMethod> methods = clazz.getDeclaredMethods();
+            Collection<? extends IMethod> methods = clazz.getDeclaredMethods();
 
             // filter anything but public and non-compiler generated methods
             methods = methods.stream()
@@ -43,7 +43,7 @@ public class PublicInterfaceExtractor {
                         int code = AccessFlags.getMethodAccessCode(m);
                         return code > 0 && (code & AccessFlags.getPublicOnlyFilter()) == 0x0;
                     })  // if predicate is true, keep in list
-                    .filter(m -> !(m.isBridge() || m.isMethodSynthetic()))   // filter compiler-generated methods
+                    .filter(m -> !(m.isBridge() || m.isSynthetic()))   // filter compiler-generated methods
                     .collect(Collectors.toCollection(ArrayList::new));
 
             if (!methods.isEmpty()) classCount++;
