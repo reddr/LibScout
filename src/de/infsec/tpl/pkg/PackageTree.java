@@ -18,13 +18,13 @@ import java.io.Serializable;
 import java.util.*;
 
 import de.infsec.tpl.config.LibScoutConfig;
+import de.infsec.tpl.hashtree.node.PackageNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 
-import de.infsec.tpl.hash.HashTreeOLD.PackageNode;
 import de.infsec.tpl.utils.Utils;
 import de.infsec.tpl.utils.WalaUtils;
 
