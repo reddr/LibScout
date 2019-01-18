@@ -8,7 +8,9 @@
 
 import sys
 import json
-import urllib2
+from urllib.request import urlopen
+from urllib.error import URLError
+from urllib.error import HTTPError
 import datetime
 import os
 import errno
@@ -58,9 +60,9 @@ def write_library_description(fileName, libName, category, version, date, commen
         desc.write("</library>\n")
 
 
-@retry(urllib2.URLError, tries=3, delay=3, backoff=1)
+@retry(URLError, tries=3, delay=3, backoff=1)
 def urlopen_with_retry(URL):
-    return urllib2.urlopen(URL)
+    return urlopen(URL)
 
 
 def downloadLibFile(targetDir, repo, groupid, artefactid, version, filetype):
@@ -83,20 +85,20 @@ def downloadLibFile(targetDir, repo, groupid, artefactid, version, filetype):
     targetFile = targetDir + "/" + fileName
 
     try:
-        libFile = urllib2.urlopen(URL)
+        libFile = urlopen(URL)
         with open(targetFile,'wb') as output:
             output.write(libFile.read())
 
         return 0
-    except urllib2.HTTPError, e:
+    except HTTPError as e:
         if filetype != 'aar':
-            print '    !! HTTP Error while retrieving ' + filetype + ' file:  ' + str(e.code)
+            print('    !! HTTP Error while retrieving ' + filetype + ' file:  ' + str(e.code))
         return 1
-    except urllib2.URLError, e:
-        print '    !! URL Error while retrieving ' + filetype + ' file: ' + str(e.reason)
+    except URLError as e:
+        print('    !! URL Error while retrieving ' + filetype + ' file: ' + str(e.reason))
         return 1
-    except Exception, excp:
-        print '    !! Download failed: ' + str(excp)
+    except Exception as excp:
+        print('    !! Download failed: ' + str(excp))
         return 1
 
 
@@ -105,7 +107,7 @@ def downloadLibFile(targetDir, repo, groupid, artefactid, version, filetype):
 def updateLibraryMvnCentral(libName, category, comment,  groupId, artefactId):
     # replace all blanks with dash
     libName = libName.replace(" ", "-")
-    print "  # check library " + libName + " [" + category + "]   (g:\"" + groupId + "\" AND a:\"" + artefactId + "\")"
+    print("  # check library " + libName + " [" + category + "]   (g:\"" + groupId + "\" AND a:\"" + artefactId + "\")")
 
     baseDirName = localRepoDir + category + "/" + libName + "/"
     dir = os.path.dirname(baseDirName)
@@ -114,21 +116,21 @@ def updateLibraryMvnCentral(libName, category, comment,  groupId, artefactId):
     # Assemble mvn central search URL and retrieve meta data
     try:
         mvnSearchURL = "http://search.maven.org/solrsearch/select?q=g:%22" + groupId + "%22+AND+a:%22" + artefactId + "%22&rows=100&core=gav"
-        response = urllib2.urlopen(mvnSearchURL)
+        response = urlopen(mvnSearchURL)
         data = json.loads(response.read())
-    except urllib2.URLError, e:
-        print 'URLError = ' + str(e.reason)
+    except URLError as e:
+        print('URLError = ' + str(e.reason))
         return
-    except Exception, excp:
-        print 'Could not retrieve meta data for ' + libName + '  [SKIP]  (' + str(excp) + ')'
+    except Exception as excp:
+        print('Could not retrieve meta data for ' + libName + '  [SKIP]  (' + str(excp) + ')')
         return
 
     # DEBUG: pretty print json
-    #print json.dumps(data, indent=4, sort_keys=True)
-    #print
+    #print(json.dumps(data, indent=4, sort_keys=True))
+    #print()
 
     numberOfVersions = data["response"]["numFound"]
-    print "    - retrieved meta data for " + str(numberOfVersions) + " versions:"
+    print("    - retrieved meta data for " + str(numberOfVersions) + " versions:")
 
     numberOfUpdates = 0
     if numberOfVersions > 0:
@@ -142,7 +144,7 @@ def updateLibraryMvnCentral(libName, category, comment,  groupId, artefactId):
                 numberOfUpdates += 1
                 date = unix2Date(version["timestamp"])
                 targetDir = baseDirName + version["v"]
-                print  "       - update version: {}   type: {}  date: {}  target-dir: {}".format(version["v"], version["p"], date, targetDir)
+                print("       - update version: {}   type: {}  date: {}  target-dir: {}".format(version["v"], version["p"], date, targetDir))
 
                 result = downloadLibFile(targetDir, MVN_CENTRAL, groupId, artefactId, version["v"], "aar")
 
@@ -156,7 +158,7 @@ def updateLibraryMvnCentral(libName, category, comment,  groupId, artefactId):
 
 
     if numberOfUpdates == 0:
-        print "      -> all versions up-to-date"
+        print("      -> all versions up-to-date")
 
 
 
@@ -165,7 +167,7 @@ def updateLibraryMvnCentral(libName, category, comment,  groupId, artefactId):
 def updateLibrary(libName, category, comment, repoURL, groupId, artefactId):
     # replace all blanks with dash
     libName = libName.replace(" ", "-")
-    print "  # check library " + libName + " [" + category + "]   (g:\"" + groupId + "\" AND a:\"" + artefactId + "\")"
+    print("  # check library " + libName + " [" + category + "]   (g:\"" + groupId + "\" AND a:\"" + artefactId + "\")")
 
     baseDirName = localRepoDir + category + "/" + libName + "/"
     dir = os.path.dirname(baseDirName)
@@ -181,14 +183,14 @@ def updateLibrary(libName, category, comment, repoURL, groupId, artefactId):
 
         metaURL = repoURL + groupId.replace(".","/") + "/" + artefactId.replace(".","/") + "/maven-metadata.xml"
 
-        response = urllib2.urlopen(metaURL)
+        response = urlopen(metaURL)
         data = response.read()
         response.close()
-    except urllib2.URLError, e:
-        print 'URLError = ' + str(e.reason)
+    except URLError as e:
+        print('URLError = ' + str(e.reason))
         return
-    except Exception, excp:
-        print 'Could not retrieve meta data for ' + libName + '  [SKIP]  (' + str(excp) + ')'
+    except Exception as excp:
+        print('Could not retrieve meta data for ' + libName + '  [SKIP]  (' + str(excp) + ')')
         return
 
     # retrieve available versions
@@ -200,7 +202,7 @@ def updateLibrary(libName, category, comment, repoURL, groupId, artefactId):
                 versions.append(v.text)
 
     numberOfVersions = len(versions)
-    print "    - retrieved meta data for " + str(numberOfVersions) + " versions:"
+    print("    - retrieved meta data for " + str(numberOfVersions) + " versions:")
 
     numberOfUpdates = 0
     if numberOfVersions > 0:
@@ -218,13 +220,13 @@ def updateLibrary(libName, category, comment, repoURL, groupId, artefactId):
                     result = downloadLibFile(targetDir, repoURL, groupId, artefactId, version, fileType)
 
                 if result == 0:
-                    print  "       - update version: {}   type: {}  date: {}  target-dir: {}".format(version, fileType, "n/a", targetDir)
+                    print("       - update version: {}   type: {}  date: {}  target-dir: {}".format(version, fileType, "n/a", targetDir))
                     fileName = targetDir + "/" + LIB_DESCRIPTOR_FILE_NAME
                     write_library_description(fileName, libName, category, version, "", comment)
 
 
     if numberOfUpdates == 0:
-        print "      -> all versions up-to-date"
+        print("      -> all versions up-to-date")
 
 
 
@@ -244,28 +246,28 @@ skipAlphaBeta = True                    # skip alpha and beta versions
 localRepoDir = "my-lib-repo/"           # the directory to store libraries on disk with trailing path separator, e.g. "/"
 
 
-print "== maven/jcenter scraper =="
+print("== maven/jcenter scraper ==")
 
 # Requires one argument (path to json file with library descriptions)
 args = len(sys.argv)
 if args != 2:
-    print "Usage: " + sys.argv[0] + "  <libraries.json>"
+    print("Usage: " + sys.argv[0] + "  <libraries.json>")
     sys.exit(1)
 else:
     inputFile = sys.argv[1]
-    print "- Load library info from " + sys.argv[1]
+    print("- Load library info from " + sys.argv[1])
 
-print "- Store libs to " + localRepoDir
+print("- Store libs to " + localRepoDir)
 
 # load library definitions
 with open(inputFile) as ifile:
     data = json.load(ifile)
 
 # update each lib
-print "- Update libraries" + (" (skip alpha/beta versions)" if skipAlphaBeta else "") + ":"
+print("- Update libraries" + (" (skip alpha/beta versions)" if skipAlphaBeta else "") + ":")
 for lib in data["libraries"]:
     if 'repo' not in lib:
-        print "[WARN] Skip library: " + lib["name"] + "  (No repo defined!)"
+        print("[WARN] Skip library: " + lib["name"] + "  (No repo defined!)")
         continue
 
     elif lib['repo'] == MVN_CENTRAL:
