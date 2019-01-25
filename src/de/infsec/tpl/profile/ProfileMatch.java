@@ -114,7 +114,8 @@ public class ProfileMatch implements Exportable, Serializable {
 			this.libName = pm.lib.description.name;
 			this.libVersion = pm.lib.description.version;
 			this.isOriginalPackageName = !pm.isLibObfuscated();
-			this.libRootPackage = pm.getMatchedPackageTree().getRootPackage() != null? getMatchedPackageTree().getRootPackage() : "";
+			this.libRootPackage = pm.getMatchedPackageTree() == null ? "" :
+				pm.getMatchedPackageTree().getRootPackage() == null? "" : pm.getMatchedPackageTree().getRootPackage();
 			this.includesSecurityVulnerability = pm.lib.description.comment.contains("[SECURITY]");
 			this.includesSecurityVulnerabilityFix = pm.lib.description.comment.contains("[SECURITY-FIX]");
 			this.simScore = pm.getHighestSimScore().simScore;
