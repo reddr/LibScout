@@ -40,7 +40,6 @@ import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.core.joran.spi.JoranException;
 import ch.qos.logback.core.util.StatusPrinter;
-import de.infsec.tpl.stats.SQLStats;
 import de.infsec.tpl.utils.Utils;
 import de.infsec.tpl.profile.LibProfile;
 
@@ -119,7 +118,7 @@ public class TplCLI {
 			 * one time data loading
 			 */
 
-			if (LibScoutConfig.opMatch() || LibScoutConfig.opDB() || LibScoutConfig.opUpdatability())
+			if (LibScoutConfig.opMatch() || LibScoutConfig.opUpdatability())
 				profiles = Profile.loadLibraryProfiles(LibScoutConfig.profilesDir);
 
 			if (LibScoutConfig.opUpdatability())
@@ -134,12 +133,6 @@ public class TplCLI {
 		/*
 		 * choose mode of operation
 		 */
-
-		if (LibScoutConfig.opDB()) {
-			// generate SQLite DB from app stats
-			SQLStats.stats2DB(profiles);
-			System.exit(0);
-		}
 
 		// process input files, either library files or apps
 		for (File inputFile: inputFiles) {
@@ -207,13 +200,13 @@ public class TplCLI {
 			}
 
 			// path to LibScout.toml
-			if (checkOptionalUse(cmd, CliArgs.ARG_CONFIG, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.LIB_API_ANALYSIS, LibScoutConfig.OpMode.DB, LibScoutConfig.OpMode.UPDATABILITY)) {
+			if (checkOptionalUse(cmd, CliArgs.ARG_CONFIG, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.LIB_API_ANALYSIS, LibScoutConfig.OpMode.UPDATABILITY)) {
 				LibScoutConfig.libScoutConfigFileName = cmd.getOptionValue(CliArgs.ARG_CONFIG);
 				LibScoutConfig.checkIfValidFile(LibScoutConfig.libScoutConfigFileName);
 			}
 
 			// profiles dir option, if provided without argument output is written to default dir
-			if (checkOptionalUse(cmd, CliArgs.ARG_PROFILES_DIR, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.DB, LibScoutConfig.OpMode.UPDATABILITY)) {
+			if (checkOptionalUse(cmd, CliArgs.ARG_PROFILES_DIR, LibScoutConfig.OpMode.PROFILE, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.UPDATABILITY)) {
 				File profilesDir = new File(cmd.getOptionValue(CliArgs.ARG_PROFILES_DIR));
 				if (profilesDir.exists() && !profilesDir.isDirectory())
 					throw new ParseException("Profiles directory " + profilesDir + " already exists and is not a directory");
@@ -252,7 +245,7 @@ public class TplCLI {
 			}
 
 			// enable/disable generation of stats with optional stats directory
-			if (checkOptionalUse(cmd, CliArgs.ARG_STATS_DIR, LibScoutConfig.OpMode.MATCH, LibScoutConfig.OpMode.DB)) {
+			if (checkOptionalUse(cmd, CliArgs.ARG_STATS_DIR, LibScoutConfig.OpMode.MATCH)) {
 				LibScoutConfig.generateStats = true;
 
 				if (cmd.getOptionValue(CliArgs.ARG_STATS_DIR) != null) {   // stats dir provided?
@@ -292,51 +285,50 @@ public class TplCLI {
 			 *  - in profile mode pass *one* library (since it is linked to lib description file)
 			 *  - in match mode pass one application file or one directory (including apks)
 			 */
-			if (!(LibScoutConfig.opDB())) {
-				inputFiles = new ArrayList<File>();
 
-				if (LibScoutConfig.opLibApiAnalysis()) {
-					// we require a directory including library packages/descriptions
-					for (String path: cmd.getArgs()) {
-						File dir = new File(path);
+			inputFiles = new ArrayList<File>();
 
-						if (dir.isDirectory())
-							inputFiles.add(dir);
-					}
+			if (LibScoutConfig.opLibApiAnalysis()) {
+				// we require a directory including library packages/descriptions
+				for (String path: cmd.getArgs()) {
+					File dir = new File(path);
 
-					if (inputFiles.isEmpty()) {
-						throw new ParseException("You have to provide at least one directory that includes a library package and description");
-					}
-				} else {
-					String[] fileExts = LibScoutConfig.opMatch() || LibScoutConfig.opUpdatability() ? new String[]{"apk"} : new String[]{"jar", "aar"};
-
-					for (String inputFile : cmd.getArgs()) {
-						File arg = new File(inputFile);
-
-						if (arg.isDirectory()) {
-							inputFiles.addAll(Utils.collectFiles(arg, fileExts));
-						} else if (arg.isFile()) {
-							if (arg.getName().endsWith("." + fileExts[0]))
-								inputFiles.add(arg);
-							else if (fileExts.length > 1 && arg.getName().endsWith("." + fileExts[1]))
-								inputFiles.add(arg);
-							else
-								throw new ParseException("File " + arg.getName() + " is no valid ." + Utils.join(Arrays.asList(fileExts), "/") + " file");
-						} else {
-							throw new ParseException("Argument " + inputFile + " is no valid file or directory!");
-						}
-					}
-
-					if (inputFiles.isEmpty()) {
-						if (LibScoutConfig.opProfile())
-							throw new ParseException("No libraries (jar|aar files) found to profile in "  + cmd.getArgList());
-						else
-							throw new ParseException("No apk files found in " + cmd.getArgList());
-					} else if (inputFiles.size() > 1 && LibScoutConfig.opProfile())
-						throw new ParseException("You have to provide a path to a single library file or a directory incl. a single lib file");
+					if (dir.isDirectory())
+						inputFiles.add(dir);
 				}
+
+				if (inputFiles.isEmpty()) {
+					throw new ParseException("You have to provide at least one directory that includes a library package and description");
+				}
+			} else {
+				String[] fileExts = LibScoutConfig.opMatch() || LibScoutConfig.opUpdatability() ? new String[]{"apk"} : new String[]{"jar", "aar"};
+
+				for (String inputFile : cmd.getArgs()) {
+					File arg = new File(inputFile);
+
+					if (arg.isDirectory()) {
+						inputFiles.addAll(Utils.collectFiles(arg, fileExts));
+					} else if (arg.isFile()) {
+						if (arg.getName().endsWith("." + fileExts[0]))
+							inputFiles.add(arg);
+						else if (fileExts.length > 1 && arg.getName().endsWith("." + fileExts[1]))
+							inputFiles.add(arg);
+						else
+							throw new ParseException("File " + arg.getName() + " is no valid ." + Utils.join(Arrays.asList(fileExts), "/") + " file");
+					} else {
+						throw new ParseException("Argument " + inputFile + " is no valid file or directory!");
+					}
+				}
+
+				if (inputFiles.isEmpty()) {
+					if (LibScoutConfig.opProfile())
+						throw new ParseException("No libraries (jar|aar files) found to profile in "  + cmd.getArgList());
+					else
+						throw new ParseException("No apk files found in " + cmd.getArgList());
+				} else if (inputFiles.size() > 1 && LibScoutConfig.opProfile())
+					throw new ParseException("You have to provide a path to a single library file or a directory incl. a single lib file");
 			}
-			
+
 		} catch (ParseException e) {
 			System.err.println("Command line parsing failed:\n  " + e.getMessage() + "\n");
 			usage();

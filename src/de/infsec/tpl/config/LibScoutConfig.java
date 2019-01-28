@@ -30,9 +30,6 @@ public class LibScoutConfig {
         // match lib profiles in provided apps
         MATCH("match", "[options] path_to_app(dir)"),
 
-        // build sqlite database from app stat files
-        DB("db", "-p path_to_profiles -s path_to_stats"),
-
         // analyzes library api stability (api additions, removals, changes)
         LIB_API_ANALYSIS("lib_api_analysis", "path_to_lib_sdks"),
 
@@ -63,7 +60,6 @@ public class LibScoutConfig {
     public static OpMode opmode = null;
     public static boolean opMatch() { return OpMode.MATCH.equals(opmode); }
     public static boolean opProfile() { return OpMode.PROFILE.equals(opmode); }
-    public static boolean opDB() { return OpMode.DB.equals(opmode); }
     public static boolean opLibApiAnalysis() { return OpMode.LIB_API_ANALYSIS.equals(opmode); }
     public static boolean opUpdatability() { return OpMode.UPDATABILITY.equals(opmode); }
 

@@ -99,10 +99,9 @@ Analysis results can be written in different formats.
 <ol>
     <li> the JSON format (-j switch), creates subfolders in the specified directory following the app package, i.e. *com.foo* will create *com/foo* subfolders.
         This is useful when coping with a large number of apps. For detailed information about the information stored, please refer to the <a href="https://github.com/reddr/LibScout/wiki#json-output-format-specification">JSON output specification</a>.</li>
-    <li> the <b>serialization</b> option (-s switch) writes stat files per app to disk that can be used with the database module to create a SQLite database (the DB structure can be found in class
-    <b>de.infsec.tpl.stats.SQLStats</b></li>
+    <li> the <b>serialization</b> option (-s switch) writes stat files per app to disk (deprecated)</li>
 </ol>
-<pre>java -jar LibScout.jar -o match -p <i>path_to_profiles</i> [-a <i>android_sdk_jar</i>] [-u] [-j <i>json_dir</i>] [-s <i>stats_dir</i>] [-m] [-d <i>log_dir</i>] <i>path_to_app(s)</i>  </pre>
+<pre>java -jar LibScout.jar -o match -p <i>path_to_profiles</i> [-a <i>android_sdk_jar</i>] [-u] [-j <i>json_dir</i>] [-m] [-d <i>log_dir</i>] <i>path_to_app(s)</i>  </pre>
 
 ### Library API compatibility analysis (-o lib_api_analysis)
 
@@ -122,12 +121,7 @@ For your convenience use the library scraper. Analysis results are written to di
 This mode is an extension to the match mode. It first detects library versions in the provided apps and conducts a library usage analysis (-u is implied). In addition, it requires library API compat data (via the -l switch) as generated in the <i>lib_api_analysis</i> mode . Based on the lib API usage in the app and the compat info, LibScout determines the highest version that is still compatible to the set of used lib APIs.<br>
 <b>Note:</b> The new implementation still lacks some features, e.g. the results are currently logged but not yet written to json. See the code comments for more information.
 
-<pre>java -jar LibScout.jar -o updatability [-a <i>android_sdk_jar</i>] [-j <i>json_dir</i>] -l <i>lib_api_data_dir</i> <i>path_to_app(s)<i></pre>
-
-### Database Generator (-o db)
-
-Generates a SQLite database from library profiles and serialized app stats:<br>
-<pre>java -jar LibScout.jar -o db -p <i>path_to_profiles</i> -s <i>path_to_app_stats</i> </pre>
+<pre>java -jar LibScout.jar -o updatability [-a <i>android_sdk_jar</i>] [-j <i>json_dir</i>] -l <i>lib_api_data_dir</i> <i>path_to_app(s)</i></pre>
 
 
 ## Scientific Publications
