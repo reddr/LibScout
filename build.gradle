@@ -34,7 +34,7 @@ dependencies {
     provided files('lib/com.ibm.wala.dalvik-1.5.1-7f51c220-patched.jar')
     provided files('lib/com.ibm.wala.shrike-1.5.1-7f51c220-patched.jar')
     provided files('lib/com.ibm.wala.util-1.5.1-7f51c220-patched.jar')
-    provided files('lib/dexlib2-2.2.5-5935fe6e-patched.jar')
+    provided 'org.smali:dexlib2:2.2.6'
 
     provided files('lib/android-xml.jar')  // axml relevant classes from Android SDK
     provided files('lib/sqlite-jdbc-3.7.15-SNAPSHOT.jar')  // loaded via reflection, at that time, the only working version
