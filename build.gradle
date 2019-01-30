@@ -43,7 +43,7 @@ jar {
     manifest {
         attributes 'Main-Class': 'de.infsec.tpl.TplCLI',
                          'Tool': 'LibScout',
-                      'Version': '2.3.1'
+                      'Version': '2.3.2'
     }
 
     // build fat jar

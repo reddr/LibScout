@@ -20,7 +20,7 @@ public class LibScoutConfig {
     private static final Logger logger = LoggerFactory.getLogger(de.infsec.tpl.config.LibScoutConfig.class);
 
     public static final String TOOLNAME = "LibScout";
-    public static final String TOOLVERSION = "2.3.1";
+    public static final String TOOLVERSION = "2.3.2";
 
     // modes of operations
     public enum OpMode {
