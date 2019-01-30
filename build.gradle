@@ -29,11 +29,11 @@ dependencies {
     provided 'net.consensys.cava:cava-toml:0.5.0'
     provided 'com.google.guava:guava:27.0.1-jre'
 
-    // local deps
-    provided files('lib/com.ibm.wala.core-1.5.1-7f51c220-patched.jar')
-    provided files('lib/com.ibm.wala.dalvik-1.5.1-7f51c220-patched.jar')
-    provided files('lib/com.ibm.wala.shrike-1.5.1-7f51c220-patched.jar')
-    provided files('lib/com.ibm.wala.util-1.5.1-7f51c220-patched.jar')
+    // WALA and dexlib
+    provided 'com.ibm.wala:com.ibm.wala.core:1.5.1'
+    provided 'com.ibm.wala:com.ibm.wala.dalvik:1.5.1'
+    provided 'com.ibm.wala:com.ibm.wala.shrike:1.5.1'
+    provided 'com.ibm.wala:com.ibm.wala.util:1.5.1'
     provided 'org.smali:dexlib2:2.2.6'
 
     provided files('lib/android-xml.jar')  // axml relevant classes from Android SDK
