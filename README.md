@@ -73,7 +73,7 @@ Refer to <a href="https://developer.android.com/studio/">https://developer.andro
 |_ data
 |    |_ app-version-codes.csv (Google Play app packages with valid version codes)
 |_ lib
-|    pre-compiled WALA libs, Android axml
+|    Android axml
 |_ scripts
 |    |_ library-specs (pre-defined library specs)
 |    |_ library-scraper.py   (scraper for mvn-central, jcenter, custom mvn)
