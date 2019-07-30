@@ -1,0 +1,322 @@
+{
+    "libraries": [
+        {
+            "name": "Unity3D",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.unity3d.ads",
+            "artefactid": "unity-ads"
+        },{
+            "name": "InMobi Mobile Ads",
+            "category": "Advertising",
+            "comment": "InMobi Ad Network and Rendering Framework",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.inmobi.monetization",
+            "artefactid": "inmobi-ads"
+        },{
+            "name": "AppLovin",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.applovin",
+            "artefactid": "applovin-sdk"
+        },{
+            "name": "Yandex",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.yandex.android",
+            "artefactid": "mobileads"
+        },{
+            "name": "Ad4Screen",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.ad4screen.sdk",
+            "artefactid": "A4SSDK"
+        },{
+            "name": "Adjust",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.adjust.sdk",
+            "artefactid": "adjust-android"
+        },{
+            "name": "AppNexus",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.appnexus.opensdk",
+            "artefactid": "appnexus-sdk"
+        },{
+            "name": "Batch",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.batch.android",
+            "artefactid": "batch-sdk"
+        },{
+            "name": "Flurry",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.flurry.android",
+            "artefactid": "ads"
+        },{
+            "name": "MoPub",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.mopub",
+            "artefactid": "mopub-sdk"
+        },{
+            "name": "MoPub banner",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.mopub",
+            "artefactid": "mopub-sdk-banner"
+        },{
+            "name": "MoPub interstitial",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.mopub",
+            "artefactid": "mopub-sdk-interstitial"
+        },{
+            "name": "MoPub base",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.mopub",
+            "artefactid": "mopub-sdk-base"
+        },{
+            "name": "MoPub native static",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.mopub",
+            "artefactid": "mopub-sdk-native-static"
+        },{
+            "name": "MoPub native video",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.mopub",
+            "artefactid": "mopub-sdk-native-video"
+        },{
+            "name": "MoPub rewardedvideo",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.mopub",
+            "artefactid": "mopub-sdk-rewardedvideo"
+        },{
+            "name": "Fyber",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "https://fyber.bintray.com/maven",
+            "groupid": "com.fyber",
+            "artefactid": "fyber-sdk"
+        },{
+            "name": "Sponsorpay",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "https://fyber.bintray.com/maven",
+            "groupid": "com.sponsorpay",
+            "artefactid": "sponsorpay-android-sdk"
+        },{
+            "name": "AdColony",
+            "category": "Advertising",
+            "comment": "",
+            "repo": "https://adcolony.bintray.com/AdColony",
+            "groupid": "com.adcolony",
+            "artefactid": "sdk"
+        },
+
+        {
+            "name": "OpenLocate",
+            "category": "Analytics",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.openlocate",
+            "artefactid": "openlocate"
+        },{
+            "name": "Amplitude",
+            "category": "Analytics",
+            "comment": "An Android SDK for tracking events and revenue to Amplitude",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.amplitude",
+            "artefactid": "android-sdk"
+        },{
+            "name": "Appsee",
+            "category": "Analytics",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.appsee",
+            "artefactid": "appsee-android"
+        },{
+            "name": "AT Internet",
+            "category": "Analytics",
+            "comment": "AT Internet mobile analytics solution for Android http://www.atinternet.com/",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.atinternet",
+            "artefactid": "Tracker"
+        },{
+            "name": "Estimote",
+            "category": "Analytics",
+            "comment": "Estimote SDK for Android is a library that allows interaction with Estimote beacons & stickers",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.estimote",
+            "artefactid": "sdk"
+        },{
+            "name": "Estimote Proximity",
+            "category": "Analytics",
+            "comment": "Simple way for apps to react to physical context by reading signals from Estimote Beacons",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.estimote",
+            "artefactid": "proximity-sdk"
+        },{
+            "name": "Eulerian",
+            "category": "Analytics",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.eulerian.android.sdk",
+            "artefactid": "eanalytics"
+        },{
+            "name": "Fidzup",
+            "category": "Analytics",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.fidzup",
+            "artefactid": "fidzup-sdk"
+        },{
+            "name": "Flurry Analytics",
+            "category": "Analytics",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.flurry.android",
+            "artefactid": "analytics"
+        },{
+            "name": "Hypertrack",
+            "category": "Analytics",
+            "comment": "Utility logger library for storing logs into database and push them to remote server for debugging",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.hypertrack",
+            "artefactid": "hyperlog"
+        },{
+            "name": "Mixpanel",
+            "category": "Analytics",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.mixpanel.android",
+            "artefactid": "mixpanel-android"
+        },{
+            "name": "Optimizely",
+            "category": "Analytics",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.optimizely.ab",
+            "artefactid": "android-sdk"
+        },{
+            "name": "Snowplow",
+            "category": "Analytics",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.snowplowanalytics",
+            "artefactid": "snowplow-android-tracker"
+        },{
+            "name": "Tag Commander Core",
+            "category": "Analytics",
+            "comment": "Used as a base by the other Tag Commander modules.",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.tagcommander.lib",
+            "artefactid": "core"
+        },{
+            "name": "Tag Commander SDK",
+            "category": "Analytics",
+            "comment": "Tag management system collecting data through a server-side approach.",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.tagcommander.lib",
+            "artefactid": "SDK"
+        },{
+            "name": "Tag Commander Segment",
+            "category": "Analytics",
+            "comment": "Get your user segmentation from our servers.",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.tagcommander.lib",
+            "artefactid": "segment"
+        },{
+            "name": "Tag Commander Beacon",
+            "category": "Analytics",
+            "comment": "Scan the beacon and find when a user is close to your shop",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.tagcommander.lib",
+            "artefactid": "beacon"
+        },{
+            "name": "Tencent Map Geolocation",
+            "category": "Analytics",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.tencent.map.geolocation",
+            "artefactid": "TencentLocationSdk-meituandispatch"
+        },{
+            "name": "Tune",
+            "category": "Analytics",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.tune",
+            "artefactid": "tune-marketing-console-sdk"
+        },{
+            "name": "Umeng",
+            "category": "Analytics",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.umeng.analytics",
+            "artefactid": "analytics"
+        },{
+            "name": "Countly",
+            "category": "Analytics",
+            "comment": "Countly is an innovative, real-time, open source mobile analytics application.",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "ly.count.android",
+            "artefactid": "sdk"
+        },{
+            "name": "Piwik",
+            "category": "Analytics",
+            "comment": "Send analytics data from Android apps to Piwik instances",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "org.piwik.sdk",
+            "artefactid": "piwik-sdk"
+        },{
+            "name": "Fabric",
+            "category": "Analytics",
+            "comment": "",
+            "repo": "https://maven.fabric.io/public",
+            "groupid": "io.fabric.sdk.android",
+            "artefactid": "fabric"
+        },{
+            "name": "Crashlytics",
+            "category": "Analytics",
+            "comment": "",
+            "repo": "https://maven.fabric.io/public",
+            "groupid": "com.crashlytics.sdk.android",
+            "artefactid": "crashlytics"
+        },{
+            "name": "StartApp",
+            "category": "Analytics",
+            "comment": "",
+            "repo": "http://jcenter.bintray.com",
+            "groupid": "com.startapp",
+            "artefactid": "inapp-sdk"
+        },{
+            "name": "Kochava",
+            "category": "Analytics",
+            "comment": "",
+            "repo": "http://kochava.bintray.com/maven",
+            "groupid": "com.kochava.base",
+            "artefactid": "tracker"
+        }
+    ]
+}
