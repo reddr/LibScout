@@ -23,6 +23,7 @@ The scripts directory contains a [library-scraper](scripts/library-scraper.py) p
 
 The scrapers need to be configured with a json config that includes metadata of the libraries to be fetched (name, repo, groupid, artefactid). The *scripts/library-specs* directory contains config files to retrieve over 100 libraries from maven central and a config to download Amazon libraries and Android libraries from Google's maven repository (350 libraries, including support, gms, ktx, jetpack, ..).
 
+**NEW (07/30/19): Added list of 45 ad/tracking libraries with currently 1182 versions (trackers.json).**
 
 ## Detecting (vulnerable) library versions
 Ready-to-use library profiles and library meta-data can be found in the repository [LibScout-Profiles](https://github.com/reddr/LibScout-Profiles).
