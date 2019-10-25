@@ -128,12 +128,10 @@ This mode is an extension to the match mode. It first detects library versions i
 ## Scientific Publications
 
 For technical details and large-scale evaluation results, please refer to our publications:<br>
-> Reliable Third-Party Library Detection in Android and its Security Applications<br>
-> https://www.infsec.cs.uni-saarland.de/~derr/publications/pdfs/derr_ccs16.pdf
+> - [Reliable Third-Party Library Detection in Android and its Security Applications](https://people.svv.lu/derr/publications/pdfs/derr_ccs16.pdf) (CCS'16)<br>
 >
-> Keep me Updated: An Empirical Study of Third-Party Library Updatability on Android<br>
-> https://www.infsec.cs.uni-saarland.de/~derr/publications/pdfs/derr_ccs17.pdf
+> - [Keep me Updated: An Empirical Study of Third-Party Library Updatability on Android](https://people.svv.lu/derr/publications/pdfs/derr_ccs17.pdf) (CCS'17)<br>
 
-If you use LibScout in a scientific publication, we would appreciate citations using these Bibtex entries: [[bib-ccs16]](https://www.infsec.cs.uni-saarland.de/~derr/publications/bib/derr_ccs16.bib)
-[[bib-ccs17]](https://www.infsec.cs.uni-saarland.de/~derr/publications/bib/derr_ccs17.bib)<br>
+If you use LibScout in a scientific publication, we would appreciate citations using these Bibtex entries: [[bib-ccs16]](https://people.svv.lu/derr/publications/bib/derr_ccs16.bib)
+[[bib-ccs17]](https://people.svv.lu/derr/publications/bib/derr_ccs17.bib)<br>
 
